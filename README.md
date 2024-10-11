@@ -45,14 +45,6 @@ O Observatório visa:
 - Apoiar a criação de **políticas públicas** para a população LGBTI+.
 - Educar sobre **direitos humanos** e fomentar a participação democrática.
 
-## Como Contribuir
-
-1. Faça um fork do repositório.
-2. Crie um branch para sua feature (`git checkout -b feature/nome-da-feature`).
-3. Faça o commit das suas mudanças (`git commit -m 'Adiciona nova feature'`).
-4. Envie para o branch (`git push origin feature/nome-da-feature`).
-5. Abra um Pull Request.
-
 ## Contato
 
 Para dúvidas ou sugestões, entre em contato com os colaboradores:
