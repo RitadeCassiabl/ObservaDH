@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Observatório Digital de Discurso e Direitos Humanos
 
-## Getting Started
+Este projeto faz parte das iniciativas **PIBIC** e **PIBITI** e tem como objetivo criar uma plataforma web destinada à publicização de informações sobre proposições parlamentares em tramitação nas Casas Legislativas brasileiras que atentem contra os **Direitos Humanos** da população **LGBTI+**. A plataforma busca aumentar a transparência e a fiscalização da atuação do Poder Legislativo, ampliando a participação democrática.
 
-First, run the development server:
+## Contexto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+De acordo com o **Disque 100**, o Brasil registrou mais de 121,5 mil denúncias de violações de direitos humanos entre janeiro e março de 2023. Relatórios da **Anistia Internacional** revelam que o Brasil ocupa o 4º lugar no mundo em mortes de defensores de direitos humanos e do meio ambiente. No caso da população LGBTI+, a subnotificação ainda é um grande desafio, mas o país é líder mundial em casos de assassinatos e violência, conforme relatórios da **Transgender Europe** desde 2016.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A criminalização da “homotransfobia” no Brasil só ocorreu em 2019, após mais de duas décadas de obstrução no Congresso Nacional. Além disso, desde 2013, estudos acadêmicos (Facchini; França, 2020; Biroli; Machado; Vaggione, 2020) têm mostrado a proliferação de iniciativas parlamentares que buscam reverter ou obstruir os direitos da população LGBTI+. Muitas dessas propostas legislativas geram um alto volume de dados que permanecem amplamente ignorados pela população.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Este projeto visa transformar essa vasta quantidade de dados em informações acessíveis e críticas, possibilitando à população o monitoramento dessas movimentações nas Casas Legislativas e incentivando uma maior fiscalização da atuação de representantes eleitos.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Objetivo
 
-## Learn More
+Desenvolver o **Observatório Digital de Discurso e Direitos Humanos**, uma plataforma tecnológica que organize e visualize dinamicamente dados de proposições legislativas que impactam os direitos humanos, em especial os da comunidade **LGBTI+**.
 
-To learn more about Next.js, take a look at the following resources:
+## Funcionalidades
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Monitoramento Legislativo**: coleta e análise de projetos de lei (PLs) e propostas de emenda constitucional (PECs) que atentem contra os direitos da população LGBTI+.
+- **Classificação de Dados**: uso de métodos quantitativos e qualitativos para classificar dados textuais e metatextuais dos PLs e PECs.
+- **Visualização de Dados**: desenvolvimento de gráficos dinâmicos e interativos para representação visual das informações coletadas.
+- **Plataforma de Usabilidade**: criação de uma página web acessível e informativa para o público em geral.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tecnologias Utilizadas
 
-## Deploy on Vercel
+- **Linguagem**: a definir...
+- **Banco de Dados**:  a definir...
+- **Frontend**: React
+- **Backend**:  a definir...
+- **Visualização de Dados**: a definir...
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Metodologia
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A metodologia combinada envolve:
+
+1. **Classificação de dados** automatizada e manual dos PLs e PECs em tramitação.
+2. **Desenvolvimento de visualizações gráficas** dinâmicas para a representação dos dados legislativos.
+3. **Desenvolvimento de uma página Web** para fornecer à população informações técnicas e acessíveis sobre a atuação parlamentar.
+
+## Impacto
+
+O Observatório visa:
+
+- Aumentar a fiscalização da atuação legislativa, promovendo maior transparência.
+- Apoiar a criação de **políticas públicas** para a população LGBTI+.
+- Educar sobre **direitos humanos** e fomentar a participação democrática.
+
+## Como Contribuir
+
+1. Faça um fork do repositório.
+2. Crie um branch para sua feature (`git checkout -b feature/nome-da-feature`).
+3. Faça o commit das suas mudanças (`git commit -m 'Adiciona nova feature'`).
+4. Envie para o branch (`git push origin feature/nome-da-feature`).
+5. Abra um Pull Request.
+
+## Contato
+
+Para dúvidas ou sugestões, entre em contato com os colaboradores:
+
+<div>
+    <a href="https://github.com/follijulio">
+        <img height="100" src="https://github.com/follijulio.png" />
+    </a>
+    <img height="100" src="https://github.com/RitadeCassiabl.png" />
+    </a>
+</div>
+<h2>Júlio César & Rita de Cássia</h2> 
