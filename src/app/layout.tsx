@@ -10,7 +10,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-br">
-      <body>
+      <body className="h-screen w-screen bg-layout-principal">
         {children}
       </body>
     </html>
