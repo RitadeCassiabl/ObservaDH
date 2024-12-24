@@ -18,3 +18,22 @@
   font-weight: 400;
   font-style: normal;
 }
+
+
+.bg-senado {
+  position: relative;
+}
+
+.bg-senado::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("/assets/images/senado_federal.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15; 
+  z-index: -1;
+}
