@@ -37,3 +37,7 @@
   opacity: 0.15; 
   z-index: -1;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
