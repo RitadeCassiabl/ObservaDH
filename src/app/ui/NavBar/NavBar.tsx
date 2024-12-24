@@ -23,7 +23,7 @@ const navBar: React.FC = () => {
 
   return (
     <div className="w-full h-full flex flex-col items-center bg-senado bg-cover bg-center border-b-2 border-[#001745]">
-      <nav className="p-8 w-full items-cener flex flex-col gap-40">
+      <nav className="p-8 w-full items-center flex flex-col gap-40">
         <div className="flex w-full items-center justify-center flex-col">
           <div className="w-11/12 flex flex-col">
             <div className="flex gap-[12.5rem] items-center justify-between">
@@ -49,7 +49,7 @@ const navBar: React.FC = () => {
           </div>
           <span className="border-b-[1px] shadow-bottom shadow-white w-full" />
         </div>
-        <div className="">
+        <div className="w-full flex flex-col px-14">
           {router === "/" ? 
           <div className="gap-8 flex flex-col">
             <span className="logo text-8xl text-white"></span>
