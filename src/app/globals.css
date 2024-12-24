@@ -4,12 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.logo::after {
-  content: "DH";
-  font-family: "Titillium Web", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
+
 
 .logo::before {
   content: "Observa";
@@ -19,6 +14,12 @@
   font-style: normal;
 }
 
+.logo::after {
+  content: "DH";
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
 
 .bg-senado {
   position: relative;
