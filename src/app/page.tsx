@@ -1,3 +1,4 @@
+import CardApresentacao from "./ui/cards/CardApresentacao";
 
 const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat
             nisi nec orci maximus, eu tempus metus viverra. Pellentesque non
@@ -47,6 +48,11 @@ const page: React.FC = () => {
   return (
     <div className="flex h-full w-full flex-col p-8">
       <article className="w-full h-auto flex justify-center">
+        <CardApresentacao>
+          <p>
+            {text}
+          </p>
+        </CardApresentacao>
       </article>
     </div>
   );
