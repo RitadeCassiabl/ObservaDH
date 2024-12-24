@@ -44,11 +44,12 @@ const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugi
             ullamcorper, auctor sollicitudin est condimentum.`;
 
 const page: React.FC = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return (
+    <div className="flex h-full w-full flex-col p-8">
+      <article className="w-full h-auto flex justify-center">
+      </article>
+    </div>
+  );
+};
 
 export default page;
