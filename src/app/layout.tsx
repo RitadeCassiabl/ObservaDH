@@ -16,12 +16,19 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-br" className={titillium_web.className}>
-      <body className="h-screen w-screen bg-layout-principal antialiased p-8 flex justify-center">
-        <NavBar />
-        <div>
-          {children}
-        </div>
+      <body className="bg-layout-principal antialiased no-scrollbar">
+        <header className="h-[34rem] w-full">
+          <NavBar />
+        </header>
+        <main className="h-full w-full"> 
+          <div className="h-1 w-full bg-white">
+          </div>
+          <div className="h-full">
+            {children}
+          </div>
+        </main>
       </body>
     </html>
   );
 }
+
