@@ -27,6 +27,9 @@ export default function RootLayout({
             {children}
           </div>
         </main>
+        <footer className="h-72 w-full bg-layout-principal">
+          <FooterBar />
+        </footer>
       </body>
     </html>
   );
