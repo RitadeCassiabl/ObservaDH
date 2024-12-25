@@ -1,4 +1,5 @@
 import CardApresentacao from "./ui/cards/CardApresentacao";
+import CardRedirecionamento from "./ui/cards/CardRedirecionamento";
 
 const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat
             nisi nec orci maximus, eu tempus metus viverra. Pellentesque non
@@ -70,15 +71,34 @@ const cards = [
     cor: "text-[#F693F9]"
   }
 ];
+
 const page: React.FC = () => {
   return (
-    <div className="flex h-full w-full flex-col p-8">
+    <div className="flex h-full w-full flex-col gap-16 p-[4.375rem] items-center">
       <article className="w-full h-auto flex justify-center">
         <CardApresentacao>
           <p>
             {text}
           </p>
         </CardApresentacao>
+      </article>
+      <article className="w-9/12 h-auto flex flex-col gap-16">
+        {cards.map((card, index) =>
+          <div
+            key={index}
+            className={`w-full flex ${index % 2 === 0
+              ? "justify-start"
+              : "justify-end"}`}
+          >
+            <CardRedirecionamento
+              cor={card.cor}
+              rota={card.rota}
+              texto={card.texto}
+              titulo={card.titulo}
+              subtitulo={card.subtitulo}
+            />
+          </div>
+        )}
       </article>
     </div>
   );
