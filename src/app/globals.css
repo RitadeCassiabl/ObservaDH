@@ -57,6 +57,16 @@
     text-shadow: 4px 4px 8px rgba(69, 104, 190, 1);
   }
 }
+
+
+
+.bg-grade{
+  background-image: url("/assets/images/grade.png");
+  background-size: auto;
+  background-position: left top;
+  background-repeat: no-repeat;
+}
+
 .bg-brasil {
   background-image: url("/assets/images/background_brasil.png");
   background-size: auto;
