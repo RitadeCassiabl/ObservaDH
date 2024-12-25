@@ -16,7 +16,7 @@ const cardApresetacao: React.FC<CardApresentacaoProps> = ({
 children
 }) => {
   return (
-    <section className="w-10/12 h-[43.4375rem] bg-gradient-to-b from-[#050B17] to-[#1A326E]  border-[1px] border-[#87D9FF] p-16 rounded-[5px] shadow-lg shadow-[#87D9FF]">
+    <section className="w-11/12 h-[43.4375rem] bg-gradient-to-b from-[#050B17] to-[#1A326E]  border-[1px] border-[#87D9FF] p-16 rounded-[5px] shadow-lg shadow-[#87D9FF]">
       <article className="w-full h-full flex flex-col gap-4">
         <h2
           className={`${oswald.className} text-[5rem] text-white text-shadow-xl font-normal`}
