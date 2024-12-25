@@ -44,6 +44,32 @@ const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugi
             consectetur, pulvinar ac nisi. Maecenas faucibus leo et libero
             ullamcorper, auctor sollicitudin est condimentum.`;
 
+const cards = [
+  {
+    subtitulo: "Visão",
+    titulo: "Geral",
+    texto:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet inventore quo error est natus facilis. Quod odit voluptates libero dignissimos veniam accusamus omnis, autem architecto. Consequatur in error maxime.",
+    rota: "/projetos",
+    cor: "text-[#93F996]"
+  },
+  {
+    subtitulo: "Esfera",
+    titulo: "Federal",
+    texto:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet inventore quo error est natus facilis. Quod odit voluptates libero dignissimos veniam accusamus omnis, autem architecto. Consequatur in error maxime.",
+    rota: "/projetos",
+    cor: "text-[#FDFF78]"
+  },
+  {
+    subtitulo: "Esfera",
+    titulo: "Estadual",
+    texto:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet inventore quo error est natus facilis. Quod odit voluptates libero dignissimos veniam accusamus omnis, autem architecto. Consequatur in error maxime.",
+    rota: "/projetos",
+    cor: "text-[#F693F9]"
+  }
+];
 const page: React.FC = () => {
   return (
     <div className="flex h-full w-full flex-col p-8">
