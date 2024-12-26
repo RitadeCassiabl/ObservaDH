@@ -1,8 +1,10 @@
+import Chart from "@/app/ui/charts/Chart";
+
 const page: React.FC = () => {
-    return (
-        <div className="h-screen w-screen flex items-center justify-center bg-slate-700">
-            PÁGINA DE TESTES      
-        </div>
-    );
-}
+  return (
+    <div className="h-screen w-screen">
+      <Chart />
+    </div>
+  );
+};
 export default page;
