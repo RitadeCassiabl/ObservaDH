@@ -10,18 +10,20 @@ const titillium_web = Titillium_Web({
   subsets: ["latin"]
 });
 
-interface cardInformativoProps {
+interface CardInformativoProps {
   title: string;
   subtitle: string;
-  text: string;
+  isSubtitleHTML?: boolean;
+  texto: string;
   rota: string;
   cor: string;
 }
 
-const cardInformativo: React.FC<cardInformativoProps> = ({
+const CardInformativo: React.FC<CardInformativoProps> = ({
   rota,
   subtitle,
-  text,
+  isSubtitleHTML = false,
+  texto,
   title,
   cor
 }) => {
@@ -32,19 +34,21 @@ const cardInformativo: React.FC<cardInformativoProps> = ({
       >
         {title}{" "}
         <span className={`${titillium_web.className} text-[2.5rem] font-light`}>
-          {subtitle}
+          {isSubtitleHTML
+            ? <span dangerouslySetInnerHTML={{ __html: subtitle }} />
+            : subtitle}
         </span>
       </h1>
       <section className="text-xl h-64 text-white font-normal">
-        {text}
+        {texto}
       </section>
       <div className="w-full flex justify-end">
         <Link href={rota}>
-          <BsArrowRight size={32} color="white"/>
+          <BsArrowRight size={32} color="white" />
         </Link>
       </div>
     </div>
   );
 };
 
-export default cardInformativo;
+export default CardInformativo;

@@ -52,9 +52,10 @@ const page: React.FC = () => {
             key={item.title}
             rota={item.rota}
             subtitle={item.subtitle}
-            text={item.text}
+            texto={item.text}
             title={item.title}
             cor={item.cor}
+            isSubtitleHTML={item.isSubtitleHTML}
           />
         )}
       </article>
