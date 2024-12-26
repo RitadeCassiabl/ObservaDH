@@ -59,13 +59,13 @@
 }
 
 
-
-.bg-grade{
-  background-image: url("/assets/images/grade.png");
-  background-size: auto;
-  background-position: left top;
-  background-repeat: no-repeat;
-}
+ 
+.bg-grid {
+  background-image: url("/assets/images/grids/normal_grid.png"), url("/assets/images/grids/turn_grid.png");
+  background-size: auto, auto;
+  background-position: left top, right bottom;
+  background-repeat: no-repeat, no-repeat;
+} 
 
 .bg-brasil {
   background-image: url("/assets/images/background_brasil.png");
