@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import {Titillium_Web} from "next/font/google"
-import NavBar from "./ui/navbar/NavBar";
-import FooterBar from "./ui/footer/FooterBar";
+import NavBar from "./ui/NavBar";
+import FooterBar from "./ui/FooterBar";
 
 const titillium_web =  Titillium_Web({weight: ["400", "700"], subsets: ["latin"]})
 
@@ -26,7 +26,7 @@ export default function RootLayout({
             {children}
           </div>
         </main>
-        <footer className="h-72 w-full bg-layout-principal">
+        <footer className="h-72 w-full">
           <FooterBar />
         </footer>
       </body>

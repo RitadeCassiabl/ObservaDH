@@ -1,5 +1,6 @@
-import CardApresentacao from "./ui/cards/CardApresentacao";
-import CardRedirecionamento from "./ui/cards/CardRedirecionamento";
+import CardApresentacao from "./ui/home/CardApresentacao";
+import CardEsfera from "./ui/home/CardEsfera";
+import CardInformativo from "./ui/home/CardInformativo";
 
 const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat
             nisi nec orci maximus, eu tempus metus viverra. Pellentesque non
@@ -72,25 +73,61 @@ const cards = [
   }
 ];
 
+const texts = [
+  {
+    title: "Conheça",
+    subtitle: "os Parlamentares",
+    text:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
+    rota: "/parlamentares",
+    cor: "text-[#F693F9]"
+  },
+  {
+    title: "Entenda",
+    subtitle: "sobre os direitos",
+    text:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
+    rota: "/direitos",
+    cor: "text-[#87D9FF]"
+  },
+  {
+    title: "Conheça",
+    subtitle: "o projeto",
+    text: 
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
+    rota: "/projetos",
+    cor: "text-[#93F996]"
+  }
+];
+
 const page: React.FC = () => {
   return (
-    <div className="flex h-full w-full flex-col gap-16 p-[4.375rem] items-center">
-      <article className="w-full h-auto flex justify-center">
+    <div className="flex h-full w-full flex-col gap-[4.25rem] py-[4.375rem] items-center">
+      {/* CARD DE APRESENTAÇÃO DO PROJETO */}
+      <article
+        className="w-full h-auto flex justify-center"
+        id=" CARD DE APRESENTAÇÃO DO PROJETO "
+      >
         <CardApresentacao>
           <p>
             {text}
           </p>
         </CardApresentacao>
       </article>
-      <article className="w-9/12 h-auto flex flex-col gap-16">
+      {/* CARDS DE REDIRECIONAMENTO - PLS*/}
+      <article
+        className="w-9/12 h-auto flex flex-col gap-16"
+        id=" CARDS DE REDIRECIONAMENTO - PLS "
+      >
         {cards.map((card, index) =>
           <div
             key={index}
+            //! AQUI ESTÁ A DIFERENÇA ENTRE OS CARDS DE REDIRECIONAMENTO - PLS
             className={`w-full flex ${index % 2 === 0
               ? "justify-start"
               : "justify-end"}`}
           >
-            <CardRedirecionamento
+            <CardEsfera
               cor={card.cor}
               rota={card.rota}
               texto={card.texto}
@@ -98,6 +135,22 @@ const page: React.FC = () => {
               subtitulo={card.subtitulo}
             />
           </div>
+        )}
+      </article>
+      {/* CARDS DE REDIRECIONAMENTO - OUTROS */}
+      <article
+        className="w-full flex justify-evenly px-[5rem] gap-24"
+        id=" CARDS DE REDIRECIONAMENTO - OUTROS "
+      >
+        {texts.map(item =>
+          <CardInformativo
+            key={item.title}
+            rota={item.rota}
+            subtitle={item.subtitle}
+            text={item.text}
+            title={item.title}
+            cor={item.cor}
+          />
         )}
       </article>
     </div>
