@@ -21,7 +21,7 @@ export default function RootLayout({
         <header className="h-[34rem] w-full">
           <NavBar />
         </header>
-        <main className="h-full w-full bg-grade">
+        <main className="h-full w-full bg-grid">
           <div className="h-full">
             {children}
           </div>
