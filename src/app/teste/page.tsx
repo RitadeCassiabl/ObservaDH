@@ -1,4 +1,4 @@
-import Chart from "@/app/ui/charts/Chart";
+import Chart from "@/ui/graficos/Chart";
 
 const page: React.FC = () => {
   return (

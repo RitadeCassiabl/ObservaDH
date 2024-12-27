@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import {Titillium_Web} from "next/font/google"
-import NavBar from "./ui/NavBar";
-import FooterBar from "./ui/FooterBar";
+import NavBar from "../ui/NavBar";
+import FooterBar from "../ui/FooterBar";
 
 const titillium_web =  Titillium_Web({weight: ["400", "700"], subsets: ["latin"]})
 
