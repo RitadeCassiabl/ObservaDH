@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import UseDiscovery from "../lib/useDiscover";
+import UseDiscovery from "../lib/hooks/useDiscover";
 
 interface Cabecalho {
   titulo: string;
