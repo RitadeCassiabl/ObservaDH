@@ -16,31 +16,66 @@ interface CardProjetosProps {
 
 const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
   return (
-    <Card className="bg-[#1A326E] h-[27.625rem] w-[38.125rem] border-[#AFC4F9] border-2 rounded-[10px] px-8 py-12">
+    <Card className="bg-[#1A326E] h-[27.625rem] w-[38.125rem] border-[#AFC4F9] border-2 rounded-[10px] px-8 py-12 flex flex-col gap-4">
+      {/* ANO - Nª PL */}
+      <section className="flex gap-6">
         <RenderText conteudo={projeto.ano} titulo="Ano" />
         <RenderText conteudo={projeto.numero_pl} titulo="Número do PL" />
+      </section>
+      {/* PAUTA - ESTADO */}
+      <section className="flex gap-6">
         <RenderText conteudo={projeto.pauta} titulo="Pauta" />
-        <RenderText conteudo="" titulo="" />
-        <RenderText conteudo="" titulo="" />
-
-        
-      {projeto.parlamentares.length > 1
-        ? <div>
-            <h3>Parlamentares:</h3>
-            {projeto.parlamentares.map((parlamentar, index) =>
-              <div key={index} className="text-white">
-                {parlamentar.nome} - {parlamentar.partido}
-              </div>
-            )}
-          </div>
-        : <div>
-            <h3>Parlamentar:</h3>
-            {projeto.parlamentares.map((parlamentar, index) =>
-              <div key={index} className="text-white">
-                {parlamentar.nome} - {parlamentar.partido}
-              </div>
-            )}
-          </div>}
+        <h3 className="text-white flex flex-row items-center gap-4">
+          <span
+            className={`${oswald.className} font-normal text-3xl text-[#AFC4F9]`}
+          >
+            {projeto.parlamentares.length > 1 ? "Estados:" : "Estado:"}
+          </span>
+          {projeto.parlamentares.map((parlamentar, index) =>
+            <span
+              key={index}
+              className={`${titillium_web.className} font-normal text-xl text-white`}
+            >
+              {parlamentar.estado}
+            </span>
+          )}
+        </h3>
+      </section>
+      {/* PARLAMENTAR  */}
+      <section>
+        <h3 className="flex flex-row items-center gap-4">
+          <span
+            className={`${oswald.className} font-normal text-3xl text-[#AFC4F9]`}
+          >
+            {projeto.parlamentares.length > 1
+              ? "Parlamentares:"
+              : "Parlamentar:"}
+          </span>
+          {projeto.parlamentares.map((parlamentar, index) =>
+            <span
+              key={index}
+              className={`${titillium_web.className} font-normal text-xl text-white`}
+            >
+              {parlamentar.nome} - {parlamentar.partido}
+            </span>
+          )}
+        </h3>
+      </section>
+      {/* EMENTA  */}
+      <section>
+        <p className={`flex flex-col gap-4 items-start`}>
+          <span
+            className={`${oswald.className} font-normal text-3xl text-[#AFC4F9]`}
+          >
+            Ementa:
+          </span>
+          <p
+            className={`${titillium_web.className} font-normal text-xl text-white`}
+          >
+            {projeto.ementa}
+          </p>
+        </p>
+      </section>
     </Card>
   );
 };
@@ -48,12 +83,26 @@ const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
 interface RenderTextProps {
   titulo: string;
   conteudo: string;
+  className?: string;
 }
 
-const RenderText: React.FC<RenderTextProps> = ({ titulo, conteudo }) => {
+const RenderText: React.FC<RenderTextProps> = ({
+  titulo,
+  conteudo,
+  className
+}) => {
   return (
-    <h3 className="text-white">
-      <span className="font-bold">{titulo}:</span> {conteudo}
+    <h3 className={`flex flex-row items-center gap-4 ${className}`}>
+      <span
+        className={`${oswald.className} font-normal text-3xl text-[#AFC4F9]`}
+      >
+        {titulo}:
+      </span>
+      <span
+        className={`${titillium_web.className} font-normal text-xl text-white`}
+      >
+        {conteudo}
+      </span>
     </h3>
   );
 };
