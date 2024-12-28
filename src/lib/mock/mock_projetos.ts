@@ -35,7 +35,17 @@ const projetosMock = [
     numero_pl: "PL123/2024",
     pauta: "Educação",
     parlamentares: [
-      { nome: "João Silva", genero: "Masculino", religiao: "Católica", raca: "Branca", esfera: "Federal", estado: "São Paulo", profissao: "Advogado", partido: "PSDB", ideologia: "Liberal" }
+      {
+        nome: "João Silva",
+        genero: "Masculino",
+        religiao: "Católica",
+        raca: "Branca",
+        esfera: "Federal",
+        estado: "São Paulo",
+        profissao: "Advogado",
+        partido: "PSDB",
+        ideologia: "Liberal"
+      }
     ],
     ementa: "Expande o acesso ao ensino integral nas escolas públicas."
   },
@@ -45,7 +55,17 @@ const projetosMock = [
     numero_pl: "PL456/2023",
     pauta: "Saúde",
     parlamentares: [
-      { nome: "Ana Costa", genero: "Feminino", religiao: "Ateia", raca: "Indígena", esfera: "Federal", estado: "Amazonas", profissao: "Ambientalista", partido: "Rede", ideologia: "Sustentável" }
+      {
+        nome: "Ana Costa",
+        genero: "Feminino",
+        religiao: "Ateia",
+        raca: "Indígena",
+        esfera: "Federal",
+        estado: "Amazonas",
+        profissao: "Ambientalista",
+        partido: "Rede",
+        ideologia: "Sustentável"
+      }
     ],
     ementa: "Prevê a distribuição de medicamentos essenciais gratuitos."
   },
@@ -55,7 +75,17 @@ const projetosMock = [
     numero_pl: "PL789/2022",
     pauta: "Meio Ambiente",
     parlamentares: [
-      { nome: "Carlos Souza", genero: "Masculino", religiao: "Protestante", raca: "Parda", esfera: "Municipal", estado: "Minas Gerais", profissao: "Professor", partido: "PSL", ideologia: "Conservadora" }
+      {
+        nome: "Carlos Souza",
+        genero: "Masculino",
+        religiao: "Protestante",
+        raca: "Parda",
+        esfera: "Municipal",
+        estado: "Minas Gerais",
+        profissao: "Professor",
+        partido: "PSL",
+        ideologia: "Conservadora"
+      }
     ],
     ementa: "Cria um programa nacional de reflorestamento."
   },
@@ -65,9 +95,20 @@ const projetosMock = [
     numero_pl: "PL101/2021",
     pauta: "Segurança Pública",
     parlamentares: [
-      { nome: "Maria Oliveira", genero: "Feminino", religiao: "Evangélica", raca: "Negra", esfera: "Estadual", estado: "Rio de Janeiro", profissao: "Médica", partido: "PT", ideologia: "Progressista" }
+      {
+        nome: "Maria Oliveira",
+        genero: "Feminino",
+        religiao: "Evangélica",
+        raca: "Negra",
+        esfera: "Estadual",
+        estado: "Rio de Janeiro",
+        profissao: "Médica",
+        partido: "PT",
+        ideologia: "Progressista"
+      }
     ],
-    ementa: "Moderniza os equipamentos da polícia e propõe treinamento humanizado."
+    ementa:
+      "Moderniza os equipamentos da polícia e propõe treinamento humanizado."
   },
   {
     id: "5",
@@ -75,7 +116,17 @@ const projetosMock = [
     numero_pl: "PL505/2020",
     pauta: "Infraestrutura",
     parlamentares: [
-      { nome: "Pedro Santos", genero: "Masculino", religiao: "Católica", raca: "Parda", esfera: "Estadual", estado: "Pará", profissao: "Engenheiro Civil", partido: "PV", ideologia: "Progressista" }
+      {
+        nome: "Pedro Santos",
+        genero: "Masculino",
+        religiao: "Católica",
+        raca: "Parda",
+        esfera: "Estadual",
+        estado: "Pará",
+        profissao: "Engenheiro Civil",
+        partido: "PV",
+        ideologia: "Progressista"
+      }
     ],
     ementa: "Propõe a criação de ciclovias em todas as capitais do país."
   },
@@ -85,9 +136,20 @@ const projetosMock = [
     numero_pl: "PL808/2024",
     pauta: "Cultura",
     parlamentares: [
-      { nome: "Roberta Lima", genero: "Feminino", religiao: "Espírita", raca: "Branca", esfera: "Federal", estado: "Bahia", profissao: "Produtora Cultural", partido: "PDT", ideologia: "Liberal" }
+      {
+        nome: "Roberta Lima",
+        genero: "Feminino",
+        religiao: "Espírita",
+        raca: "Branca",
+        esfera: "Federal",
+        estado: "Bahia",
+        profissao: "Produtora Cultural",
+        partido: "PDT",
+        ideologia: "Liberal"
+      }
     ],
-    ementa: "Incentiva o financiamento de artistas locais através de editais públicos."
+    ementa:
+      "Incentiva o financiamento de artistas locais através de editais públicos."
   },
   {
     id: "7",
@@ -95,7 +157,17 @@ const projetosMock = [
     numero_pl: "PL202/2023",
     pauta: "Direitos Humanos",
     parlamentares: [
-      { nome: "Lucas Martins", genero: "Masculino", religiao: "Agnóstico", raca: "Branca", esfera: "Federal", estado: "Santa Catarina", profissao: "Advogado", partido: "PSB", ideologia: "Progressista" }
+      {
+        nome: "Lucas Martins",
+        genero: "Masculino",
+        religiao: "Agnóstico",
+        raca: "Branca",
+        esfera: "Federal",
+        estado: "Santa Catarina",
+        profissao: "Advogado",
+        partido: "PSB",
+        ideologia: "Progressista"
+      }
     ],
     ementa: "Garante proteção adicional às vítimas de violência doméstica."
   },
@@ -105,9 +177,31 @@ const projetosMock = [
     numero_pl: "PL909/2022",
     pauta: "Economia",
     parlamentares: [
-      { nome: "Mariana Vieira", genero: "Feminino", religiao: "Evangélica", raca: "Negra", esfera: "Estadual", estado: "Pernambuco", profissao: "Economista", partido: "MDB", ideologia: "Conservadora" }
+      {
+        nome: "Mariana Vieira",
+        genero: "Feminino",
+        religiao: "Evangélica",
+        raca: "Negra",
+        esfera: "Estadual",
+        estado: "Pernambuco",
+        profissao: "Economista",
+        partido: "MDB",
+        ideologia: "Conservadora"
+      },
+      {
+        nome: "Mariane Vieira",
+        genero: "Feminino",
+        religiao: "Evangélica",
+        raca: "Negra",
+        esfera: "Estadual",
+        estado: "Pernambuco",
+        profissao: "Economista",
+        partido: "MDB",
+        ideologia: "Conservadora"
+      }
     ],
-    ementa: "Reduz os impostos para pequenas empresas durante crises econômicas."
+    ementa:
+      "Reduz os impostos para pequenas empresas durante crises econômicas."
   },
   {
     id: "9",
@@ -115,9 +209,20 @@ const projetosMock = [
     numero_pl: "PL303/2021",
     pauta: "Tecnologia",
     parlamentares: [
-      { nome: "Tiago Almeida", genero: "Masculino", religiao: "Católica", raca: "Branca", esfera: "Municipal", estado: "São Paulo", profissao: "Engenheiro de Software", partido: "NOVO", ideologia: "Liberal" }
+      {
+        nome: "Tiago Almeida",
+        genero: "Masculino",
+        religiao: "Católica",
+        raca: "Branca",
+        esfera: "Municipal",
+        estado: "São Paulo",
+        profissao: "Engenheiro de Software",
+        partido: "NOVO",
+        ideologia: "Liberal"
+      }
     ],
-    ementa: "Cria incentivos fiscais para empresas que investem em inovação tecnológica."
+    ementa:
+      "Cria incentivos fiscais para empresas que investem em inovação tecnológica."
   },
   {
     id: "10",
@@ -125,10 +230,21 @@ const projetosMock = [
     numero_pl: "PL707/2020",
     pauta: "Mobilidade Urbana",
     parlamentares: [
-      { nome: "Fernanda Gomes", genero: "Feminino", religiao: "Espírita", raca: "Parda", esfera: "Municipal", estado: "Rio Grande do Sul", profissao: "Arquiteta", partido: "PSD", ideologia: "Progressista" }
+      {
+        nome: "Fernanda Gomes",
+        genero: "Feminino",
+        religiao: "Espírita",
+        raca: "Parda",
+        esfera: "Municipal",
+        estado: "Rio Grande do Sul",
+        profissao: "Arquiteta",
+        partido: "PSD",
+        ideologia: "Progressista"
+      }
     ],
-    ementa: "Propõe a ampliação de transportes públicos elétricos nas grandes cidades."
+    ementa:
+      "Propõe a ampliação de transportes públicos elétricos nas grandes cidades."
   }
 ];
 
-export default projetosMock;
+export { projetosMock };
