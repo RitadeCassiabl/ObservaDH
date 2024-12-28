@@ -7,3 +7,21 @@ const apresentacao = {
     Donec cursus vestibulum mattis. Vestibulum sodales quam eget sem ullamcorper ultricies consequat in nisl. Donec nisl quam, aliquet quis ultricies eget, euismod sit amet turpis. Phasellus nulla turpis, consequat consectetur dapibus sit amet, viverra ut neque. Cras nec porta dui. Pellentesque ut magna ex. Nam felis turpis, imperdiet ac accumsan a, maximus at nibh. In non augue maximus, venenatis velit id, varius leo. Suspendisse et quam quis ipsum rutrum ullamcorper non eu dui. Nulla condimentum nisl ligula, sed rhoncus urna sagittis non. Pellentesque pulvinar mattis odio, id egestas nunc rhoncus posuere. Cras malesuada nisl dolor. Nullam pulvinar nibh elit, ut dapibus nibh sodales sed. Nam ligula nisi, convallis vitae fringilla consectetur, pulvinar ac nisi. Maecenas faucibus leo et libero ullamcorper, auctor sollicitudin est condimentum.`
 };
 export { apresentacao };
+const mockStatus = {
+  dados: {
+    dados: [
+      { titulo: "Parlamentares", valor: 197 },
+      { titulo: "Projetos de Lei", valor: 131 }
+    ]
+  },
+  pautas: {
+    pautas: [
+      { titulo: "Linguagem Neutra", valor: 81},
+      { titulo: "Banheiros", valor: 47 },
+      { titulo: "Atletas Trans", valor: 40 },
+      { titulo: "Propaganda LGBTQIAPN+", valor: 33 }
+    ]
+  }
+};
+
+export { mockStatus };
