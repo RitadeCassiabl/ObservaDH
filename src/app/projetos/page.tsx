@@ -27,6 +27,7 @@ const projetos: React.FC = () => {
           <CardGraficoMapa />
         </div>
         <span className="border-b-[1.5px] shadow-bottom shadow-[#AFC4F9] w-[82rem]" />
+        {/* CARROSSEL DE PL's */}
         <Carousel
           opts={{
             align: "start"
@@ -54,5 +55,3 @@ const projetos: React.FC = () => {
   );
 };
 export default projetos;
-
-//CARROSSEL - 1300px (81,25rem -> 82rem (1.312px))
