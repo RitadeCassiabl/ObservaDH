@@ -248,3 +248,17 @@ const projetosMock = [
 ];
 
 export { projetosMock };
+
+const mockData = [
+  { year: "2016", projetos: 3},
+  { year: "2018", projetos: 1},
+  { year: "2019", projetos: 9},
+  { year: "2020", projetos: 39},
+  { year: "2021", projetos: 70},
+  { year: "2022", projetos: 24},
+  { year: "2023", projetos: 65},
+  { year: "2024", projetos: 1},
+  
+];
+
+export { mockData };
