@@ -22,7 +22,7 @@ export default function RootLayout({
           <NavBar />
         </header>
         <main className="h-full w-full bg-grid">
-          <div className="h-full w-full">
+          <div className="h-full w-full px-11 py-16">
             {children}
           </div>
         </main>
