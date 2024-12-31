@@ -1,21 +1,21 @@
 import CardApresentacao from "../ui/cards/CardApresentacao";
 import CardEsfera from "../ui/home/CardEsfera";
 import CardInformativo from "../ui/home/CardInformativo";
-import { cards_esfera, cards_informativos, text } from "../lib/mock/mock_home";
+import { cards_esfera, cards_informativos, apresentacao } from "../lib/mock/mock_home";
 
 
 
 const page: React.FC = () => {
   return (
-    <div className="flex h-full w-full flex-col gap-[4.25rem] py-[4.375rem] items-center">
+    <div className="flex h-full w-full flex-col gap-[4.25rem] items-center">
       {/* CARD DE APRESENTAÇÃO DO PROJETO */}
       <article
         className="w-full h-auto flex justify-center"
         id=" CARD DE APRESENTAÇÃO DO PROJETO "
       >
-        <CardApresentacao titulo={""} subtitulo={""} cor={""}>
+        <CardApresentacao titulo={apresentacao.titulo} subtitulo={apresentacao.subtitulo} cor={apresentacao.cor}>
           <p>
-            {text}
+            {apresentacao.text}
           </p>
         </CardApresentacao>
       </article>
