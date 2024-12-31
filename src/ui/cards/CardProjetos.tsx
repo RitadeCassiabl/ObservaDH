@@ -1,7 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { ProjetoLei } from "@/lib/types/projetos";
 import { Titillium_Web, Oswald } from "next/font/google";
-import React from "react";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -16,7 +15,7 @@ interface CardProjetosProps {
 
 const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
   return (
-    <Card className="bg-[#1A326E] h-[27.625rem] w-[38.125rem] border-[#AFC4F9] border-2 rounded-[10px] px-8 py-12 flex flex-col gap-4">
+    <Card className="bg-gradient-to-t from-[#050B17] to-[#1A326E] h-[27.625rem] w-[38.125rem] border-[#AFC4F9] border-2 rounded-[10px] px-8 py-12 flex flex-col gap-4">
       {/* ANO - Nª PL */}
       <section className="flex gap-6">
         <RenderText conteudo={projeto.ano} titulo="Ano" />
@@ -63,7 +62,7 @@ const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
       </section>
       {/* EMENTA  */}
       <section>
-        <p className={`flex flex-col gap-4 items-start`}>
+        <h3 className={`flex flex-col gap-4 items-start`}>
           <span
             className={`${oswald.className} font-normal text-3xl text-[#AFC4F9]`}
           >
@@ -74,7 +73,7 @@ const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
           >
             {projeto.ementa}
           </p>
-        </p>
+        </h3>
       </section>
     </Card>
   );
