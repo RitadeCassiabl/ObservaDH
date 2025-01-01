@@ -28,7 +28,7 @@ const mockStatus = {
 export { mockStatus };
 
 //! PROJETOS DE LEI FALSOS
-const projetosMock = [
+const projetosMock = [    
   {
     id: "1",
     ano: "2024",
@@ -132,7 +132,7 @@ const projetosMock = [
   },
   {
     id: "6",
-    ano: "2024",
+    ano: "2022",
     numero_pl: "PL808/2024",
     pauta: "Cultura",
     parlamentares: [
@@ -153,7 +153,7 @@ const projetosMock = [
   },
   {
     id: "7",
-    ano: "2023",
+    ano: "2024",
     numero_pl: "PL202/2023",
     pauta: "Direitos Humanos",
     parlamentares: [
@@ -226,7 +226,7 @@ const projetosMock = [
   },
   {
     id: "10",
-    ano: "2020",
+    ano: "2021",
     numero_pl: "PL707/2020",
     pauta: "Mobilidade Urbana",
     parlamentares: [
@@ -244,21 +244,225 @@ const projetosMock = [
     ],
     ementa:
       "Propõe a ampliação de transportes públicos elétricos nas grandes cidades."
+  },
+  {
+    id: "10",
+    ano: "2021",
+    numero_pl: "PL707/2020",
+    pauta: "Mobilidade Urbana",
+    parlamentares: [
+      {
+        nome: "Fernanda Gomes",
+        genero: "Feminino",
+        religiao: "Espírita",
+        raca: "Parda",
+        esfera: "Municipal",
+        estado: "Rio Grande do Sul",
+        profissao: "Arquiteta",
+        partido: "PSD",
+        ideologia: "Progressista"
+      }
+    ],
+    ementa:
+      "Propõe a ampliação de transportes públicos elétricos nas grandes cidades."
+  },
+  {
+    id: "11",
+    ano: "2022",
+    numero_pl: "PL101/2022",
+    pauta: "Educação",
+    parlamentares: [
+      {
+        nome: "João Silva",
+        genero: "Masculino",
+        religiao: "Católico",
+        raca: "Branco",
+        esfera: "Federal",
+        estado: "São Paulo",
+        profissao: "Professor",
+        partido: "PT",
+        ideologia: "Socialista"
+      }
+    ],
+    ementa:
+      "Implementa ensino integral para escolas públicas em áreas vulneráveis."
+  },
+  {
+    id: "12",
+    ano: "2021",
+    numero_pl: "PL808/2021",
+    pauta: "Saúde Pública",
+    parlamentares: [
+      {
+        nome: "Maria Oliveira",
+        genero: "Feminino",
+        religiao: "Evangelica",
+        raca: "Negra",
+        esfera: "Estadual",
+        estado: "Bahia",
+        profissao: "Médica",
+        partido: "PSOL",
+        ideologia: "Progressista"
+      }
+    ],
+    ementa: "Ampliação do acesso a medicamentos genéricos no SUS."
+  },
+  {
+    id: "13",
+    ano: "2023",
+    numero_pl: "PL109/2023",
+    pauta: "Segurança",
+    parlamentares: [
+      {
+        nome: "Carlos Souza",
+        genero: "Masculino",
+        religiao: "Sem religião",
+        raca: "Parda",
+        esfera: "Municipal",
+        estado: "Rio de Janeiro",
+        profissao: "Advogado",
+        partido: "DEM",
+        ideologia: "Conservadora"
+      }
+    ],
+    ementa: "Criação de câmeras de vigilância em áreas de alta criminalidade."
+  },
+  {
+    id: "14",
+    ano: "2020",
+    numero_pl: "PL505/2020",
+    pauta: "Direitos Humanos",
+    parlamentares: [
+      {
+        nome: "Luciana Almeida",
+        genero: "Feminino",
+        religiao: "Espírita",
+        raca: "Indígena",
+        esfera: "Federal",
+        estado: "Amazonas",
+        profissao: "Socióloga",
+        partido: "PSB",
+        ideologia: "Progressista"
+      }
+    ],
+    ementa:
+      "Reconhecimento de territórios indígenas e ampliação de direitos trabalhistas."
+  },
+  {
+    id: "15",
+    ano: "2021",
+    numero_pl: "PL303/2021",
+    pauta: "Meio Ambiente",
+    parlamentares: [
+      {
+        nome: "Paulo Roberto",
+        genero: "Masculino",
+        religiao: "Católico",
+        raca: "Branco",
+        esfera: "Estadual",
+        estado: "Paraná",
+        profissao: "Engenheiro Ambiental",
+        partido: "PV",
+        ideologia: "Ecologista"
+      }
+    ],
+    ementa:
+      "Incentivo ao reflorestamento com espécies nativas em áreas degradadas."
+  },
+  {
+    id: "16",
+    ano: "2023",
+    numero_pl: "PL202/2023",
+    pauta: "Tecnologia",
+    parlamentares: [
+      {
+        nome: "Ana Lima",
+        genero: "Feminino",
+        religiao: "Sem religião",
+        raca: "Branca",
+        esfera: "Federal",
+        estado: "Minas Gerais",
+        profissao: "Engenheira de Software",
+        partido: "NOVO",
+        ideologia: "Liberal"
+      }
+    ],
+    ementa: "Criação de plataformas para transparência pública digital."
+  },
+  {
+    id: "17",
+    ano: "2022",
+    numero_pl: "PL450/2022",
+    pauta: "Cultura",
+    parlamentares: [
+      {
+        nome: "Juliana Rocha",
+        genero: "Feminino",
+        religiao: "Protestante",
+        raca: "Negra",
+        esfera: "Municipal",
+        estado: "Pernambuco",
+        profissao: "Artista Plástica",
+        partido: "PSOL",
+        ideologia: "Progressista"
+      }
+    ],
+    ementa: "Incentivo a projetos culturais em comunidades periféricas."
+  },
+  {
+    id: "18",
+    ano: "2021",
+    numero_pl: "PL802/2021",
+    pauta: "Agricultura",
+    parlamentares: [
+      {
+        nome: "Carlos Mendes",
+        genero: "Masculino",
+        religiao: "Católico",
+        raca: "Parda",
+        esfera: "Estadual",
+        estado: "Mato Grosso",
+        profissao: "Agrônomo",
+        partido: "MDB",
+        ideologia: "Conservadora"
+      }
+    ],
+    ementa: "Subsídios para produtores rurais em situação de vulnerabilidade."
+  },
+  {
+    id: "19",
+    ano: "2020",
+    numero_pl: "PL702/2020",
+    pauta: "Trabalho",
+    parlamentares: [
+      {
+        nome: "Renata Azevedo",
+        genero: "Feminino",
+        religiao: "Espírita",
+        raca: "Branca",
+        esfera: "Federal",
+        estado: "Rio de Janeiro",
+        profissao: "Economista",
+        partido: "PSDB",
+        ideologia: "Liberal"
+      }
+    ],
+    ementa: "Criação de políticas de estímulo ao primeiro emprego."
   }
+  // ... Adicione mais projetos para completar os 20
 ];
 
 export { projetosMock };
 
 const mockData = [
-  { year: "2016", projetos: 3},
-  { year: "2018", projetos: 1},
-  { year: "2019", projetos: 9},
-  { year: "2020", projetos: 39},
-  { year: "2021", projetos: 70},
-  { year: "2022", projetos: 24},
-  { year: "2023", projetos: 65},
-  { year: "2024", projetos: 1},
-  
+  { year: "2016", projetos: 3 },
+  { year: "2018", projetos: 1 },
+  { year: "2019", projetos: 9 },
+  { year: "2020", projetos: 39 },
+  { year: "2021", projetos: 70 },
+  { year: "2022", projetos: 24 },
+  { year: "2023", projetos: 65 },
+  { year: "2024", projetos: 1 }
 ];
 
 export { mockData };
