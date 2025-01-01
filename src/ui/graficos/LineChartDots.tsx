@@ -1,5 +1,5 @@
 "use client";
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 import {
   Card,
@@ -34,9 +34,11 @@ interface LineChartDotsProps {
 export function LineChartDots({ data }: LineChartDotsProps) {
   return (
     <Card className="h-[29rem] w-[52rem]  bg-[#122144]">
-      <CardContent>
-        <ChartContainer config={chartConfig}>
+      <CardContent >
+        <ChartContainer config={chartConfig} className=" p-11" >
           <LineChart
+          className="w-full h-full p-0 flex justify-between items-center" 
+           
             accessibilityLayer
             data={data}
             margin={{
@@ -45,19 +47,29 @@ export function LineChartDots({ data }: LineChartDotsProps) {
             }}
           >
             <CartesianGrid vertical={false} />
+            <YAxis 
+            
+            dataKey={chartConfig.projetos.label}
+            className=""
+            allowDataOverflow={false}
+           tickMargin={10}
+              tickLine={true}
+              axisLine={true}
+            />
             <XAxis
             padding={{ left: 10, right: 10 }}
             className=""
             allowDataOverflow={false}
               dataKey="year"
-              tickLine={false}
-              axisLine={false}
+              tickLine={true}
+              axisLine={true}
             />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel className="bg-[#121A2B]" />}
             />
             <Line
+            
               dataKey="projetos"
               type="natural"
               stroke="#F693F9"
