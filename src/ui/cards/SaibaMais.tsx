@@ -1,40 +1,64 @@
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import { FaPlus } from "react-icons/fa6";
+import {
+  TextStrongOswald,
+  TextContent,
+  LineText,
+  TextSpace,
+  TextSmallTitillium
+} from "../TextoDiferente";
+import { IoMdClose } from "react-icons/io";
 
-export function SaibaMais() {
+interface saibaMaisProps {
+  className?: string;
+  color?: string;
+  text: string;
+}
+
+const SaibaMais: React.FC<saibaMaisProps> = ({ className, color, text }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="flex flex-row text-[#93F996] text-xl items-center gap-4">
+        <button
+          className={`flex flex-row text-xl items-center gap-4 ${className} ${color}`}
+        >
           <FaPlus size={18} /> Saiba mais
-        </Button>
+        </button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>
-
-          </AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
-        </AlertDialogFooter>
+      <AlertDialogContent className="flex flex-col h-[702px] p-12 gap-6 w-[1015px] bg-[#121A2B] border-[#4568BE] shadow-lg shadow-[#4568BE] rounded-lg">
+        <AlertDialogTitle className="flex justify-between">
+          <TextContent className="text-5xl">
+            <LineText>
+              <TextStrongOswald>
+                {"Aprofundamento"}
+              </TextStrongOswald>
+              <TextSpace />
+              <TextSmallTitillium className={`${className} ${color}`}>
+                {"dos dados"}
+              </TextSmallTitillium>
+            </LineText>
+          </TextContent>
+          <AlertDialogCancel className="">
+            <IoMdClose size={26} color="white" />
+          </AlertDialogCancel>
+        </AlertDialogTitle>
+        <AlertDialogDescription>
+          <p className="text-[#AFC4F9] text-3xl text-justify">
+            {
+              text
+            }
+          </p>
+        </AlertDialogDescription>
       </AlertDialogContent>
     </AlertDialog>
   );
-}
+};
+
+export { SaibaMais };
