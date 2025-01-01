@@ -15,7 +15,12 @@ const titillium_web = Titillium_Web({
   subsets: ["latin"]
 });
 
-const legenda: React.FC = () => {
+interface legendaProps {
+  color: string;
+  text: string;
+}
+
+const legenda: React.FC<legendaProps> = ({ color, text }) => {
   return (
     <div className="w-[21.5rem] flex flex-col gap-6">
       <TextContent className="text-6xl">
@@ -28,7 +33,7 @@ const legenda: React.FC = () => {
             {"de"}
           </TextSmallTitillium>
         </LineText>
-        <LineText className="text-[#93F996]">
+        <LineText className={`${color}`}>
           <TextSmallTitillium>
             {"PL's"}
           </TextSmallTitillium>
@@ -43,7 +48,7 @@ const legenda: React.FC = () => {
           "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos voluptate eaque vel sunt, magnam rem minima odio vitae? Est non iste maxime dicta illo provident deleniti impedit distinctio nemo odit."
         }
       </p>
-      <SaibaMais />
+      <SaibaMais color={color} text={text} />
     </div>
   );
 };
