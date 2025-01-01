@@ -1,8 +1,4 @@
-import {
-  apresentacao,
-  projetosMock,
-  mockData
-} from "../../lib/mock/mock_projetos";
+import { apresentacao, projetosMock } from "../../lib/mock/mock_projetos";
 
 import {
   Carousel,
@@ -18,6 +14,12 @@ import DropdownButton from "@/ui/dropdown/DropdownButton";
 import CardGraficoMapa from "@/ui/graficos/MapaGrafico";
 import CardProjetos from "@/ui/cards/CardProjetos";
 import CardApresentacao from "@/ui/cards/CardApresentacao";
+import {
+  pegarAno,
+  obterAnos,
+  obterEstados,
+  obterPautas
+} from "@/lib/hooks/calcularProjetos";
 
 import { Titillium_Web, Oswald } from "next/font/google";
 
@@ -38,6 +40,12 @@ const esferas = [
     value: "estadual 1"
   }
 ];
+
+const anos = obterAnos(projetosMock);
+
+const estados = obterEstados(projetosMock);
+
+const pautas = obterPautas(projetosMock);
 
 const projetos: React.FC = () => {
   return (
@@ -72,13 +80,13 @@ const projetos: React.FC = () => {
             titulo="Esfera"
             className="w-32"
           />
-          <DropdownButton elementos={esferas} titulo="Ano" className="w-32" />
+          <DropdownButton elementos={anos} titulo="Ano" className="w-32" />
           <DropdownButton
-            elementos={esferas}
+            elementos={estados}
             titulo="Estado"
             className="w-32"
           />
-          <DropdownButton elementos={esferas} titulo="Pauta" className="w-32" />
+          <DropdownButton elementos={pautas} titulo="Pauta" className="w-32" />
         </section>
         {/* CARROSSEL DE PL's */}
         <section>
@@ -102,9 +110,23 @@ const projetos: React.FC = () => {
             <CarouselNext />
           </Carousel>
         </section>
-        <section className="w-full flex justify-center' gap-[4.5rem]">
-          <Legenda />
-          <LineChartDots data={mockData} />
+        <section className="w-full flex justify-center gap-[4.5rem]">
+          <Legenda
+            color="text-[#93F996]"
+            text={`
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
+            architecto optio ullam nemo magni veritatis impedit, dolor ducimus
+            temporibus nesciunt cumque earum id eveniet eaque rem! Repellendus
+            fugiat unde voluptas. Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Saepe architecto optio ullam nemo magni veritatis
+            impedit, dolor ducimus temporibus nesciunt cumque earum id eveniet
+            eaque rem! Repellendus fugiat unde voluptas. Lorem ipsum dolor sit
+            amet consectetur, adipisicing elit. Saepe architecto optio ullam
+            nemo magni veritatis impedit, dolor ducimus temporibus nesciunt
+            cumque earum id eveniet eaque rem! Repellendus fugiat unde voluptas.
+            `}
+          />
+          <LineChartDots data={pegarAno(projetosMock)} />
         </section>
       </article>
 
