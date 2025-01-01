@@ -6,14 +6,13 @@ import {
   SelectValue
 } from "@/components/ui/select";
 
-
 interface elementos {
   titulo: string;
   value: string;
 }
 
 interface DropdownButtonProps {
-  titulo: string;
+  titulo?: string;
   elementos: elementos[];
   className?: string;
 }
