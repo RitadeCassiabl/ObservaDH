@@ -5,7 +5,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import useDescobertaCabecalho from "../lib/utils/cabecalhoUtils";
+import useDescobertaCabecalho from "@/lib/utils/cabecalhoUtils";
+
 
 interface Cabecalho {
   titulo: string;
