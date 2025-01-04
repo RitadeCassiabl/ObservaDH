@@ -13,6 +13,31 @@ function pegarAno(data: ProjetoLei[]) {
   }));
 }
 
+function pegarPautas(data: ProjetoLei[]) {
+  const pautasPorAno: Record<string, Record<string, number>> = {};
+
+  data.forEach(item => {
+    if (!pautasPorAno[item.ano]) {
+      pautasPorAno[item.ano] = {};
+    }
+    if (!pautasPorAno[item.ano][item.pauta]) {
+      pautasPorAno[item.ano][item.pauta] = 0;
+    }
+    pautasPorAno[item.ano][item.pauta]++;
+  });
+
+  return Object.entries(pautasPorAno).map(([ano, pautas]) => ({
+    year: ano,
+    linguagensNeutra: pautas["Linguagem Neutra"] || 0,
+    atletasTrans: pautas["Atletas Trans"] || 0,
+    banheirosMultigenero: pautas["Banheiros Multigênero"] || 0,
+    propagandaLGBT: pautas["Propaganda LGBT"] || 0
+  }));
+}
+
+
+// ! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - !
+
 function obterAnos(
   projetos: ProjetoLei[]
 ): { titulo: string; value: string }[] {
@@ -44,6 +69,5 @@ function obterPautas(
     titulo: pauta,
     value: pauta.toLowerCase()
   }));
-  
 }
-export { pegarAno, obterAnos, obterEstados, obterPautas };
+export { pegarAno, pegarPautas, obterAnos, obterEstados, obterPautas };
