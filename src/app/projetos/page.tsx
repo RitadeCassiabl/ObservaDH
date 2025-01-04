@@ -1,4 +1,4 @@
-import { apresentacao, projetosMock } from "../../lib/mock/mock_projetos";
+import { apresentacao, legendas, projetosMock } from "../../lib/mock/mock_projetos";
 
 import {
   Carousel,
@@ -26,6 +26,13 @@ import { Titillium_Web, Oswald } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { MdOutlineFilterAlt } from "react-icons/md";
 import BarChartStacked from "@/ui/graficos/BarChartStacked";
+import {
+  TextContent,
+  LineText,
+  TextStrongOswald,
+  TextSpace,
+  TextSmallTitillium
+} from "@/ui/TextoDiferente";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -97,7 +104,7 @@ const projetos: React.FC = () => {
               className="w-32"
             />
           </section>
-          <Button className="border-[#D974FD] text-[#D974FD] bg-transparent border-[1px] rounded-[3px] w-32 h-12 hover:bg-transparent">
+          <Button className="flex flex-row justify-center border-[#D974FD] text-[#D974FD] bg-transparent border-[1px] rounded-[3px] w-32 h-12 hover:bg-inherit active:text-white active:bg-[#D974FD] transition-colors duration-75">
             Filtrar <MdOutlineFilterAlt />
           </Button>
         </section>
@@ -125,29 +132,65 @@ const projetos: React.FC = () => {
         </section>
         <section className="w-full flex justify-center gap-[4.5rem]">
           <Legenda
-            color="text-[#93F996]"
-            text={`
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
-            architecto optio ullam nemo magni veritatis impedit, dolor ducimus
-            temporibus nesciunt cumque earum id eveniet eaque rem! Repellendus
-            fugiat unde voluptas. Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Saepe architecto optio ullam nemo magni veritatis
-            impedit, dolor ducimus temporibus nesciunt cumque earum id eveniet
-            eaque rem! Repellendus fugiat unde voluptas. Lorem ipsum dolor sit
-            amet consectetur, adipisicing elit. Saepe architecto optio ullam
-            nemo magni veritatis impedit, dolor ducimus temporibus nesciunt
-            cumque earum id eveniet eaque rem! Repellendus fugiat unde voluptas.
-            `}
-          />
+            color={legendas.find((item) => item.titulo === "PL's")?.cor}
+            texto={legendas.find((item) => item.titulo === "PL's")?.texto}
+            resumo={legendas.find((item) => item.titulo === "PL's")?.resumo}
+            >
+            <TextContent className="text-6xl">
+              <LineText>
+                <TextStrongOswald>
+                  {"Número"}
+                </TextStrongOswald>
+                <TextSpace />
+                <TextSmallTitillium>
+                  {"de"}
+                </TextSmallTitillium>
+              </LineText>
+              <LineText className="text-[#93F996]">
+                <TextSmallTitillium>
+                  {"PL's"}
+                </TextSmallTitillium>
+                <TextSpace />
+                <TextStrongOswald>
+                  {"por ano"}
+                </TextStrongOswald>
+              </LineText>
+            </TextContent>
+          </Legenda>
           <LineChartDots data={pegarAno(projetosMock)} />
         </section>
         <section className="w-full flex justify-center gap-[4.5rem]">
           <BarChartStacked data={pegarPautas(projetosMock)} />
+          <Legenda 
+          color={legendas.find((item) => item.titulo === "Pautas")?.cor} 
+          texto={legendas.find((item) => item.titulo === "Pautas")?.texto} 
+          resumo={legendas.find((item) => item.titulo === "Pautas")?.resumo}
+            >
+            <div>
+              <TextContent className="text-6xl w-[374px]">
+                <LineText className="w-full">
+                  <TextStrongOswald>
+                    {"Número"}
+                  </TextStrongOswald>
+                  <TextSpace />
+                  <TextSmallTitillium>
+                    {"de"}
+                  </TextSmallTitillium>
+                </LineText>
+                <LineText className="text-[#F693F9]">
+                  <TextSmallTitillium>
+                    {"Pautas"}
+                  </TextSmallTitillium>
+                  <TextSpace />
+                  <TextStrongOswald>
+                    {"por ano"}
+                  </TextStrongOswald>
+                </LineText>
+              </TextContent>
+            </div>
+          </Legenda>
         </section>
       </article>
-
-      <div className="h-[45.625rem] w-full p-8" />
-      <div className="h-[45.625rem] w-full p-8" />
     </div>
   );
 };
