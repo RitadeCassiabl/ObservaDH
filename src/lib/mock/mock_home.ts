@@ -1,6 +1,9 @@
-
-  const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat
-              nisi nec orci maximus, eu tempus metus viverra. Pellentesque non
+const apresentacao = {
+  subtitulo: "O que é o",
+  titulo: "ObservaDH?",
+  cor: "text-[#87D9FF]",
+  text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat
+  nisi nec orci maximus, eu tempus metus viverra. Pellentesque non
               ante turpis. Mauris venenatis vel purus non gravida. Vestibulum a
               ante semper, efficitur justo sit amet, iaculis enim. Pellentesque
               facilisis ultricies sem. Donec mollis gravida lectus, et aliquet
@@ -41,63 +44,64 @@
               Cras malesuada nisl dolor. Nullam pulvinar nibh elit, ut dapibus
               nibh sodales sed. Nam ligula nisi, convallis vitae fringilla
               consectetur, pulvinar ac nisi. Maecenas faucibus leo et libero
-              ullamcorper, auctor sollicitudin est condimentum.`;
-  export {text};
+              ullamcorper, auctor sollicitudin est condimentum.`
+};
+export { apresentacao };
 
-  const cards_esfera = [
-      {
-          subtitulo: "Visão",
-          titulo: "Geral",
-          texto:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet inventore quo error est natus facilis. Quod odit voluptates libero dignissimos veniam accusamus omnis, autem architecto. Consequatur in error maxime.",
-          rota: "/projetos",
-          cor: "text-[#93F996]"
-      },
-    {
-      subtitulo: "Esfera",
-      titulo: "Federal",
-      texto:
+const cards_esfera = [
+  {
+    subtitulo: "Visão",
+    titulo: "Geral",
+    texto:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet inventore quo error est natus facilis. Quod odit voluptates libero dignissimos veniam accusamus omnis, autem architecto. Consequatur in error maxime.",
-      rota: "/projetos",
-      cor: "text-[#FDFF78]"
+    rota: "/projetos",
+    cor: "text-[#93F996]"
   },
   {
-      subtitulo: "Esfera",
-      titulo: "Estadual",
-      texto:
+    subtitulo: "Esfera",
+    titulo: "Federal",
+    texto:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet inventore quo error est natus facilis. Quod odit voluptates libero dignissimos veniam accusamus omnis, autem architecto. Consequatur in error maxime.",
-      rota: "/projetos",
-      cor: "text-[#F693F9]"
+    rota: "/projetos",
+    cor: "text-[#FDFF78]"
+  },
+  {
+    subtitulo: "Esfera",
+    titulo: "Estadual",
+    texto:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam eveniet inventore quo error est natus facilis. Quod odit voluptates libero dignissimos veniam accusamus omnis, autem architecto. Consequatur in error maxime.",
+    rota: "/projetos",
+    cor: "text-[#F693F9]"
   }
-  ];
-  export {cards_esfera};
-  const cards_informativos = [
-    {
-      title: "Conheça",
-      subtitle: "os Parlamentares",
-      text:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
-      rota: "/parlamentares",
-      cor: "text-[#F693F9]",
-    },
-    {
-      title: "Entenda",
-      subtitle: "sobre os <span class='__className_626905 font-normal'>direitos</span>",
-      text:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
-      rota: "/direitos",
-      cor: "text-[#87D9FF]",
-      isSubtitleHTML: true,
-    },
-    {
-      title: "Conheça",
-      subtitle: "o projeto",
-      text:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
-      rota: "/projetos",
-      cor: "text-[#93F996]",
-    },
-  ];
-  
-  export { cards_informativos };
-  
+];
+export { cards_esfera };
+const cards_informativos = [
+  {
+    title: "Conheça",
+    subtitle: "os Parlamentares",
+    text:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
+    rota: "/parlamentares",
+    cor: "text-[#F693F9]"
+  },
+  {
+    title: "Entenda",
+    subtitle:
+      "sobre os <span class='__className_626905 font-normal'>direitos</span>",
+    text:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
+    rota: "/direitos",
+    cor: "text-[#87D9FF]",
+    isSubtitleHTML: true
+  },
+  {
+    title: "Conheça",
+    subtitle: "o projeto",
+    text:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
+    rota: "/projetos",
+    cor: "text-[#93F996]"
+  }
+];
+
+export { cards_informativos };

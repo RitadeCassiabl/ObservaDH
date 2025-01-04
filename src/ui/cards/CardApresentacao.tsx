@@ -9,21 +9,27 @@ const titillium_web = Titillium_Web({
 });
 
 interface CardApresentacaoProps {
+  titulo: string;
+  subtitulo: string;
   children?: React.ReactNode;
+  cor: string;
 }
 
-const cardApresetacao: React.FC<CardApresentacaoProps> = ({ children }) => {
+const cardApresetacao: React.FC<CardApresentacaoProps> = ({
+  children,
+  cor,
+  titulo,
+  subtitulo
+}) => {
   return (
     <section className="w-[75.75rem] h-[43.4375rem] bg-gradient-to-b from-[#050B17] to-[#1A326E]  border-[1px] border-[#87D9FF] p-16 rounded-[5px] shadow-lg shadow-[#87D9FF]">
       <article className="w-full h-full flex flex-col gap-4">
         <h2
           className={`${oswald.className} text-[5rem] text-white text-shadow-xl font-normal`}
         >
-          O que é o{" "}
-          <span
-            className={`text-[#87D9FF] ${titillium_web.className} font-extralight`}
-          >
-            ObservaDH?
+          {subtitulo}{" "}
+          <span className={`${cor} ${titillium_web.className} font-extralight`}>
+            {titulo}
           </span>
         </h2>
         <section className="h-[28rem] w-full overflow-y-auto shadow-inner no-scrollbar">
