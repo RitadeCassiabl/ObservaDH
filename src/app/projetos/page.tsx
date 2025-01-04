@@ -7,32 +7,30 @@ import {
   CarouselNext,
   CarouselPrevious
 } from "@/components/ui/carousel";
-import { LineChartDots } from "@/ui/graficos/LineChartDots";
 
-import Legenda from "@/ui/Legenda";
+import Legenda from "@/ui/cards/CardLegenda";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
-import CardGraficoMapa from "@/ui/graficos/MapaGrafico";
+
+import CardGraficoMapa from "@/ui/graficos/GraficoMapa";
 import CardProjetos from "@/ui/cards/CardProjetos";
 import CardApresentacao from "@/ui/cards/CardApresentacao";
-import {
-  pegarAno,
-  obterAnos,
-  obterEstados,
-  obterPautas,
-  pegarPautas
-} from "@/lib/hooks/calcularProjetos";
 
 import { Titillium_Web, Oswald } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { MdOutlineFilterAlt } from "react-icons/md";
-import BarChartStacked from "@/ui/graficos/BarChartStacked";
+
 import {
   TextContent,
   LineText,
   TextStrongOswald,
   TextSpace,
   TextSmallTitillium
-} from "@/ui/TextoDiferente";
+} from "@/ui/components/ComponentesTexto";
+
+import GraficoLinhaPontos from "@/ui/graficos/GraficoLinhaPontos";
+import GraficoBarraEmpilhada from "@/ui/graficos/GraficoBarraEmpilhada";
+
+import {contarPautasPorAno, contarProjetosPorAno, obterAnosUnicos, obterEstadosUnicos, obterPautasUnicas} from "@/lib/utils/projetoLeiUtils";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -52,11 +50,11 @@ const esferas = [
   }
 ];
 
-const anos = obterAnos(projetosMock);
+const anos = obterAnosUnicos(projetosMock);
 
-const estados = obterEstados(projetosMock);
+const estados = obterEstadosUnicos(projetosMock);
 
-const pautas = obterPautas(projetosMock);
+const pautas = obterPautasUnicas(projetosMock);
 
 const projetos: React.FC = () => {
   return (
@@ -65,7 +63,7 @@ const projetos: React.FC = () => {
         <CardApresentacao
           subtitulo={apresentacao.subtitulo}
           titulo={apresentacao.titulo}
-          cor={apresentacao.cor}
+          cor={apresentacao.cor_texto}
         >
           {apresentacao.texto}
         </CardApresentacao>
@@ -132,7 +130,7 @@ const projetos: React.FC = () => {
         </section>
         <section className="w-full flex justify-center gap-[4.5rem]">
           <Legenda
-            color={legendas.find((item) => item.titulo === "PL's")?.cor}
+            cor_texto={legendas.find((item) => item.titulo === "PL's")?.cor}
             texto={legendas.find((item) => item.titulo === "PL's")?.texto}
             resumo={legendas.find((item) => item.titulo === "PL's")?.resumo}
             >
@@ -157,12 +155,12 @@ const projetos: React.FC = () => {
               </LineText>
             </TextContent>
           </Legenda>
-          <LineChartDots data={pegarAno(projetosMock)} />
+          <GraficoLinhaPontos  dados={contarProjetosPorAno(projetosMock)} />
         </section>
         <section className="w-full flex justify-center gap-[4.5rem]">
-          <BarChartStacked data={pegarPautas(projetosMock)} />
+          <GraficoBarraEmpilhada dados={contarPautasPorAno(projetosMock)} />
           <Legenda 
-          color={legendas.find((item) => item.titulo === "Pautas")?.cor} 
+          cor_texto={legendas.find((item) => item.titulo === "Pautas")?.cor} 
           texto={legendas.find((item) => item.titulo === "Pautas")?.texto} 
           resumo={legendas.find((item) => item.titulo === "Pautas")?.resumo}
             >
