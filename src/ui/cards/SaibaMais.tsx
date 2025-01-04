@@ -34,7 +34,7 @@ const SaibaMais: React.FC<saibaMaisProps> = ({ className, color, text }) => {
       </AlertDialogTrigger>
       <AlertDialogContent className="flex flex-col h-[702px] p-12 gap-6 w-[1015px] bg-[#121A2B] border-[#4568BE] shadow-lg shadow-[#4568BE] rounded-lg">
         <AlertDialogTitle className="flex justify-between">
-          <TextContent className="text-5xl">
+          <TextContent className="text-5xl w-full">
             <LineText>
               <TextStrongOswald>
                 {"Aprofundamento"}
