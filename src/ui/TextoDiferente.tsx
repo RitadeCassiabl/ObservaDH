@@ -15,7 +15,7 @@ interface textos {
 
 const TextContent: React.FC<textos> = ({ children, className, noShadow}) => {
   return (
-    <h2 className={`text-white ${noShadow && "text-shadow-xl "} ${className}`}>
+    <h2 className={`text-white ${noShadow && "text-shadow-xl "} ${className} `}>
       {children}
     </h2>
   );
