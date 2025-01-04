@@ -1,19 +1,14 @@
 "use client";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardDescription
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription } from "@/components/ui/card";
 
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
+  ChartTooltipContent
 } from "@/components/ui/chart";
-
 
 interface ChartData {
   year: string;
@@ -23,59 +18,57 @@ interface ChartData {
 const chartConfig = {
   projetos: {
     label: "projetos",
-    color: "hsl(var(--chart-1))",
+    color: "hsl(var(--chart-1))"
   }
 } satisfies ChartConfig;
 
 interface LineChartDotsProps {
-  data: ChartData[]; 
+  data: ChartData[];
 }
 
 export function LineChartDots({ data }: LineChartDotsProps) {
   return (
-    <Card className="h-[29rem] w-[52rem]  bg-[#122144]">
-      <CardContent >
-        <ChartContainer config={chartConfig} className=" p-11" >
+    <Card className="h-[29rem] w-[52rem] bg-[#122144]">
+      <CardContent>
+        <ChartContainer config={chartConfig} className="p-11">
           <LineChart
-          className="w-full h-full p-0 flex justify-between items-center" 
-           
+            className="w-full h-full p-0 flex justify-between items-center text-white"
             accessibilityLayer
             data={data}
             margin={{
-              left: 10,
+              left: 0,
+              top: 20,
               right: 10,
+              bottom: 10,
             }}
           >
             <CartesianGrid vertical={false} />
-            <YAxis 
             
-            dataKey={chartConfig.projetos.label}
-            className=""
-            allowDataOverflow={false}
-           tickMargin={10}
-              tickLine={true}
-              axisLine={true}
+            <YAxis
+              dataKey={chartConfig.projetos.label}
+              allowDataOverflow={false}
+              tickMargin={5}
             />
+
             <XAxis
-            padding={{ left: 10, right: 10 }}
-            className=""
-            allowDataOverflow={false}
+              allowDataOverflow={false}
               dataKey="year"
               tickLine={true}
               axisLine={true}
             />
+
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel className="bg-[#121A2B]" />}
+              content={<ChartTooltipContent hideLabel className={`min-w-32`} />}
             />
+
             <Line
-            
               dataKey="projetos"
               type="natural"
               stroke="#F693F9"
               strokeWidth={1.8}
               dot={{
-                fill: "#F693F9",
+                fill: "#F693F9"
               }}
               activeDot={{
                 r: 5,
@@ -84,7 +77,7 @@ export function LineChartDots({ data }: LineChartDotsProps) {
           </LineChart>
         </ChartContainer>
       </CardContent>
-      <CardDescription></CardDescription>
+      <CardDescription />
     </Card>
   );
 }
