@@ -2,13 +2,6 @@
 "use client";
 import { Titillium_Web } from "next/font/google";
 import { SaibaMais } from "./cards/SaibaMais";
-import {
-  LineText,
-  TextContent,
-  TextSmallTitillium,
-  TextStrongOswald,
-  TextSpace
-} from "./TextoDiferente";
 
 const titillium_web = Titillium_Web({
   weight: ["400", "700"],
@@ -16,39 +9,25 @@ const titillium_web = Titillium_Web({
 });
 
 interface legendaProps {
-  color: string;
-  text: string;
+  color?: string;
+  children?: React.ReactNode;
+  resumo?: string;
+  texto?: string;
 }
 
-const legenda: React.FC<legendaProps> = ({ color, text }) => {
+const legenda: React.FC<legendaProps> = ({
+  color,
+  texto,
+  children,
+  resumo
+}) => {
   return (
     <div className="w-[21.5rem] flex flex-col gap-6">
-      <TextContent className="text-6xl">
-        <LineText>
-          <TextStrongOswald>
-            {"Número"}
-          </TextStrongOswald>
-          <TextSpace />
-          <TextSmallTitillium>
-            {"de"}
-          </TextSmallTitillium>
-        </LineText>
-        <LineText className={`${color}`}>
-          <TextSmallTitillium>
-            {"PL's"}
-          </TextSmallTitillium>
-          <TextSpace />
-          <TextStrongOswald>
-            {"por ano"}
-          </TextStrongOswald>
-        </LineText>
-      </TextContent>
+      {children}
       <p className={`${titillium_web} text-white text-xl`}>
-        {
-          "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos voluptate eaque vel sunt, magnam rem minima odio vitae? Est non iste maxime dicta illo provident deleniti impedit distinctio nemo odit."
-        }
+        {resumo ? resumo : ""}
       </p>
-      <SaibaMais color={color} text={text} />
+      <SaibaMais color={color} text={texto ? texto : ""} />
     </div>
   );
 };
