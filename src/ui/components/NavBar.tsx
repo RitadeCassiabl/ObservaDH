@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import UseDiscovery from "../lib/hooks/useDiscover";
+import useDescobertaCabecalho from "@/lib/utils/cabecalhoUtils";
+
 
 interface Cabecalho {
   titulo: string;
@@ -14,12 +16,12 @@ interface Cabecalho {
 const navBar: React.FC = () => {
   const [title, setTitle] = useState<Cabecalho>();
   const router = usePathname();
-  const { encontrarCabecalho } = UseDiscovery();
+  const { buscarCabecalhoPorLink } = useDescobertaCabecalho();
 
   useEffect(() => {
-    const item = encontrarCabecalho(router);
+    const item = buscarCabecalhoPorLink(router);
     setTitle(item);
-  }, [router, encontrarCabecalho]);
+  }, [router, buscarCabecalhoPorLink]);
 
   return (
     <div className="w-full h-full flex flex-col items-center bg-senado bg-cover bg-center border-b-2 border-[#001745]">

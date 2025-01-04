@@ -1,21 +1,24 @@
 import CardApresentacao from "../ui/cards/CardApresentacao";
-import CardEsfera from "../ui/home/CardEsfera";
-import CardInformativo from "../ui/home/CardInformativo";
-import { cards_esfera, cards_informativos, apresentacao } from "../lib/mock/mock_home";
-
-
+import CardEsfera from "../ui/cards/CardEsfera";
+import CardInformativo from "../ui/cards/CardInformativo";
+import {
+  cards_esfera,
+  cards_informativos,
+  apresentacao
+} from "../lib/mock/mock_home";
 
 const page: React.FC = () => {
   return (
     <div className="flex h-full w-full flex-col gap-[4.25rem] items-center">
       {/* CARD DE APRESENTAÇÃO DO PROJETO */}
-      <article
-        className="w-full h-auto flex justify-center"
-        id=" CARD DE APRESENTAÇÃO DO PROJETO "
-      >
-        <CardApresentacao titulo={apresentacao.titulo} subtitulo={apresentacao.subtitulo} cor={apresentacao.cor}>
+      <article className="w-full h-auto flex justify-center">
+        <CardApresentacao
+          titulo={apresentacao.titulo}
+          subtitulo={apresentacao.subtitulo}
+          cor={apresentacao.cor}
+        >
           <p>
-            {apresentacao.text}
+            {apresentacao.texto}
           </p>
         </CardApresentacao>
       </article>
@@ -28,6 +31,7 @@ const page: React.FC = () => {
           <div
             key={index}
             //! AQUI ESTÁ A DIFERENÇA ENTRE OS CARDS DE REDIRECIONAMENTO - PLS
+            //! AQUI SERÁ FEITO O EFEITO DE SLIDE
             className={`w-full flex ${index % 2 === 0
               ? "justify-start"
               : "justify-end"}`}
@@ -45,16 +49,15 @@ const page: React.FC = () => {
       {/* CARDS DE REDIRECIONAMENTO - OUTROS */}
       <article
         className="w-full flex justify-evenly px-[5rem] gap-24"
-        id=" CARDS DE REDIRECIONAMENTO - OUTROS "
       >
         {cards_informativos.map(item =>
           <CardInformativo
-            key={item.title}
+            key={item.titulo}
             rota={item.rota}
-            subtitle={item.subtitle}
-            texto={item.text}
-            title={item.title}
-            cor={item.cor}
+            subtitulo={item.subtitulo}
+            texto={item.texto}
+            titulo={item.titulo}
+            cor_texto={item.cor}
             isSubtitleHTML={item.isSubtitleHTML}
           />
         )}

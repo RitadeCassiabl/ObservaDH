@@ -9,24 +9,21 @@ import {
   ChartTooltip,
   ChartTooltipContent
 } from "@/components/ui/chart";
+import { DadosGraficoLinhaPontos } from "@/lib/types/graficos";
 
-interface ChartData {
-  year: string;
-  projetos: number;
-}
+
 
 const chartConfig = {
   projetos: {
     label: "projetos",
-    color: "hsl(var(--chart-1))"
   }
 } satisfies ChartConfig;
 
-interface LineChartDotsProps {
-  data: ChartData[];
+interface graficoProps {
+  dados: DadosGraficoLinhaPontos[];
 }
 
-export function LineChartDots({ data }: LineChartDotsProps) {
+const GraficoLinhaPontos: React.FC<graficoProps> = ({ dados }) => {
   return (
     <Card className="h-[29rem] w-[52rem] bg-[#122144]">
       <CardContent>
@@ -34,7 +31,7 @@ export function LineChartDots({ data }: LineChartDotsProps) {
           <LineChart
             className="w-full h-full p-0 flex justify-between items-center text-white"
             accessibilityLayer
-            data={data}
+            data={dados}
             margin={{
               left: 0,
               top: 20,
@@ -52,7 +49,7 @@ export function LineChartDots({ data }: LineChartDotsProps) {
 
             <XAxis
               allowDataOverflow={false}
-              dataKey="year"
+              dataKey="ano"
               tickLine={true}
               axisLine={true}
             />
@@ -81,3 +78,6 @@ export function LineChartDots({ data }: LineChartDotsProps) {
     </Card>
   );
 }
+
+
+export default GraficoLinhaPontos;

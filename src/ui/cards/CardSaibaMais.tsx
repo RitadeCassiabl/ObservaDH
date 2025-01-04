@@ -13,21 +13,21 @@ import {
   LineText,
   TextSpace,
   TextSmallTitillium
-} from "../TextoDiferente";
+} from "../components/ComponentesTexto";
 import { IoMdClose } from "react-icons/io";
 
 interface saibaMaisProps {
   className?: string;
-  color?: string;
-  text: string;
+  cor_texto?: string;
+  texto: string;
 }
 
-const SaibaMais: React.FC<saibaMaisProps> = ({ className, color, text }) => {
+const CardSaibaMais: React.FC<saibaMaisProps> = ({ className, cor_texto, texto }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <button
-          className={`flex flex-row text-xl items-center gap-4 ${className} ${color}`}
+          className={`flex flex-row text-xl items-center gap-4 ${className} ${cor_texto}`}
         >
           <FaPlus size={18} /> Saiba mais
         </button>
@@ -40,7 +40,7 @@ const SaibaMais: React.FC<saibaMaisProps> = ({ className, color, text }) => {
                 {"Aprofundamento"}
               </TextStrongOswald>
               <TextSpace />
-              <TextSmallTitillium className={`${className} ${color}`}>
+              <TextSmallTitillium className={`${className} ${cor_texto}`}>
                 {"dos dados"}
               </TextSmallTitillium>
             </LineText>
@@ -51,9 +51,7 @@ const SaibaMais: React.FC<saibaMaisProps> = ({ className, color, text }) => {
         </AlertDialogTitle>
         <AlertDialogDescription>
           <p className="text-[#AFC4F9] text-3xl text-justify">
-            {
-              text
-            }
+            {texto}
           </p>
         </AlertDialogDescription>
       </AlertDialogContent>
@@ -61,4 +59,4 @@ const SaibaMais: React.FC<saibaMaisProps> = ({ className, color, text }) => {
   );
 };
 
-export { SaibaMais };
+export default CardSaibaMais;

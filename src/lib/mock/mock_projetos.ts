@@ -1,7 +1,7 @@
 const apresentacao = {
   subtitulo: "Como funciona a",
   titulo: "criação de um PL",
-  cor: "text-[#FDFF78]",
+  cor_texto: "text-[#FDFF78]",
   texto: ` 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus viverra. Pellentesque non ante turpis. Mauris venenatis vel purus non gravida. Vestibulum a ante semper, efficitur justo sit amet, iaculis enim. Pellentesque facilisis ultricies sem. Donec mollis gravida lectus, et aliquet felis lobortis vel. Donec accumsan augue vestibulum bibendum feugiat. Donec ac auctor ex. Cras tortor ex, pellentesque vel condimentum eu, posuere in nulla. Sed metus risus, finibus at erat a, porta ullamcorper dolor.
     Donec cursus vestibulum mattis. Vestibulum sodales quam eget sem ullamcorper ultricies consequat in nisl. Donec nisl quam, aliquet quis ultricies eget, euismod sit amet turpis. Phasellus nulla turpis, consequat consectetur dapibus sit amet, viverra ut neque. Cras nec porta dui. Pellentesque ut magna ex. Nam felis turpis, imperdiet ac accumsan a, maximus at nibh. In non augue maximus, venenatis velit id, varius leo. Suspendisse et quam quis ipsum rutrum ullamcorper non eu dui. Nulla condimentum nisl ligula, sed rhoncus urna sagittis non. Pellentesque pulvinar mattis odio, id egestas nunc rhoncus posuere. Cras malesuada nisl dolor. Nullam pulvinar nibh elit, ut dapibus nibh sodales sed. Nam ligula nisi, convallis vitae fringilla consectetur, pulvinar ac nisi. Maecenas faucibus leo et libero ullamcorper, auctor sollicitudin est condimentum.`
@@ -47,7 +47,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe o uso de linguagem neutra em documentos oficiais e na educação pública."
+      "FALSO: Proíbe o uso de linguagem neutra em documentos oficiais e na educação pública."
   },
   {
     id: "2",
@@ -68,7 +68,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe a participação de atletas trans em competições esportivas femininas."
+      "FALSO: Proíbe a participação de atletas trans em competições esportivas femininas."
   },
   {
     id: "3",
@@ -89,7 +89,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe o uso de banheiros públicos de gênero misto em espaços escolares e governamentais."
+      "FALSO: Proíbe o uso de banheiros públicos de gênero misto em espaços escolares e governamentais."
   },
   {
     id: "4",
@@ -110,7 +110,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe a veiculação de propagandas que incentivem a ideologia de gênero e o movimento LGBT."
+      "FALSO: Proíbe a veiculação de propagandas que incentivem a ideologia de gênero e o movimento LGBT."
   },
   {
     id: "5",
@@ -130,7 +130,7 @@ const projetosMock = [
         ideologia: "Liberal"
       }
     ],
-    ementa: "Proíbe o uso de linguagem neutra nas escolas públicas e privadas."
+    ementa: "ProíbeFALSO:  o uso de linguagem neutra nas escolas públicas e privadas."
   },
   {
     id: "6",
@@ -151,7 +151,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Regulamenta a proibição de atletas trans em modalidades esportivas femininas."
+      "FALSO: Regulamenta a proibição de atletas trans em modalidades esportivas femininas."
   },
   {
     id: "7",
@@ -171,7 +171,7 @@ const projetosMock = [
         ideologia: "Conservadora"
       }
     ],
-    ementa: "Proíbe a criação de espaços públicos de banheiros multigêneros."
+    ementa: "ProíbeFALSO:  a criação de espaços públicos de banheiros multigêneros."
   },
   {
     id: "8",
@@ -192,7 +192,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Restringe propagandas que promovem a ideologia LGBT em veículos de mídia."
+      "FALSO: Restringe propagandas que promovem a ideologia LGBT em veículos de mídia."
   },
   {
     id: "9",
@@ -212,7 +212,7 @@ const projetosMock = [
         ideologia: "Liberal"
       }
     ],
-    ementa: "Proíbe o uso de termos neutros nas leis estaduais e municipais."
+    ementa: "ProíbeFALSO:  o uso de termos neutros nas leis estaduais e municipais."
   },
   {
     id: "10",
@@ -233,7 +233,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe que atletas trans participem de competições esportivas destinadas a mulheres."
+      "FALSO: Proíbe que atletas trans participem de competições esportivas destinadas a mulheres."
   },
   {
     id: "11",
@@ -254,7 +254,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe a implementação de banheiros multigêneros em escolas e espaços públicos."
+      "FALSO: Proíbe a implementação de banheiros multigêneros em escolas e espaços públicos."
   },
   {
     id: "12",
@@ -275,7 +275,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe a promoção de campanhas publicitárias que incentivem os direitos LGBT."
+      "FALSO: Proíbe a promoção de campanhas publicitárias que incentivem os direitos LGBT."
   },
   {
     id: "13",
@@ -296,7 +296,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Exclui o uso de linguagem neutra nas escolas e na comunicação pública."
+      "FALSO: Exclui o uso de linguagem neutra nas escolas e na comunicação pública."
   },
   {
     id: "14",
@@ -317,7 +317,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Regulamenta a exclusão de atletas trans em eventos esportivos femininos."
+      "FALSO: Regulamenta a exclusão de atletas trans em eventos esportivos femininos."
   },
   {
     id: "15",
@@ -338,7 +338,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe a utilização de banheiros de gênero misto nas escolas públicas."
+      "FALSO: Proíbe a utilização de banheiros de gênero misto nas escolas públicas."
   },
   {
     id: "16",
@@ -359,7 +359,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe a exibição de propagandas de apoio à agenda LGBT em espaços públicos."
+      "FALSO: Proíbe a exibição de propagandas de apoio à agenda LGBT em espaços públicos."
   },
   {
     id: "17",
@@ -380,7 +380,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe o uso de linguagem neutra em projetos de lei e documentos oficiais."
+      "FALSO: Proíbe o uso de linguagem neutra em projetos de lei e documentos oficiais."
   },
   {
     id: "18",
@@ -401,7 +401,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Exclui a participação de atletas trans nas competições femininas em nível estadual."
+      "FALSO: Exclui a participação de atletas trans nas competições femininas em nível estadual."
   },
   {
     id: "19",
@@ -421,7 +421,7 @@ const projetosMock = [
         ideologia: "Conservadora"
       }
     ],
-    ementa: "Proíbe a propaganda de ideologias LGBT nas redes sociais."
+    ementa: "ProíbeFALSO:  a propaganda de ideologias LGBT nas redes sociais."
   },
   {
     id: "20",
@@ -442,7 +442,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe o uso de linguagem neutra em documentos públicos e no ensino básico."
+      "FALSO: Proíbe o uso de linguagem neutra em documentos públicos e no ensino básico."
   },
   {
     id: "21",
@@ -463,7 +463,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe atletas trans de competir em categorias femininas no esporte."
+      "FALSO: Proíbe atletas trans de competir em categorias femininas no esporte."
   },
   {
     id: "22",
@@ -484,7 +484,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe a implementação de banheiros de gênero misto em escolas públicas."
+      "FALSO: Proíbe a implementação de banheiros de gênero misto em escolas públicas."
   },
   {
     id: "23",
@@ -505,7 +505,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe a veiculação de propaganda LGBT em mídias públicas e privadas."
+      "FALSO: Proíbe a veiculação de propaganda LGBT em mídias públicas e privadas."
   },
   {
     id: "24",
@@ -526,7 +526,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe o uso de linguagem neutra nas escolas do ensino fundamental."
+      "FALSO: Proíbe o uso de linguagem neutra nas escolas do ensino fundamental."
   },
   {
     id: "25",
@@ -547,7 +547,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Exclui a participação de atletas trans em competições esportivas femininas."
+      "FALSO: Exclui a participação de atletas trans em competições esportivas femininas."
   },
   {
     id: "26",
@@ -568,7 +568,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe a criação de banheiros multigêneros em escolas públicas estaduais."
+      "FALSO: Proíbe a criação de banheiros multigêneros em escolas públicas estaduais."
   },
   {
     id: "27",
@@ -589,7 +589,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Restringe a divulgação de propagandas que promovam a ideologia LGBT em canais de TV."
+      "FALSO: Restringe a divulgação de propagandas que promovam a ideologia LGBT em canais de TV."
   },
   {
     id: "28",
@@ -610,7 +610,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe o uso de termos neutros em todas as leis federais e estaduais."
+      "FALSO: Proíbe o uso de termos neutros em todas as leis federais e estaduais."
   },
   {
     id: "29",
@@ -631,7 +631,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Restringe a participação de atletas trans em competições esportivas femininas em nível estadual."
+      "FALSO: Restringe a participação de atletas trans em competições esportivas femininas em nível estadual."
   },
   {
     id: "30",
@@ -652,7 +652,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe o uso de banheiros unissex em instituições de ensino públicas e privadas."
+      "FALSO: Proíbe o uso de banheiros unissex em instituições de ensino públicas e privadas."
   },
   {
     id: "31",
@@ -672,7 +672,7 @@ const projetosMock = [
         ideologia: "Conservadora"
       }
     ],
-    ementa: "Proíbe propaganda LGBT nos meios de comunicação em horário nobre."
+    ementa: "ProíbeFALSO:  propaganda LGBT nos meios de comunicação em horário nobre."
   },
   {
     id: "32",
@@ -693,7 +693,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe o uso de linguagem neutra nas escolas públicas de ensino fundamental."
+      "FALSO: Proíbe o uso de linguagem neutra nas escolas públicas de ensino fundamental."
   },
   {
     id: "33",
@@ -714,7 +714,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Restringe a participação de atletas trans nas competições esportivas em escolas públicas."
+      "FALSO: Restringe a participação de atletas trans nas competições esportivas em escolas públicas."
   },
   {
     id: "34",
@@ -734,7 +734,7 @@ const projetosMock = [
         ideologia: "Conservadora"
       }
     ],
-    ementa: "Proíbe o uso de banheiros multigêneros em instituições de ensino."
+    ementa: "ProíbeFALSO:  o uso de banheiros multigêneros em instituições de ensino."
   },
   {
     id: "35",
@@ -755,7 +755,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe a propaganda LGBT em escolas públicas e em espaços de ensino privado."
+      "FALSO: Proíbe a propaganda LGBT em escolas públicas e em espaços de ensino privado."
   },
   {
     id: "36",
@@ -776,7 +776,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe o uso de linguagem neutra em campanhas publicitárias governamentais."
+      "FALSO: Proíbe o uso de linguagem neutra em campanhas publicitárias governamentais."
   },
   {
     id: "37",
@@ -797,7 +797,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Restringe a participação de atletas trans nas competições esportivas femininas."
+      "FALSO: Restringe a participação de atletas trans nas competições esportivas femininas."
   },
   {
     id: "38",
@@ -818,7 +818,7 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Exclui banheiros de gênero misto em escolas públicas e universidades."
+      "FALSO: Exclui banheiros de gênero misto em escolas públicas e universidades."
   },
   {
     id: "39",
@@ -838,7 +838,7 @@ const projetosMock = [
         ideologia: "Liberal"
       }
     ],
-    ementa: "Proíbe a exibição de propagandas que promovam a ideologia LGBT."
+    ementa: "ProíbeFALSO:  a exibição de propagandas que promovam a ideologia LGBT."
   },
   {
     id: "40",
@@ -859,9 +859,10 @@ const projetosMock = [
       }
     ],
     ementa:
-      "Proíbe o uso de linguagem neutra em documentos oficiais de órgãos públicos."
+      "FALSO: Proíbe o uso de linguagem neutra em documentos oficiais de órgãos públicos."
   }
 ];
+
 export { projetosMock };
 
 const legendas = [

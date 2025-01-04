@@ -16,14 +16,13 @@ interface CardProjetosProps {
 const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
   return (
     <Card className="bg-gradient-to-t from-[#050B17] to-[#1A326E] h-[27.625rem] w-[38.125rem] border-[#AFC4F9] border-2 rounded-[10px] px-8 py-12 flex flex-col gap-4">
-      {/* ANO - Nª PL */}
       <section className="flex gap-6">
-        <RenderText conteudo={projeto.ano} titulo="Ano" />
-        <RenderText conteudo={projeto.numero_pl} titulo="Número do PL" />
+        <RenderizarTexto conteudo={projeto.ano} titulo="Ano" />
+        <RenderizarTexto conteudo={projeto.numero_pl} titulo="Número do PL" />
       </section>
-      {/* PAUTA - ESTADO */}
+
       <section className="flex gap-6">
-        <RenderText conteudo={projeto.pauta} titulo="Pauta" />
+        <RenderizarTexto conteudo={projeto.pauta} titulo="Pauta" />
         <h3 className="text-white flex flex-row items-center gap-4">
           <span
             className={`${oswald.className} font-normal text-3xl text-[#AFC4F9]`}
@@ -40,7 +39,7 @@ const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
           )}
         </h3>
       </section>
-      {/* PARLAMENTAR  */}
+
       <section>
         <h3 className="flex flex-row items-center gap-4">
           <span
@@ -60,7 +59,7 @@ const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
           )}
         </h3>
       </section>
-      {/* EMENTA  */}
+
       <section>
         <h3 className={`flex flex-col gap-4 items-start`}>
           <span
@@ -79,13 +78,13 @@ const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
   );
 };
 
-interface RenderTextProps {
+interface RenderizarTextoProps {
   titulo: string;
   conteudo: string;
   className?: string;
 }
 
-const RenderText: React.FC<RenderTextProps> = ({
+const RenderizarTexto: React.FC<RenderizarTextoProps> = ({
   titulo,
   conteudo,
   className

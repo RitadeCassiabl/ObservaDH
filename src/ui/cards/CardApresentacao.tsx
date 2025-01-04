@@ -15,7 +15,7 @@ interface CardApresentacaoProps {
   cor: string;
 }
 
-const cardApresetacao: React.FC<CardApresentacaoProps> = ({
+const CardApresentacao: React.FC<CardApresentacaoProps> = ({
   children,
   cor,
   titulo,
@@ -41,4 +41,4 @@ const cardApresetacao: React.FC<CardApresentacaoProps> = ({
     </section>
   );
 };
-export default cardApresetacao;
+export default CardApresentacao;

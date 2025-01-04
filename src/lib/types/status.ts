@@ -1,17 +1,17 @@
-export interface Status {
+export type Status = {
   titulo: string;
   valor: number;
 }
 
-export interface DadosNacionais {
+export type DadosNacionais = {
   dados: Status[];
 }
 
-export interface Pautas {
+export type Pautas = {
   pautas: Status[];
 }
 
-export interface StatusType {
+export type StatusType = {
   dados: DadosNacionais;
   pautas: Pautas;
 }

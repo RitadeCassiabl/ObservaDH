@@ -14,15 +14,10 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+import { DadosGraficoBarraEmpilhada } from "@/lib/types/graficos"
 
-// Novo formato de chartData baseado nos projetos de lei por ano
-interface ChartData {
-  year: string
-  linguagensNeutra: number
-  atletasTrans: number
-  banheirosMultigenero: number
-  propagandaLGBT: number
-}
+
+
 
 const chartConfig = {
   linguagensNeutra: {
@@ -43,19 +38,19 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-interface BarChartStackedProps {
-  data: ChartData[]
+interface GraficoBarraEmpilhadaProps {
+  dados: DadosGraficoBarraEmpilhada[]
 }
 
 
-const BarChartStacked: React.FC<BarChartStackedProps> = ({ data: chartData }) => {
+const GraficoBarraEmpilhada: React.FC<GraficoBarraEmpilhadaProps> = ({ dados }) => {
   return (
     <Card className="flex flex-col py-12 px-8 w-[53.125rem] h-[30.75] bg-[#121A2B] ">
       <CardContent >
         <ChartContainer config={chartConfig} className="flex justify-center items-center w-full h-full">
           <BarChart
           className="flex justify-center"
-            data={chartData}
+            data={dados}
             layout="vertical"
             width={100}
             height={300}
@@ -66,7 +61,7 @@ const BarChartStacked: React.FC<BarChartStackedProps> = ({ data: chartData }) =>
             <XAxis type="number" tickLine={false} axisLine={false} />
             <YAxis
               type="category"
-              dataKey="year"
+              dataKey="ano"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
@@ -107,4 +102,4 @@ const BarChartStacked: React.FC<BarChartStackedProps> = ({ data: chartData }) =>
 }
 
 
-export default BarChartStacked;
+export default GraficoBarraEmpilhada;

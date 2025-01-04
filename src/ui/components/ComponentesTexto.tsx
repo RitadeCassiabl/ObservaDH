@@ -10,12 +10,12 @@ const titillium_web = Titillium_Web({
 interface textos {
   children?: React.ReactNode;
   className?: string;
-  noShadow?: boolean;
+  shadow?: boolean;
 }
 
-const TextContent: React.FC<textos> = ({ children, className, noShadow}) => {
+const TextContent: React.FC<textos> = ({ children, className, shadow }) => {
   return (
-    <h2 className={`text-white ${noShadow && "text-shadow-xl "} ${className} `}>
+    <h2 className={`text-white ${shadow && "text-shadow-xl "} ${className} `}>
       {children}
     </h2>
   );
