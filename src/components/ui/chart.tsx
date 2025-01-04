@@ -4,9 +4,12 @@ import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 
 import { cn } from "@/lib/utils"
+import { Oswald } from "next/font/google"
+
+const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
 // Format: { THEME_NAME: CSS_SELECTOR }
-const THEMES = { light: "", dark: ".dark" } as const
+const THEMES = { light: "sas", dark: "" } as const
 
 export type ChartConfig = { 
   [k in string]: {
@@ -82,17 +85,17 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
         __html: Object.entries(THEMES)
           .map(
             ([theme, prefix]) => `
-${prefix} [data-chart=${id}] {
-${colorConfig
-  .map(([key, itemConfig]) => {
-    const color =
-      itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
-      itemConfig.color
-    return color ? `  --color-${key}: ${color};` : null
-  })
-  .join("\n")}
-}
-`
+          ${prefix} [data-chart=${id}] {
+          ${colorConfig
+            .map(([key, itemConfig]) => {
+              const color =
+                itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
+                itemConfig.color
+              return color ? `  --color-${key}: ${color};` : null
+            })
+            .join("\n")}
+          }
+          `
           )
           .join("\n"),
       }}
@@ -148,7 +151,7 @@ const ChartTooltipContent = React.forwardRef<
 
       if (labelFormatter) {
         return (
-          <div className={cn("font-medium", labelClassName)}>
+          <div className={cn("font-medium", labelClassName, oswald.className)}>
             {labelFormatter(value, payload)}
           </div>
         )
@@ -158,7 +161,7 @@ const ChartTooltipContent = React.forwardRef<
         return null
       }
 
-      return <div className={cn("font-medium", labelClassName)}>{value}</div>
+      return <div className={cn("font-medium ", labelClassName)}>{value}</div>
     }, [
       label,
       labelFormatter,
@@ -179,7 +182,8 @@ const ChartTooltipContent = React.forwardRef<
       <div
         ref={ref}
         className={cn(
-          "grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl",
+          "grid items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 shadow-xl bg-[#87D9FF] border-[#4568BE] text-[#4568BE] text-base",
+          oswald.className,
           className
         )}
       >
@@ -208,7 +212,7 @@ const ChartTooltipContent = React.forwardRef<
                       !hideIndicator && (
                         <div
                           className={cn(
-                            "shrink-0 rounded-[2px] border-[--color-border] bg-[--color-bg]",
+                            "shrink-0 rounded-[3px] border border-[#4568BE] bg-[--color-bg]",
                             {
                               "h-2.5 w-2.5": indicator === "dot",
                               "w-1": indicator === "line",
@@ -234,12 +238,12 @@ const ChartTooltipContent = React.forwardRef<
                     >
                       <div className="grid gap-1.5">
                         {nestLabel ? tooltipLabel : null}
-                        <span className="text-muted-foreground">
+                        <span className="text--foreground">
                           {itemConfig?.label || item.name}
                         </span>
                       </div>
                       {item.value && (
-                        <span className="font-mono font-medium tabular-nums text-foreground">
+                        <span className="font-mono font-medium">
                           {item.value.toLocaleString()}
                         </span>
                       )}
@@ -280,7 +284,7 @@ const ChartLegendContent = React.forwardRef<
       <div
         ref={ref}
         className={cn(
-          "flex items-center justify-center gap-4",
+          "flex gap-4",
           verticalAlign === "top" ? "pb-3" : "pt-3",
           className
         )}
@@ -300,7 +304,7 @@ const ChartLegendContent = React.forwardRef<
                 <itemConfig.icon />
               ) : (
                 <div
-                  className="h-2 w-2 shrink-0 rounded-[2px]"
+                  className="h-4 w-4 shrink-0 rounded-[5px]"
                   style={{
                     backgroundColor: item.color,
                   }}
