@@ -18,10 +18,14 @@ import {
   pegarAno,
   obterAnos,
   obterEstados,
-  obterPautas
+  obterPautas,
+  pegarPautas
 } from "@/lib/hooks/calcularProjetos";
 
 import { Titillium_Web, Oswald } from "next/font/google";
+import { Button } from "@/components/ui/button";
+import { MdOutlineFilterAlt } from "react-icons/md";
+import BarChartStacked from "@/ui/graficos/BarChartStacked";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -37,7 +41,7 @@ const esferas = [
   },
   {
     titulo: "Estadual",
-    value: "estadual 1"
+    value: "estadual"
   }
 ];
 
@@ -74,19 +78,28 @@ const projetos: React.FC = () => {
           </span>
         </section>
         {/* FILTROS - DROPDOWN*/}
-        <section className="w-full flex gap-12 px-10">
-          <DropdownButton
-            elementos={esferas}
-            titulo="Esfera"
-            className="w-32"
-          />
-          <DropdownButton elementos={anos} titulo="Ano" className="w-32" />
-          <DropdownButton
-            elementos={estados}
-            titulo="Estado"
-            className="w-32"
-          />
-          <DropdownButton elementos={pautas} titulo="Pauta" className="w-32" />
+        <section className="w-full flex items-center justify-start gap-24">
+          <section className="flex gap-12 px-10">
+            <DropdownButton
+              elementos={esferas}
+              titulo="Esfera"
+              className="w-32"
+            />
+            <DropdownButton elementos={anos} titulo="Ano" className="w-32" />
+            <DropdownButton
+              elementos={estados}
+              titulo="Estado"
+              className="w-32 text-center"
+            />
+            <DropdownButton
+              elementos={pautas}
+              titulo="Pauta"
+              className="w-32"
+            />
+          </section>
+          <Button className="border-[#D974FD] text-[#D974FD] bg-transparent border-[1px] rounded-[3px] w-32 h-12 hover:bg-transparent">
+            Filtrar <MdOutlineFilterAlt />
+          </Button>
         </section>
         {/* CARROSSEL DE PL's */}
         <section>
@@ -127,6 +140,9 @@ const projetos: React.FC = () => {
             `}
           />
           <LineChartDots data={pegarAno(projetosMock)} />
+        </section>
+        <section className="w-full flex justify-center gap-[4.5rem]">
+          <BarChartStacked data={pegarPautas(projetosMock)} />
         </section>
       </article>
 
