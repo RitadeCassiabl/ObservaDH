@@ -1,4 +1,4 @@
-export interface parlamentar {
+export type parlamentar = {
   nome: string;
   genero: string;
   religiao: string;
@@ -10,7 +10,7 @@ export interface parlamentar {
   ideologia: string;
 }
 
-export interface ProjetoLei {
+export type ProjetoLei = {
   id: string;
   ano: string;
   numero_pl: string;
