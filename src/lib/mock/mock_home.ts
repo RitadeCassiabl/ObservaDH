@@ -2,7 +2,7 @@ const apresentacao = {
   subtitulo: "O que é o",
   titulo: "ObservaDH?",
   cor: "text-[#87D9FF]",
-  text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat
+  texto: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat
   nisi nec orci maximus, eu tempus metus viverra. Pellentesque non
               ante turpis. Mauris venenatis vel purus non gravida. Vestibulum a
               ante semper, efficitur justo sit amet, iaculis enim. Pellentesque
@@ -77,27 +77,27 @@ const cards_esfera = [
 export { cards_esfera };
 const cards_informativos = [
   {
-    title: "Conheça",
-    subtitle: "os Parlamentares",
-    text:
+    titulo: "Conheça",
+    subtitulo: "os Parlamentares",
+    texto:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
     rota: "/parlamentares",
     cor: "text-[#F693F9]"
   },
   {
-    title: "Entenda",
-    subtitle:
+    titulo: "Entenda",
+    subtitulo:
       "sobre os <span class='__className_626905 font-normal'>direitos</span>",
-    text:
+    texto:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
     rota: "/direitos",
     cor: "text-[#87D9FF]",
     isSubtitleHTML: true
   },
   {
-    title: "Conheça",
-    subtitle: "o projeto",
-    text:
+    titulo: "Conheça",
+    subtitulo: "o projeto",
+    texto:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
     rota: "/projetos",
     cor: "text-[#93F996]"
