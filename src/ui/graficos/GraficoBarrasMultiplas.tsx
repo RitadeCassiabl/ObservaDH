@@ -26,7 +26,7 @@ const chartConfig = {
   },
   mulhres: {
     label: "Mulheres",
-    color: "# 93F996",
+    color: "#93F996",
   },
 } satisfies ChartConfig
 
