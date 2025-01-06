@@ -14,7 +14,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-import { DadosGraficoBarraEmpilhada } from "@/lib/types/graficos"
+import {  DadosGraficoBarraEmpilhadaHorizontal } from "@/lib/types/graficos"
 
 
 
@@ -39,23 +39,22 @@ const chartConfig = {
 } satisfies ChartConfig
 
 interface GraficoBarraEmpilhadaProps {
-  dados: DadosGraficoBarraEmpilhada[]
+  dados: DadosGraficoBarraEmpilhadaHorizontal[]
 }
 
 
-const GraficoBarraEmpilhada: React.FC<GraficoBarraEmpilhadaProps> = ({ dados }) => {
+const GraficoBarraEmpilhadaHorizontal: React.FC<GraficoBarraEmpilhadaProps> = ({ dados }) => {
   return (
-    <Card className="flex flex-col py-12 px-8 w-[53.125rem] h-[30.75] bg-[#121A2B] ">
+    <Card className="flex flex-col py-12 px-8 w-[53.125rem] h-[30.75rem] bg-[#121A2B] ">
       <CardContent >
         <ChartContainer config={chartConfig} className="flex justify-center items-center w-full h-full">
           <BarChart
-          className="flex justify-center"
+            className="flex justify-center"
             data={dados}
             layout="vertical"
             width={100}
             height={300}
             margin={{bottom: 20, top: 20, left: 20, right: 20}}
-      
           >
             <CartesianGrid horizontal={false} />
             <XAxis type="number" tickLine={false} axisLine={false} />
@@ -63,7 +62,6 @@ const GraficoBarraEmpilhada: React.FC<GraficoBarraEmpilhadaProps> = ({ dados }) 
               type="category"
               dataKey="ano"
               tickLine={false}
-              tickMargin={10}
               axisLine={false}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent  className="min-w-56" />} />
@@ -102,4 +100,4 @@ const GraficoBarraEmpilhada: React.FC<GraficoBarraEmpilhadaProps> = ({ dados }) 
 }
 
 
-export default GraficoBarraEmpilhada;
+export default GraficoBarraEmpilhadaHorizontal;
