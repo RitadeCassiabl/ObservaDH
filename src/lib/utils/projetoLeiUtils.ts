@@ -1,3 +1,4 @@
+import { DadosGraficoBarraEmpilhadaVertical, DadosGraficoBarrasMultiplas } from "../types/graficos";
 import { ProjetoLei } from "../types/projetos";
 
 function contarProjetosPorAno(data: ProjetoLei[]) {
@@ -35,9 +36,109 @@ function contarPautasPorAno(data: ProjetoLei[]) {
   }));
 }
 
-// ! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ! 
+function contarGeneroPorIdeologia(data: ProjetoLei[]) {
+  const resultado: DadosGraficoBarrasMultiplas[] = [];
 
-function obterAnosUnicos(projetos: ProjetoLei[]): { titulo: string; value: string }[] {
+  const ideologiasFixas = [
+    "Extrema Direita",
+    "Direita",
+    "Centro Direita",
+    "Centro",
+    "Centro Esquerda",
+    "Esquerda",
+    "Esquerda Radical"
+  ];
+
+  const generoPorIdeologia: Record<
+    string,
+    { homens: number; mulheres: number }
+  > = ideologiasFixas.reduce((acc, ideologia) => {
+    acc[ideologia] = { homens: 0, mulheres: 0 };
+    return acc;
+  }, {} as Record<string, { homens: number; mulheres: number }>);
+
+  data.forEach(item => {
+    item.parlamentares.forEach(parlamentar => {
+      const ideologia = parlamentar.ideologia || "Desconhecida";
+      const genero = parlamentar.genero || "Desconhecido";
+
+      const ideologiaFinal = ideologiasFixas.includes(ideologia)
+        ? ideologia
+        : "Desconhecida";
+
+      if (genero === "Masculino") {
+        generoPorIdeologia[ideologiaFinal].homens++;
+      } else if (genero === "Feminino") {
+        generoPorIdeologia[ideologiaFinal].mulheres++;
+      }
+    });
+  });
+
+  for (const [ideologia, { homens, mulheres }] of Object.entries(
+    generoPorIdeologia
+  )) {
+    resultado.push({ ideologia, homens, mulheres });
+  }
+
+  return resultado;
+}function contarReligiaoPorEtnia(data: ProjetoLei[]) {
+  const resultado: DadosGraficoBarraEmpilhadaVertical[] = [];
+
+  const religioes: Record<
+    string,
+    { branco: number; preto: number; pardo: number; amarelo: number; indigena: number; indefinido: number }
+  > = {};
+
+  data.forEach(item => {
+    item.parlamentares.forEach(parlamentar => {
+      const etnia = (parlamentar.raca?.toLowerCase() || "indefinido") as keyof typeof religioes[string];
+      const religiao = parlamentar.religiao || "Não identificado";
+
+      if (!religioes[religiao]) {
+        religioes[religiao] = {
+          branco: 0,
+          preto: 0,
+          pardo: 0,
+          amarelo: 0,
+          indigena: 0,
+          indefinido: 0,
+        };
+      }
+
+      if (etnia in religioes[religiao]) {
+        religioes[religiao][etnia]++;
+      } else {
+        religioes[religiao].indefinido++;
+      }
+    });
+  });
+
+  for (const [religiao, etnias] of Object.entries(religioes)) {
+    resultado.push({
+      religiao,
+      ...etnias,
+    });
+  }
+
+  // Ordenar para garantir que "Não identificado" fique no final
+  resultado.sort((a, b) => {
+    if (a.religiao === "Não identificado") return 1;
+    if (b.religiao === "Não identificado") return -1;
+    return 0;
+  });
+  console.log(resultado)
+  return resultado;
+}
+
+
+
+
+
+// ! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - !
+
+function obterAnosUnicos(
+  projetos: ProjetoLei[]
+): { titulo: string; value: string }[] {
   const anos = projetos.map(projeto => projeto.ano);
   const anosUnicos = Array.from(new Set(anos));
   return anosUnicos.map(ano => ({
@@ -46,7 +147,9 @@ function obterAnosUnicos(projetos: ProjetoLei[]): { titulo: string; value: strin
   }));
 }
 
-function obterEstadosUnicos(projetos: ProjetoLei[]): { titulo: string; value: string }[] {
+function obterEstadosUnicos(
+  projetos: ProjetoLei[]
+): { titulo: string; value: string }[] {
   const estados = projetos.map(projeto => projeto.parlamentares[0].estado);
   const estadosUnicos = Array.from(new Set(estados));
   return estadosUnicos.map(estado => ({
@@ -55,7 +158,9 @@ function obterEstadosUnicos(projetos: ProjetoLei[]): { titulo: string; value: st
   }));
 }
 
-function obterPautasUnicas(projetos: ProjetoLei[]): { titulo: string; value: string }[] {
+function obterPautasUnicas(
+  projetos: ProjetoLei[]
+): { titulo: string; value: string }[] {
   const pautas = projetos.map(projeto => projeto.pauta);
   const pautasUnicas = Array.from(new Set(pautas));
   return pautasUnicas.map(pauta => ({
@@ -64,4 +169,12 @@ function obterPautasUnicas(projetos: ProjetoLei[]): { titulo: string; value: str
   }));
 }
 
-export { contarProjetosPorAno, contarPautasPorAno, obterAnosUnicos, obterEstadosUnicos, obterPautasUnicas };
+export {
+  contarProjetosPorAno,
+  contarPautasPorAno,
+  obterAnosUnicos,
+  obterEstadosUnicos,
+  obterPautasUnicas,
+  contarGeneroPorIdeologia,
+  contarReligiaoPorEtnia
+};
