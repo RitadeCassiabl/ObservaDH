@@ -28,7 +28,7 @@ import {
 } from "@/ui/components/ComponentesTexto";
 
 import GraficoLinhaPontos from "@/ui/graficos/GraficoLinhaPontos";
-import GraficoBarraEmpilhada from "@/ui/graficos/GraficoBarraEmpilhada";
+import GraficoBarraEmpilhada from "@/ui/graficos/GraficoBarraEmpilhadaHorizontal";
 
 import {contarPautasPorAno, contarProjetosPorAno, obterAnosUnicos, obterEstadosUnicos, obterPautasUnicas} from "@/lib/utils/projetoLeiUtils";
 
