@@ -126,7 +126,7 @@ function contarGeneroPorIdeologia(data: ProjetoLei[]) {
     if (b.religiao === "Não identificado") return -1;
     return 0;
   });
-  console.log(resultado)
+ 
   return resultado;
 }
 
@@ -144,6 +144,16 @@ function obterAnosUnicos(
   return anosUnicos.map(ano => ({
     titulo: ano,
     value: ano.toLowerCase()
+  }));
+}
+function obterEsferasUnicas(
+  projetos: ProjetoLei[]
+): {titulo: string; value: string}[] {
+    const esferas = projetos.map(projeto => projeto.parlamentares[0].esfera);
+  const esferasUnicas = Array.from(new Set(esferas));
+  return esferasUnicas.map(esfera => ({
+    titulo: esfera,
+    value: esfera.toLowerCase()
   }));
 }
 
@@ -169,9 +179,60 @@ function obterPautasUnicas(
   }));
 }
 
+function obterGeneroUnico (
+  parlamentares: ProjetoLei[]
+): { titulo: string; value: string }[] {
+  const generos = parlamentares.map(parlamentar => parlamentar.parlamentares[0].genero);
+  const generosUnicos = Array.from(new Set(generos));
+  return generosUnicos.map(genero => ({
+    titulo: genero,
+    value: genero.toLowerCase()
+  }));
+}
+
+function obterPartidosUnicos(
+  projetos: ProjetoLei[]
+): { titulo: string; value: string }[] {
+  const partidos = projetos.map(projeto => projeto.parlamentares[0].partido);
+  const partidosUnicos = Array.from(new Set(partidos));
+  return partidosUnicos.map(partido => ({
+    titulo: partido,
+    value: partido.toLowerCase()
+  }));
+}
+
+function obterIdeologiasUnica(
+  projetos: ProjetoLei[]
+): { titulo: string; value: string }[] {
+  const ideologias = projetos.map(projeto => projeto.parlamentares[0].ideologia);
+  const ideologiasUnicas = Array.from(new Set(ideologias));
+  return ideologiasUnicas.map(ideologia => ({
+    titulo: ideologia,
+    value: ideologia.toLowerCase()
+  }));
+}
+
+function obterProfissoesUnicas(
+  projetos: ProjetoLei[]
+): {titulo: string; value: string}[] {
+ const profissoes = projetos.map(projeto => projeto.parlamentares[0].profissao);
+ const profissoesUnicas = Array.from(new Set(profissoes));
+ return profissoesUnicas.map(profissao => ({
+  titulo: profissao,
+  value: profissao.toLowerCase()
+  
+ }));
+ 
+}
+
 export {
   contarProjetosPorAno,
   contarPautasPorAno,
+  obterProfissoesUnicas,
+  obterIdeologiasUnica,
+  obterPartidosUnicos,
+  obterGeneroUnico,
+  obterEsferasUnicas,
   obterAnosUnicos,
   obterEstadosUnicos,
   obterPautasUnicas,
