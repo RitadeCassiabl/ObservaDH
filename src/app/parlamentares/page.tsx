@@ -18,6 +18,8 @@ import { legendas } from "@/lib/mock/mock_parlamentares";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
+// ô_ô
+
 const parlamentares: React.FC = () => {
   return (
     <div className="flex h-full w-full flex-col gap-[4.5rem] items-center">
