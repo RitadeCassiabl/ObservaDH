@@ -30,7 +30,7 @@ import {
 import GraficoLinhaPontos from "@/ui/graficos/GraficoLinhaPontos";
 import GraficoBarraEmpilhada from "@/ui/graficos/GraficoBarraEmpilhadaHorizontal";
 
-import {contarPautasPorAno, contarProjetosPorAno, obterAnosUnicos, obterEstadosUnicos, obterPautasUnicas} from "@/lib/utils/projetoLeiUtils";
+import {contarPautasPorAno, contarProjetosPorAno, obterAnosUnicos, obterEsferasUnicas, obterEstadosUnicos, obterPautasUnicas} from "@/lib/utils/projetoLeiUtils";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -39,16 +39,7 @@ const titillium_web = Titillium_Web({
   subsets: ["latin"]
 });
 
-const esferas = [
-  {
-    titulo: "Federal",
-    value: "federal"
-  },
-  {
-    titulo: "Estadual",
-    value: "estadual"
-  }
-];
+const esferas = obterEsferasUnicas(projetosMock);
 
 const anos = obterAnosUnicos(projetosMock);
 
