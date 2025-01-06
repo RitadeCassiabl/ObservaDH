@@ -2,7 +2,13 @@ import GraficoBarraMultiplas from "@/ui/graficos/GraficoBarrasMultiplas";
 import { projetosMock } from "@/lib/mock/mock_projetos";
 import {
   contarGeneroPorIdeologia,
-  contarReligiaoPorEtnia
+  contarReligiaoPorEtnia,
+  obterEsferasUnicas,
+  obterEstadosUnicos,
+  obterGeneroUnico,
+  obterIdeologiasUnica,
+  obterPartidosUnicos,
+  obterProfissoesUnicas
 } from "@/lib/utils/projetoLeiUtils";
 
 import GraficoBarraEmpilhadaVertical from "@/ui/graficos/GraficoBarraEmpilhadaVertical";
@@ -12,19 +18,74 @@ import {
   TextContent,
   LineText,
   TextStrongOswald,
-  TextSmallTitillium
+  TextSmallTitillium,
+  TextSpace
 } from "@/ui/components/ComponentesTexto";
 import { legendas } from "@/lib/mock/mock_parlamentares";
+import DropdownButton from "@/ui/dropdown/DropdownButton";
+import { Button } from "@/components/ui/button";
+import { MdOutlineFilterAlt } from "react-icons/md";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
+
+// ! Obtendo informações para os dropdowns
+const esferas = obterEsferasUnicas(projetosMock);
+const estados = obterEstadosUnicos(projetosMock);
+const genero = obterGeneroUnico(projetosMock);
+const partidos = obterPartidosUnicos(projetosMock);
+const ideologias = obterIdeologiasUnica(projetosMock);
+const profissoes = obterProfissoesUnicas(projetosMock);
 
 // ô_ô
 
 const parlamentares: React.FC = () => {
   return (
     <div className="flex h-full w-full flex-col gap-[4.5rem] items-center">
-      <article className="border-white border w-full h-[40rem] text-shadow-xl text-7xl text-white text-center">
-        RANKING
+      <article className="flex flex-col w-full h-[40rem] text-shadow-xl text-7xl text-white text-center gap-20">
+        <div>
+          <TextContent>
+            <TextSmallTitillium>Ranking</TextSmallTitillium>
+            <TextSpace />
+            <TextStrongOswald>dos Parlamentares</TextStrongOswald>
+          </TextContent>
+        </div>
+        <section className="w-full flex items-center justify-start gap-24">
+          <section className="flex gap-12 px-10">
+            <DropdownButton
+              elementos={esferas}
+              titulo="Esfera"
+              className="w-32"
+            />
+            <DropdownButton
+              elementos={genero}
+              titulo="Gênero"
+              className="w-32"
+            />
+            <DropdownButton
+              elementos={estados}
+              titulo="Estado"
+              className="w-32 text-center"
+            />
+            <DropdownButton
+              elementos={partidos}
+              titulo="Partidos"
+              className="w-32"
+            />
+            <DropdownButton
+              elementos={ideologias}
+              titulo="Ideologia"
+              className="w-32"
+            />
+            <DropdownButton
+              elementos={profissoes}
+              titulo="Profissão"
+              className="w-32"
+            />
+          </section>
+          <Button className="flex flex-row justify-center border-[#D974FD] text-[#D974FD] bg-transparent border-[1px] rounded-[3px] w-32 h-12 hover:bg-inherit active:text-white active:bg-[#D974FD] transition-colors duration-75">
+            Filtrar <MdOutlineFilterAlt />
+          </Button>
+        </section>
       </article>
       <article className="border-white border w-full h-[40rem] text-shadow-xl text-7xl text-white text-center">
         RANKING
