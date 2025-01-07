@@ -25,7 +25,7 @@ const legenda: React.FC<legendaProps> = ({
   return (
     <div className="w-[21.5rem] flex flex-col gap-6">
       {children}
-      <p className={`${titillium_web} text-white text-xl`}>
+      <p className={`${titillium_web} text-white text-xl text-justify `}>
         {resumo ? resumo : ""}
       </p>
       <CardSaibaMais cor_texto={cor_texto} texto={texto ? texto : ""} />
