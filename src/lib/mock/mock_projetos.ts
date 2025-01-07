@@ -36,7 +36,7 @@ const projetosMock = [
     parlamentares: [
       {
         url_imagem:
-          "https://static.vecteezy.com/system/resources/previews/043/361/846/non_2x/default-avatar-profile-icon-man-in-suit-with-tie-grey-photo-placeholder-grayscale-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individuals-free-vector.jpg",
+          "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "João Silva",
         genero: "Masculino",
         religiao: "Cristão",
@@ -76,22 +76,22 @@ const projetosMock = [
   },
   {
     id: "3",
-    ano: "2022",
+    ano: "2024",
     numero_pl: "PL789/2022",
     pauta: "Banheiros Multigênero",
     parlamentares: [
       {
         url_imagem:
-          "https://static.vecteezy.com/system/resources/previews/043/361/846/non_2x/default-avatar-profile-icon-man-in-suit-with-tie-grey-photo-placeholder-grayscale-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individuals-free-vector.jpg",
+          "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Carlos Almeida",
-        genero: "Masculino",
-        religiao: "Católico",
-        raca: "Preto",
-        esfera: "Federal",
+        genero: "Não Binário",
+        religiao: "Agnóstico",
+        raca: "Polaco",
+        esfera: "Municipal",
         estado: "Minas Gerais",
         profissao: "Economista",
         partido: "PT",
-        ideologia: "Esquerda"
+        ideologia: "Centro Esquerda"
       },
       {
         url_imagem:
@@ -118,11 +118,11 @@ const projetosMock = [
     parlamentares: [
       {
         url_imagem:
-          "https://static.vecteezy.com/system/resources/previews/043/361/846/non_2x/default-avatar-profile-icon-man-in-suit-with-tie-grey-photo-placeholder-grayscale-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individuals-free-vector.jpg",
+          "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Lucas Pereira",
         genero: "Masculino",
-        religiao: "Evangélico",
-        raca: "Branco",
+        religiao: "Satanista",
+        raca: "Não identificado",
         esfera: "Estadual",
         estado: "Bahia",
         profissao: "Empresário",
@@ -164,7 +164,7 @@ const projetosMock = [
     parlamentares: [
       {
         url_imagem:
-          "https://static.vecteezy.com/system/resources/previews/043/361/846/non_2x/default-avatar-profile-icon-man-in-suit-with-tie-grey-photo-placeholder-grayscale-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individuals-free-vector.jpg",
+          "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Joaquim Ferreira",
         genero: "Masculino",
         religiao: "Católico",
@@ -187,7 +187,7 @@ const projetosMock = [
     parlamentares: [
       {
         url_imagem:
-          "https://static.vecteezy.com/system/resources/previews/043/361/846/non_2x/default-avatar-profile-icon-man-in-suit-with-tie-grey-photo-placeholder-grayscale-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individuals-free-vector.jpg",
+          "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Ricardo Santos",
         genero: "Masculino",
         religiao: "Evangélico",
@@ -232,7 +232,7 @@ const projetosMock = [
     parlamentares: [
       {
         url_imagem:
-          "https://static.vecteezy.com/system/resources/previews/043/361/846/non_2x/default-avatar-profile-icon-man-in-suit-with-tie-grey-photo-placeholder-grayscale-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individuals-free-vector.jpg",
+          "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "André Oliveira",
         genero: "Masculino",
         religiao: "Católico",
@@ -278,7 +278,7 @@ const projetosMock = [
     parlamentares: [
       {
         url_imagem:
-          "https://static.vecteezy.com/system/resources/previews/043/361/846/non_2x/default-avatar-profile-icon-man-in-suit-with-tie-grey-photo-placeholder-grayscale-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individuals-free-vector.jpg",
+          "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Carlos Rocha",
         genero: "Masculino",
         religiao: "Evangélico",
@@ -301,7 +301,7 @@ const projetosMock = [
     parlamentares: [
       {
         url_imagem:
-          "https://static.vecteezy.com/system/resources/previews/043/361/846/non_2x/default-avatar-profile-icon-man-in-suit-with-tie-grey-photo-placeholder-grayscale-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individuals-free-vector.jpg",
+          "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "José Pereira",
         genero: "Masculino",
         religiao: "Católico",
@@ -347,7 +347,7 @@ const projetosMock = [
     parlamentares: [
       {
         url_imagem:
-          "https://static.vecteezy.com/system/resources/previews/043/361/846/non_2x/default-avatar-profile-icon-man-in-suit-with-tie-grey-photo-placeholder-grayscale-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individuals-free-vector.jpg",
+          "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Fernando Souza",
         genero: "Masculino",
         religiao: "Católico",
@@ -415,7 +415,7 @@ const projetosMock = [
     parlamentares: [
       {
         url_imagem:
-          "https://static.vecteezy.com/system/resources/previews/043/361/846/non_2x/default-avatar-profile-icon-man-in-suit-with-tie-grey-photo-placeholder-grayscale-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individuals-free-vector.jpg",
+          "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "André Gomes",
         genero: "Masculino",
         religiao: "Evangélico",
@@ -461,7 +461,7 @@ const projetosMock = [
     parlamentares: [
       {
         url_imagem:
-          "https://static.vecteezy.com/system/resources/previews/043/361/846/non_2x/default-avatar-profile-icon-man-in-suit-with-tie-grey-photo-placeholder-grayscale-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individuals-free-vector.jpg",
+          "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Daniel Oliveira",
         genero: "Masculino",
         religiao: "Evangélico",
