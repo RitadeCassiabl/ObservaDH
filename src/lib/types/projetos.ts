@@ -1,4 +1,5 @@
 export type parlamentar = {
+  url_imagem: string;
   nome: string;
   genero: string;
   religiao: string;
@@ -8,7 +9,7 @@ export type parlamentar = {
   profissao: string;
   partido: string;
   ideologia: string;
-}
+};
 
 export type ProjetoLei = {
   id: string;
@@ -17,4 +18,4 @@ export type ProjetoLei = {
   pauta: string;
   parlamentares: parlamentar[];
   ementa: string;
-}
+};
