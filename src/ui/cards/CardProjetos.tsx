@@ -15,7 +15,7 @@ interface CardProjetosProps {
 
 const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
   return (
-    <Card className="bg-gradient-to-t from-[#050B17] to-[#1A326E] h-[27.625rem] w-[38.125rem] border-[#AFC4F9] border-2 rounded-[10px] px-8 py-12 flex flex-col gap-4">
+    <Card className="bg-gradient-to-t from-[#050B17] to-[#1A326E] h-[27.625rem] w-[38.125rem] border-[#AFC4F9] border-2 rounded-[10px] px-8 py-12 flex flex-col gap-4 select-none">
       <section className="flex gap-6">
         <RenderizarTexto conteudo={projeto.ano} titulo="Ano" />
         <RenderizarTexto conteudo={projeto.numero_pl} titulo="Número do PL" />
