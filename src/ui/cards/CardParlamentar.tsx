@@ -42,7 +42,7 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
           {children}
         </button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="flex-col max-h-[90vh] max-w-[50vw] h-full w-full p-12 flex bg-[#121A2B] border-[#4568BE] shadow-lg shadow-[#4568BE] rounded-lg">
+      <AlertDialogContent className="flex-col max-h-[90vh] max-w-[50vw] h-full w-full p-12 flex bg-gradient-to-t from-[#050B17] to-[#121A2B] border-[#4568BE] shadow-lg shadow-[#4568BE] rounded-lg">
         <AlertDialogDescription className="flex flex-col w-full h-full gap-6">
           <div className="flex flex-col gap-8">
             <div className="flex flex-row w-full justify-between items-start">
@@ -60,7 +60,7 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
                 <IoMdClose size={26} color="white" />
               </AlertDialogCancel>
             </div>
-            <div className=" text-white flex flex-col gap-4">
+            <div className="text-white flex flex-col gap-4">
               <div className="flex gap-6">
                 <ItemRender titulo="Gênero" valor={parlamentar.genero} />
                 <ItemRender titulo="Religião" valor={parlamentar.religiao} />
