@@ -163,12 +163,16 @@ const ItemRender: React.FC<itemRenderProps> = ({
   cor_segundo_texto
 }) => {
   return (
-    <p className={`text-2xl  ${className}`}>
-      <span className={`mr-2 text-[#AFC4F9] ${cor_texto}`}>
+    <p className={`text-2xl ${className}`}>
+      <span className={`mr-2  ${cor_texto ? cor_texto : "text-[#AFC4F9]"}`}>
         {titulo}
         {":"}
       </span>
-      <span className={`text-white truncate ${cor_segundo_texto} `}>
+      <span
+        className={`truncate ${cor_segundo_texto
+          ? cor_segundo_texto
+          : "text-white"} `}
+      >
         {valor}
       </span>
     </p>
