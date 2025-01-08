@@ -21,9 +21,12 @@ interface RenderizarTextoProps {
   className?: string;
 }
 
-interface itemProps {
+interface itemRenderProps {
   titulo: string;
   valor: string;
+  className?: string;
+  cor_texto?: string;
+  cor_segundo_texto?: string;
 }
 
 const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
@@ -124,24 +127,52 @@ const MiniCardProjetos: React.FC<miniCardProjetosProps> = ({ miniProjeto }) => {
   };
   return (
     <div
-      className="flex flex-row w-[41.75rem] h-20 rounded-[10px] bg-[#4568BE] border-t-0 border-[#1A326E] border-2 cursor-pointer"
+      className="flex flex-row items-center gap-4 w-[41.75rem] justify-between h-20 rounded-[10px] bg-[#4568BE] border-t-0 border-[#1A326E] border-2 cursor-pointer px-6 py-4 text-white font-medium"
       onClick={handleClick}
-    />
+    >
+      <ItemRender
+        titulo="Número"
+        valor={miniProjeto.ano}
+        cor_texto="text-[#050B17]"
+        cor_segundo_texto="text-[#1A326E] text-xl"
+        className="font-semibold"
+      />
+      <ItemRender
+        titulo="Ano"
+        valor={miniProjeto.numero}
+        cor_texto="text-[#050B17]"
+        cor_segundo_texto="text-[#1A326E] text-xl"
+        className="font-semibold"
+      />
+      <ItemRender
+        titulo="Pauta"
+        valor={miniProjeto.pauta}
+        cor_texto="text-[#050B17]"
+        cor_segundo_texto="text-[#1A326E] text-xl"
+        className="font-semibold"
+      />
+    </div>
   );
 };
 
-const Item: React.FC<itemProps> = ({ titulo, valor }) => {
+const ItemRender: React.FC<itemRenderProps> = ({
+  titulo,
+  valor,
+  className,
+  cor_texto,
+  cor_segundo_texto
+}) => {
   return (
-    <p>
-      <span className="text-3xl mr-2 text-[#AFC4F9]">
+    <p className={`text-2xl  ${className}`}>
+      <span className={`mr-2 text-[#AFC4F9] ${cor_texto}`}>
         {titulo}
         {":"}
       </span>
-      <span className="text-2xl">
+      <span className={`text-white truncate ${cor_segundo_texto} `}>
         {valor}
       </span>
     </p>
   );
 };
 
-export { CardProjetos, MiniCardProjetos, Item };
+export { CardProjetos, MiniCardProjetos, ItemRender };
