@@ -11,6 +11,14 @@ export type parlamentar = {
   ideologia: string;
 };
 
+export type partido = {
+  nome: string;
+  sigla: string;
+  estado: string;
+  ideologia: string;
+  url_imagem: string;
+}
+
 export type ProjetoLei = {
   id: string;
   ano: string;

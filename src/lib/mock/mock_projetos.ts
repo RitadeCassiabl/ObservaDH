@@ -44,7 +44,7 @@ const projetosMock = [
         esfera: "Federal",
         estado: "São Paulo",
         profissao: "Advogado",
-        partido: "PSDB",
+        id_partido: "7",
         ideologia: "Direita"
       }
     ],
@@ -58,7 +58,7 @@ const projetosMock = [
     ementa:
       "FALSO: Proíbe o uso de linguagem neutra em documentos oficiais e na educação pública.",
     justificativa: `
-    Lorem ipsum odor amet, consectetuer adipiscing elit. Urna nunc sodales porttitor non orci morbi natoque. Elementum eleifend interdum sodales feugiat felis ut non. Mollis facilisi integer porta; aenean vulputate quis! Tellus suscipit maecenas ex vehicula natoque habitasse ornare tincidunt gravida. Purus congue habitant et fusce fusce mus nascetur arcu. Platea velit elit suscipit eget risus. Per odio ornare netus ornare efficitur etiam. Ad inceptos non maecenas eros blandit class.
+    Lorem ipsum odor amet, consectetuer adipiscing elit. Urna nunc sodales porttitor non orci morbi natoque. Elementum eleifend interdum sodales feugiat felis ut non. Mollis facilisi integer porta; aenean vulputate quis! Tellus suscipit maecenas ex vehicula natoque habitasse ornare tincidunt gravida. Purus congue habitant et fusce fusce mus nascetur arcu. Platea velit elit suscipit eget risus. Per odio ornare netus ornare efficitur etiam. Ad ince5os non maecenas eros blandit class.
 Montes parturient ultricies erat ornare eget. Mauris habitasse molestie torquent placerat varius porta quisque donec. Pellentesque purus varius enim porta leo elit duis. Odio pretium dignissim aptent conubia, nascetur massa vel parturient. Integer luctus molestie leo, urna pellentesque pharetra ornare porta. Pellentesque elit lobortis at ultricies porttitor dictum sed augue. Tristique curae facilisi senectus leo vitae varius? Amet erat euismod sed tempus rhoncus laoreet blandit ullamcorper proin. Etiam enim metus hendrerit nisi leo non per.
 Arcu lacus sociosqu condimentum ad nunc; rutrum molestie. Posuere leo consequat in; amet penatibus mollis per vivamus suspendisse. Rutrum duis at integer mi libero elementum vestibulum euismod. Euismod quis turpis auctor malesuada luctus odio. Curabitur torquent orci tincidunt dui litora est sollicitudin curabitur nulla. Primis ligula et torquent risus sollicitudin ac velit. Donec potenti suscipit scelerisque aenean habitasse dis vel placerat.
 Cras malesuada nisl, nunc habitant tempus pharetra magnis ex. Etiam malesuada consectetur platea interdum fringilla torquent phasellus volutpat. Amet per consectetur taciti mollis inceptos arcu felis platea. Iaculis libero lectus finibus pharetra adipiscing mollis. Tempus dui erat velit velit quis quam integer consectetur a. Metus pellentesque ac netus; facilisi eleifend mi. Ridiculus ultrices tortor hac egestas primis vivamus viverra lacus.
@@ -86,7 +86,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Estadual",
         estado: "Amazonas",
         profissao: "Ambientalista",
-        partido: "PL",
+        id_partido: "3",
         ideologia: "Extrema Direita"
       }
     ],
@@ -124,7 +124,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Municipal",
         estado: "Minas Gerais",
         profissao: "Economista",
-        partido: "PT",
+        id_partido: "5",
         ideologia: "Centro Esquerda"
       },
       {
@@ -137,7 +137,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Estadual",
         estado: "Rio de Janeiro",
         profissao: "Professora",
-        partido: "PSOL",
+        id_partido: "1",
         ideologia: "Esquerda Radical"
       }
     ],
@@ -175,7 +175,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Estadual",
         estado: "Bahia",
         profissao: "Empresário",
-        partido: "DEM",
+        id_partido: "6",
         ideologia: "Centro Direita"
       }
     ],
@@ -210,10 +210,10 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         genero: "Feminino",
         religiao: "Cristão",
         raca: "Branco",
-        esfera: "Federal",  
+        esfera: "Federal",
         estado: "São Paulo",
         profissao: "Advogada",
-        partido: "PSDB",
+        id_partido: "7",
         ideologia: "Direita"
       },
 
@@ -227,7 +227,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Estadual",
         estado: "Rio de Janeiro",
         profissao: "Professora",
-        partido: "PSOL",
+        id_partido: "1",
         ideologia: "Esquerda Radical"
       }
     ],
@@ -265,7 +265,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Federal",
         estado: "Pará",
         profissao: "Médico",
-        partido: "MDB",
+        id_partido: "2",
         ideologia: "Centro"
       }
     ],
@@ -303,7 +303,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Estadual",
         estado: "São Paulo",
         profissao: "Comerciante",
-        partido: "PRB",
+        id_partido: "4",
         ideologia: "Centro Direita"
       }
     ],
@@ -340,7 +340,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Federal",
         estado: "Pernambuco",
         profissao: "Arquiteta",
-        partido: "PT",
+        id_partido: "5",
         ideologia: "Esquerda"
       }
     ],
@@ -378,7 +378,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Federal",
         estado: "Ceará",
         profissao: "Professor",
-        partido: "PDT",
+        id_partido: "5",
         ideologia: "Centro"
       }
     ],
@@ -416,7 +416,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Estadual",
         estado: "Goiás",
         profissao: "Médica",
-        partido: "PSL",
+        id_partido: "2",
         ideologia: "Centro Direita"
       }
     ],
@@ -454,7 +454,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Federal",
         estado: "Minas Gerais",
         profissao: "Deputado",
-        partido: "PSDB",
+        id_partido: "7",
         ideologia: "Direita"
       }
     ],
@@ -492,7 +492,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Federal",
         estado: "Bahia",
         profissao: "Engenheiro",
-        partido: "PL",
+        id_partido: "3",
         ideologia: "Centro"
       }
     ],
@@ -530,7 +530,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Estadual",
         estado: "Rio de Janeiro",
         profissao: "Psicóloga",
-        partido: "PSOL",
+        id_partido: "3",
         ideologia: "Esquerda Radical"
       }
     ],
@@ -568,7 +568,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Federal",
         estado: "Espírito Santo",
         profissao: "Advogado",
-        partido: "MDB",
+        id_partido: "2",
         ideologia: "Centro"
       }
     ],
@@ -606,7 +606,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Federal",
         estado: "São Paulo",
         profissao: "Psicóloga",
-        partido: "PSOL",
+        id_partido: "4",
         ideologia: "Esquerda Radical"
       }
     ],
@@ -643,7 +643,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Estadual",
         estado: "Pará",
         profissao: "Advogada",
-        partido: "PSL",
+        id_partido: "2",
         ideologia: "Centro"
       }
     ],
@@ -681,7 +681,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Federal",
         estado: "Pará",
         profissao: "Empresário",
-        partido: "PSDB",
+        id_partido: "7",
         ideologia: "Centro"
       }
     ],
@@ -719,7 +719,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Federal",
         estado: "Minas Gerais",
         profissao: "Engenheira",
-        partido: "PSB",
+        id_partido: "5",
         ideologia: "Centro"
       }
     ],
@@ -757,7 +757,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Estadual",
         estado: "Santa Catarina",
         profissao: "Comerciante",
-        partido: "PSL",
+        id_partido: "2",
         ideologia: "Centro Direita"
       }
     ],
@@ -795,7 +795,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         esfera: "Federal",
         estado: "São Paulo",
         profissao: "Psicóloga",
-        partido: "PSOL",
+        id_partido: "2",
         ideologia: "Esquerda"
       }
     ],
@@ -820,9 +820,70 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
 ];
 export { projetosMock };
 
+const partidosDireita = [
+  {
+    id: "1",
+    nome: "Partido Social Liberal",
+    sigla: "2",
+    estado: "Nacional",
+    ideologia: "Conservadorismo, Liberalismo econômico",
+    url_imagem: "https://example.com/psl-logo.png"
+  },
+  {
+    id: "2",
+    nome: "Partido Progressistas",
+    sigla: "PP",
+    estado: "Nacional",
+    ideologia: "Conservadorismo, Liberalismo econômico",
+    url_imagem: "https://example.com/pp-logo.png"
+  },
+  {
+    id: "3",
+    nome: "Partido Liberal",
+    sigla: "PL",
+    estado: "Nacional",
+    ideologia: "Conservadorismo, Liberalismo econômico",
+    url_imagem: "https://example.com/pl-logo.png"
+  },
+  {
+    id: "4",
+    nome: "Partido Social Cristão",
+    sigla: "PSC",
+    estado: "Nacional",
+    ideologia: "Conservadorismo, Democracia cristã",
+    url_imagem: "https://example.com/psc-logo.png"
+  },
+  {
+    id: "5",
+    nome: "Patriota",
+    sigla: "PATRI",
+    estado: "Nacional",
+    ideologia: "Nacionalismo, Conservadorismo",
+    url_imagem: "https://example.com/patriota-logo.png"
+  },
+  {
+    id: "6",
+    nome: "Partido Renovador Trabalhista Brasileiro",
+    sigla: "PRTB",
+    estado: "Nacional",
+    ideologia: "Nacionalismo, Conservadorismo",
+    url_imagem: "https://example.com/prtb-logo.png"
+  },
+  {
+    id: "7",
+    nome: "Democracia Cristã",
+    sigla: "DC",
+    estado: "Nacional",
+    ideologia: "Conservadorismo, Democracia cristã",
+    url_imagem: "https://example.com/dc-logo.png"
+  }
+];
+
+export { partidosDireita };
+
 const legendas = [
   {
-    titulo: "PL's",
+    titulo: "3's",
     cor: "text-[#93F996]",
     resumo: `
      Pls lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis esse, inventore doloribus non cumque, sint illo in modi corporis reprehenderit animi explicabo, sapiente voluptate? Sunt a ducimus atque possimus quasi.
