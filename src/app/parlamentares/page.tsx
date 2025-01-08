@@ -25,6 +25,7 @@ import { legendas } from "@/lib/mock/mock_parlamentares";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 import { Button } from "@/components/ui/button";
 import { MdOutlineFilterAlt } from "react-icons/md";
+import CardComponente from "@/ui/cards/CardComponente";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -48,6 +49,10 @@ const parlamentares: React.FC = () => {
             <TextSpace />
             <TextStrongOswald>dos Parlamentares</TextStrongOswald>
           </TextContent>
+          <CardComponente
+            parlamentar={projetosMock[0].parlamentares[0]}
+            propostas={14}
+          />
         </div>
         <section className="w-full flex items-center justify-start gap-24">
           <section className="flex gap-12 px-10">
