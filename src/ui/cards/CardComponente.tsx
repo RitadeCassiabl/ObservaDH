@@ -1,9 +1,6 @@
-"use client";
-
 import { Oswald } from "next/font/google";
 import CardParlamentar from "./CardParlamentar";
 import { parlamentar } from "@/lib/types/projetos";
-import { useEffect } from "react";
 
 interface componentePros {
   parlamentar: parlamentar;
@@ -16,9 +13,6 @@ const CardComponente: React.FC<componentePros> = ({
   parlamentar,
   propostas
 }) => {
-  useEffect(() => {
-    console.log(parlamentar);
-  }, []);
 
   return (
     <div className={` ${oswald.className} flex flex-row w-11/12 h-28`}>
