@@ -163,7 +163,7 @@ const ItemRender: React.FC<itemRenderProps> = ({
   cor_segundo_texto
 }) => {
   return (
-    <p className={`text-2xl ${className}`}>
+    <p className={`text-2xl ${className} ${oswald.className}`}>
       <span className={`mr-2  ${cor_texto ? cor_texto : "text-[#AFC4F9]"}`}>
         {titulo}
         {":"}
