@@ -44,8 +44,8 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
       </AlertDialogTrigger>
       <AlertDialogContent className="flex-col max-h-[90vh] max-w-[50vw] h-full w-full p-12 flex bg-gradient-to-t from-[#050B17] to-[#121A2B] border-[#4568BE] shadow-lg shadow-[#4568BE] rounded-lg">
         <AlertDialogDescription className="flex flex-col w-full h-full gap-6">
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-row w-full justify-between items-start">
+          <article className="flex flex-col gap-8">
+            <section className="flex flex-row w-full justify-between items-start">
               <div className="flex flex-row items-center gap-10">
                 <img
                   src={parlamentar.url_imagem}
@@ -59,8 +59,8 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
               <AlertDialogCancel className="">
                 <IoMdClose size={26} color="white" />
               </AlertDialogCancel>
-            </div>
-            <div className="text-white flex flex-col gap-4">
+            </section>
+            <section className="text-white flex flex-col gap-4">
               <div className="flex gap-6">
                 <ItemRender titulo="Gênero" valor={parlamentar.genero} />
                 <ItemRender titulo="Religião" valor={parlamentar.religiao} />
@@ -78,10 +78,10 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
                   valor={parlamentar.ideologia}
                 />
               </div>
-            </div>
-          </div>
+            </section>
+          </article>
           <div className="w-full bg-white/50 h-[2px]" />
-          <div className="flex flex-col w-full items-center gap-8">
+          <section className="flex flex-col w-full items-center gap-8">
             <div>
               <LineText className="text-4xl text-white text-shadow-xl text-center ">
                 <TextStrongOswald>
@@ -121,7 +121,7 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
                 <CarouselNext />
               </Carousel>
             </div>
-          </div>
+          </section>
         </AlertDialogDescription>
       </AlertDialogContent>
     </AlertDialog>
