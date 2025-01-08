@@ -120,7 +120,6 @@ function contarGeneroPorIdeologia(data: ProjetoLei[]) {
     });
   }
 
-  // Ordenar para garantir que "Não identificado" fique no final
   resultado.sort((a, b) => {
     if (a.religiao === "Não identificado") return 1;
     if (b.religiao === "Não identificado") return -1;
@@ -130,6 +129,19 @@ function contarGeneroPorIdeologia(data: ProjetoLei[]) {
   return resultado;
 }
 
+
+function contarPropostasPorParlamentar(data: ProjetoLei[], nome: string): number {
+  let contador = 0;
+  data.forEach(projeto => {
+    projeto.parlamentares.forEach(parlamentar => {
+      if (parlamentar.nome.toLowerCase() === nome.toLowerCase()) {
+        contador++;
+      }
+    });
+  });
+
+  return contador;
+}
 
 
 
@@ -237,5 +249,6 @@ export {
   obterEstadosUnicos,
   obterPautasUnicas,
   contarGeneroPorIdeologia,
-  contarReligiaoPorEtnia
+  contarReligiaoPorEtnia,
+  contarPropostasPorParlamentar
 };
