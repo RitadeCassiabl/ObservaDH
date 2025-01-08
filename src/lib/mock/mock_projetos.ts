@@ -210,11 +210,25 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         genero: "Feminino",
         religiao: "Cristão",
         raca: "Branco",
-        esfera: "Federal",
+        esfera: "Federal",  
         estado: "São Paulo",
         profissao: "Advogada",
         partido: "PSDB",
         ideologia: "Direita"
+      },
+
+      {
+        url_imagem:
+          "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
+        nome: "Fernanda Oliveira",
+        genero: "Feminino",
+        religiao: "Não identificado",
+        raca: "Pardo",
+        esfera: "Estadual",
+        estado: "Rio de Janeiro",
+        profissao: "Professora",
+        partido: "PSOL",
+        ideologia: "Esquerda Radical"
       }
     ],
     violacoes: ["Liberdade de expressão", "Direitos culturais"],
