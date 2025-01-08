@@ -19,3 +19,11 @@ export type ProjetoLei = {
   parlamentares: parlamentar[];
   ementa: string;
 };
+
+
+export type miniProjeto = {
+  id: string;
+  numero: string;
+  ano: string;
+  pauta: string;
+}
