@@ -42,9 +42,9 @@ const projetosMock = [
         religiao: "Cristão",
         raca: "Branco",
         esfera: "Federal",
+        partido: "PL",
         estado: "São Paulo",
         profissao: "Advogado",
-        id_partido: "7",
         ideologia: "Direita"
       }
     ],
@@ -84,9 +84,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Católico",
         raca: "Indígena",
         esfera: "Estadual",
+        partido: "PL",
         estado: "Amazonas",
         profissao: "Ambientalista",
-        id_partido: "3",
         ideologia: "Extrema Direita"
       }
     ],
@@ -122,9 +122,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Agnóstico",
         raca: "Polaco",
         esfera: "Municipal",
+        partido: "PL",
         estado: "Minas Gerais",
         profissao: "Economista",
-        id_partido: "5",
         ideologia: "Centro Esquerda"
       },
       {
@@ -135,9 +135,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Não identificado",
         raca: "Pardo",
         esfera: "Estadual",
+        partido: "PL",
         estado: "Rio de Janeiro",
         profissao: "Professora",
-        id_partido: "1",
         ideologia: "Esquerda Radical"
       }
     ],
@@ -173,9 +173,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Satanista",
         raca: "Não identificado",
         esfera: "Estadual",
+        partido: "PL",
         estado: "Bahia",
         profissao: "Empresário",
-        id_partido: "6",
         ideologia: "Centro Direita"
       }
     ],
@@ -211,9 +211,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Cristão",
         raca: "Branco",
         esfera: "Federal",
+        partido: "PL",
         estado: "São Paulo",
         profissao: "Advogada",
-        id_partido: "7",
         ideologia: "Direita"
       },
 
@@ -225,9 +225,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Não identificado",
         raca: "Pardo",
         esfera: "Estadual",
+        partido: "PL",
         estado: "Rio de Janeiro",
         profissao: "Professora",
-        id_partido: "1",
         ideologia: "Esquerda Radical"
       }
     ],
@@ -263,9 +263,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Católico",
         raca: "Pardo",
         esfera: "Federal",
+        partido: "PL",
         estado: "Pará",
         profissao: "Médico",
-        id_partido: "2",
         ideologia: "Centro"
       }
     ],
@@ -301,9 +301,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Evangélico",
         raca: "Branco",
         esfera: "Estadual",
+        partido: "PL",
         estado: "São Paulo",
         profissao: "Comerciante",
-        id_partido: "4",
         ideologia: "Centro Direita"
       }
     ],
@@ -338,9 +338,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Não identificado",
         raca: "Pardo",
         esfera: "Federal",
+        partido: "PL",
         estado: "Pernambuco",
         profissao: "Arquiteta",
-        id_partido: "5",
         ideologia: "Esquerda"
       }
     ],
@@ -376,9 +376,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Católico",
         raca: "Preto",
         esfera: "Federal",
+        partido: "PL",
         estado: "Ceará",
         profissao: "Professor",
-        id_partido: "5",
         ideologia: "Centro"
       }
     ],
@@ -414,9 +414,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Cristão",
         raca: "Branco",
         esfera: "Estadual",
+        partido: "PL",
         estado: "Goiás",
         profissao: "Médica",
-        id_partido: "2",
         ideologia: "Centro Direita"
       }
     ],
@@ -452,9 +452,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Evangélico",
         raca: "Branco",
         esfera: "Federal",
+        partido: "PL",
         estado: "Minas Gerais",
         profissao: "Deputado",
-        id_partido: "7",
         ideologia: "Direita"
       }
     ],
@@ -490,9 +490,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Católico",
         raca: "Pardo",
         esfera: "Federal",
+        partido: "PL",
         estado: "Bahia",
         profissao: "Engenheiro",
-        id_partido: "3",
         ideologia: "Centro"
       }
     ],
@@ -528,9 +528,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Cristão",
         raca: "Branco",
         esfera: "Estadual",
+        partido: "PL",
         estado: "Rio de Janeiro",
         profissao: "Psicóloga",
-        id_partido: "3",
         ideologia: "Esquerda Radical"
       }
     ],
@@ -566,9 +566,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Católico",
         raca: "Pardo",
         esfera: "Federal",
+        partido: "PL",
         estado: "Espírito Santo",
         profissao: "Advogado",
-        id_partido: "2",
         ideologia: "Centro"
       }
     ],
@@ -604,9 +604,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Não identificado",
         raca: "Amarelo",
         esfera: "Federal",
+        partido: "PL",
         estado: "São Paulo",
         profissao: "Psicóloga",
-        id_partido: "4",
         ideologia: "Esquerda Radical"
       }
     ],
@@ -641,9 +641,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Católico",
         raca: "Branco",
         esfera: "Estadual",
+        partido: "PL",
         estado: "Pará",
         profissao: "Advogada",
-        id_partido: "2",
         ideologia: "Centro"
       }
     ],
@@ -679,9 +679,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Evangélico",
         raca: "Branco",
         esfera: "Federal",
+        partido: "PL",
         estado: "Pará",
         profissao: "Empresário",
-        id_partido: "7",
         ideologia: "Centro"
       }
     ],
@@ -717,9 +717,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Católico",
         raca: "Branco",
         esfera: "Federal",
+        partido: "PL",
         estado: "Minas Gerais",
         profissao: "Engenheira",
-        id_partido: "5",
         ideologia: "Centro"
       }
     ],
@@ -755,9 +755,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Evangélico",
         raca: "Branco",
         esfera: "Estadual",
+        partido: "PL",
         estado: "Santa Catarina",
         profissao: "Comerciante",
-        id_partido: "2",
         ideologia: "Centro Direita"
       }
     ],
@@ -793,9 +793,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Não identificado",
         raca: "Branco",
         esfera: "Federal",
+        partido: "PL",
         estado: "São Paulo",
         profissao: "Psicóloga",
-        id_partido: "2",
         ideologia: "Esquerda"
       }
     ],
@@ -820,70 +820,9 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
 ];
 export { projetosMock };
 
-const partidosDireita = [
-  {
-    id: "1",
-    nome: "Partido Social Liberal",
-    sigla: "2",
-    estado: "Nacional",
-    ideologia: "Conservadorismo, Liberalismo econômico",
-    url_imagem: "https://example.com/psl-logo.png"
-  },
-  {
-    id: "2",
-    nome: "Partido Progressistas",
-    sigla: "PP",
-    estado: "Nacional",
-    ideologia: "Conservadorismo, Liberalismo econômico",
-    url_imagem: "https://example.com/pp-logo.png"
-  },
-  {
-    id: "3",
-    nome: "Partido Liberal",
-    sigla: "PL",
-    estado: "Nacional",
-    ideologia: "Conservadorismo, Liberalismo econômico",
-    url_imagem: "https://example.com/pl-logo.png"
-  },
-  {
-    id: "4",
-    nome: "Partido Social Cristão",
-    sigla: "PSC",
-    estado: "Nacional",
-    ideologia: "Conservadorismo, Democracia cristã",
-    url_imagem: "https://example.com/psc-logo.png"
-  },
-  {
-    id: "5",
-    nome: "Patriota",
-    sigla: "PATRI",
-    estado: "Nacional",
-    ideologia: "Nacionalismo, Conservadorismo",
-    url_imagem: "https://example.com/patriota-logo.png"
-  },
-  {
-    id: "6",
-    nome: "Partido Renovador Trabalhista Brasileiro",
-    sigla: "PRTB",
-    estado: "Nacional",
-    ideologia: "Nacionalismo, Conservadorismo",
-    url_imagem: "https://example.com/prtb-logo.png"
-  },
-  {
-    id: "7",
-    nome: "Democracia Cristã",
-    sigla: "DC",
-    estado: "Nacional",
-    ideologia: "Conservadorismo, Democracia cristã",
-    url_imagem: "https://example.com/dc-logo.png"
-  }
-];
-
-export { partidosDireita };
-
 const legendas = [
   {
-    titulo: "3's",
+    titulo: "PL's",
     cor: "text-[#93F996]",
     resumo: `
      Pls lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis esse, inventore doloribus non cumque, sint illo in modi corporis reprehenderit animi explicabo, sapiente voluptate? Sunt a ducimus atque possimus quasi.
