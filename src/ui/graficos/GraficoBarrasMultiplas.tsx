@@ -9,6 +9,8 @@ import {
 import {
   ChartConfig,
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
@@ -22,9 +24,9 @@ interface GraficoBarraMultiplasProps {
 const chartConfig = {
     homens: {
     label: "Homens",
-    color: "#F693F",
+    color: "#F693F9",
   },
-  mulhres: {
+  mulheres: {
     label: "Mulheres",
     color: "#93F996",
   },
@@ -47,6 +49,7 @@ const GraficoBarraMultiplas: React.FC<GraficoBarraMultiplasProps> = ({dados}) =>
               cursor={false}
               content={<ChartTooltipContent className="min-w-56" />}
             />
+            <ChartLegend content={<ChartLegendContent className="text-white text-base"/>} />
             <Bar dataKey="homens" fill="#F693F9" radius={4}  />
             <Bar dataKey="mulheres" fill="#93F996" radius={4} />
           </BarChart>
