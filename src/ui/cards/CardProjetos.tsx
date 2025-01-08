@@ -1,6 +1,8 @@
+"use client";
 import { Card } from "@/components/ui/card";
 import { ProjetoLei, miniProjeto } from "@/lib/types/projetos";
 import { Titillium_Web, Oswald } from "next/font/google";
+import { useRouter } from "next/navigation";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -11,6 +13,17 @@ const titillium_web = Titillium_Web({
 
 interface CardProjetosProps {
   projeto: ProjetoLei;
+}
+
+interface RenderizarTextoProps {
+  titulo: string;
+  conteudo: string;
+  className?: string;
+}
+
+interface itemProps {
+  titulo: string;
+  valor: string;
 }
 
 const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
@@ -78,12 +91,6 @@ const CardProjetos: React.FC<CardProjetosProps> = ({ projeto }) => {
   );
 };
 
-interface RenderizarTextoProps {
-  titulo: string;
-  conteudo: string;
-  className?: string;
-}
-
 const RenderizarTexto: React.FC<RenderizarTextoProps> = ({
   titulo,
   conteudo,
@@ -109,14 +116,32 @@ interface miniCardProjetosProps {
   miniProjeto: miniProjeto;
 }
 
-const MiniCardProjetos: React.FC<miniCardProjetosProps> = ({
-  miniProjeto
-}) => {
+const MiniCardProjetos: React.FC<miniCardProjetosProps> = ({ miniProjeto }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/projetos/${miniProjeto.id}`);
+  };
   return (
-    <div className="">
-      {miniProjeto.numero}
-    </div>
-  )
+    <div
+      className="flex flex-row w-[41.75rem] h-20 rounded-[10px] bg-[#4568BE] border-t-0 border-[#1A326E] border-2 cursor-pointer"
+      onClick={handleClick}
+    />
+  );
 };
 
-export { CardProjetos, MiniCardProjetos };
+const Item: React.FC<itemProps> = ({ titulo, valor }) => {
+  return (
+    <p>
+      <span className="text-3xl mr-2 text-[#AFC4F9]">
+        {titulo}
+        {":"}
+      </span>
+      <span className="text-2xl">
+        {valor}
+      </span>
+    </p>
+  );
+};
+
+export { CardProjetos, MiniCardProjetos, Item };
