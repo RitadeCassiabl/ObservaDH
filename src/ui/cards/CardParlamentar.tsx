@@ -72,7 +72,7 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
                 <ItemRender titulo="Profissão" valor={parlamentar.profissao} />
               </div>
               <div className="flex gap-6">
-                <ItemRender titulo="Partido" valor={parlamentar.partido.sigla} />
+                <ItemRender titulo="Partido" valor={parlamentar.partido} />
                 <ItemRender
                   titulo="Ideologia Política"
                   valor={parlamentar.ideologia}
