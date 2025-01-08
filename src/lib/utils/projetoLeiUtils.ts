@@ -205,7 +205,9 @@ function obterGeneroUnico (
 function obterPartidosUnicos(
   projetos: ProjetoLei[]
 ): { titulo: string; value: string }[] {
-  const partidos = projetos.map(projeto => projeto.parlamentares[0].partido);
+  const partidos = projetos.flatMap(projeto =>
+    projeto.parlamentares.map(parlamentar => parlamentar.partido)
+  );
   const partidosUnicos = Array.from(new Set(partidos));
   return partidosUnicos.map(partido => ({
     titulo: partido,
@@ -216,7 +218,9 @@ function obterPartidosUnicos(
 function obterIdeologiasUnica(
   projetos: ProjetoLei[]
 ): { titulo: string; value: string }[] {
-  const ideologias = projetos.map(projeto => projeto.parlamentares[0].ideologia);
+  const ideologias = projetos.flatMap(projeto =>
+    projeto.parlamentares.map(parlamentar => parlamentar.ideologia)
+  );
   const ideologiasUnicas = Array.from(new Set(ideologias));
   return ideologiasUnicas.map(ideologia => ({
     titulo: ideologia,
