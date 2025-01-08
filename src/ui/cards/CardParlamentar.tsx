@@ -16,6 +16,15 @@ import {
   TextSpace,
   TextSmallTitillium
 } from "../components/ComponentesTexto";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext
+} from "@/components/ui/carousel";
+import { projetosMock } from "@/lib/mock/mock_projetos";
+import { MiniCardProjetos } from "./CardProjetos";
 
 interface saibaMaisProps {
   parlamentar: parlamentar;
@@ -72,7 +81,7 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
             </div>
           </div>
           <div className="w-full bg-white/50 h-[2px]" />
-          <div className="w-full justify-center">
+          <div className="flex flex-col w-full items-center gap-8">
             <div>
               <LineText className="text-4xl text-white text-shadow-xl text-center ">
                 <TextStrongOswald>
@@ -83,6 +92,34 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
                   {"de Lei"}
                 </TextSmallTitillium>
               </LineText>
+            </div>
+            <div>
+              <Carousel
+                opts={{
+                  align: "start"
+                }}
+                className="w-[41.75rem]"
+              >
+                <CarouselContent className="">
+                  {projetosMock.map((item, index) =>
+                    <CarouselItem
+                      key={index}
+                      className="flex justify-center"
+                    >
+                      <MiniCardProjetos
+                        miniProjeto={{
+                          id: item.id,
+                          numero: item.numero_pl,
+                          ano: item.ano,
+                          pauta: item.pauta
+                        }}
+                      />
+                    </CarouselItem>
+                  )}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
             </div>
           </div>
         </AlertDialogDescription>
