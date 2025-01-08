@@ -46,7 +46,7 @@ const GraficoBarraMultiplas: React.FC<GraficoBarraMultiplasProps> = ({dados}) =>
               axisLine={false}
               className="text-xl"
             />
-            <YAxis AxisComp={true} className="text-xl" tickMargin={8}/>
+            <YAxis AxisComp tickLine className="text-xl" tickMargin={8}/>
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent className="min-w-56" />}
