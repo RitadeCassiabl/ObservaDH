@@ -12,7 +12,7 @@ import Legenda from "@/ui/cards/CardLegenda";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 
 import CardGraficoMapa from "@/ui/graficos/GraficoMapa";
-import CardProjetos from "@/ui/cards/CardProjetos";
+import {CardProjetos} from "@/ui/cards/CardProjetos";
 import CardApresentacao from "@/ui/cards/CardApresentacao";
 
 import { Titillium_Web, Oswald } from "next/font/google";
