@@ -24,7 +24,7 @@ import {
   CarouselNext
 } from "@/components/ui/carousel";
 import { projetosMock } from "@/lib/mock/mock_projetos";
-import { MiniCardProjetos , Item } from "./CardProjetos";
+import { MiniCardProjetos , ItemRender } from "./CardProjetos";
 
 interface saibaMaisProps {
   parlamentar: parlamentar;
@@ -62,18 +62,18 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
             </div>
             <div className=" text-white flex flex-col gap-4">
               <div className="flex gap-6">
-                <Item titulo="Gênero" valor={parlamentar.genero} />
-                <Item titulo="Religião" valor={parlamentar.religiao} />
-                <Item titulo="Raça" valor={parlamentar.raca} />
+                <ItemRender titulo="Gênero" valor={parlamentar.genero} />
+                <ItemRender titulo="Religião" valor={parlamentar.religiao} />
+                <ItemRender titulo="Raça" valor={parlamentar.raca} />
               </div>
               <div className="flex gap-6">
-                <Item titulo="Esfera" valor={parlamentar.esfera} />
-                <Item titulo="Estado" valor={parlamentar.estado} />
-                <Item titulo="Profissão" valor={parlamentar.profissao} />
+                <ItemRender titulo="Esfera" valor={parlamentar.esfera} />
+                <ItemRender titulo="Estado" valor={parlamentar.estado} />
+                <ItemRender titulo="Profissão" valor={parlamentar.profissao} />
               </div>
               <div className="flex gap-6">
-                <Item titulo="Partido" valor={parlamentar.partido} />
-                <Item
+                <ItemRender titulo="Partido" valor={parlamentar.partido} />
+                <ItemRender
                   titulo="Ideologia Política"
                   valor={parlamentar.ideologia}
                 />
