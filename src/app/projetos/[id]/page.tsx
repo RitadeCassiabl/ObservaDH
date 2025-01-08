@@ -93,7 +93,7 @@ const page: React.FC = () => {
             titulo={projeto.parlamentares.length > 1 ? "Partidos" : "Partido"}
             valor={
               projeto.parlamentares.length > 1
-                ? projeto.parlamentares[0].id_partido
+                ? projeto.parlamentares[0].partido
                 : projeto.parlamentares
                     .map(parlamentar => parlamentar.partido)
                     .join(", ")
