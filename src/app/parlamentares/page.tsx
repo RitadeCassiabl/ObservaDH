@@ -1,5 +1,5 @@
 import GraficoBarraMultiplas from "@/ui/graficos/GraficoBarrasMultiplas";
-import { projetosMock } from "@/lib/mock/mock_projetos";
+import { projetosMock, partidosMock } from "@/lib/mock/mock_projetos";
 import {
   contarGeneroPorIdeologia,
   contarPropostasPorParlamentar,
@@ -26,7 +26,10 @@ import { legendas } from "@/lib/mock/mock_parlamentares";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 import { Button } from "@/components/ui/button";
 import { MdOutlineFilterAlt } from "react-icons/md";
-import CardComponente from "@/ui/cards/CardComponente";
+import {
+  CardComponenteParlamentar,
+  CardComponentePartido
+} from "@/ui/cards/CardComponente";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -41,6 +44,9 @@ const profissoes = obterProfissoesUnicas(projetosMock);
 // ô_ô
 
 const parlamentares: React.FC = () => {
+  const partidosOrdenados = [...partidosMock].sort(
+    (a, b) => parseInt(b.propostas) - parseInt(a.propostas)
+  );
   return (
     <div className="flex h-full w-full flex-col gap-[4.5rem] items-center">
       <article className="flex flex-col w-full  gap-20">
@@ -116,7 +122,7 @@ const parlamentares: React.FC = () => {
           >
             {projetosMock.map(item => {
               return item.parlamentares.map(parlamentar =>
-                <CardComponente
+                <CardComponenteParlamentar
                   key={`${item.numero_pl}-${parlamentar.nome}`}
                   parlamentar={parlamentar}
                   propostas={contarPropostasPorParlamentar(
@@ -129,8 +135,47 @@ const parlamentares: React.FC = () => {
           </div>
         </div>
       </article>
-      <article className="border-white border w-full h-[40rem] text-shadow-xl text-7xl text-white text-center">
-        RANKING
+      <article className="flex flex-col w-full  gap-20">
+        <div className="w-full text-shadow-xl text-7xl text-white text-center">
+          <TextContent>
+            <TextSmallTitillium>Ranking</TextSmallTitillium>
+            <TextSpace />
+            <TextStrongOswald>dos Partidos</TextStrongOswald>
+          </TextContent>
+        </div>
+        <div className="flex flex-col gap-10 justify-center">
+          <div className="flex flex-row w-full px-16 h-[4.25rem] bg-[#122144] border border-b-0 border-[#87D9FF] rounded-t-[5px] font-semibold text-2xl text-[#87D9FF]">
+            <section className="w-1/2 h-full px-16 grid grid-cols-2 gap-4 items-center">
+              <p>
+                {"Partido"}
+              </p>
+              <p>
+                {"Nome"}
+              </p>
+            </section>
+            <section className="w-1/2 h-full px-12 grid grid-cols-3 gap-4 items-center">
+              <p className="text-center">
+                {"Sigla"}
+              </p>
+              <p>
+                {"Parlamentares"}
+              </p>
+              <p>
+                {"Propostas"}
+              </p>
+            </section>
+          </div>
+          <div
+            className="h-[800px] w-full rounded-md flex flex-col items-center gap-10 overflow-auto "
+            color="black"
+          >
+            {partidosOrdenados.map(item => {
+              return (
+                <CardComponentePartido key={`${item.nome}`} partido={item} />
+              );
+            })}
+          </div>
+        </div>
       </article>
       <article className="flex flex-col justify-center gap-20 ">
         <h2
