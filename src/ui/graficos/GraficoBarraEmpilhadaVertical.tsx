@@ -68,12 +68,14 @@ const GraficoBarraEmpilhadaVertical: React.FC<
             <YAxis 
               axisLine={true}
               tickLine={true}
+              className="text-xl"
+              tickMargin={8}
             />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent className="min-w-56" />}
             />
-            <ChartLegend content={<ChartLegendContent className="text-white text-base"/>} />
+            <ChartLegend content={<ChartLegendContent className="text-white text-base flex justify-between"/>} />
             <Bar
               dataKey="branco"
               stackId="a"
