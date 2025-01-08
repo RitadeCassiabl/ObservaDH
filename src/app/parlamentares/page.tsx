@@ -2,6 +2,7 @@ import GraficoBarraMultiplas from "@/ui/graficos/GraficoBarrasMultiplas";
 import { projetosMock } from "@/lib/mock/mock_projetos";
 import {
   contarGeneroPorIdeologia,
+  contarPropostasPorParlamentar,
   contarReligiaoPorEtnia,
   obterEsferasUnicas,
   obterEstadosUnicos,
@@ -42,17 +43,13 @@ const profissoes = obterProfissoesUnicas(projetosMock);
 const parlamentares: React.FC = () => {
   return (
     <div className="flex h-full w-full flex-col gap-[4.5rem] items-center">
-      <article className="flex flex-col w-full h-[40rem] text-shadow-xl text-7xl text-white text-center gap-20">
-        <div>
+      <article className="flex flex-col w-full  gap-20">
+        <div className="w-full text-shadow-xl text-7xl text-white text-center">
           <TextContent>
             <TextSmallTitillium>Ranking</TextSmallTitillium>
             <TextSpace />
             <TextStrongOswald>dos Parlamentares</TextStrongOswald>
           </TextContent>
-          <CardComponente
-            parlamentar={projetosMock[0].parlamentares[0]}
-            propostas={14}
-          />
         </div>
         <section className="w-full flex items-center justify-start gap-24">
           <section className="flex gap-12 px-10">
@@ -91,6 +88,46 @@ const parlamentares: React.FC = () => {
             Filtrar <MdOutlineFilterAlt />
           </Button>
         </section>
+        <div className="flex flex-col gap-10 justify-center">
+          <div className="flex flex-row w-full px-16 h-[4.25rem] bg-[#122144] border border-b-0 border-[#87D9FF] rounded-t-[5px] font-semibold text-2xl text-[#87D9FF]">
+            <section className="w-1/2 h-full px-16 grid grid-cols-2 gap-4 items-center">
+              <p>
+                {"Deputado(a)"}
+              </p>
+              <p>
+                {"Nome"}
+              </p>
+            </section>
+            <section className="w-1/2 h-full px-12 grid grid-cols-3 gap-4 items-center">
+              <p>
+                {"Partido"}
+              </p>
+              <p>
+                {"Estado"}
+              </p>
+              <p>
+                {"Propostas"}
+              </p>
+            </section>
+          </div>
+          <div
+            className="h-[800px] w-full rounded-md flex flex-col items-center gap-10 overflow-auto "
+            color="black"
+          >
+            {projetosMock.map(item => {
+              return item.parlamentares.map(parlamentar =>
+                <CardComponente
+                  key={`${item.numero_pl}-${parlamentar.nome}`}
+                  parlamentar={parlamentar}
+                  propostas={contarPropostasPorParlamentar(
+                    projetosMock,
+                    parlamentar.nome
+                  )}
+                />
+              );
+            })}
+          </div>
+        </div>
       </article>
       <article className="border-white border w-full h-[40rem] text-shadow-xl text-7xl text-white text-center">
         RANKING
