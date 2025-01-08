@@ -13,12 +13,11 @@ const CardComponente: React.FC<componentePros> = ({
   parlamentar,
   propostas
 }) => {
-
   return (
     <div className={` ${oswald.className} flex flex-row w-11/12 h-28`}>
-      <div className="flex flex-row h-full w-1/2 px-16">
+      <section className="flex flex-row h-full w-1/2 px-16">
         <CardParlamentar parlamentar={parlamentar}>
-          <div className="flex flex-row h-full w-full gap-28 items-center imagem-hover text-white hover:text-[#93F996]">
+          <section className="flex flex-row h-full w-full gap-28 items-center imagem-hover text-white hover:text-[#93F996]">
             <img
               src={parlamentar.url_imagem}
               alt=""
@@ -27,9 +26,9 @@ const CardComponente: React.FC<componentePros> = ({
             <p className=" text-3xl  font-medium ">
               {parlamentar.nome}
             </p>
-          </div>
+          </section>
         </CardParlamentar>
-      </div>
+      </section>
       <div className="flex flex-row h-full w-1/2 p-7 justify-around items-center text-3xl text-white">
         <p>
           {parlamentar.partido}
