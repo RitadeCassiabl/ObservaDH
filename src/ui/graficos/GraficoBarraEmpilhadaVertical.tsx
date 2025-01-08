@@ -73,7 +73,7 @@ const GraficoBarraEmpilhadaVertical: React.FC<
               cursor={false}
               content={<ChartTooltipContent className="min-w-56" />}
             />
-            <ChartLegend content={<ChartLegendContent />} />
+            <ChartLegend content={<ChartLegendContent className="text-white text-base"/>} />
             <Bar
               dataKey="branco"
               stackId="a"
