@@ -18,12 +18,14 @@ export type ProjetoLei = {
   pauta: string;
   parlamentares: parlamentar[];
   ementa: string;
+  justificativa: string;
+  violacoes: string[];
+  ideologia: string[];
 };
-
 
 export type miniProjeto = {
   id: string;
   numero: string;
   ano: string;
   pauta: string;
-}
+};
