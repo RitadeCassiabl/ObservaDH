@@ -24,7 +24,7 @@ import {
   CarouselNext
 } from "@/components/ui/carousel";
 import { projetosMock } from "@/lib/mock/mock_projetos";
-import { MiniCardProjetos } from "./CardProjetos";
+import { MiniCardProjetos , Item } from "./CardProjetos";
 
 interface saibaMaisProps {
   parlamentar: parlamentar;
@@ -125,25 +125,6 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
         </AlertDialogDescription>
       </AlertDialogContent>
     </AlertDialog>
-  );
-};
-
-interface itemProps {
-  titulo: string;
-  valor: string;
-}
-
-const Item: React.FC<itemProps> = ({ titulo, valor }) => {
-  return (
-    <p>
-      <span className="text-3xl mr-2 text-[#AFC4F9]">
-        {titulo}
-        {":"}
-      </span>
-      <span className="text-2xl">
-        {valor}
-      </span>
-    </p>
   );
 };
 
