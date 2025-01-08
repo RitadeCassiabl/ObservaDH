@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { ProjetoLei } from "@/lib/types/projetos";
+import { ProjetoLei, miniProjeto } from "@/lib/types/projetos";
 import { Titillium_Web, Oswald } from "next/font/google";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
@@ -105,4 +105,18 @@ const RenderizarTexto: React.FC<RenderizarTextoProps> = ({
   );
 };
 
-export default CardProjetos;
+interface miniCardProjetosProps {
+  miniProjeto: miniProjeto;
+}
+
+const MiniCardProjetos: React.FC<miniCardProjetosProps> = ({
+  miniProjeto
+}) => {
+  return (
+    <div className="">
+      {miniProjeto.numero}
+    </div>
+  )
+};
+
+export { CardProjetos, MiniCardProjetos };
