@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Oswald } from "next/font/google";
 import CardParlamentar from "./CardParlamentar";
@@ -12,7 +12,10 @@ interface componentePros {
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
-const CardComponte: React.FC<componentePros> = ({ parlamentar, propostas }) => {
+const CardComponente: React.FC<componentePros> = ({
+  parlamentar,
+  propostas
+}) => {
   useEffect(() => {
     console.log(parlamentar);
   }, []);
@@ -31,7 +34,6 @@ const CardComponte: React.FC<componentePros> = ({ parlamentar, propostas }) => {
               {parlamentar.nome}
             </p>
           </div>
-          a
         </CardParlamentar>
       </div>
       <div className="flex flex-row h-full w-1/2 p-7 justify-around items-center text-3xl text-white">
@@ -48,4 +50,4 @@ const CardComponte: React.FC<componentePros> = ({ parlamentar, propostas }) => {
     </div>
   );
 };
-export default CardComponte;
+export default CardComponente;
