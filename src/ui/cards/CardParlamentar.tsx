@@ -38,7 +38,7 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <button className={`flex flex-row text-xl items-center gap-4 `}>
+        <button className={`text-xl items-center gap-4 w-full`}>
           {children}
         </button>
       </AlertDialogTrigger>
@@ -72,7 +72,7 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
                 <ItemRender titulo="Profissão" valor={parlamentar.profissao} />
               </div>
               <div className="flex gap-6">
-                <ItemRender titulo="Partido" valor={parlamentar.partido} />
+                <ItemRender titulo="Partido" valor={parlamentar.partido.sigla} />
                 <ItemRender
                   titulo="Ideologia Política"
                   valor={parlamentar.ideologia}
