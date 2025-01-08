@@ -135,7 +135,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Não identificado",
         raca: "Pardo",
         esfera: "Estadual",
-        partido: "PL",
+        partido: "PSDB",
         estado: "Rio de Janeiro",
         profissao: "Professora",
         ideologia: "Esquerda Radical"
@@ -173,7 +173,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Satanista",
         raca: "Não identificado",
         esfera: "Estadual",
-        partido: "PL",
+        partido: "PSDB",
         estado: "Bahia",
         profissao: "Empresário",
         ideologia: "Centro Direita"
@@ -211,7 +211,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Cristão",
         raca: "Branco",
         esfera: "Federal",
-        partido: "PL",
+        partido: "NOVO",
         estado: "São Paulo",
         profissao: "Advogada",
         ideologia: "Direita"
@@ -225,7 +225,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Não identificado",
         raca: "Pardo",
         esfera: "Estadual",
-        partido: "PL",
+        partido: "NOVO",
         estado: "Rio de Janeiro",
         profissao: "Professora",
         ideologia: "Esquerda Radical"
@@ -263,7 +263,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Católico",
         raca: "Pardo",
         esfera: "Federal",
-        partido: "PL",
+        partido: "NOVO",
         estado: "Pará",
         profissao: "Médico",
         ideologia: "Centro"
@@ -301,7 +301,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         religiao: "Evangélico",
         raca: "Branco",
         esfera: "Estadual",
-        partido: "PL",
+        partido: "NOVO",
         estado: "São Paulo",
         profissao: "Comerciante",
         ideologia: "Centro Direita"
@@ -819,6 +819,109 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   }
 ];
 export { projetosMock };
+
+const partidosMock = [
+  {
+    nome: "Partido Liberal",
+    sigla: "PL",
+    parlamentares: "10",
+    propostas: "9",
+    url_imagem:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/2023_logo_of_the_Liberal_Party_%28Brazil%2C_2006%29.svg/1200px-2023_logo_of_the_Liberal_Party_%28Brazil%2C_2006%29.svg.png"
+  },
+  {
+    nome: "Partido Progressista",
+    sigla: "PP",
+    parlamentares: "15",
+    propostas: "12",
+    url_imagem:
+      "https://amigosdepelotas.com.br/wp-content/uploads/2019/05/PP.png"
+  },
+  {
+    nome: "União Brasil",
+    sigla: "UB",
+    parlamentares: "20",
+    propostas: "18",
+    url_imagem:
+      "https://s2-oglobo.glbimg.com/spWSXaxi1WhIbbeOAj0O38unXrI=/1200x/smart/filters:cover():strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/T/Q/ddIKCrSAuk686zXBpeoA/uniao.png"
+  },
+  {
+    nome: "Democratas",
+    sigla: "DEM",
+    parlamentares: "8",
+    propostas: "7",
+    url_imagem:
+      "https://static.poder360.com.br/2020/11/logo-dem_Prancheta-1.jpg"
+  },
+
+  {
+    nome: "Partido Social Cristão",
+    sigla: "PSC",
+    parlamentares: "5",
+    propostas: "4",
+    url_imagem:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShokk0wx76h4rATLJDY7ERLpeJptsWWJx0OA&s"
+  },
+  {
+    nome: "Partido Renovador Trabalhista Brasileiro",
+    sigla: "PRTB",
+    parlamentares: "3",
+    propostas: "2",
+    url_imagem:
+      "https://neamp.pucsp.br/images/logos/partido-renovador-trabalhista-brasileiro-prtb.png"
+  },
+  {
+    nome: "Partido Trabalhista Brasileiro",
+    sigla: "PTB",
+    parlamentares: "7",
+    propostas: "6",
+    url_imagem:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYRW_WKqEG8YkBOPxxo7xz-OEoCu1yYjGsbg&s"
+  },
+  {
+    nome: "Partido Republicano da Ordem Social",
+    sigla: "PROS",
+    parlamentares: "6",
+    propostas: "5",
+    url_imagem:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrbPqUzX3zp6pnSIddFufdZaXNw-Kr6eNA3A&s"
+  },
+  {
+    nome: "Partido Novo",
+    sigla: "NOVO",
+    parlamentares: "12",
+    propostas: "10",
+    url_imagem:
+      "https://www.curitiba.pr.leg.br/vereadores/imagens/logos-partidos/LogopartidoNovo.png/image"
+  },
+  {
+    nome: "Avante",
+    sigla: "AVANTE",
+    parlamentares: "4",
+    propostas: "3",
+    url_imagem:
+      "https://http2.mlstatic.com/D_NQ_NP_898952-MLB73111613612_122023-O.webp"
+  },
+
+  {
+    nome: "Patriota",
+    sigla: "PATRI",
+    parlamentares: "5",
+    propostas: "4",
+    url_imagem:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBz59t0ghrmPQNe8BnbNKqjVZBhmS1NYr4_4lI5COQKuNRehTRApgLKhzVv1taEHc9aBk&usqp=CAU"
+  },
+  {
+    nome: "Solidariedade",
+    sigla: "SD",
+    parlamentares: "6",
+    propostas: "5",
+    url_imagem:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRhWe0kYkWQDiqeTCjZsLMEJbwep9-dPxYOA&s"
+  }
+];
+
+export { partidosMock };
 
 const legendas = [
   {
