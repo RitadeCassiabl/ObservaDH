@@ -1,6 +1,6 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 import {
   Card,
@@ -44,7 +44,9 @@ const GraficoBarraMultiplas: React.FC<GraficoBarraMultiplasProps> = ({dados}) =>
               tickLine={false}
               tickMargin={10}
               axisLine={false}
+              className="text-xl"
             />
+            <YAxis AxisComp={true} className="text-xl" tickMargin={8}/>
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent className="min-w-56" />}
