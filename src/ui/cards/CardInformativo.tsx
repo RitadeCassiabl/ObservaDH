@@ -18,6 +18,7 @@ interface CardInformativoProps {
   rota: string;
   cor_texto: string;
 }
+//Ô-Ô
 
 const CardInformativo: React.FC<CardInformativoProps> = ({
   rota,
