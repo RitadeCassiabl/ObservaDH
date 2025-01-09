@@ -99,7 +99,7 @@ const cards_informativos = [
     subtitulo: "o projeto",
     texto:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus vivrra. Pellentesque non ante turpis. Mauris venenatis",
-    rota: "/sobre",
+    rota: "/projetos",
     cor: "text-[#93F996]"
   }
 ];

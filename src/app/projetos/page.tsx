@@ -12,7 +12,7 @@ import Legenda from "@/ui/cards/CardLegenda";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 
 import CardGraficoMapa from "@/ui/graficos/GraficoMapa";
-import {CardProjetos} from "@/ui/cards/CardProjetos";
+import CardProjetos from "@/ui/cards/CardProjetos";
 import CardApresentacao from "@/ui/cards/CardApresentacao";
 
 import { Titillium_Web, Oswald } from "next/font/google";
@@ -28,9 +28,9 @@ import {
 } from "@/ui/components/ComponentesTexto";
 
 import GraficoLinhaPontos from "@/ui/graficos/GraficoLinhaPontos";
-import GraficoBarraEmpilhada from "@/ui/graficos/GraficoBarraEmpilhadaHorizontal";
+import GraficoBarraEmpilhada from "@/ui/graficos/GraficoBarraEmpilhada";
 
-import {contarPautasPorAno, contarProjetosPorAno, obterAnosUnicos, obterEsferasUnicas, obterEstadosUnicos, obterPautasUnicas} from "@/lib/utils/projetoLeiUtils";
+import {contarPautasPorAno, contarProjetosPorAno, obterAnosUnicos, obterEstadosUnicos, obterPautasUnicas} from "@/lib/utils/projetoLeiUtils";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -39,7 +39,16 @@ const titillium_web = Titillium_Web({
   subsets: ["latin"]
 });
 
-const esferas = obterEsferasUnicas(projetosMock);
+const esferas = [
+  {
+    titulo: "Federal",
+    value: "federal"
+  },
+  {
+    titulo: "Estadual",
+    value: "estadual"
+  }
+];
 
 const anos = obterAnosUnicos(projetosMock);
 

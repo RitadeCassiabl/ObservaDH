@@ -25,11 +25,11 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
   return (
     <Select>
       <SelectTrigger
-        className={`w-full h-12 border-[#4568BE] rounded-[3px] text-[#4568BE] ${className} `}
+        className={`w-full h-12 border-[#4568BE] rounded-[3px] text-[#4568BE] ${className}`}
       >
         <SelectValue placeholder={titulo} />
       </SelectTrigger>
-      <SelectContent className="text-[#4568BE] focus:text-[#4568BE] border-[#91ADF4] w-32 bg-[#91ADF4] ">
+      <SelectContent className="text-[#4568BE] focus:text-[#4568BE] border-[#91ADF4] w-32 bg-[#91ADF4]">
         {elementos.map(item => {
           return (
             <SelectItem
