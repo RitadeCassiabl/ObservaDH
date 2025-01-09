@@ -1,4 +1,5 @@
 export type parlamentar = {
+  url_imagem: string;
   nome: string;
   genero: string;
   religiao: string;
@@ -8,7 +9,15 @@ export type parlamentar = {
   profissao: string;
   partido: string;
   ideologia: string;
-}
+};
+
+export type Partido = {
+  nome: string;
+  sigla: string;
+  parlamentares: string;
+  propostas: string;
+  url_imagem: string;
+};
 
 export type ProjetoLei = {
   id: string;
@@ -17,4 +26,14 @@ export type ProjetoLei = {
   pauta: string;
   parlamentares: parlamentar[];
   ementa: string;
-}
+  justificativa: string;
+  violacoes: string[];
+  ideologia: string[];
+};
+
+export type miniProjeto = {
+  id: string;
+  numero: string;
+  ano: string;
+  pauta: string;
+};

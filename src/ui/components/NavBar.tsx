@@ -21,6 +21,12 @@ const navBar: React.FC = () => {
   useEffect(() => {
     const item = buscarCabecalhoPorLink(router);
     setTitle(item);
+    if(!item){
+    setTitle({
+      titulo: "Projeto de Lei",
+      text: ""
+    })
+    }
   }, [router, buscarCabecalhoPorLink]);
 
   return (

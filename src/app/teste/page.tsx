@@ -1,6 +1,7 @@
 const page: React.FC = () => {
   return (
-    <div className="h-screen w-screen">
+    <div className="h-[625rem] flex justify-center">
+      
     </div>
   );
 };
