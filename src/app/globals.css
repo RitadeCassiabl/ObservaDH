@@ -58,8 +58,22 @@
   }
 }
 
+.imagem-hover {
+  opacity: 1;
+  transition: opacity 0.3s ease; 
+}
 
- 
+.imagem-hover:hover {
+  opacity: 0.7; 
+}
+
+.border-gradient {
+  border-image: linear-gradient(to right, #87D9FF 0%, #F693F9 100%) 1;
+  border-width: 2px;
+  border-style: solid;
+}
+
+
 .bg-grid {
   background-image: url("/assets/images/grids/normal_grid.png"), url("/assets/images/grids/turn_grid.png");
   background-size: auto, auto;
