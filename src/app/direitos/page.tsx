@@ -12,6 +12,7 @@ import {
 } from "@/ui/components/ComponentesTexto";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 import { GraficoRosquinha } from "@/ui/graficos/GraficoRosquinha";
+import GraficoBarrasVertical from "@/ui/graficos/GraficoBarrasVertical";
 
 
 const direitos: React.FC = () => {
@@ -33,7 +34,7 @@ const direitos: React.FC = () => {
             elementos={elementos}
           />
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-row w-full justify-center">
           <GraficoRosquinha />
           <CardLegenda cor_texto="text-[#D974FD]" resumo={legendas[0].resumo} texto={legendas[0].texto}>
             <TextContent shadow className="text-5xl">
@@ -47,6 +48,9 @@ const direitos: React.FC = () => {
           </CardLegenda>
         </div>
         <div />
+      </section>
+      <section className="w-full flex flex-col">
+        <GraficoBarrasVertical />
       </section>
       <section className="h-[150rem]" />
     </div>
