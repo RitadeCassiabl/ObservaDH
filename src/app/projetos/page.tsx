@@ -49,7 +49,7 @@ const pautas = obterPautasUnicas(projetosMock);
 
 const projetos: React.FC = () => {
   return (
-    <div className="flex h-full w-full flex-col gap-[4.25rem]  items-center">
+    <div className="flex h-full w-full flex-col gap-[4.25rem]  items-center px-11 py-16">
       <section>
         <CardApresentacao
           subtitulo={apresentacao.subtitulo}

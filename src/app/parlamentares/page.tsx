@@ -48,7 +48,7 @@ const parlamentares: React.FC = () => {
     (a, b) => parseInt(b.propostas) - parseInt(a.propostas)
   );
   return (
-    <div className="flex h-full w-full flex-col gap-[4.5rem] items-center">
+    <div className="flex h-full w-full flex-col gap-[4.5rem] items-center px-11 py-16">
       <article className="flex flex-col w-full  gap-20">
         <div className="w-full text-shadow-xl text-7xl text-white text-center">
           <TextContent>
