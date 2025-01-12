@@ -31,6 +31,7 @@ export type DadosGraficoBarraEmpilhadaVertical = {
 export type DadosGraficoBarrasVertical = {
   pauta: string,
   pls: number;
+  fill: string;
 }
 
 export type DadosGraficoRosquinha = {
