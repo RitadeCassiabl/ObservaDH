@@ -20,10 +20,11 @@ import {
 } from "@/components/ui/carousel";
 import CardLegenda from "@/ui/cards/CardLegenda";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
-import GraficoRosquinha  from "@/ui/graficos/GraficoRosquinha";
+import GraficoRosquinha from "@/ui/graficos/GraficoRosquinha";
 import GraficoBarrasVertical from "@/ui/graficos/GraficoBarrasVertical";
 
 import { CardProjetos } from "@/ui/cards/CardProjetos";
+import { graficoRosquinhaDadosMock, graficoBarrasVerticalDadosMock } from "@/lib/mock/mock_direitos";
 
 // const chartData = [
 //   { pauta: "Anti_Mino", pls: 65, cor: "#F693F9" },
@@ -35,11 +36,9 @@ import { CardProjetos } from "@/ui/cards/CardProjetos";
 //   { pauta: "Imuta_Socio", pls: 150, cor: "#E1EAFF" },
 // ]
 
-
-
 const direitos: React.FC = () => {
   const elementos = obterPautasUnicas(projetosMock);
-  
+
   //render
   return (
     <div className="flex flex-col h-full w-full gap-24 px-11 py-16 justify-center items-center  ">
@@ -59,7 +58,7 @@ const direitos: React.FC = () => {
           />
         </div>
         <div className="flex flex-row w-full items-center justify-center gap-20">
-          <GraficoRosquinha/>
+          <GraficoRosquinha dados={graficoRosquinhaDadosMock} />
           <CardLegenda
             cor_texto="text-[#D974FD]"
             resumo={legendas[0].resumo}
@@ -92,10 +91,10 @@ const direitos: React.FC = () => {
             </LineText>
           </TextContent>
         </CardLegenda>
-        <GraficoBarrasVertical />
+        <GraficoBarrasVertical dados={graficoBarrasVerticalDadosMock} />
       </section>
       <section className="flex flex-col gap-14 justify-center text-center">
-        <TextContent className="text-6xl" shadow  >
+        <TextContent className="text-6xl" shadow>
           <TextSmallTitillium>Projetos</TextSmallTitillium>
           <TextSpace />
           <TextStrongOswald className="text-[#87D9FF]">de Lei</TextStrongOswald>
