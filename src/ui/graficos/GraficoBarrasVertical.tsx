@@ -57,7 +57,7 @@ interface graficoBarrasVerticalprops {
 
 const GraficoBarrasVertical: React.FC<graficoBarrasVerticalprops> = ({dados})=> {
   return (
-    <Card className="w-[850px] h-[450px] bg-[#122144]">
+    <Card className="w-[850px] h-[450px] bg-[#122144] shadow-lg shadow-[#4568BE]">
       <CardContent className="h-full w-full">
         <ChartContainer config={chartConfig} className="py-12 px-10">
           <BarChart accessibilityLayer data={dados}>
