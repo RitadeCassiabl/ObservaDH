@@ -14,39 +14,47 @@ import {
 } from "@/components/ui/chart"
 
 const chartData = [
-  { browser: "Anti_Mino", visitors: 65, fill: "#F693F9" },
-  { browser: "COAM", visitors: 65, fill: "#FDFF78" },
-  { browser: "DBR", visitors: 95, fill: "#D974FD" },
-  { browser: "PMGF", visitors: 110, fill: "#93F996" },
-  { browser: "HPS", visitors: 135, fill: "#87D9FF" },
-  { browser: "Anti_Socio", visitors: 145, fill: "#FF977A" },
-  { browser: "Imuta_Socio", visitors: 150, fill: "#E1EAFF" },
+  { pauta: "Anti_Mino", pls: 65, fill: "#F693F9" },
+  { pauta: "COAM", pls: 65, fill: "#FDFF78" },
+  { pauta: "DBR", pls: 95, fill: "#D974FD" },
+  { pauta: "PMGF", pls: 110, fill: "#93F996" },
+  { pauta: "HPS", pls: 135, fill: "#87D9FF" },
+  { pauta: "Anti_Socio", pls: 145, fill: "#FF977A" },
+  { pauta: "Imuta_Socio", pls: 150, fill: "#E1EAFF" },
 ]
 
 const chartConfig = {
-  visitors: {
-    label: "Pls",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
-  },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
-  },
+    pauta: {
+        label: "Pls",
+      },
+      anti_mino: {
+        label: "Anti_Mino",
+        color: "#F693F9",
+      },
+      coam: {
+        label: "COAM",
+        color: "#FDFF78",
+      },
+      dbr: {
+        label: "DBR",
+        color: "#D974FD",
+      },
+      pmgf: {
+        label: "PMGF",
+        color: "#93F996",
+      },
+      hps: {
+        label: "HPS",
+        color: "#87D9FF",
+      },
+      anti_socio: {
+        label: "Anti_Socio",
+        color: "#FF977A",
+      },
+      imuta_socio: {
+        label: "Imuta_Socio",
+        color: "#E1EAFF",
+      },
 } satisfies ChartConfig
 
 const GraficoBarrasVertical: React.FC = ()=> {
@@ -57,24 +65,20 @@ const GraficoBarrasVertical: React.FC = ()=> {
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="browser"
+              dataKey="pauta"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) =>
-                chartConfig[value as keyof typeof chartConfig]?.label
-              }
             />
             <YAxis allowDataOverflow/>
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={<ChartTooltipContent hideLabel className="min-w-36" />}
             />
             <Bar
-              dataKey="visitors"
-              strokeWidth={2}
-              radius={8}
+              dataKey="pls"
               activeIndex={2}
+              barSize={35}
             />
           </BarChart>
         </ChartContainer>
