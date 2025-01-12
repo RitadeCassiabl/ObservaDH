@@ -1,8 +1,8 @@
 const graficoRosquinhaDadosMock = [
-    { tema: "saude", pls: 275, fill: "#FF977A" },
-    { tema: "LIEG", pls: 200, fill: "#FDFF78" },
-    { tema: "LIB", pls: 187, fill: "#F693F9" },
-    { tema: "Educacao", pls: 173, fill: "#87D9FF"},
+    { tema: "saude", pl: 275, fill: "#FF977A" },
+    { tema: "LIEG", pl: 200, fill: "#FDFF78" },
+    { tema: "LIB", pl: 187, fill: "#F693F9" },
+    { tema: "Educacao", pl: 173, fill: "#87D9FF"},
   ]
 
   const graficoBarrasVerticalDadosMock = [
