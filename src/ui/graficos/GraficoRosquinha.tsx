@@ -12,14 +12,8 @@ import {
   ChartLegend,
   ChartLegendContent
 } from "@/components/ui/chart"
+import { DadosGraficoRosquinha } from "@/lib/types/graficos"
 
-const chartData = [
-  { tema: "saude", pl: 275, fill: "#FF977A" },
-  { tema: "LIEG", pl: 200, fill: "#FDFF78" },
-  { tema: "LIB", pl: 187, fill: "#F693F9" },
-  { tema: "Educacao", pl: 173, fill: "#87D9FF"},
-
-]
 
 const chartConfig = {
  pl: {
@@ -44,7 +38,12 @@ const chartConfig = {
 
 } satisfies ChartConfig
 
-const GraficoRosquinha: React.FC = () => {
+interface graficoRosquinhaProps {
+  dados: DadosGraficoRosquinha[]
+}
+
+
+const GraficoRosquinha: React.FC<graficoRosquinhaProps> = ({dados}) => {
   return (
     <Card className="flex flex-col bg-transparent border-transparent">
     <CardContent className="flex-1 pb-0">
@@ -58,7 +57,7 @@ const GraficoRosquinha: React.FC = () => {
               content={<ChartTooltipContent hideLabel className="min-w-36" />}
             />
             <Pie
-              data={chartData}
+              data={dados}
               dataKey="pl"
               nameKey="tema"
               innerRadius={60}
