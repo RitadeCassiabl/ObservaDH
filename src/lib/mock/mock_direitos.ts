@@ -6,12 +6,12 @@ const graficoRosquinhaDadosMock = [
   ]
 
   const graficoBarrasVerticalDadosMock = [
-    { pauta: "Anti_Mino", pls: 65},
-    { pauta: "COAM", pls: 65},
-    { pauta: "DBR", pls: 95},
-    { pauta: "PMGF", pls: 110},
-    { pauta: "HPS", pls: 135},
-    { pauta: "Anti_Socio", pls: 145},
-    { pauta: "Imuta_Socio", pls: 150},
+    { pauta: "Anti_Mino", pls: 65, fill: "#F693F9" },
+    { pauta: "COAM", pls: 65, fill: "#FDFF78" },
+    { pauta: "DBR", pls: 95, fill: "#D974FD" },
+    { pauta: "PMGF", pls: 110, fill: "#93F996" },
+    { pauta: "HPS", pls: 135, fill: "#87D9FF" },
+    { pauta: "Anti_Socio", pls: 145, fill: "#FF977A" },
+    { pauta: "Imuta_Socio", pls: 150, fill: "#E1EAFF" },
   ]
   export {graficoRosquinhaDadosMock, graficoBarrasVerticalDadosMock}
