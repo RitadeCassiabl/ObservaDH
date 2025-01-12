@@ -29,12 +29,12 @@ export type DadosGraficoBarraEmpilhadaVertical = {
 
 
 export type DadosGraficoBarrasVertical = {
-  tema: string,
-  pl: number;
+  pauta: string,
+  pls: number;
 }
 
 export type DadosGraficoRosquinha = {
-  pauta: string,
+  tema: string,
   pls: number;
-  cor: string;
+  fill: string;
 }
