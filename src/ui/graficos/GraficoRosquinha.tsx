@@ -12,17 +12,18 @@ import {
   ChartLegend,
   ChartLegendContent
 } from "@/components/ui/chart"
+
 const chartData = [
-  { browser: "saude", visitors: 275, fill: "var(--color-saude)" },
-  { browser: "LIEG", visitors: 200, fill: "var(--color-LIEG)" },
-  { browser: "LIB", visitors: 187, fill: "var(--color-LIB)" },
-  { browser: "Educacao", visitors: 173, fill: "var(--color-Educacao)" },
+  { tema: "saude", pl: 275, fill: "#FF977A" },
+  { tema: "LIEG", pl: 200, fill: "#FDFF78" },
+  { tema: "LIB", pl: 187, fill: "#F693F9" },
+  { tema: "Educacao", pl: 173, fill: "#87D9FF"},
 
 ]
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+ pl: {
+    label: "PL's",
   },
   saude: {
     label: "Saúde",
@@ -43,29 +44,30 @@ const chartConfig = {
 
 } satisfies ChartConfig
 
-export function GraficoRosquinha() {
+const GraficoRosquinha: React.FC = () => {
   return (
-    <Card className="flex flex-col bg-transparent border-transparent w-[540px]">
-      <CardContent className="flex-1 pb-0">
-        <ChartContainer
-          config={chartConfig}
-          className="mx-auto aspect-square max-h-[430px]"
-        >
+    <Card className="flex flex-col bg-transparent border-transparent">
+    <CardContent className="flex-1 pb-0">
+      <ChartContainer
+        config={chartConfig}
+        className="mx-auto aspect-square w-[27.5rem] h-[27.5rem]"
+      >
           <PieChart>
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={<ChartTooltipContent hideLabel className="min-w-36" />}
             />
             <Pie
               data={chartData}
-              dataKey="visitors"
-              nameKey="browser"
+              dataKey="pl"
+              nameKey="tema"
               innerRadius={60}
             />
-          <ChartLegend content={<ChartLegendContent className="text-white text-base"/>} />
+          <ChartLegend className="flex justify-between text-white text-base" content={<ChartLegendContent />} />
           </PieChart>
         </ChartContainer>
       </CardContent>
     </Card>
   )
 }
+export default GraficoRosquinha;
