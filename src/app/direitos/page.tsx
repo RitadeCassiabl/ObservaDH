@@ -1,4 +1,6 @@
 import { projetosMock } from "@/lib/mock/mock_projetos";
+import { legendas } from "@/lib/mock/mock_parlamentares";
+
 import { obterPautasUnicas } from "@/lib/utils/projetoLeiUtils";
 import CardLegenda from "@/ui/cards/CardLegenda";
 import {
@@ -10,6 +12,7 @@ import {
 } from "@/ui/components/ComponentesTexto";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 import { GraficoRosquinha } from "@/ui/graficos/GraficoRosquinha";
+
 
 const direitos: React.FC = () => {
   const elementos = obterPautasUnicas(projetosMock);
@@ -32,7 +35,7 @@ const direitos: React.FC = () => {
         </div>
         <div className="flex flex-row">
           <GraficoRosquinha />
-          <CardLegenda cor_texto="text-[#D974FD]">
+          <CardLegenda cor_texto="text-[#D974FD]" resumo={legendas[0].resumo} texto={legendas[0].texto}>
             <TextContent shadow className="text-5xl">
               <LineText>
                 <TextStrongOswald>Direitos</TextStrongOswald>
