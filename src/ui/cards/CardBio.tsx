@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { Desenvolvedor, LinkType } from "@/lib/types/Desenvolvedor";
 import { Oswald, Titillium_Web } from "next/font/google";
+import IconLattes from "../icons/iconLattes";
+import { FaGithub } from "react-icons/fa6";
 
 const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -57,14 +59,13 @@ interface redirecionamentoProps {
 }
 
 const Redirecionamento: React.FC<redirecionamentoProps> = ({ link }) => {
-    
   return (
     <a
       href={link.link}
       className="flex justify-center items-center h-14 w-14 rounded-full hover:bg-[#4568BE]/25 duration-200- ease-in-out transition-colors"
       target="_blank"
     >
-      <img src={link.imagem} alt={link.site} className="h-9 w-9" />
+      {link.site == "github" ? <FaGithub size={34} color="4568BE" /> : <IconLattes />}
     </a>
   );
 };

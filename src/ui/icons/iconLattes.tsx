@@ -1,8 +1,8 @@
 interface iconLattesProps {
-  className: string;
+  className?: string;
 }
 
-const iconLattes: React.FC<iconLattesProps> = ({ className }) => {
+const IconLattes: React.FC<iconLattesProps> = ({ className }) => {
   return (
     <svg
       width="33"
@@ -19,4 +19,4 @@ const iconLattes: React.FC<iconLattesProps> = ({ className }) => {
   );
 };
 
-export default iconLattes;
+export default IconLattes;
