@@ -1,4 +1,4 @@
-import MapaBrasil from "../mapas/MapaBrasil";
+import MapaBrasil from "../svg/MapaBrasil";
 import CardStatus from "../cards/CardStatus";
 import { mockStatus } from "../../lib/mock/mock_projetos";
 import DropdownButton from "../dropdown/DropdownButton";
