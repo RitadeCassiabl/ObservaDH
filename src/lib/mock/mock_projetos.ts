@@ -1,3 +1,5 @@
+//! DADOS FALSOS DE PROJETOS DE LEI
+
 const apresentacao = {
   subtitulo: "Como funciona a",
   titulo: "criação de um PL",
@@ -6,7 +8,6 @@ const apresentacao = {
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus viverra. Pellentesque non ante turpis. Mauris venenatis vel purus non gravida. Vestibulum a ante semper, efficitur justo sit amet, iaculis enim. Pellentesque facilisis ultricies sem. Donec mollis gravida lectus, et aliquet felis lobortis vel. Donec accumsan augue vestibulum bibendum feugiat. Donec ac auctor ex. Cras tortor ex, pellentesque vel condimentum eu, posuere in nulla. Sed metus risus, finibus at erat a, porta ullamcorper dolor.
     Donec cursus vestibulum mattis. Vestibulum sodales quam eget sem ullamcorper ultricies consequat in nisl. Donec nisl quam, aliquet quis ultricies eget, euismod sit amet turpis. Phasellus nulla turpis, consequat consectetur dapibus sit amet, viverra ut neque. Cras nec porta dui. Pellentesque ut magna ex. Nam felis turpis, imperdiet ac accumsan a, maximus at nibh. In non augue maximus, venenatis velit id, varius leo. Suspendisse et quam quis ipsum rutrum ullamcorper non eu dui. Nulla condimentum nisl ligula, sed rhoncus urna sagittis non. Pellentesque pulvinar mattis odio, id egestas nunc rhoncus posuere. Cras malesuada nisl dolor. Nullam pulvinar nibh elit, ut dapibus nibh sodales sed. Nam ligula nisi, convallis vitae fringilla consectetur, pulvinar ac nisi. Maecenas faucibus leo et libero ullamcorper, auctor sollicitudin est condimentum.`
 };
-export { apresentacao };
 
 const mockStatus = {
   dados: {
@@ -24,9 +25,7 @@ const mockStatus = {
     ]
   }
 };
-export { mockStatus };
 
-//! PROJETOS DE LEI FALSOS
 const projetosMock = [
   {
     id: "1",
@@ -818,7 +817,6 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
     `
   }
 ];
-export { projetosMock };
 
 const partidosMock = [
   {
@@ -921,8 +919,6 @@ const partidosMock = [
   }
 ];
 
-export { partidosMock };
-
 const legendas = [
   {
     titulo: "PL's",
@@ -949,5 +945,4 @@ const legendas = [
      `
   }
 ];
-
-export { legendas };
+export { partidosMock, legendas, apresentacao, mockStatus, projetosMock };
