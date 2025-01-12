@@ -36,6 +36,6 @@ export type DadosGraficoBarrasVertical = {
 
 export type DadosGraficoRosquinha = {
   tema: string,
-  pls: number;
+  pl: number;
   fill: string;
 }
