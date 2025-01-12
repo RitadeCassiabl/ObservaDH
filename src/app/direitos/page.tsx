@@ -26,17 +26,9 @@ import GraficoBarrasVertical from "@/ui/graficos/GraficoBarrasVertical";
 import { CardProjetos } from "@/ui/cards/CardProjetos";
 import { graficoRosquinhaDadosMock, graficoBarrasVerticalDadosMock } from "@/lib/mock/mock_direitos";
 
-// const chartData = [
-//   { pauta: "Anti_Mino", pls: 65, cor: "#F693F9" },
-//   { pauta: "COAM", pls: 65, cor: "#FDFF78" },
-//   { pauta: "DBR", pls: 95, cor: "#D974FD" },
-//   { pauta: "PMGF", pls: 110, cor: "#93F996" },
-//   { pauta: "HPS", pls: 135, cor: "#87D9FF" },
-//   { pauta: "Anti_Socio", pls: 145, cor: "#FF977A" },
-//   { pauta: "Imuta_Socio", pls: 150, cor: "#E1EAFF" },
-// ]
 
 const direitos: React.FC = () => {
+  
   const elementos = obterPautasUnicas(projetosMock);
 
   //render
@@ -121,7 +113,7 @@ const direitos: React.FC = () => {
           </Carousel>
         </section>
       </section>
-      <section className="h-[150rem]" />
+
     </div>
   );
 };
