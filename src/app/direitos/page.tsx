@@ -1,13 +1,18 @@
+import { projetosMock } from "@/lib/mock/mock_projetos";
+import { obterPautasUnicas } from "@/lib/utils/projetoLeiUtils";
+import CardLegenda from "@/ui/cards/CardLegenda";
 import {
   TextContent,
   TextSmallTitillium,
   TextSpace,
-  TextStrongOswald
+  TextStrongOswald,
+  LineText
 } from "@/ui/components/ComponentesTexto";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 import { GraficoRosquinha } from "@/ui/graficos/GraficoRosquinha";
 
 const direitos: React.FC = () => {
+  const elementos = obterPautasUnicas(projetosMock);
   return (
     <div className="flex h-full w-full flex-col gap-[4.25rem] items-center px-11 py-16">
       <section className="w-full text-shadow-xl text-7xl text-white text-center">
@@ -22,16 +27,21 @@ const direitos: React.FC = () => {
           <DropdownButton
             className="w-32"
             titulo="Pauta"
-            elementos={[
-              { titulo: "teste 1", value: "1" },
-              { titulo: "teste 2", value: "2" },
-              { titulo: "teste 3", value: "3" },
-              { titulo: "teste 4", value: "4" }
-            ]}
+            elementos={elementos}
           />
         </div>
-        <div>
+        <div className="flex flex-row">
           <GraficoRosquinha />
+          <CardLegenda cor_texto="text-[#D974FD]">
+            <TextContent shadow className="text-5xl">
+              <LineText>
+                <TextStrongOswald>Direitos</TextStrongOswald>
+              </LineText>
+              <LineText className="text-[#D974FD]">
+                <TextSmallTitillium>Violados</TextSmallTitillium>
+              </LineText>
+            </TextContent>
+          </CardLegenda>
         </div>
         <div />
       </section>
