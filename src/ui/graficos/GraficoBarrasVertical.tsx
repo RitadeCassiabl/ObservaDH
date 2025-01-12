@@ -12,16 +12,9 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+import { DadosGraficoBarrasVertical } from "@/lib/types/graficos"
 
-const chartData = [
-  { pauta: "Anti_Mino", pls: 65, fill: "#F693F9" },
-  { pauta: "COAM", pls: 65, fill: "#FDFF78" },
-  { pauta: "DBR", pls: 95, fill: "#D974FD" },
-  { pauta: "PMGF", pls: 110, fill: "#93F996" },
-  { pauta: "HPS", pls: 135, fill: "#87D9FF" },
-  { pauta: "Anti_Socio", pls: 145, fill: "#FF977A" },
-  { pauta: "Imuta_Socio", pls: 150, fill: "#E1EAFF" },
-]
+
 
 const chartConfig = {
     pauta: {
@@ -57,12 +50,17 @@ const chartConfig = {
       },
 } satisfies ChartConfig
 
-const GraficoBarrasVertical: React.FC = ()=> {
+interface graficoBarrasVerticalprops {
+  dados: DadosGraficoBarrasVertical[]
+}
+
+
+const GraficoBarrasVertical: React.FC<graficoBarrasVerticalprops> = ({dados})=> {
   return (
     <Card className="w-[850px] h-[450px] bg-[#122144]">
       <CardContent className="h-full w-full">
         <ChartContainer config={chartConfig} className="py-12 px-10">
-          <BarChart accessibilityLayer data={chartData}>
+          <BarChart accessibilityLayer data={dados}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="pauta"
