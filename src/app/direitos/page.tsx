@@ -1,8 +1,9 @@
+//!MOCKs
 import { projetosMock } from "@/lib/mock/mock_projetos";
 import { legendas } from "@/lib/mock/mock_parlamentares";
 
+//!componentes
 import { obterPautasUnicas } from "@/lib/utils/projetoLeiUtils";
-import CardLegenda from "@/ui/cards/CardLegenda";
 import {
   TextContent,
   TextSmallTitillium,
@@ -10,15 +11,38 @@ import {
   TextStrongOswald,
   LineText
 } from "@/ui/components/ComponentesTexto";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext
+} from "@/components/ui/carousel";
+import CardLegenda from "@/ui/cards/CardLegenda";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
-import { GraficoRosquinha } from "@/ui/graficos/GraficoRosquinha";
+import GraficoRosquinha  from "@/ui/graficos/GraficoRosquinha";
 import GraficoBarrasVertical from "@/ui/graficos/GraficoBarrasVertical";
+
+import { CardProjetos } from "@/ui/cards/CardProjetos";
+
+// const chartData = [
+//   { pauta: "Anti_Mino", pls: 65, cor: "#F693F9" },
+//   { pauta: "COAM", pls: 65, cor: "#FDFF78" },
+//   { pauta: "DBR", pls: 95, cor: "#D974FD" },
+//   { pauta: "PMGF", pls: 110, cor: "#93F996" },
+//   { pauta: "HPS", pls: 135, cor: "#87D9FF" },
+//   { pauta: "Anti_Socio", pls: 145, cor: "#FF977A" },
+//   { pauta: "Imuta_Socio", pls: 150, cor: "#E1EAFF" },
+// ]
+
 
 
 const direitos: React.FC = () => {
   const elementos = obterPautasUnicas(projetosMock);
+  
+  //render
   return (
-    <div className="flex h-full w-full flex-col gap-[4.25rem] items-center px-11 py-16">
+    <div className="flex flex-col h-full w-full gap-24 px-11 py-16 justify-center items-center  ">
       <section className="w-full text-shadow-xl text-7xl text-white text-center">
         <TextContent>
           <TextSmallTitillium>Violações e Ideologias</TextSmallTitillium>
@@ -26,7 +50,7 @@ const direitos: React.FC = () => {
           <TextStrongOswald> dos Projetos de Lei</TextStrongOswald>
         </TextContent>
       </section>
-      <section className="w-full flex flex-col">
+      <section className="w-full flex flex-col justify-center">
         <div className="w-full">
           <DropdownButton
             className="w-32"
@@ -34,9 +58,13 @@ const direitos: React.FC = () => {
             elementos={elementos}
           />
         </div>
-        <div className="flex flex-row w-full justify-center">
-          <GraficoRosquinha />
-          <CardLegenda cor_texto="text-[#D974FD]" resumo={legendas[0].resumo} texto={legendas[0].texto}>
+        <div className="flex flex-row w-full items-center justify-center gap-20">
+          <GraficoRosquinha/>
+          <CardLegenda
+            cor_texto="text-[#D974FD]"
+            resumo={legendas[0].resumo}
+            texto={legendas[0].texto}
+          >
             <TextContent shadow className="text-5xl">
               <LineText>
                 <TextStrongOswald>Direitos</TextStrongOswald>
@@ -49,8 +77,50 @@ const direitos: React.FC = () => {
         </div>
         <div />
       </section>
-      <section className="w-full flex flex-col">
+      <section className="w-full flex flex-row gap-[4.5rem] justify-center ">
+        <CardLegenda
+          cor_texto="text-[#FDFF78]"
+          resumo={legendas[0].resumo}
+          texto={legendas[0].texto}
+        >
+          <TextContent shadow className="text-5xl">
+            <LineText>
+              <TextStrongOswald>Ideologia dos</TextStrongOswald>
+            </LineText>
+            <LineText className="text-[#FDFF78]">
+              <TextSmallTitillium>Projetos de Lei</TextSmallTitillium>
+            </LineText>
+          </TextContent>
+        </CardLegenda>
         <GraficoBarrasVertical />
+      </section>
+      <section className="flex flex-col gap-14 justify-center text-center">
+        <TextContent className="text-6xl" shadow  >
+          <TextSmallTitillium>Projetos</TextSmallTitillium>
+          <TextSpace />
+          <TextStrongOswald className="text-[#87D9FF]">de Lei</TextStrongOswald>
+        </TextContent>
+        <section>
+          <Carousel
+            opts={{
+              align: "start"
+            }}
+            className="w-[82rem]"
+          >
+            <CarouselContent className="">
+              {projetosMock.map((item, index) =>
+                <CarouselItem
+                  key={index}
+                  className="basis-1/2 flex justify-center"
+                >
+                  <CardProjetos projeto={item} />
+                </CarouselItem>
+              )}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </section>
       </section>
       <section className="h-[150rem]" />
     </div>
