@@ -57,6 +57,7 @@ interface redirecionamentoProps {
 }
 
 const Redirecionamento: React.FC<redirecionamentoProps> = ({ link }) => {
+    
   return (
     <a
       href={link.link}
