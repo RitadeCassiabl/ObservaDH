@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import useDescobertaCabecalho from "@/lib/utils/cabecalhoUtils";
-
+import clsx from 'clsx';
 
 interface Cabecalho {
   titulo: string;
@@ -48,7 +48,11 @@ const navBar: React.FC = () => {
                 ].map((item) => {
                   return (
                     <li key={item.titulo}>
-                      <Link href={item.rota}>{item.titulo}</Link>
+                      <Link href={item.rota}  className={clsx('flex items-center justify-center  hover:text-[#4568BE]',
+                      {
+                        'text-[#4568BE]': router === item.rota,
+                      },
+                      )}>{item.titulo}</Link>
                     </li>
                   );
                 })}
