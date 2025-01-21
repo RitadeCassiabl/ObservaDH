@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import {Titillium_Web} from "next/font/google"
+import { titillium_web } from "@/ui/fonts";
 import NavBar from "../ui/components/NavBar";
 import FooterBar from "../ui/components/FooterBar";
-
-const titillium_web =  Titillium_Web({weight: ["400", "700"], subsets: ["latin"]})
 
 
 export const metadata: Metadata = {

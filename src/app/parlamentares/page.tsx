@@ -13,7 +13,7 @@ import {
 } from "@/lib/utils/projetoLeiUtils";
 
 import GraficoBarraEmpilhadaVertical from "@/ui/graficos/GraficoBarraEmpilhadaVertical";
-import { Oswald } from "next/font/google";
+import { oswald } from "@/ui/fonts";
 import CardLegenda from "@/ui/cards/CardLegenda";
 import {
   TextContent,
@@ -30,8 +30,6 @@ import {
   CardComponenteParlamentar,
   CardComponentePartido
 } from "@/ui/cards/CardComponente";
-
-const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
 
 // ! Obtendo informações para os dropdowns
 const esferas = obterEsferasUnicas(projetosMock);

@@ -4,9 +4,7 @@ import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 
 import { cn } from "@/lib/utils/utils"
-import { Oswald } from "next/font/google"
-
-const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
+import { oswald } from "@/ui/fonts"
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "sas", dark: "" } as const

@@ -15,7 +15,7 @@ import CardGraficoMapa from "@/ui/graficos/GraficoMapa";
 import {CardProjetos} from "@/ui/cards/CardProjetos";
 import CardApresentacao from "@/ui/cards/CardApresentacao";
 
-import { Titillium_Web, Oswald } from "next/font/google";
+import { oswald, titillium_web } from "@/ui/fonts";
 import { Button } from "@/components/ui/button";
 import { MdOutlineFilterAlt } from "react-icons/md";
 
@@ -31,13 +31,6 @@ import GraficoLinhaPontos from "@/ui/graficos/GraficoLinhaPontos";
 import GraficoBarraEmpilhada from "@/ui/graficos/GraficoBarraEmpilhadaHorizontal";
 
 import {contarPautasPorAno, contarProjetosPorAno, obterAnosUnicos, obterEsferasUnicas, obterEstadosUnicos, obterPautasUnicas} from "@/lib/utils/projetoLeiUtils";
-
-const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
-
-const titillium_web = Titillium_Web({
-  weight: ["400", "700"],
-  subsets: ["latin"]
-});
 
 const esferas = obterEsferasUnicas(projetosMock);
 
