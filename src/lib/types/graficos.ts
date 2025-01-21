@@ -26,3 +26,16 @@ export type DadosGraficoBarraEmpilhadaVertical = {
   indigena: number;
   indefinido: number;
 };
+
+
+export type DadosGraficoBarrasVertical = {
+  pauta: string,
+  pls: number;
+  fill: string;
+}
+
+export type DadosGraficoRosquinha = {
+  tema: string,
+  pl: number;
+  fill: string;
+}
