@@ -1,15 +1,8 @@
 "use client";
 import { Card } from "@/components/ui/card";
 import { ProjetoLei, miniProjeto } from "@/lib/types/projetos";
-import { Titillium_Web, Oswald } from "next/font/google";
+import { titillium_web, oswald } from "../fonts";
 import { useRouter } from "next/navigation";
-
-const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
-
-const titillium_web = Titillium_Web({
-  weight: ["400", "700"],
-  subsets: ["latin"]
-});
 
 interface CardProjetosProps {
   projeto: ProjetoLei;

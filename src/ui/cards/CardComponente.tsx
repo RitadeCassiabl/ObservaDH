@@ -1,4 +1,4 @@
-import { Oswald } from "next/font/google";
+import { oswald } from "../fonts";
 import CardParlamentar from "./CardParlamentar";
 import { parlamentar, Partido } from "@/lib/types/projetos";
 
@@ -7,15 +7,13 @@ interface componentePros {
   propostas: number;
 }
 
-const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
-
 const CardComponenteParlamentar: React.FC<componentePros> = ({
   parlamentar,
   propostas
 }) => {
   return (
     <div className="flex flex-col w-11/12 h-28 gap-10 mt-5">
-      <div className={` ${oswald.className} flex flex-row w-full h-full`}>
+      <div className={`${oswald.className} flex flex-row w-full h-full`}>
         <section className="flex flex-row h-full w-1/2 ">
           <CardParlamentar parlamentar={parlamentar}>
             <section className="w-full items-center imagem-hover text-white hover:text-[#93F996] h-full px-16 grid grid-cols-2">

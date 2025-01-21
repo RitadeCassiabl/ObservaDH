@@ -1,13 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import { Titillium_Web } from "next/font/google";
+import { titillium_web } from "../fonts";
 import CardSaibaMais from "./CardSaibaMais";
-
-
-const titillium_web = Titillium_Web({
-  weight: ["400", "700"],
-  subsets: ["latin"]
-});
 
 interface legendaProps {
   cor_texto?: string;

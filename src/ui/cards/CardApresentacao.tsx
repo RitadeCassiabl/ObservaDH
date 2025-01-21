@@ -1,12 +1,5 @@
-import { Oswald, Titillium_Web } from "next/font/google";
+import { oswald, titillium_web } from "../fonts";
 import React from "react";
-
-const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
-
-const titillium_web = Titillium_Web({
-  weight: ["400", "700"],
-  subsets: ["latin"]
-});
 
 interface CardApresentacaoProps {
   titulo: string;
