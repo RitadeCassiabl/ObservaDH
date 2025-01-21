@@ -1,11 +1,7 @@
-import { Titillium_Web } from "next/font/google";
+import { titillium_web } from "../fonts";
 import React from "react";
 import { StatusType } from "@/lib/types/status";
 
-const titillium_web = Titillium_Web({
-  weight: ["400", "700"],
-  subsets: ["latin"]
-});
 
 interface StatusCardProps {
   status: StatusType;

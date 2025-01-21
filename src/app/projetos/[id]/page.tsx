@@ -12,9 +12,7 @@ import {
   TextStrongOswald
 } from "@/ui/components/ComponentesTexto";
 import { ItemRender } from "@/ui/cards/CardProjetos";
-import { Oswald } from "next/font/google";
-
-const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
+import { oswald } from "@/ui/fonts";
 
 interface topicoProps {
   titulo: string;

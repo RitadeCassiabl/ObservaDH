@@ -1,11 +1,5 @@
-  import { Titillium_Web, Oswald } from "next/font/google";
 import React from "react";
-
-const oswald = Oswald({ weight: ["400", "700"], subsets: ["latin"] });
-const titillium_web = Titillium_Web({
-  weight: ["400", "700"],
-  subsets: ["latin"]
-});
+import { oswald, titillium_web } from "../fonts";
 
 interface textos {
   children?: React.ReactNode;
@@ -22,11 +16,7 @@ const TextContent: React.FC<textos> = ({ children, className, shadow }) => {
 };
 
 const LineText: React.FC<textos> = ({ children, className }) => {
-  return (
-    <p className={`${className}`}>
-      {children}
-    </p>
-  );
+  return <p className={`${className}`}>{children}</p>;
 };
 
 const TextStrongOswald: React.FC<textos> = ({ children, className }) => {
@@ -72,5 +62,5 @@ export {
   TextSmallTitillium,
   TextStrongOswald,
   TextStrongTitillium,
-  TextSpace
+  TextSpace,
 };
