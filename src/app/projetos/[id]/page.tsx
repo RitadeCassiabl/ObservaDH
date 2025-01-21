@@ -42,7 +42,7 @@ const page: React.FC = () => {
 
   return (
     <div
-      className={`h-full w-full flex flex-col items-center py-[4.5rem] gap-[4.5rem] border-[#87D9FF] ${oswald.className}`}
+      className={`h-full w-full flex flex-col items-center  gap-[4.5rem] border-[#87D9FF] px-11 py-16 ${oswald.className}`}
     >
       <section>
         <Titulo />

@@ -28,7 +28,6 @@ import { graficoRosquinhaDadosMock, graficoBarrasVerticalDadosMock } from "@/lib
 
 
 const direitos: React.FC = () => {
-  
   const elementos = obterPautasUnicas(projetosMock);
 
   //render
@@ -113,7 +112,6 @@ const direitos: React.FC = () => {
           </Carousel>
         </section>
       </section>
-
     </div>
   );
 };
