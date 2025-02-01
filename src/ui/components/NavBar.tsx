@@ -4,7 +4,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useDescobertaCabecalho from "@/lib/utils/cabecalhoUtils";
 import clsx from 'clsx';
 
@@ -14,21 +14,26 @@ interface Cabecalho {
 }
 
 const navBar: React.FC = () => {
-  const [title, setTitle] = useState<Cabecalho>();
+  const [title, setTitle] = useState<Cabecalho>({
+    titulo: "Projeto de Lei",
+    text: ""
+  });
   const router = usePathname();
   const { buscarCabecalhoPorLink } = useDescobertaCabecalho();
+  const buscarCabecalho = useCallback(() => buscarCabecalhoPorLink(router), [router]);
 
   useEffect(() => {
-    const item = buscarCabecalhoPorLink(router);
-    setTitle(item);
-    if(!item){
-    setTitle({
-      titulo: "Projeto de Lei",
-      text: ""
-    })
+    const item = buscarCabecalho();
+    if (item) {
+      setTitle(item);
+    } else {
+      setTitle({
+        titulo: "Projeto de Lei",
+        text: ""
+      });
     }
-  }, [router, buscarCabecalhoPorLink]);
-
+  }, [router, buscarCabecalho]);
+  
   return (
     <div className="w-full h-full flex flex-col items-center bg-senado bg-cover bg-center border-b-2 border-[#001745]">
       <nav className="p-8 w-full items-center flex flex-col gap-40">
