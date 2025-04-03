@@ -1,3 +1,5 @@
+import { MainLayout } from "@/ui/Layouts/MainLayout";
+
 const mockSobre = [
   {
     texto_longo:
@@ -29,6 +31,8 @@ const SobreImagemDireita: React.FC<sobreProps> = ({
   url_imagem
 }) => {
   return (
+    <MainLayout>
+
     <div className="flex flex-col gap-[4.5rem]">
       <article>
         <p>
@@ -46,10 +50,11 @@ const SobreImagemDireita: React.FC<sobreProps> = ({
             src={url_imagem}
             alt="imagem de apresentação"
             className="object-cover min-w-[32.5rem] min-h-[30rem] w-[32.5rem] h-[30rem] rounded-[10px] border-2 border-[#87D9FF]"
-          />
+            />
         </section>
       </article>
     </div>
+</MainLayout>
   );
 };
 
