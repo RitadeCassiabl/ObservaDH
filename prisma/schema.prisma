@@ -1,15 +1,86 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "postgresql"
-  url = env("DATABASE_URL")
+model Projeto {
+  id                Int              @id @default(autoincrement())
+  ano               String
+  numero_pl         String           @unique
+  pauta             String
+  justificativa     String
+  ementa            String
+  ambitoId          Int
+  ambito            Ambito           @relation(fields: [ambitoId], references: [id])
+  temaId            Int
+  tema              Tema             @relation(fields: [temaId], references: [id])
+  autores           Politico[]       @relation("ProjetoAutores")
+  partidos          Partido[]
+  direitosViolados  DireitoViolado[]
+  ideologias        Ideologia[]
 }
 
+model Politico {
+  id              Int         @id @default(autoincrement())
+  nome            String
+  foto            String?
+  sexo            String
+  raca            String
+  religiao        String
+  ideologia       String
+  dataNascimento  DateTime
+  estadoId        Int
+  estado          Estado      @relation(fields: [estadoId], references: [id])
+  partidoId       Int
+  partido         Partido     @relation(fields: [partidoId], references: [id])
+  profissoes      Profissao[]
+  projetos        Projeto[]   @relation("ProjetoAutores")
+}
 
-model User {
-  id    String @id @default(uuid())
-  name  String
-  email String @unique
+model Partido {
+  id         Int         @id @default(autoincrement())
+  nome       String      @unique
+  codigo     String      @unique
+  politicos  Politico[]
+  projetos   Projeto[]
+}
+
+model Estado {
+  id         Int         @id @default(autoincrement())
+  nome       String      @unique
+  politicos  Politico[]
+}
+
+model Tema {
+  id         Int         @id @default(autoincrement())
+  nome       String
+  projetos   Projeto[]
+}
+
+model Ambito {
+  id         Int         @id @default(autoincrement())
+  nome       String
+  projetos   Projeto[]
+}
+
+model DireitoViolado {
+  id         Int         @id @default(autoincrement())
+  nome       String
+  projetos   Projeto[]
+}
+
+model Ideologia {
+  id         Int         @id @default(autoincrement())
+  nome       String
+  projetos   Projeto[]
+}
+
+model Profissao {
+  id         Int         @id @default(autoincrement())
+  nome       String
+  politicos  Politico[]
 }
