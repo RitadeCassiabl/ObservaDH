@@ -4,6 +4,7 @@ import { legendas } from "@/lib/mock/mock_parlamentares";
 
 //!componentes
 import { obterPautasUnicas } from "@/lib/utils/projetoLeiUtils";
+
 import {
   TextContent,
   TextSmallTitillium,
@@ -18,12 +19,13 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
-import CardLegenda from "@/ui/cards/CardLegenda";
+import Card from "@ui/cards"
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 import GraficoRosquinha from "@/ui/graficos/GraficoRosquinha";
 import GraficoBarrasVertical from "@/ui/graficos/GraficoBarrasVertical";
 
-import { CardProjetos } from "@/ui/cards/CardProjetos";
+
+
 import {
   graficoRosquinhaDadosMock,
   graficoBarrasVerticalDadosMock,
@@ -54,7 +56,7 @@ const direitos: React.FC = () => {
           </div>
           <div className="flex flex-row w-full items-center justify-center gap-20">
             <GraficoRosquinha dados={graficoRosquinhaDadosMock} />
-            <CardLegenda
+            <Card.Legenda
               cor_texto="text-[#D974FD]"
               resumo={legendas[0].resumo}
               texto={legendas[0].texto}
@@ -67,12 +69,12 @@ const direitos: React.FC = () => {
                   <TextSmallTitillium>Violados</TextSmallTitillium>
                 </LineText>
               </TextContent>
-            </CardLegenda>
+            </Card.Legenda>
           </div>
           <div />
         </section>
         <section className="w-full flex flex-row gap-[4.5rem] justify-center ">
-          <CardLegenda
+          <Card.Legenda
             cor_texto="text-[#FDFF78]"
             resumo={legendas[0].resumo}
             texto={legendas[0].texto}
@@ -85,7 +87,7 @@ const direitos: React.FC = () => {
                 <TextSmallTitillium>Projetos de Lei</TextSmallTitillium>
               </LineText>
             </TextContent>
-          </CardLegenda>
+          </Card.Legenda>
           <GraficoBarrasVertical dados={graficoBarrasVerticalDadosMock} />
         </section>
         <section className="flex flex-col gap-14 justify-center text-center">
@@ -109,7 +111,7 @@ const direitos: React.FC = () => {
                     key={index}
                     className="basis-1/2 flex justify-center"
                   >
-                    <CardProjetos projeto={item} />
+                    <Card.Projeto projeto={item} />
                   </CarouselItem>
                 ))}
               </CarouselContent>

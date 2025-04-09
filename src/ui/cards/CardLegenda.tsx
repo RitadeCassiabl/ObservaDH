@@ -1,7 +1,5 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-"use client";
+import Card  from ".";
 import { titillium_web } from "../fonts";
-import CardSaibaMais from "./CardSaibaMais";
 
 interface legendaProps {
   cor_texto?: string;
@@ -10,11 +8,11 @@ interface legendaProps {
   texto?: string;
 }
 
-const legenda: React.FC<legendaProps> = ({
+const CardLegenda: React.FC<legendaProps> = ({
   cor_texto,
   texto,
   children,
-  resumo
+  resumo,
 }) => {
   return (
     <div className="w-[21.5rem] flex flex-col gap-6">
@@ -22,9 +20,9 @@ const legenda: React.FC<legendaProps> = ({
       <p className={`${titillium_web} text-white text-xl text-justify `}>
         {resumo ? resumo : ""}
       </p>
-      <CardSaibaMais cor_texto={cor_texto} texto={texto ? texto : ""} />
+      <Card.SaibaMais cor_texto={cor_texto} texto={texto ? texto : ""} />
     </div>
   );
 };
 
-export default legenda;
+export default CardLegenda;

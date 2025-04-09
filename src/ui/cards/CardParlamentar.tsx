@@ -4,7 +4,7 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogTrigger
+  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { parlamentar } from "@/lib/types/projetos";
 import React from "react";
@@ -14,17 +14,17 @@ import {
   LineText,
   TextStrongOswald,
   TextSpace,
-  TextSmallTitillium
+  TextSmallTitillium,
 } from "../components/ComponentesTexto";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselPrevious,
-  CarouselNext
+  CarouselNext,
 } from "@/components/ui/carousel";
 import { projetosMock } from "@/lib/mock/mock_projetos";
-import { MiniCardProjetos , ItemRender } from "./CardProjetos";
+import Card from ".";
 
 interface saibaMaisProps {
   parlamentar: parlamentar;
@@ -33,7 +33,7 @@ interface saibaMaisProps {
 
 const CardParlamentar: React.FC<saibaMaisProps> = ({
   children,
-  parlamentar
+  parlamentar,
 }) => {
   return (
     <AlertDialog>
@@ -62,18 +62,36 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
             </section>
             <section className="text-white flex flex-col gap-4">
               <div className="flex gap-6">
-                <ItemRender titulo="Gênero" valor={parlamentar.genero} />
-                <ItemRender titulo="Religião" valor={parlamentar.religiao} />
-                <ItemRender titulo="Raça" valor={parlamentar.raca} />
+                <Card.RenderizacaoItem
+                  titulo="Gênero"
+                  valor={parlamentar.genero}
+                />
+                <Card.RenderizacaoItem
+                  titulo="Religião"
+                  valor={parlamentar.religiao}
+                />
+                <Card.RenderizacaoItem titulo="Raça" valor={parlamentar.raca} />
               </div>
               <div className="flex gap-6">
-                <ItemRender titulo="Esfera" valor={parlamentar.esfera} />
-                <ItemRender titulo="Estado" valor={parlamentar.estado} />
-                <ItemRender titulo="Profissão" valor={parlamentar.profissao} />
+                <Card.RenderizacaoItem
+                  titulo="Esfera"
+                  valor={parlamentar.esfera}
+                />
+                <Card.RenderizacaoItem
+                  titulo="Estado"
+                  valor={parlamentar.estado}
+                />
+                <Card.RenderizacaoItem
+                  titulo="Profissão"
+                  valor={parlamentar.profissao}
+                />
               </div>
               <div className="flex gap-6">
-                <ItemRender titulo="Partido" valor={parlamentar.partido} />
-                <ItemRender
+                <Card.RenderizacaoItem
+                  titulo="Partido"
+                  valor={parlamentar.partido}
+                />
+                <Card.RenderizacaoItem
                   titulo="Ideologia Política"
                   valor={parlamentar.ideologia}
                 />
@@ -84,9 +102,7 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
           <section className="flex flex-col w-full items-center gap-8">
             <div>
               <LineText className="text-4xl text-white text-shadow-xl text-center ">
-                <TextStrongOswald>
-                  {"Projetos"}
-                </TextStrongOswald>
+                <TextStrongOswald>{"Projetos"}</TextStrongOswald>
                 <TextSpace />
                 <TextSmallTitillium className={`text-[#F693F9]`}>
                   {"de Lei"}
@@ -96,26 +112,23 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
             <div>
               <Carousel
                 opts={{
-                  align: "start"
+                  align: "start",
                 }}
                 className="w-[41.75rem]"
               >
                 <CarouselContent className="">
-                  {projetosMock.map((item, index) =>
-                    <CarouselItem
-                      key={index}
-                      className="flex justify-center"
-                    >
-                      <MiniCardProjetos
+                  {projetosMock.map((item, index) => (
+                    <CarouselItem key={index} className="flex justify-center">
+                      <Card.MiniProjeto
                         miniProjeto={{
                           id: item.id,
                           numero: item.numero_pl,
                           ano: item.ano,
-                          pauta: item.pauta
+                          pauta: item.pauta,
                         }}
                       />
                     </CarouselItem>
-                  )}
+                  ))}
                 </CarouselContent>
                 <CarouselPrevious />
                 <CarouselNext />

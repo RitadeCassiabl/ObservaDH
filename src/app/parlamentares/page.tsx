@@ -29,7 +29,7 @@ import { MdOutlineFilterAlt } from "react-icons/md";
 import {
   CardComponenteParlamentar,
   CardComponentePartido,
-} from "@/ui/cards/CardComponente";
+} from "@/ui/cards/CardComponenteParlamentar";
 import { MainLayout } from "@/ui/Layouts/MainLayout";
 
 // ! Obtendo informações para os dropdowns
