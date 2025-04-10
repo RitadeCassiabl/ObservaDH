@@ -30,7 +30,7 @@ const CardInformativo: React.FC<CardInformativoProps> = ({
         {titulo}{" "}
         <span className={`${titillium_web.className} text-[2.5rem] font-light`}>
           {isSubtitleHTML
-            ? <span dangerouslySetInnerHTML={{ __html: subtitulo  }} />
+            ? <span dangerouslySetInnerHTML={{ __html: subtitulo}} />
             : subtitulo }
         </span>
       </h1>

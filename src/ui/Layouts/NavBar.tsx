@@ -15,12 +15,12 @@ interface Cabecalho {
 
 const navBar: React.FC = () => {
   const [title, setTitle] = useState<Cabecalho>({
-    titulo: "Projeto de Lei",
+    titulo: "",
     text: ""
   });
   const router = usePathname();
   const { buscarCabecalhoPorLink } = useDescobertaCabecalho();
-  const buscarCabecalho = useCallback(() => buscarCabecalhoPorLink(router), [router]);
+  const buscarCabecalho = useCallback(() => buscarCabecalhoPorLink(router), [buscarCabecalhoPorLink, router]);
 
   useEffect(() => {
     const item = buscarCabecalho();
@@ -40,7 +40,7 @@ const navBar: React.FC = () => {
         <div className="flex w-full items-center justify-center flex-col">
           <div className="w-11/12 flex flex-col">
             <div className="flex gap-[12.5rem] items-center justify-between">
-              <Link href={"/"}>
+              <Link href={"/"} className="z-10">
                 <h1 className="text-[3.125rem] text-white logo" />
               </Link>
               <ul className="flex text-3xl font-normal text-white gap-[3.125rem] font">
@@ -52,8 +52,8 @@ const navBar: React.FC = () => {
                   { titulo: "Desenvolvedores", rota: "/desenvolvedores" },
                 ].map((item) => {
                   return (
-                    <li key={item.titulo}>
-                      <Link href={item.rota}  className={clsx('flex items-center justify-center  hover:text-[#4568BE]',
+                    <li key={item.titulo} className="z-10">
+                      <Link href={item.rota}  className={clsx('flex items-center justify-center hover:text-[#4568BE]',
                       {
                         'text-[#4568BE]': router === item.rota,
                       },

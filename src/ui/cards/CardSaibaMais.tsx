@@ -7,14 +7,10 @@ import {
   AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
 import { FaPlus } from "react-icons/fa6";
-import {
-  TextStrongOswald,
-  TextContent,
-  LineText,
-  TextSpace,
-  TextSmallTitillium
-} from "../components/ComponentesTexto";
+
+
 import { IoMdClose } from "react-icons/io";
+import Texto from "../ComponenteTexto";
 
 interface saibaMaisProps {
   className?: string;
@@ -34,17 +30,17 @@ const CardSaibaMais: React.FC<saibaMaisProps> = ({ className, cor_texto, texto }
       </AlertDialogTrigger>
       <AlertDialogContent className="flex flex-col h-[702px] p-12 gap-6 w-[1015px] bg-[#121A2B] border-[#4568BE] shadow-lg shadow-[#4568BE] rounded-lg">
         <AlertDialogTitle className="flex justify-between">
-          <TextContent className="text-5xl w-full">
-            <LineText>
-              <TextStrongOswald>
+          <Texto.Raiz className="text-5xl w-full">
+            <Texto.Linha>
+              <Texto.Forte.Oswald>
                 {"Aprofundamento"}
-              </TextStrongOswald>
-              <TextSpace />
-              <TextSmallTitillium className={`${className} ${cor_texto}`}>
+              </Texto.Forte.Oswald>
+              <Texto.Espaco />
+              <Texto.Pequeno.Titillium className={`${className} ${cor_texto}`}>
                 {"dos dados"}
-              </TextSmallTitillium>
-            </LineText>
-          </TextContent>
+              </Texto.Pequeno.Titillium>
+            </Texto.Linha>
+          </Texto.Raiz>
           <AlertDialogCancel className="">
             <IoMdClose size={26} color="white" />
           </AlertDialogCancel>
