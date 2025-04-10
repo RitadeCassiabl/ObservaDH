@@ -42,7 +42,7 @@ import {
   obterEstadosUnicos,
   obterPautasUnicas,
 } from "@/lib/utils/projetoLeiUtils";
-import { MainLayout } from "@/ui/Layouts/MainLayout";
+import { MainLayout } from "@/ui/layouts/MainLayout";
 
 const esferas = obterEsferasUnicas(projetosMock);
 

@@ -1,6 +1,6 @@
 import CardBio from "@/ui/cards/CardBio";
 import { infoDevsMock } from "@/lib/mock/mock_devs";
-import { MainLayout } from "@/ui/Layouts/MainLayout";
+import { MainLayout } from "@/ui/layouts/MainLayout";
 
 const desenvolvedores: React.FC = () => {
   return (

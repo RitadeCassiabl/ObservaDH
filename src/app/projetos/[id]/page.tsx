@@ -13,7 +13,7 @@ import {
 } from "@/ui/components/ComponentesTexto";
 import { ItemRender } from "@/ui/cards/CardProjeto";
 import { oswald } from "@/ui/fonts";
-import { MainLayout } from "@/ui/Layouts/MainLayout";
+import { MainLayout } from "@/ui/layouts/MainLayout";
 
 interface topicoProps {
   titulo: string;

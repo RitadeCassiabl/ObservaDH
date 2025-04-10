@@ -30,7 +30,7 @@ import {
   CardComponenteParlamentar,
   CardComponentePartido,
 } from "@/ui/cards/CardComponenteParlamentar";
-import { MainLayout } from "@/ui/Layouts/MainLayout";
+import { MainLayout } from "@/ui/layouts/MainLayout";
 
 // ! Obtendo informações para os dropdowns
 const esferas = obterEsferasUnicas(projetosMock);

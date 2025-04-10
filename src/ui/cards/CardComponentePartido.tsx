@@ -1,6 +1,6 @@
 import { Partido } from "@/lib/types/projetos";
 import { oswald } from "../fonts";
-import Card from ".";
+import CardDivider from "./CardDivider";
 
 interface cardComponentePartidoProps {
   partido: Partido;
@@ -34,7 +34,7 @@ const CardComponentePartido: React.FC<cardComponentePartidoProps> = ({
           <p className="text-center">{partido.propostas}</p>
         </div>
       </div>
-      <Card.Divider />
+      <CardDivider />
     </div>
   );
 };

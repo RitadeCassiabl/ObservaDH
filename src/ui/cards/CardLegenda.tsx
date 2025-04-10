@@ -1,5 +1,5 @@
-import Card  from ".";
 import { titillium_web } from "../fonts";
+import CardSaibaMais from "./CardSaibaMais";
 
 interface legendaProps {
   cor_texto?: string;
@@ -20,7 +20,7 @@ const CardLegenda: React.FC<legendaProps> = ({
       <p className={`${titillium_web} text-white text-xl text-justify `}>
         {resumo ? resumo : ""}
       </p>
-      <Card.SaibaMais cor_texto={cor_texto} texto={texto ? texto : ""} />
+      <CardSaibaMais cor_texto={cor_texto} texto={texto ? texto : ""} />
     </div>
   );
 };

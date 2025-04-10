@@ -20,7 +20,7 @@ const navBar: React.FC = () => {
   });
   const router = usePathname();
   const { buscarCabecalhoPorLink } = useDescobertaCabecalho();
-  const buscarCabecalho = useCallback(() => buscarCabecalhoPorLink(router), [router]);
+  const buscarCabecalho = useCallback(() => buscarCabecalhoPorLink(router), [buscarCabecalhoPorLink, router]);
 
   useEffect(() => {
     const item = buscarCabecalho();
@@ -52,8 +52,8 @@ const navBar: React.FC = () => {
                   { titulo: "Desenvolvedores", rota: "/desenvolvedores" },
                 ].map((item) => {
                   return (
-                    <li key={item.titulo}>
-                      <Link href={item.rota}  className={clsx('flex items-center justify-center  hover:text-[#4568BE]',
+                    <li key={item.titulo} className="z-10">
+                      <Link href={item.rota}  className={clsx('flex items-center justify-center hover:text-[#4568BE]',
                       {
                         'text-[#4568BE]': router === item.rota,
                       },

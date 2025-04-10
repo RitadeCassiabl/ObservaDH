@@ -1,7 +1,8 @@
 import { titillium_web } from "../fonts";
 import React from "react";
 import { StatusType } from "@/lib/types/status";
-import Card from ".";
+import CardDivider from "./CardDivider";
+import CardStatusItem from "./CardStatusItem";
 
 
 interface StatusCardProps {
@@ -15,22 +16,22 @@ const CardStatus: React.FC<StatusCardProps> = ({ status }) => {
         <h1 className={`${titillium_web.className} text-4xl font-semibold text-white`}>
           Dados Nacionais
         </h1>
-        <Card.Divider className="w-9" />
+        <CardDivider className="w-9" />
       </section>
       <section>
         {status.dados.dados.map(item => (
-          <Card.StatusItem titulo={item.titulo} valor={item.valor} key={item.titulo} />
+          <CardStatusItem titulo={item.titulo} valor={item.valor} key={item.titulo} />
         ))}
       </section>
       <section className="flex items-center gap-4">
         <h1 className={`${titillium_web.className} text-4xl font-semibold text-white`}>
           Pautas
         </h1>
-        <Card.Divider className="w-9" />
+        <CardDivider className="w-9" />
       </section>
       <section>
         {status.pautas.pautas.map(item => (
-          <Card.StatusItem titulo={item.titulo} valor={item.valor} key={item.titulo} />
+          <CardStatusItem titulo={item.titulo} valor={item.valor} key={item.titulo} />
         ))}
       </section>
     </article>

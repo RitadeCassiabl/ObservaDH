@@ -24,7 +24,8 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 import { projetosMock } from "@/lib/mock/mock_projetos";
-import Card from ".";
+import CardItemRenderizacao from "./CardItemRenderizacao";
+import CardMiniProjetos from "./CardMiniProjeto";
 
 interface saibaMaisProps {
   parlamentar: parlamentar;
@@ -62,36 +63,36 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
             </section>
             <section className="text-white flex flex-col gap-4">
               <div className="flex gap-6">
-                <Card.RenderizacaoItem
+                <CardItemRenderizacao
                   titulo="Gênero"
                   valor={parlamentar.genero}
                 />
-                <Card.RenderizacaoItem
+                <CardItemRenderizacao
                   titulo="Religião"
                   valor={parlamentar.religiao}
                 />
-                <Card.RenderizacaoItem titulo="Raça" valor={parlamentar.raca} />
+                <CardItemRenderizacao titulo="Raça" valor={parlamentar.raca} />
               </div>
               <div className="flex gap-6">
-                <Card.RenderizacaoItem
+                <CardItemRenderizacao
                   titulo="Esfera"
                   valor={parlamentar.esfera}
                 />
-                <Card.RenderizacaoItem
+                <CardItemRenderizacao
                   titulo="Estado"
                   valor={parlamentar.estado}
                 />
-                <Card.RenderizacaoItem
+                <CardItemRenderizacao
                   titulo="Profissão"
                   valor={parlamentar.profissao}
                 />
               </div>
               <div className="flex gap-6">
-                <Card.RenderizacaoItem
+                <CardItemRenderizacao
                   titulo="Partido"
                   valor={parlamentar.partido}
                 />
-                <Card.RenderizacaoItem
+                <CardItemRenderizacao
                   titulo="Ideologia Política"
                   valor={parlamentar.ideologia}
                 />
@@ -119,7 +120,7 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
                 <CarouselContent className="">
                   {projetosMock.map((item, index) => (
                     <CarouselItem key={index} className="flex justify-center">
-                      <Card.MiniProjeto
+                      <CardMiniProjetos
                         miniProjeto={{
                           id: item.id,
                           numero: item.numero_pl,

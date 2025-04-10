@@ -6,7 +6,7 @@ import {
   cards_informativos,
   apresentacao,
 } from "../lib/mock/mock_home";
-import { MainLayout } from "./../ui/Layouts/MainLayout";
+import { MainLayout } from "../ui/layouts/MainLayout";
 
 const page: React.FC = () => {
   return (

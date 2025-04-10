@@ -1,5 +1,5 @@
-import Card from ".";
 import { oswald } from "../fonts";
+import CardDivider from "./CardDivider";
 import CardParlamentar from "./CardParlamentar";
 import { parlamentar } from "@/lib/types/projetos";
 
@@ -39,7 +39,7 @@ const CardComponenteParlamentar: React.FC<componentePros> = ({
           <p className="text-center">{propostas}</p>
         </div>
       </div>
-      <Card.Divider />
+      <CardDivider />
     </div>
   );
 };

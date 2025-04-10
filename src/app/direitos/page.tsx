@@ -19,18 +19,17 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
-import Card from "@ui/cards"
+
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 import GraficoRosquinha from "@/ui/graficos/GraficoRosquinha";
 import GraficoBarrasVertical from "@/ui/graficos/GraficoBarrasVertical";
-
-
 
 import {
   graficoRosquinhaDadosMock,
   graficoBarrasVerticalDadosMock,
 } from "@/lib/mock/mock_direitos";
-import { MainLayout } from "@/ui/Layouts/MainLayout";
+import { MainLayout } from "@/ui/layouts/MainLayout";
+import Card from "@/ui/cards";
 
 const direitos: React.FC = () => {
   const elementos = obterPautasUnicas(projetosMock);
