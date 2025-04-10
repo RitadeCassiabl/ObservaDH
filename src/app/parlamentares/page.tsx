@@ -1,3 +1,5 @@
+"use client";
+
 import GraficoBarraMultiplas from "@/ui/graficos/GraficoBarrasMultiplas";
 import { projetosMock, partidosMock } from "@/lib/mock/mock_projetos";
 import {
@@ -15,22 +17,15 @@ import {
 import GraficoBarraEmpilhadaVertical from "@/ui/graficos/GraficoBarraEmpilhadaVertical";
 import { oswald } from "@/ui/fonts";
 import CardLegenda from "@/ui/cards/CardLegenda";
-import {
-  TextContent,
-  LineText,
-  TextStrongOswald,
-  TextSmallTitillium,
-  TextSpace,
-} from "@/ui/components/ComponentesTexto";
+
 import { legendas } from "@/lib/mock/mock_parlamentares";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 import { Button } from "@/components/ui/button";
 import { MdOutlineFilterAlt } from "react-icons/md";
-import {
-  CardComponenteParlamentar,
-  CardComponentePartido,
-} from "@/ui/cards/CardComponenteParlamentar";
+
 import { MainLayout } from "@/ui/layouts/MainLayout";
+import Card from "@/ui/cards";
+import Texto from "@/ui/ComponenteTexto";
 
 // ! Obtendo informações para os dropdowns
 const esferas = obterEsferasUnicas(projetosMock);
@@ -51,44 +46,47 @@ const parlamentares: React.FC = () => {
       <div className="flex h-full w-full flex-col gap-[4.5rem] items-center px-11 py-16">
         <article className="flex flex-col w-full  gap-20">
           <div className="w-full text-shadow-xl text-7xl text-white text-center">
-            <TextContent>
-              <TextSmallTitillium>Ranking</TextSmallTitillium>
-              <TextSpace />
-              <TextStrongOswald>dos Parlamentares</TextStrongOswald>
-            </TextContent>
+            <Texto.Raiz>
+              <Texto.Pequeno.Titillium>Ranking</Texto.Pequeno.Titillium>
+              <Texto.Espaco />
+              <Texto.Forte.Oswald>dos Parlamentares</Texto.Forte.Oswald>
+            </Texto.Raiz>
           </div>
           <section className="w-full flex items-center justify-start gap-24">
             <section className="flex gap-12 px-10">
-              <DropdownButton
-                elementos={esferas}
-                titulo="Esfera"
-                className="w-32"
-              />
-              <DropdownButton
-                elementos={genero}
-                titulo="Gênero"
-                className="w-32"
-              />
-              <DropdownButton
-                elementos={estados}
-                titulo="Estado"
-                className="w-32 text-center"
-              />
-              <DropdownButton
-                elementos={partidos}
-                titulo="Partidos"
-                className="w-32"
-              />
-              <DropdownButton
-                elementos={ideologias}
-                titulo="Ideologia"
-                className="w-32"
-              />
-              <DropdownButton
-                elementos={profissoes}
-                titulo="Profissão"
-                className="w-32"
-              />
+              {[
+                {
+                  elementos: esferas,
+                  titulo: "Esfera",
+                },
+                {
+                  elementos: estados,
+                  titulo: "Estado",
+                },
+                {
+                  elementos: genero,
+                  titulo: "Gênero",
+                },
+                {
+                  elementos: partidos,
+                  titulo: "Partidos",
+                },
+                {
+                  elementos: ideologias,
+                  titulo: "Ideologia",
+                },
+                {
+                  elementos: profissoes,
+                  titulo: "Profissão",
+                },
+              ].map((item, index) => (
+                <DropdownButton
+                  key={index}
+                  elementos={item.elementos}
+                  titulo={item.titulo}
+                  className="w-32"
+                />
+              ))}
             </section>
             <Button className="flex flex-row justify-center border-[#D974FD] text-[#D974FD] bg-transparent border-[1px] rounded-[3px] w-32 h-12 hover:bg-inherit active:text-white active:bg-[#D974FD] transition-colors duration-75">
               Filtrar <MdOutlineFilterAlt />
@@ -112,7 +110,7 @@ const parlamentares: React.FC = () => {
             >
               {projetosMock.map((item) => {
                 return item.parlamentares.map((parlamentar) => (
-                  <CardComponenteParlamentar
+                  <Card.ComponenteParlamentar
                     key={`${item.numero_pl}-${parlamentar.nome}`}
                     parlamentar={parlamentar}
                     propostas={contarPropostasPorParlamentar(
@@ -127,11 +125,11 @@ const parlamentares: React.FC = () => {
         </article>
         <article className="flex flex-col w-full  gap-20">
           <div className="w-full text-shadow-xl text-7xl text-white text-center">
-            <TextContent>
-              <TextSmallTitillium>Ranking</TextSmallTitillium>
-              <TextSpace />
-              <TextStrongOswald>dos Partidos</TextStrongOswald>
-            </TextContent>
+            <Texto.Raiz>
+              <Texto.Pequeno.Titillium>Ranking</Texto.Pequeno.Titillium>
+              <Texto.Espaco />
+              <Texto.Forte.Oswald>dos Partidos</Texto.Forte.Oswald>
+            </Texto.Raiz>
           </div>
           <div className="flex flex-col gap-10 justify-center">
             <div className="flex flex-row w-full px-16 h-[4.25rem] bg-[#122144] border border-b-0 border-[#87D9FF] rounded-t-[5px] font-semibold text-2xl text-[#87D9FF]">
@@ -151,7 +149,10 @@ const parlamentares: React.FC = () => {
             >
               {partidosOrdenados.map((item) => {
                 return (
-                  <CardComponentePartido key={`${item.nome}`} partido={item} />
+                  <Card.ComponentePartido
+                    key={`${item.nome}-${item.sigla}`}
+                    partido={item}
+                  />
                 );
               })}
             </div>
@@ -173,16 +174,18 @@ const parlamentares: React.FC = () => {
               cor_texto={legendas[0].cor_texto}
               resumo={legendas[0].resumo}
             >
-              <TextContent className="text-5xl w-full">
-                <LineText>
-                  <TextStrongOswald>{"Ideologia Política"}</TextStrongOswald>
-                </LineText>
-                <LineText>
-                  <TextSmallTitillium className="text-[#D974FD]">
+              <Texto.Raiz className="text-5xl w-full">
+                <Texto.Linha>
+                  <Texto.Forte.Oswald>
+                    {"Ideologia Política"}
+                  </Texto.Forte.Oswald>
+                </Texto.Linha>
+                <Texto.Linha>
+                  <Texto.Pequeno.Titillium className="text-[#D974FD]">
                     {"x Gênero"}
-                  </TextSmallTitillium>
-                </LineText>
-              </TextContent>
+                  </Texto.Pequeno.Titillium>
+                </Texto.Linha>
+              </Texto.Raiz>
             </CardLegenda>
           </section>
           <section className="flex gap-20">
@@ -191,16 +194,16 @@ const parlamentares: React.FC = () => {
               cor_texto={legendas[1].cor_texto}
               resumo={legendas[1].resumo}
             >
-              <TextContent className="text-5xl w-full">
-                <LineText>
-                  <TextStrongOswald>{"Religião"}</TextStrongOswald>
-                </LineText>
-                <LineText>
-                  <TextSmallTitillium className="text-[#FF977A]">
+              <Texto.Raiz className="text-5xl w-full">
+                <Texto.Linha>
+                  <Texto.Forte.Oswald>{"Religião"}</Texto.Forte.Oswald>
+                </Texto.Linha>
+                <Texto.Linha>
+                  <Texto.Pequeno.Titillium className="text-[#FF977A]">
                     {"x Raça"}
-                  </TextSmallTitillium>
-                </LineText>
-              </TextContent>
+                  </Texto.Pequeno.Titillium>
+                </Texto.Linha>
+              </Texto.Raiz>
             </CardLegenda>
             <GraficoBarraEmpilhadaVertical
               dados={contarReligiaoPorEtnia(projetosMock)}

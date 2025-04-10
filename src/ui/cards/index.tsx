@@ -22,14 +22,14 @@ const Card = {
   Projeto: CardProjeto,
   SaibaMais: CardSaibaMais,
   StatusItem: CardStatusItem,
-  parlamentar: CardParlamentar,
+  Parlamentar: CardParlamentar,
   Informativo: CardInformativo,
   MiniProjeto: CardMiniProjetos,
   Apresentacao: CardApresentacao,
-  Partido: CardComponentePartido,
   RenderizarTexto: CardRenderizarTexto,
-  Parlamentar: CardComponenteParlamentar,
   RenderizacaoItem: CardItemRenderizacao,
+  ComponentePartido: CardComponentePartido,
+  ComponenteParlamentar: CardComponenteParlamentar,
 };
 
 

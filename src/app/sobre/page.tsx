@@ -63,12 +63,12 @@ const page: React.FC = () => {
           texto_longo={mockSobre[0].texto_longo}
           texto={mockSobre[0].texto}
           url_imagem={mockSobre[0].url_imagem}
+          isReverse
         />
         <Sobre
           texto_longo={mockSobre[1].texto_longo}
           texto={mockSobre[1].texto}
           url_imagem={mockSobre[1].url_imagem}
-          isReverse
         />
       </div>
     </MainLayout>

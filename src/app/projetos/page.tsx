@@ -16,20 +16,14 @@ import Legenda from "@/ui/cards/CardLegenda";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 
 import CardGraficoMapa from "@/ui/graficos/GraficoMapa";
-import { CardProjetos } from "@/ui/cards/CardProjeto";
+
 import CardApresentacao from "@/ui/cards/CardApresentacao";
 
 import { oswald, titillium_web } from "@/ui/fonts";
 import { Button } from "@/components/ui/button";
 import { MdOutlineFilterAlt } from "react-icons/md";
 
-import {
-  TextContent,
-  LineText,
-  TextStrongOswald,
-  TextSpace,
-  TextSmallTitillium,
-} from "@/ui/components/ComponentesTexto";
+
 
 import GraficoLinhaPontos from "@/ui/graficos/GraficoLinhaPontos";
 import GraficoBarraEmpilhada from "@/ui/graficos/GraficoBarraEmpilhadaHorizontal";
@@ -43,6 +37,8 @@ import {
   obterPautasUnicas,
 } from "@/lib/utils/projetoLeiUtils";
 import { MainLayout } from "@/ui/layouts/MainLayout";
+import Card from "@/ui/cards";
+import Texto from "@/ui/ComponenteTexto";
 
 const esferas = obterEsferasUnicas(projetosMock);
 
@@ -117,7 +113,7 @@ const projetos: React.FC = () => {
                     key={index}
                     className="basis-1/2 flex justify-center"
                   >
-                    <CardProjetos projeto={item} />
+                    <Card.Projeto projeto={item} />
                   </CarouselItem>
                 ))}
               </CarouselContent>
@@ -131,18 +127,18 @@ const projetos: React.FC = () => {
               texto={legendas.find((item) => item.titulo === "PL's")?.texto}
               resumo={legendas.find((item) => item.titulo === "PL's")?.resumo}
             >
-              <TextContent className="text-6xl">
-                <LineText>
-                  <TextStrongOswald>{"Número"}</TextStrongOswald>
-                  <TextSpace />
-                  <TextSmallTitillium>{"de"}</TextSmallTitillium>
-                </LineText>
-                <LineText className="text-[#93F996]">
-                  <TextSmallTitillium>{"PL's"}</TextSmallTitillium>
-                  <TextSpace />
-                  <TextStrongOswald>{"por ano"}</TextStrongOswald>
-                </LineText>
-              </TextContent>
+              <Texto.Raiz className="text-6xl">
+                <Texto.Linha>
+                  <Texto.Forte.Oswald>{"Número"}</Texto.Forte.Oswald>
+                  <Texto.Espaco />
+                  <Texto.Pequeno.Titillium>{"de"}</Texto.Pequeno.Titillium>
+                </Texto.Linha>
+                <Texto.Linha className="text-[#93F996]">
+                  <Texto.Pequeno.Titillium>{"PL's"}</Texto.Pequeno.Titillium>
+                  <Texto.Espaco />
+                  <Texto.Forte.Oswald>{"por ano"}</Texto.Forte.Oswald>
+                </Texto.Linha>
+              </Texto.Raiz>
             </Legenda>
             <GraficoLinhaPontos dados={contarProjetosPorAno(projetosMock)} />
           </section>
@@ -154,18 +150,18 @@ const projetos: React.FC = () => {
               resumo={legendas.find((item) => item.titulo === "Pautas")?.resumo}
             >
               <div>
-                <TextContent className="text-6xl w-[374px]">
-                  <LineText className="w-full">
-                    <TextStrongOswald>{"Número"}</TextStrongOswald>
-                    <TextSpace />
-                    <TextSmallTitillium>{"de"}</TextSmallTitillium>
-                  </LineText>
-                  <LineText className="text-[#F693F9]">
-                    <TextSmallTitillium>{"Pautas"}</TextSmallTitillium>
-                    <TextSpace />
-                    <TextStrongOswald>{"por ano"}</TextStrongOswald>
-                  </LineText>
-                </TextContent>
+                <Texto.Raiz className="text-6xl w-[374px]">
+                  <Texto.Linha className="w-full">
+                    <Texto.Forte.Oswald>{"Número"}</Texto.Forte.Oswald>
+                    <Texto.Espaco />
+                    <Texto.Pequeno.Titillium>{"de"}</Texto.Pequeno.Titillium>
+                  </Texto.Linha>
+                  <Texto.Linha className="text-[#F693F9]">
+                    <Texto.Pequeno.Titillium>{"Pautas"}</Texto.Pequeno.Titillium>
+                    <Texto.Espaco />
+                    <Texto.Forte.Oswald>{"por ano"}</Texto.Forte.Oswald>
+                  </Texto.Linha>
+                </Texto.Raiz>
               </div>
             </Legenda>
           </section>

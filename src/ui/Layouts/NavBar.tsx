@@ -15,7 +15,7 @@ interface Cabecalho {
 
 const navBar: React.FC = () => {
   const [title, setTitle] = useState<Cabecalho>({
-    titulo: "Projeto de Lei",
+    titulo: "",
     text: ""
   });
   const router = usePathname();
@@ -40,7 +40,7 @@ const navBar: React.FC = () => {
         <div className="flex w-full items-center justify-center flex-col">
           <div className="w-11/12 flex flex-col">
             <div className="flex gap-[12.5rem] items-center justify-between">
-              <Link href={"/"}>
+              <Link href={"/"} className="z-10">
                 <h1 className="text-[3.125rem] text-white logo" />
               </Link>
               <ul className="flex text-3xl font-normal text-white gap-[3.125rem] font">

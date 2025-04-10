@@ -6,13 +6,6 @@ import { legendas } from "@/lib/mock/mock_parlamentares";
 import { obterPautasUnicas } from "@/lib/utils/projetoLeiUtils";
 
 import {
-  TextContent,
-  TextSmallTitillium,
-  TextSpace,
-  TextStrongOswald,
-  LineText,
-} from "@/ui/components/ComponentesTexto";
-import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -30,6 +23,7 @@ import {
 } from "@/lib/mock/mock_direitos";
 import { MainLayout } from "@/ui/layouts/MainLayout";
 import Card from "@/ui/cards";
+import Texto from "@/ui/ComponenteTexto";
 
 const direitos: React.FC = () => {
   const elementos = obterPautasUnicas(projetosMock);
@@ -39,11 +33,13 @@ const direitos: React.FC = () => {
     <MainLayout>
       <div className="flex flex-col h-full w-full gap-24 px-11 py-16 justify-center items-center  ">
         <section className="w-full text-shadow-xl text-7xl text-white text-center">
-          <TextContent>
-            <TextSmallTitillium>Violações e Ideologias</TextSmallTitillium>
-            <TextSpace />
-            <TextStrongOswald> dos Projetos de Lei</TextStrongOswald>
-          </TextContent>
+          <Texto.Raiz>
+            <Texto.Pequeno.Titillium>
+              Violações e Ideologias
+            </Texto.Pequeno.Titillium>
+            <Texto.Espaco />
+            <Texto.Forte.Oswald> dos Projetos de Lei</Texto.Forte.Oswald>
+          </Texto.Raiz>
         </section>
         <section className="w-full flex flex-col justify-center">
           <div className="w-full">
@@ -60,14 +56,14 @@ const direitos: React.FC = () => {
               resumo={legendas[0].resumo}
               texto={legendas[0].texto}
             >
-              <TextContent shadow className="text-5xl">
-                <LineText>
-                  <TextStrongOswald>Direitos</TextStrongOswald>
-                </LineText>
-                <LineText className="text-[#D974FD]">
-                  <TextSmallTitillium>Violados</TextSmallTitillium>
-                </LineText>
-              </TextContent>
+              <Texto.Raiz shadow className="text-5xl">
+                <Texto.Linha>
+                  <Texto.Forte.Oswald>Direitos</Texto.Forte.Oswald>
+                </Texto.Linha>
+                <Texto.Linha className="text-[#D974FD]">
+                  <Texto.Pequeno.Titillium>Violados</Texto.Pequeno.Titillium>
+                </Texto.Linha>
+              </Texto.Raiz>
             </Card.Legenda>
           </div>
           <div />
@@ -78,25 +74,27 @@ const direitos: React.FC = () => {
             resumo={legendas[0].resumo}
             texto={legendas[0].texto}
           >
-            <TextContent shadow className="text-5xl">
-              <LineText>
-                <TextStrongOswald>Ideologia dos</TextStrongOswald>
-              </LineText>
-              <LineText className="text-[#FDFF78]">
-                <TextSmallTitillium>Projetos de Lei</TextSmallTitillium>
-              </LineText>
-            </TextContent>
+            <Texto.Raiz shadow className="text-5xl">
+              <Texto.Linha>
+                <Texto.Forte.Oswald>Ideologia dos</Texto.Forte.Oswald>
+              </Texto.Linha>
+              <Texto.Linha className="text-[#FDFF78]">
+                <Texto.Pequeno.Titillium>
+                  Projetos de Lei
+                </Texto.Pequeno.Titillium>
+              </Texto.Linha>
+            </Texto.Raiz>
           </Card.Legenda>
           <GraficoBarrasVertical dados={graficoBarrasVerticalDadosMock} />
         </section>
         <section className="flex flex-col gap-14 justify-center text-center">
-          <TextContent className="text-6xl" shadow>
-            <TextSmallTitillium>Projetos</TextSmallTitillium>
-            <TextSpace />
-            <TextStrongOswald className="text-[#87D9FF]">
+          <Texto.Raiz className="text-6xl" shadow>
+            <Texto.Pequeno.Titillium>Projetos</Texto.Pequeno.Titillium>
+            <Texto.Espaco />
+            <Texto.Forte.Oswald className="text-[#87D9FF]">
               de Lei
-            </TextStrongOswald>
-          </TextContent>
+            </Texto.Forte.Oswald>
+          </Texto.Raiz>
           <section>
             <Carousel
               opts={{
