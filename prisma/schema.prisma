@@ -8,7 +8,7 @@ generator client {
 }
 
 model Projeto {
-  id               String           @id @default(dbgenerated()) @db.VarChar(24)
+  id               String           @id @default(uuid()) @db.VarChar(36)
   ano              String
   numero_pl        String           @unique
   pauta            String
@@ -25,7 +25,7 @@ model Projeto {
 }
 
 model Politico {
-  id             String      @id @default(dbgenerated()) @db.VarChar(24)
+  id             String      @id @default(uuid()) @db.VarChar(36)
   nome           String
   foto           String?
   sexo           String
@@ -42,7 +42,7 @@ model Politico {
 }
 
 model Partido {
-  id        String     @id @default(dbgenerated()) @db.VarChar(24)
+  id        String     @id @default(uuid()) @db.VarChar(36)
   nome      String     @unique
   codigo    String     @unique
   politicos Politico[]
@@ -50,37 +50,38 @@ model Partido {
 }
 
 model Estado {
-  id        String     @id @default(dbgenerated()) @db.VarChar(24)
+  id        String     @id @default(uuid()) @db.VarChar(36)
   nome      String     @unique
   politicos Politico[]
 }
 
 model Tema {
-  id       String    @id @default(dbgenerated()) @db.VarChar(24)
+  id       String    @id @default(uuid()) @db.VarChar(36)
   nome     String
   projetos Projeto[]
 }
 
 model Ambito {
-  id       String    @id @default(dbgenerated()) @db.VarChar(24)
+  id       String    @id @default(uuid()) @db.VarChar(36)
   nome     String
   projetos Projeto[]
 }
 
 model DireitoViolado {
-  id       String    @id @default(dbgenerated()) @db.VarChar(24)
+  id       String    @id @default(uuid()) @db.VarChar(36)
   nome     String
   projetos Projeto[]
 }
 
 model Ideologia {
-  id       String    @id @default(dbgenerated()) @db.VarChar(24)
+  id       String    @id @default(uuid()) @db.VarChar(36)
   nome     String
   projetos Projeto[]
 }
 
 model Profissao {
-  id        String     @id @default(dbgenerated()) @db.VarChar(24)
-  nome      String
+  id   String @id @default(uuid()) @db.VarChar(36)
+  nome String
+
   politicos Politico[]
 }
