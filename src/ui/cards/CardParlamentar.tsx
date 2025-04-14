@@ -6,7 +6,7 @@ import {
   AlertDialogDescription,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { parlamentar } from "@/lib/types/projetos";
+import { parlamentar } from "@/lib/types/Projetos";
 import React from "react";
 
 import { IoMdClose } from "react-icons/io";
@@ -18,7 +18,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
-import { projetosMock } from "@/lib/mock/mock_projetos";
+import { projetosMock } from "@/lib/mocks/mock_projetos";
 import CardItemRenderizacao from "./CardItemRenderizacao";
 import CardMiniProjetos from "./CardMiniProjeto";
 

@@ -9,7 +9,7 @@ import {
   ChartTooltip,
   ChartTooltipContent
 } from "@/components/ui/chart";
-import { DadosGraficoLinhaPontos } from "@/lib/types/graficos";
+import { DadosGraficoLinhaPontos } from "@/lib/types/Graficos";
 
 
 

@@ -14,7 +14,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-import { DadosGraficoBarrasMultiplas } from "@/lib/types/graficos"
+import { DadosGraficoBarrasMultiplas } from "@/lib/types/Graficos"
 
 interface GraficoBarraMultiplasProps {
   dados: DadosGraficoBarrasMultiplas[]

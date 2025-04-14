@@ -1,4 +1,4 @@
-import { Partido } from "@/lib/types/projetos";
+import { Partido } from "@/lib/types/Projetos";
 import { oswald } from "../fonts";
 import CardDivider from "./CardDivider";
 
