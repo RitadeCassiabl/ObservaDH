@@ -8,79 +8,79 @@ generator client {
 }
 
 model Projeto {
-  id                Int              @id @default(autoincrement())
-  ano               String
-  numero_pl         String           @unique
-  pauta             String
-  justificativa     String
-  ementa            String
-  ambitoId          Int
-  ambito            Ambito           @relation(fields: [ambitoId], references: [id])
-  temaId            Int
-  tema              Tema             @relation(fields: [temaId], references: [id])
-  autores           Politico[]       @relation("ProjetoAutores")
-  partidos          Partido[]
-  direitosViolados  DireitoViolado[]
-  ideologias        Ideologia[]
+  id               String           @id @default(dbgenerated()) @db.VarChar(24)
+  ano              String
+  numero_pl        String           @unique
+  pauta            String
+  justificativa    String
+  ementa           String
+  ambitoId         String
+  ambito           Ambito           @relation(fields: [ambitoId], references: [id])
+  temaId           String
+  tema             Tema             @relation(fields: [temaId], references: [id])
+  autores          Politico[]       @relation("ProjetoAutores")
+  partidos         Partido[]
+  direitosViolados DireitoViolado[]
+  ideologias       Ideologia[]
 }
 
 model Politico {
-  id              Int         @id @default(autoincrement())
-  nome            String
-  foto            String?
-  sexo            String
-  raca            String
-  religiao        String
-  ideologia       String
-  dataNascimento  DateTime
-  estadoId        Int
-  estado          Estado      @relation(fields: [estadoId], references: [id])
-  partidoId       Int
-  partido         Partido     @relation(fields: [partidoId], references: [id])
-  profissoes      Profissao[]
-  projetos        Projeto[]   @relation("ProjetoAutores")
+  id             String      @id @default(dbgenerated()) @db.VarChar(24)
+  nome           String
+  foto           String?
+  sexo           String
+  raca           String
+  religiao       String
+  ideologia      String
+  dataNascimento DateTime
+  estadoId       String
+  estado         Estado      @relation(fields: [estadoId], references: [id])
+  partidoId      String
+  partido        Partido     @relation(fields: [partidoId], references: [id])
+  profissoes     Profissao[]
+  projetos       Projeto[]   @relation("ProjetoAutores")
 }
 
 model Partido {
-  id         Int         @id @default(autoincrement())
-  nome       String      @unique
-  codigo     String      @unique
-  politicos  Politico[]
-  projetos   Projeto[]
+  id        String     @id @default(dbgenerated()) @db.VarChar(24)
+  nome      String     @unique
+  codigo    String     @unique
+  politicos Politico[]
+  projetos  Projeto[]
 }
 
 model Estado {
-  id         Int         @id @default(autoincrement())
-  nome       String      @unique
-  politicos  Politico[]
+  id        String     @id @default(dbgenerated()) @db.VarChar(24)
+  nome      String     @unique
+  politicos Politico[]
 }
 
 model Tema {
-  id         Int         @id @default(autoincrement())
-  nome       String
-  projetos   Projeto[]
+  id       String    @id @default(dbgenerated()) @db.VarChar(24)
+  nome     String
+  projetos Projeto[]
 }
 
 model Ambito {
-  id         Int         @id @default(autoincrement())
-  nome       String
-  projetos   Projeto[]
+  id       String    @id @default(dbgenerated()) @db.VarChar(24)
+  nome     String
+  projetos Projeto[]
 }
 
 model DireitoViolado {
-  id         Int         @id @default(autoincrement())
-  nome       String
-  projetos   Projeto[]
+  id       String    @id @default(dbgenerated()) @db.VarChar(24)
+  nome     String
+  projetos Projeto[]
 }
 
 model Ideologia {
-  id         Int         @id @default(autoincrement())
-  nome       String
-  projetos   Projeto[]
+  id       String    @id @default(dbgenerated()) @db.VarChar(24)
+  nome     String
+  projetos Projeto[]
 }
 
 model Profissao {
-  id         Int         @id @default(autoincrement())
-  nome       String
-  politicos  Politico[]
+  id        String     @id @default(dbgenerated()) @db.VarChar(24)
+  nome      String
+  politicos Politico[]
 }
