@@ -1,6 +1,6 @@
 //!MOCKs
-import { projetosMock } from "@/lib/mock/mock_projetos";
-import { legendas } from "@/lib/mock/mock_parlamentares";
+import { projetosMock } from "@/lib/mocks/mock_projetos";
+import { legendas } from "@/lib/mocks/mock_parlamentares";
 
 //!componentes
 import { obterPautasUnicas } from "@/lib/utils/projetoLeiUtils";
@@ -20,7 +20,7 @@ import GraficoBarrasVertical from "@/ui/graficos/GraficoBarrasVertical";
 import {
   graficoRosquinhaDadosMock,
   graficoBarrasVerticalDadosMock,
-} from "@/lib/mock/mock_direitos";
+} from "@/lib/mocks/mock_direitos";
 import { MainLayout } from "@/ui/layouts/MainLayout";
 import Card from "@/ui/cards";
 import Texto from "@/ui/ComponenteTexto";
