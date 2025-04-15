@@ -81,7 +81,6 @@ model Ideologia {
 
 model Profissao {
   id   String @id @default(uuid()) @db.VarChar(36)
-  nome String
-
+  nome String @unique
   politicos Politico[]
 }

@@ -1,6 +1,6 @@
 //TODO: modificar ao implementar político
 class Profissao {
-  id?: number;
+  id?: string;
   nome: string;
 
   politicos?: string[];
