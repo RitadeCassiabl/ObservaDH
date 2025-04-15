@@ -1,6 +1,6 @@
 import { titillium_web } from "../fonts";
 import React from "react";
-import { StatusType } from "@/lib/types/status";
+import { StatusType } from "@/lib/types/Status";
 import CardDivider from "./CardDivider";
 import CardStatusItem from "./CardStatusItem";
 

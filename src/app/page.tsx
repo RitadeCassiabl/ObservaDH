@@ -3,7 +3,7 @@ import {
   cards_esfera,
   cards_informativos,
   apresentacao,
-} from "../lib/mock/mock_home";
+} from "../lib/mocks/mock_home";
 import { MainLayout } from "../ui/layouts/MainLayout";
 
 const page: React.FC = () => {

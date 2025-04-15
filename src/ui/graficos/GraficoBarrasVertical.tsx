@@ -12,7 +12,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-import { DadosGraficoBarrasVertical } from "@/lib/types/graficos"
+import { DadosGraficoBarrasVertical } from "@/lib/types/Graficos"
 
 
 

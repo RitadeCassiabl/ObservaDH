@@ -1,7 +1,7 @@
 "use client";
 
 import GraficoBarraMultiplas from "@/ui/graficos/GraficoBarrasMultiplas";
-import { projetosMock, partidosMock } from "@/lib/mock/mock_projetos";
+import { projetosMock, partidosMock } from "@/lib/mocks/mock_projetos";
 import {
   contarGeneroPorIdeologia,
   contarPropostasPorParlamentar,
@@ -18,7 +18,7 @@ import GraficoBarraEmpilhadaVertical from "@/ui/graficos/GraficoBarraEmpilhadaVe
 import { oswald } from "@/ui/fonts";
 import CardLegenda from "@/ui/cards/CardLegenda";
 
-import { legendas } from "@/lib/mock/mock_parlamentares";
+import { legendas } from "@/lib/mocks/mock_parlamentares";
 import DropdownButton from "@/ui/dropdown/DropdownButton";
 import { Button } from "@/components/ui/button";
 import { MdOutlineFilterAlt } from "react-icons/md";

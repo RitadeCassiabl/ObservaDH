@@ -2,7 +2,7 @@ import {
   apresentacao,
   legendas,
   projetosMock,
-} from "../../lib/mock/mock_projetos";
+} from "../../lib/mocks/mock_projetos";
 
 import {
   Carousel,

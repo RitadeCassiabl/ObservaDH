@@ -12,7 +12,7 @@ import {
   ChartLegend,
   ChartLegendContent
 } from "@/components/ui/chart"
-import { DadosGraficoRosquinha } from "@/lib/types/graficos"
+import { DadosGraficoRosquinha } from "@/lib/types/Graficos"
 
 
 const chartConfig = {

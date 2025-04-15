@@ -1,5 +1,5 @@
 
-import { infoDevsMock } from "@/lib/mock/mock_devs";
+import { infoDevsMock } from "@/lib/mocks/mock_devs";
 import Card from "@/ui/cards";
 import { MainLayout } from "@/ui/layouts/MainLayout";
 
