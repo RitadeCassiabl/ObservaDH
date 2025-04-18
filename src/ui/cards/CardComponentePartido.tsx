@@ -1,4 +1,4 @@
-import { Partido } from "@/lib/types/Projetos";
+import { Partido } from "@/lib/types/parlamentar";
 import { oswald } from "../fonts";
 import CardDivider from "./CardDivider";
 

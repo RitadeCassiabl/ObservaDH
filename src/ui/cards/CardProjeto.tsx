@@ -1,6 +1,6 @@
 "use client";
 
-import { ProjetoLei } from "@/lib/types/Projetos";
+import { ProjetoLei } from "@/lib/types/parlamentar";
 import { titillium_web, oswald } from "../fonts";
 import CardRenderizarTexto from "./CardRenderizarTexto";
 

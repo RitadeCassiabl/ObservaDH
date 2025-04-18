@@ -42,7 +42,7 @@ const page: React.FC = () => {
           ))}
         </article>
 
-        <article className="w-full flex justify-evenly px-[5rem] gap-24">
+        <article className="flex w-full flex-col items-center px-[5rem] gap-24 xl:flex-row xl:justify-evenly">
           {cards_informativos.map((item) => (
             <Card.Informativo
               key={item.titulo}

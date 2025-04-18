@@ -10,7 +10,6 @@ export const MainLayout: React.FC<mainLayoutProps> = ({ children }) => {
     <>
       <div className="bg-layout-principal antialiased no-scrollbar flex flex-col">
         <header className="h-[34rem] w-full">
-
           <NavBar />
         </header>
         <main className="h-full w-full bg-grid">

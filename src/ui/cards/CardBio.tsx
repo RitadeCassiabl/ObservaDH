@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Desenvolvedor, LinkType } from "@/lib/types/Desenvolvedor";
+import { Desenvolvedor, LinkType } from "@/lib/types/desenvolvedor";
 import { oswald, titillium_web } from "../fonts";
 import IconLattes from "../icons/iconLattes";
 import { FaGithub } from "react-icons/fa6";

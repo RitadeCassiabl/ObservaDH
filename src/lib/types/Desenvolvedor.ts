@@ -1,8 +1,4 @@
-export type LinkType = {
-    site: string;
-    imagem: string;
-    link: string;
-}
+import { LinkType } from "./link-type";
 
 export type Desenvolvedor = {
     nome: string;

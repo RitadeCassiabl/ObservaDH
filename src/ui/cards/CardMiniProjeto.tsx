@@ -1,6 +1,6 @@
 "use client";
 
-import { miniProjeto } from "@/lib/types/Projetos";
+import { miniProjeto } from "@/lib/types/parlamentar";
 import { useRouter } from "next/navigation";
 import CardItemRenderizacao from "./CardItemRenderizacao";
 

@@ -6,7 +6,7 @@ import {
   AlertDialogDescription,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { parlamentar } from "@/lib/types/Projetos";
+import { parlamentar } from "@/lib/types/parlamentar";
 import React from "react";
 
 import { IoMdClose } from "react-icons/io";
@@ -113,5 +113,6 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
     </AlertDialog>
   );
 };
+
 
 export default CardParlamentar;

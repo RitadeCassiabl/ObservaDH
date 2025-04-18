@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { buscarProjetoPorId } from "@/lib/utils/busca";
-import { ProjetoLei } from "@/lib/types/Projetos";
+import { ProjetoLei } from "@/lib/types/parlamentar";
 
 import { oswald } from "@/ui/fonts";
 import { MainLayout } from "@/ui/layouts/MainLayout";

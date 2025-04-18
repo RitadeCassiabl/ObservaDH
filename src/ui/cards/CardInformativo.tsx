@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 
-
 interface CardInformativoProps {
   titulo: string;
   subtitulo: string;
@@ -20,21 +19,23 @@ const CardInformativo: React.FC<CardInformativoProps> = ({
   isSubtitleHTML = false,
   texto,
   titulo,
-  cor_texto
+  cor_texto,
 }) => {
   return (
-    <div className="flex flex-col justify-between w-[22.5rem] h-[35rem] bg-gradient-to-b from-[#050B17] to-[#122144] border-[3px] p-12 gap-20 border-[#2C52A4] rounded-[5px] shadow-lg shadow-[#87D9FF]">
+    <div className="flex flex-col justify-between min-w-[22.5rem] h-[35rem] bg-gradient-to-b from-[#050B17] to-[#122144] border-[3px] p-12 gap-10 border-[#2C52A4] rounded-[5px] shadow-lg shadow-[#87D9FF]">
       <h1
         className={`${cor_texto} ${oswald.className} text-[2.5rem] text-shadow-lg font-normal`}
       >
         {titulo}{" "}
         <span className={`${titillium_web.className} text-[2.5rem] font-light`}>
-          {isSubtitleHTML
-            ? <span dangerouslySetInnerHTML={{ __html: subtitulo}} />
-            : subtitulo }
+          {isSubtitleHTML ? (
+            <span dangerouslySetInnerHTML={{ __html: subtitulo }} />
+          ) : (
+            subtitulo
+          )}
         </span>
       </h1>
-      <section className="text-xl h-64 text-white font-normal">
+      <section className="text-xl min-h-64 text-white font-normal overflow-auto no-scrollbar">
         {texto}
       </section>
       <div className="w-full flex justify-end">

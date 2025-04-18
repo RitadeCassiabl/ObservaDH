@@ -1,7 +1,7 @@
 import { oswald } from "../fonts";
 import CardDivider from "./CardDivider";
 import CardParlamentar from "./CardParlamentar";
-import { parlamentar } from "@/lib/types/Projetos";
+import { parlamentar } from "@/lib/types/parlamentar";
 
 interface componentePros {
   parlamentar: parlamentar;

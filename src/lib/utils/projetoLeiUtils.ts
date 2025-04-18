@@ -1,5 +1,5 @@
-import { DadosGraficoBarraEmpilhadaVertical, DadosGraficoBarrasMultiplas } from "../types/Graficos";
-import { ProjetoLei } from "../types/Projetos";
+import { DadosGraficoBarraEmpilhadaVertical, DadosGraficoBarrasMultiplas } from "../types/grafico";
+import { ProjetoLei } from "../types/parlamentar";
 
 function contarProjetosPorAno(data: ProjetoLei[]) {
   const anosContagem: Record<string, number> = {};

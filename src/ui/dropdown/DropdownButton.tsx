@@ -5,15 +5,11 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-
-interface elementos {
-  titulo: string;
-  value: string;
-}
+import { elemento } from "@/lib/types/elemento-dropdown";
 
 interface DropdownButtonProps {
   titulo?: string;
-  elementos: elementos[];
+  elementos: elemento[];
   className?: string;
 }
 

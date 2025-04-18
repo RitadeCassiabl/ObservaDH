@@ -12,7 +12,7 @@ import {
   ChartTooltipContent
 } from "@/components/ui/chart";
 import React from "react";
-import { DadosGraficoBarraEmpilhadaVertical } from "@/lib/types/Graficos";
+import { DadosGraficoBarraEmpilhadaVertical } from "@/lib/types/grafico";
 
 const chartConfig = {
   branco: {

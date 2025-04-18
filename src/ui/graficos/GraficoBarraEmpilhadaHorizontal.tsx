@@ -14,7 +14,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-import {  DadosGraficoBarraEmpilhadaHorizontal } from "@/lib/types/Graficos"
+import {  DadosGraficoBarraEmpilhadaHorizontal } from "@/lib/types/grafico"
 
 
 
