@@ -1,5 +1,5 @@
-import { BuscarProfissaoController } from "@/lib/api/controllers/profissao/BuscarProfissaoController";
-import { RespostaApi } from "@/lib/database/models/RespostaApi";
+import { BuscarProfissaoController } from "@/lib/api/controllers/profissao/buscar-profissao-controller";
+import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {

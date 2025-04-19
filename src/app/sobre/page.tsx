@@ -1,23 +1,29 @@
-import { MainLayout } from "@/ui/layouts/MainLayout";
+import { mockSobre } from "@/mocks/mock-sobre";
 
-const mockSobre = [
-  {
-    texto_longo:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin accumsan nulla justo, sed molestie nisi scelerisque vulputate. Integer nibh risus, pretium et neque sed, efficitur vehicula tortor. Integer ut ullamcorper ex. Aenean porta, nisi sed gravida pellentesque, mi turpis porta leo, in euismod massa mauris eget augue. Aenean urna tortor, scelerisque vitae vulputate a, lobortis et metus. Vivamus ut turpis lobortis, vulputate mauris id, sodales enim. Fusce bibendum sapien leo, at vestibulum erat ornare eget. Maecenas accumsan, lectus fermentum dapibus mattis, velit leo euismod leo, non molestie odio enim ac nulla. Nam et ultricies erat.",
-    texto:
-      "Fusce semper eu odio a laoreet. Phasellus viverra porta erat eget tempus. Donec sit amet risus at sapien tempor efficitur vel ac est. Vestibulum aliquet arcu hendrerit, rhoncus justo ac, euismod arcu. Aliquam volutpat venenatis elit eget commodo. Maecenas vitae sem at nisl faucibus imperdiet eget non nulla. Nulla facilisi. Etiam dignissim, odio at lacinia scelerisque, tellus felis facilisis dolor, eget condimentum libero nunc eu nunc. Duis ut lectus in sem consequat fermentum pretium.",
-    url_imagem:
-      "https://i.pinimg.com/originals/4f/16/08/4f1608fde265e925c59001d7c3c97ff1.jpg",
-  },
-  {
-    texto_longo:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin accumsan nulla justo, sed molestie nisi scelerisque vulputate. Integer nibh risus, pretium et neque sed, efficitur vehicula tortor. Integer ut ullamcorper ex. Aenean porta, nisi sed gravida pellentesque, mi turpis porta leo, in euismod massa mauris eget augue. Aenean urna tortor, scelerisque vitae vulputate a, lobortis et metus. Vivamus ut turpis lobortis, vulputate mauris id, sodales enim. Fusce bibendum sapien leo, at vestibulum erat ornare eget. Maecenas accumsan, lectus fermentum dapibus mattis, velit leo euismod leo, non molestie odio enim ac nulla. Nam et ultricies erat.",
-    texto:
-      "Fusce semper eu odio a laoreet. Phasellus viverra porta erat eget tempus. Donec sit amet risus at sapien tempor efficitur vel ac est. Vestibulum aliquet arcu hendrerit, rhoncus justo ac, euismod arcu. Aliquam volutpat venenatis elit eget commodo. Maecenas vitae sem at nisl faucibus imperdiet eget non nulla. Nulla facilisi. Etiam dignissim, odio at lacinia scelerisque, tellus felis facilisis dolor, eget condimentum libero nunc eu nunc. Duis ut lectus in sem consequat fermentum pretium.",
-    url_imagem:
-      "https://i.pinimg.com/originals/4f/16/08/4f1608fde265e925c59001d7c3c97ff1.jpg",
-  },
-];
+import MainLayout from "@/components/ui/layouts/main-layout";
+
+
+const page: React.FC = () => {
+  
+  //render
+  return (
+    <MainLayout>
+      <div className="flex h-full w-full flex-col gap-[4.25rem] items-center px-36 text-white text-3xl text-justify">
+        {mockSobre.map((item, index) => {
+          return (
+            <Sobre
+              key={index}
+              isReverse={index % 2 == 0 ? true : false}
+              texto_longo={item.texto_longo}
+              texto={item.texto}
+              url_imagem={item.url_imagem}
+            />
+          );
+        })}
+      </div>
+    </MainLayout>
+  );
+};
 
 interface sobreProps {
   texto_longo: string;
@@ -52,26 +58,6 @@ const Sobre: React.FC<sobreProps> = ({
         </section>
       </article>
     </div>
-  );
-};
-
-const page: React.FC = () => {
-  return (
-    <MainLayout>
-      <div className="flex h-full w-full flex-col gap-[4.25rem] items-center px-36 py-16 text-white text-3xl text-justify">
-        <Sobre
-          texto_longo={mockSobre[0].texto_longo}
-          texto={mockSobre[0].texto}
-          url_imagem={mockSobre[0].url_imagem}
-          isReverse
-        />
-        <Sobre
-          texto_longo={mockSobre[1].texto_longo}
-          texto={mockSobre[1].texto}
-          url_imagem={mockSobre[1].url_imagem}
-        />
-      </div>
-    </MainLayout>
   );
 };
 

@@ -1,15 +1,19 @@
-import Card from "@/ui/cards";
 import {
+  apresentacao,
   cards_esfera,
   cards_informativos,
-  apresentacao,
-} from "../lib/mocks/mock_home";
-import { MainLayout } from "../ui/layouts/MainLayout";
+} from "../mocks/mock-home";
+
+import Card from "@/components/ui/cards";
+import MainLayout from "@/components/ui/layouts/main-layout";
+
 
 const page: React.FC = () => {
+  
+  //render
   return (
     <MainLayout>
-      <div className="flex h-full w-full flex-col gap-[4.25rem] items-center">
+      <div className="flex h-full w-full flex-col gap-24 items-center">
         <article className="w-full h-auto flex justify-center">
           <Card.Apresentacao
             titulo={apresentacao.titulo}
@@ -42,7 +46,7 @@ const page: React.FC = () => {
           ))}
         </article>
 
-        <article className="w-full flex justify-evenly px-[5rem] gap-24">
+        <article className="flex w-full flex-col items-center px-[5rem] gap-24 xl:flex-row xl:justify-evenly">
           {cards_informativos.map((item) => (
             <Card.Informativo
               key={item.titulo}

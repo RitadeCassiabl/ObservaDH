@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { titillium_web } from "@/ui/fonts";
+import { titillium_web } from "@/lib/fonts/fonts";
 
 export const metadata: Metadata = {
   title: "ObservaDH",
