@@ -1,7 +1,8 @@
-"use client";
+import { MdOutlineFilterAlt } from "react-icons/md";
 
-import GraficoBarraMultiplas from "@/ui/graficos/GraficoBarrasMultiplas";
-import { projetosMock, partidosMock } from "@/lib/mocks/mock_projetos";
+import { legendas } from "@/mocks/mock-parlamentares";
+import { projetosMock, partidosMock } from "@/mocks/mock-projetos";
+
 import {
   contarGeneroPorIdeologia,
   contarPropostasPorParlamentar,
@@ -12,31 +13,31 @@ import {
   obterIdeologiasUnica,
   obterPartidosUnicos,
   obterProfissoesUnicas,
-} from "@/lib/utils/projetoLeiUtils";
+} from "@/lib/utils/projeto-projeto-utils";
 
-import GraficoBarraEmpilhadaVertical from "@/ui/graficos/GraficoBarraEmpilhadaVertical";
-import CardLegenda from "@/ui/cards/CardLegenda";
+import { elemento } from "@/types/elemento-dropdown";
+import { Partido } from "@/types/partido";
+import { ProjetoLei } from "@/types/projeto-lei";
 
-import { legendas } from "@/lib/mocks/mock_parlamentares";
-import DropdownButton from "@/ui/dropdown/DropdownButton";
-import { Button } from "@/components/ui/button";
-import { MdOutlineFilterAlt } from "react-icons/md";
+import MainLayout from "@/components/ui/layouts/main-layout";
+import { Button } from "@/components/ui-shacnui/button";
 
-import { MainLayout } from "@/ui/layouts/MainLayout";
-import Card from "@/ui/cards";
-import Texto from "@/ui/ComponenteTexto";
-import { Partido } from "@/lib/types/partido";
-import { ProjetoLei } from "@/lib/types/projeto-lei";
-import { elemento } from "@/lib/types/elemento-dropdown";
+import Card from "@/components/ui/cards";
+import CardLegenda from "@/components/ui/cards/card-legenda";
+import DropdownButton from "@/components/ui/dropdown/dropdown-button";
+import Texto from "@/components/ui/componente-texto";
 
-// ô_ô
+import GraficoBarraEmpilhadaVertical from "@/components/ui/graficos/barra-empilhada-vertical";
+import GraficoBarraMultiplas from "@/components/ui/graficos/barras-multiplas";
+
+import Titulo from "@/components/ui/titulo-pages";
+
 
 const page: React.FC = () => {
-
-  
   const partidosOrdenados = [...partidosMock].sort(
     (a, b) => parseInt(b.propostas) - parseInt(a.propostas)
   );
+
   const esferas = obterEsferasUnicas(projetosMock);
   const estados = obterEstadosUnicos(projetosMock);
   const genero = obterGeneroUnico(projetosMock);
@@ -71,16 +72,20 @@ const page: React.FC = () => {
     },
   ];
 
-  //!render
+  //render
   return (
     <MainLayout>
       <div className="flex h-full w-full flex-col gap-[4.5rem] items-center px-11">
+        <Titulo
+          pequeno={"Ranking"}
+          grande={"dos Parlamentares"}
+        />
         <RankingParlamentares
           projetos={projetosMock}
           items_filtro={dropdown_items}
         />
         <RankingPartidos partidosOrdenados={partidosOrdenados} />
-        <DadosEstatisticos projetos={projetosMock} />
+        <DadosEstatisticos projetos={projetosMock} legendas={legendas} />
       </div>
     </MainLayout>
   );
@@ -126,14 +131,7 @@ const RankingParlamentares = ({
   items_filtro,
 }: RankingParlamentaresProps) => {
   return (
-    <article className="flex flex-col w-full  gap-20">
-      <div className="w-full text-shadow-xl text-7xl text-white text-center">
-        <Texto.Raiz>
-          <Texto.Pequeno.Titillium>Ranking</Texto.Pequeno.Titillium>
-          <Texto.Espaco />
-          <Texto.Forte.Oswald>dos Parlamentares</Texto.Forte.Oswald>
-        </Texto.Raiz>
-      </div>
+    <article className="flex flex-col w-full gap-20">
       <Filtro items={items_filtro} />
       <div className="flex flex-col gap-10 justify-center">
         <div className="flex flex-row w-full px-16 h-[4.25rem] bg-[#122144] border border-b-0 border-[#87D9FF] rounded-t-[5px] font-semibold text-2xl text-[#87D9FF]">
@@ -215,9 +213,14 @@ const RankingPartidos = ({ partidosOrdenados }: RankingPartidosProps) => {
 
 interface DadosEstatisticosProps {
   projetos: ProjetoLei[];
+  legendas: {
+    texto: string;
+    cor_texto: string;
+    resumo: string;
+  }[];
 }
 
-const DadosEstatisticos = ({ projetos }: DadosEstatisticosProps) => {
+const DadosEstatisticos = ({ projetos, legendas }: DadosEstatisticosProps) => {
   return (
     <>
       <article className="flex flex-col justify-center gap-20">
@@ -227,7 +230,7 @@ const DadosEstatisticos = ({ projetos }: DadosEstatisticosProps) => {
         <div className="flex flex-col gap-20">
           <section className="flex justify-center gap-20">
             <GraficoBarraMultiplas dados={contarGeneroPorIdeologia(projetos)} />
-            <CardLegenda
+            <Card.Legenda
               texto={legendas[0].texto}
               cor_texto={legendas[0].cor_texto}
               resumo={legendas[0].resumo}
@@ -244,7 +247,7 @@ const DadosEstatisticos = ({ projetos }: DadosEstatisticosProps) => {
                   </Texto.Pequeno.Titillium>
                 </Texto.Linha>
               </Texto.Raiz>
-            </CardLegenda>
+            </Card.Legenda>
           </section>
           <section className="flex justify-center gap-20">
             <CardLegenda

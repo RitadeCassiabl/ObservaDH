@@ -1,5 +1,5 @@
-import { DeletarProfissaoController } from "@/lib/api/controllers/profissao/DeletarProfissaoController";
-import { RespostaApi } from "@/lib/database/models/RespostaApi";
+import { DeletarProfissaoController } from "@/lib/api/controllers/profissao/deletar-profissao-controller";
+import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
 export async function DELETE(request: Request) {

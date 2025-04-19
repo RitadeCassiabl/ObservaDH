@@ -1,5 +1,5 @@
-import { AtualizarProfissaoController } from "@/lib/api/controllers/profissao/AtualizarProfissaoController";
-import { RespostaApi } from "@/lib/database/models/RespostaApi";
+import { AtualizarProfissaoController } from "@/lib/api/controllers/profissao/atualizar-profissao-controller";
+import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
 export async function PUT(request: Request) {

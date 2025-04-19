@@ -1,12 +1,16 @@
-import Card from "@/ui/cards";
 import {
+  apresentacao,
   cards_esfera,
   cards_informativos,
-  apresentacao,
-} from "../lib/mocks/mock_home";
-import { MainLayout } from "../ui/layouts/MainLayout";
+} from "../mocks/mock-home";
+
+import Card from "@/components/ui/cards";
+import MainLayout from "@/components/ui/layouts/main-layout";
+
 
 const page: React.FC = () => {
+  
+  //render
   return (
     <MainLayout>
       <div className="flex h-full w-full flex-col gap-[4.25rem] items-center">

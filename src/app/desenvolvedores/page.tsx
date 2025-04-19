@@ -1,9 +1,11 @@
+import { infoDevsMock } from "@/mocks/mock-devs";
 
-import { infoDevsMock } from "@/lib/mocks/mock_devs";
-import Card from "@/ui/cards";
-import { MainLayout } from "@/ui/layouts/MainLayout";
+import Card from "@/components/ui/cards";
+import MainLayout from "@/components/ui/layouts/main-layout";
 
 const desenvolvedores: React.FC = () => {
+  
+  //render
   return (
     <MainLayout>
       <div className="flex flex-col h-full w-full gap-24 px-11 py-16 items-center">
