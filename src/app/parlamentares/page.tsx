@@ -32,7 +32,6 @@ import GraficoBarraMultiplas from "@/components/ui/graficos/barras-multiplas";
 
 import Titulo from "@/components/ui/titulo-pages";
 
-
 const page: React.FC = () => {
   const partidosOrdenados = [...partidosMock].sort(
     (a, b) => parseInt(b.propostas) - parseInt(a.propostas)
@@ -75,11 +74,8 @@ const page: React.FC = () => {
   //render
   return (
     <MainLayout>
-      <div className="flex h-full w-full flex-col gap-[4.5rem] items-center px-11">
-        <Titulo
-          pequeno={"Ranking"}
-          grande={"dos Parlamentares"}
-        />
+      <div className="flex h-full w-full flex-col gap-24 items-center px-11">
+        <Titulo pequeno={"Ranking"} grande={"dos Parlamentares"} />
         <RankingParlamentares
           projetos={projetosMock}
           items_filtro={dropdown_items}

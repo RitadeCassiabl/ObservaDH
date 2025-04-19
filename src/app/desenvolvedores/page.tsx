@@ -8,7 +8,7 @@ const desenvolvedores: React.FC = () => {
   //render
   return (
     <MainLayout>
-      <div className="flex flex-col h-full w-full gap-24 px-11 py-16 items-center">
+      <div className="flex flex-col h-full w-full gap-24 px-11 items-center">
         <section className="flex flex-col gap-20">
           {infoDevsMock.map((item) => {
             return <Card.Bio key={item.nome} desenvolvedor={item} />;

@@ -51,7 +51,7 @@ const page = () => {
   return (
     <MainLayout>
       <div
-        className={`h-full w-full flex flex-col items-center gap-[4.5rem] border-[#87D9FF] px-11 py-16 ${oswald.className}`}
+        className={`h-full w-full flex flex-col items-center gap-24 border-[#87D9FF] px-11 ${oswald.className}`}
       >
         <section>
           <Titulo pequeno={"Dados"} grande={"da Proposta"} />

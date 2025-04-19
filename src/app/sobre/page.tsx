@@ -8,7 +8,7 @@ const page: React.FC = () => {
   //render
   return (
     <MainLayout>
-      <div className="flex h-full w-full flex-col gap-[4.25rem] items-center px-36 py-16 text-white text-3xl text-justify">
+      <div className="flex h-full w-full flex-col gap-[4.25rem] items-center px-36 text-white text-3xl text-justify">
         {mockSobre.map((item, index) => {
           return (
             <Sobre

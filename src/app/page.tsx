@@ -13,7 +13,7 @@ const page: React.FC = () => {
   //render
   return (
     <MainLayout>
-      <div className="flex h-full w-full flex-col gap-[4.25rem] items-center">
+      <div className="flex h-full w-full flex-col gap-24 items-center">
         <article className="w-full h-auto flex justify-center">
           <Card.Apresentacao
             titulo={apresentacao.titulo}

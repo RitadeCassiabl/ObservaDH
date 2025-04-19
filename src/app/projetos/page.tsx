@@ -60,7 +60,7 @@ const page: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className="flex h-full w-full flex-col gap-[4.25rem] items-center px-11">
+      <div className="flex h-full w-full flex-col gap-24 items-center px-11">
         <Apresentacao apresentacao={apresentacao} />
         <GraficoMapa />
         <Divisor />
