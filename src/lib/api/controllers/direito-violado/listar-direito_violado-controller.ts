@@ -11,11 +11,13 @@ export class ListarDireitoVioladoController {
             return new RespostaApi(
                 true,
                 `${resposta.length} direito(s) violado(s) foram encontrados`,
-                resposta)
+                resposta
+            );
         } else {
             return new RespostaApi(
                 false,
-                "Nenhum direito violado foi encontrado")
+                "Nenhum direito violado foi encontrado"
+            );
         }
     }
 }

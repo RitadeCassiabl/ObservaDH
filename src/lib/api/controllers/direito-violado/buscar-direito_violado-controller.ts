@@ -3,6 +3,14 @@ import { BuscarDireitoVioladoService } from "../../service/direito-violado/busca
 
 export class BuscarDireitoVioladoController {
     async executar(nome: string) {
+
+        if (!nome) {
+            return new RespostaApi(
+                false,
+                "Está faltando informação para a busca da profissão"
+            )
+        }
+
         const service = new BuscarDireitoVioladoService();
 
         const resposta = await service.executar(nome);

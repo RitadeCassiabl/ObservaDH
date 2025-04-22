@@ -7,14 +7,6 @@ export async function PUT(request: Request) {
 
         const { nome, novoNome } = await request.json();
 
-        if (!nome || !novoNome) {
-            const respostaApi = new RespostaApi(
-                false,
-                "falta alguma informação para a alteração do direito violado"
-            );
-            return NextResponse.json({ respostaApi })
-        }
-
         const controller = new AtualizarDireitoVioladoController();
 
         const resposta = await controller.executar(nome, novoNome)
