@@ -1,9 +1,9 @@
-import { Partido } from "@/types/partido";
+import { PartidoModel } from "@/types/partido";
 import { oswald } from "../../../lib/fonts/fonts";
 import CardDivider from "./card-divider";
 
 interface cardComponentePartidoProps {
-  partido: Partido;
+  partido: PartidoModel;
 }
 
 const CardComponentePartido: React.FC<cardComponentePartidoProps> = ({
