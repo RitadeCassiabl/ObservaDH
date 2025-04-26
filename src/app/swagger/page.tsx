@@ -1,4 +1,3 @@
-// src/app/swagger/page.tsx
 'use client';
 import dynamic from 'next/dynamic';
 import 'swagger-ui-react/swagger-ui.css';
