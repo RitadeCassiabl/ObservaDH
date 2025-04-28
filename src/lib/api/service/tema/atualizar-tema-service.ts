@@ -1,14 +1,14 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class AtualizarTemaService {
-    async executar(nome: string, novoNome: string) {
+    async executar(id: string, nome: string) {
         const prisma = prismaClient;
 
         const resposta = prisma.tema.update({
             where: {
-                nome: nome,
+                id: id,
             }, data: {
-                nome: novoNome
+                nome: nome
             }
         });
 

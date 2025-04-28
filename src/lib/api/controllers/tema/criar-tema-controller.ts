@@ -16,7 +16,7 @@ export class CriarTemaController {
 
         const serviceAuxiliar = new BuscarTemaService()
 
-        const existe = await serviceAuxiliar.executar(nome);
+        const existe = await serviceAuxiliar.buscarPorNome(nome);
 
         if (existe) {
             return new RespostaApi(

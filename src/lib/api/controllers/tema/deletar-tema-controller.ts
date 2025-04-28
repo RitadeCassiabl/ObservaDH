@@ -3,9 +3,9 @@ import { BuscarTemaService } from "../../service/tema/buscar-tema-service";
 import { DeletarTemaService } from "../../service/tema/deletar-tema-service";
 
 export class DeletarTemaController {
-    async executar(nome: string) {
+    async executar(id: string) {
 
-        if (!nome) {
+        if (!id) {
             return new RespostaApi(
                 false,
                 "Falta informações para deletar o tema"
@@ -14,18 +14,18 @@ export class DeletarTemaController {
 
         const serviceAuxiliar = new BuscarTemaService()
 
-        const existe = await serviceAuxiliar.executar(nome);
+        const existe = await serviceAuxiliar.buscarPorID(id);
 
         if (!existe) {
             return new RespostaApi(
                 false,
-                "O tema não exites"
+                "O tema já não exites"
             )
         }
 
         const service = new DeletarTemaService();
 
-        const resposta = await service.executar(nome)
+        const resposta = await service.executar(id)
 
         if (resposta) {
             return new RespostaApi(

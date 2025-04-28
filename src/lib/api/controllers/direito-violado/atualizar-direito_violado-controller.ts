@@ -3,9 +3,9 @@ import { AtualizarDireitoVioladoService } from "../../service/direito-violado/at
 import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
 
 export class AtualizarDireitoVioladoController {
-    async executar(nome: string, novoNome: string) {
+    async executar(id: string, nome: string) {
 
-        if (!nome || !novoNome) {
+        if (!id || !nome) {
             return new RespostaApi(
                 false,
                 "falta alguma informação para a alteração do direito violado"
@@ -15,7 +15,7 @@ export class AtualizarDireitoVioladoController {
 
         const serviceAuxiliar = new BuscarDireitoVioladoService()
 
-        const existe = await serviceAuxiliar.executar(nome);
+        const existe = await serviceAuxiliar.buscarPorId(id);
 
         if (!existe) {
             return new RespostaApi(
@@ -26,7 +26,7 @@ export class AtualizarDireitoVioladoController {
 
         const service = new AtualizarDireitoVioladoService();
 
-        const resposta = await service.executar(nome, novoNome);
+        const resposta = await service.executar(id, nome);
 
         if (resposta) {
             return new RespostaApi(

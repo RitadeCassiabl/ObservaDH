@@ -3,9 +3,9 @@ import { DeletarDireitoVioladoService } from "../../service/direito-violado/dele
 import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
 
 export class DeletarDireitoVioladoController {
-    async executar(nome: string) {
+    async executar(id: string) {
 
-        if (!nome) {
+        if (!id) {
             return new RespostaApi(
                 false,
                 "faltam informação para deletar o direito violado"
@@ -14,7 +14,7 @@ export class DeletarDireitoVioladoController {
 
         const serviceAuxiliar = new BuscarDireitoVioladoService();
 
-        const existe = await serviceAuxiliar.executar(nome)
+        const existe = await serviceAuxiliar.buscarPorId(id)
 
         if (!existe) {
             return new RespostaApi(
@@ -25,7 +25,7 @@ export class DeletarDireitoVioladoController {
 
         const service = new DeletarDireitoVioladoService();
 
-        const resposta = await service.executar(nome);
+        const resposta = await service.executar(id);
 
         if (resposta) {
             return new RespostaApi(

@@ -4,6 +4,15 @@ import { AtualizarProfissaoService } from "../../service/profissao/atualizar-pro
 
 export class AtualizarProfissaoController {
     async executar(id: string, nome: string) {
+        if (!id || !nome) {
+            const respostaApi = new RespostaApi(
+                false,
+                "Está faltando informação para atualização da profissão"
+            );
+
+            return respostaApi;
+        }
+
         const service = new AtualizarProfissaoService()
 
 

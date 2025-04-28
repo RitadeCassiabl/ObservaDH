@@ -1,12 +1,12 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class DeletarTemaService {
-    async executar(nome: string) {
+    async executar(id: string) {
         const prisma = prismaClient;
 
         const resposta = prisma.tema.delete({
             where: {
-                nome: nome
+                id: id,
             }
         })
 
