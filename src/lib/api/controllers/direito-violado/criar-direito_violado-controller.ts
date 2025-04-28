@@ -4,6 +4,7 @@ import { RespostaApi } from '@/types/resposta-api';
 import { BuscarDireitoVioladoService } from '../../service/direito-violado/buscar-direito_violado-service';
 
 export class CriarDireitoVioladoController {
+
     async executar(nome: string) {
 
         if (!nome) {
@@ -15,8 +16,8 @@ export class CriarDireitoVioladoController {
 
         const serviceAuxiliar = new BuscarDireitoVioladoService();
 
-        const existe = await serviceAuxiliar.executar(nome);
-
+        const existe = await serviceAuxiliar.buscarPorNome(nome);
+        
         if (existe) {
             return new RespostaApi(
                 false,

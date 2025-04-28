@@ -4,9 +4,9 @@ import { AtualizarTemaService } from "../../service/tema/atualizar-tema-service"
 
 export class AtualizarTemaController {
 
-    async executar(nome: string, novoNome: string) {
+    async executar(id: string, nome: string) {
 
-        if (!nome || !novoNome) {
+        if (!id || !nome) {
             return new RespostaApi(
                 false,
                 "Faltam informações para atualizar o tema."
@@ -15,30 +15,30 @@ export class AtualizarTemaController {
 
         const buscarTemaService = new BuscarTemaService();
 
-        const temaExistente = await buscarTemaService.executar(nome);
+        const temaExistente = await buscarTemaService.buscarPorID(id);
         if (!temaExistente) {
             return new RespostaApi(
                 false,
-                `O tema "${nome}" não existe.`
+                `O tema não existe.`
             );
         }
 
-        const novoTemaExistente = await buscarTemaService.executar(novoNome);
+        const novoTemaExistente = await buscarTemaService.buscarPorNome(nome);
         if (novoTemaExistente) {
             return new RespostaApi(
                 false,
-                `O tema "${novoNome}" já existe.`
+                `O novo tema já existe.`
             );
         }
 
         const service = new AtualizarTemaService()
 
-        const resposta = await service.executar(nome, novoNome);
+        const resposta = await service.executar(id, nome);
 
         if (resposta) {
             return new RespostaApi(
                 true,
-                `O tema ${nome || ""} foi atualizado para ${novoNome || ""} com sucesso`,
+                `O tema foi atualizado para ${nome || ""} com sucesso`,
                 resposta
             )
         } else {

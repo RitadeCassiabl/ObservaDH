@@ -1,12 +1,12 @@
 import { prismaClient } from '@/services/prisma/prisma';
 
 export class DeletarDireitoVioladoService {
-    async executar(nome: string) {
+    async executar(id: string) {
         const prisma = prismaClient;
 
         const resposta = await prisma.direitoViolado.delete({
             where: {
-                nome: nome
+                id: id
             }
         })
         return resposta;

@@ -2,9 +2,9 @@ import { RespostaApi } from "@/types/resposta-api";
 import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
 
 export class BuscarDireitoVioladoController {
-    async executar(nome: string) {
+    async executar(id: string) {
 
-        if (!nome) {
+        if (!id) {
             return new RespostaApi(
                 false,
                 "Está faltando informação para a busca da profissão"
@@ -13,7 +13,7 @@ export class BuscarDireitoVioladoController {
 
         const service = new BuscarDireitoVioladoService();
 
-        const resposta = await service.executar(nome);
+        const resposta = await service.buscarPorId(id);
 
         if (resposta) {
             return new RespostaApi(
