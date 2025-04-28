@@ -24,6 +24,16 @@ export class AtualizarDireitoVioladoController {
             );
         }
 
+        const novoDireitoViolado = await serviceAuxiliar.buscarPorNome(nome);
+        
+        if (novoDireitoViolado) {
+            return new RespostaApi(
+                false,
+                "O novo direito violado já existe"
+            );
+        }
+
+
         const service = new AtualizarDireitoVioladoService();
 
         const resposta = await service.executar(id, nome);

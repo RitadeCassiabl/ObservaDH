@@ -19,7 +19,7 @@ export class AtualizarTemaController {
         if (!temaExistente) {
             return new RespostaApi(
                 false,
-                `O tema "${nome}" não existe.`
+                `O tema não existe.`
             );
         }
 
@@ -27,7 +27,7 @@ export class AtualizarTemaController {
         if (novoTemaExistente) {
             return new RespostaApi(
                 false,
-                `O tema "${nome}" já existe.`
+                `O novo tema já existe.`
             );
         }
 

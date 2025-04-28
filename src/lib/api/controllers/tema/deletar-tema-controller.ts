@@ -19,7 +19,7 @@ export class DeletarTemaController {
         if (!existe) {
             return new RespostaApi(
                 false,
-                "O tema já não exites"
+                "O tema já não existe"
             )
         }
 

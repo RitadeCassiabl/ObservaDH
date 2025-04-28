@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 
     } catch (error) {
         const respostaApi = new RespostaApi(false, "erro interno", error)
-        return NextResponse.json({ respostaApi })
+        return NextResponse.json({ respostaApi }, { status: 500 })
 
     }
 }
@@ -29,7 +29,7 @@ export async function GET() {
 
         const resposta = await controller.executar()
 
-        return NextResponse.json({ resposta })
+        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
 
     } catch (error) {
         const respostaApi = new RespostaApi(
@@ -37,6 +37,6 @@ export async function GET() {
             "erro interno",
             error
         )
-        return NextResponse.json({ respostaApi })
+        return NextResponse.json({ respostaApi } , { status: 500 })
     }
 }

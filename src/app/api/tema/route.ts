@@ -38,7 +38,7 @@ export async function GET() {
 
         const resposta = await controller.executar();
 
-        return NextResponse.json({ resposta })
+        return NextResponse.json({ resposta } , { status: resposta.sucesso ? 200 : 400 })
     } catch (error) {
         const respostaApi = new RespostaApi(
             false,

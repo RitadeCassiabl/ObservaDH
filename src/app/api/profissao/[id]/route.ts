@@ -5,7 +5,6 @@ import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
 
-//!OK
 export async function DELETE(
     _request: Request,
     { params }: { params: { id?: string } }
@@ -52,7 +51,7 @@ export async function DELETE(
         );
     }
 }
-//!OK
+
 export async function GET(
     request: Request,
     { params }: { params: { id?: string } }
@@ -95,7 +94,6 @@ export async function GET(
     }
 }
 
-//!OK
 export async function PATCH(
     request: Request,
     { params }: { params: { id?: string } }

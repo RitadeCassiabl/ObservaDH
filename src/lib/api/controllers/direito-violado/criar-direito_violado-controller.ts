@@ -17,7 +17,7 @@ export class CriarDireitoVioladoController {
         const serviceAuxiliar = new BuscarDireitoVioladoService();
 
         const existe = await serviceAuxiliar.buscarPorNome(nome);
-        console.log(nome, existe)
+        
         if (existe) {
             return new RespostaApi(
                 false,

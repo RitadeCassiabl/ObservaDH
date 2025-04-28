@@ -14,14 +14,14 @@ export async function DELETE(request: Request,
         if (!id) {
             const respostaApi = new RespostaApi(false, "id não informado")
 
-            return NextResponse.json({ respostaApi })
+            return NextResponse.json({ respostaApi }, { status: 400 })
         }
 
         const controller = new DeletarTemaController();
 
         const resposta = await controller.executar(id);
 
-        return NextResponse.json({ resposta })
+        return NextResponse.json({ resposta } , { status: resposta.sucesso ? 200 : 400 })
 
 
     } catch (error) {
@@ -41,7 +41,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
         if (!id) {
             const respostaApi = new RespostaApi(false, "id não informado")
 
-            return NextResponse.json({ respostaApi })
+            return NextResponse.json({ respostaApi }, { status: 400 })
         }
 
         const { nome } = await request.json()
@@ -76,14 +76,14 @@ export async function GET(request: Request, { params }: { params: { id: string }
         if (!id) {
             const respostaApi = new RespostaApi(false, "id não informado")
 
-            return NextResponse.json({ respostaApi })
+            return NextResponse.json({ respostaApi }, { status: 400 })
         }
 
         const controller = new BuscarTemaController()
 
         const resposta = await controller.executar(id);
 
-        return NextResponse.json({ resposta })
+        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
 
     } catch (error) {
         const respostaApi = new RespostaApi(

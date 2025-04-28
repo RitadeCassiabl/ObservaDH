@@ -24,7 +24,7 @@ export async function PATCH(
 
         const resposta = await controller.executar(id, nome)
 
-        return NextResponse.json({ resposta })
+        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 });
 
     } catch (error) {
         const resposta = new RespostaApi(
@@ -56,7 +56,7 @@ export async function DELETE(
 
         const resposta = await controller.executar(id)
 
-        return NextResponse.json({ resposta })
+        return NextResponse.json({ resposta } , { status: resposta.sucesso ? 200 : 400 });
 
     } catch (error) {
         const respostaApi = new RespostaApi(
@@ -64,7 +64,7 @@ export async function DELETE(
             'erro interno',
             error
         )
-        return NextResponse.json({ respostaApi })
+        return NextResponse.json({ respostaApi } , { status: 500 });
     }
 }
 

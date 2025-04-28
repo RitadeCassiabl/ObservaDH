@@ -1,4 +1,5 @@
 import { CriarProfissaoController } from "@/lib/api/controllers/profissao/criar-profissao-controller";
+import { ListarProfissoesController } from "@/lib/api/controllers/profissao/listar-profissao-controller";
 import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
@@ -39,7 +40,6 @@ export async function POST(request: Request) {
   }
 }
 
-import { ListarProfissoesController } from "@/lib/api/controllers/profissao/listar-profissao-controller";
 
 export async function GET() {
   try {
