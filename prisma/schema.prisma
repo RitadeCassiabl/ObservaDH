@@ -15,9 +15,7 @@ model Projeto {
   justificativa    String
   ementa           String
   ambitoId         String
-  ambito           Ambito           @relation(fields: [ambitoId], references: [id])
-  temaId           String
-  tema             Tema             @relation(fields: [temaId], references: [id])
+  ambito           Ambito           @relation(fields: [ambitoId], references: [id])           
   autores          Politico[]       @relation("ProjetoAutores")
   partidos         Partido[]
   direitosViolados DireitoViolado[]
@@ -53,12 +51,6 @@ model Estado {
   id        String     @id @default(uuid()) @db.VarChar(36)
   nome      String     @unique
   politicos Politico[]
-}
-
-model Tema {
-  id       String    @id @default(uuid()) @db.VarChar(36)
-  nome     String
-  projetos Projeto[]
 }
 
 model Ambito {
