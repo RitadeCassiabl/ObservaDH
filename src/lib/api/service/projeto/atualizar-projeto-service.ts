@@ -8,8 +8,7 @@ export class AtualizarProjetoService {
     pauta: string,
     justificativa: string,
     ementa: string,
-    ambitoId: string,
-    ambito: string,
+    ambitoId: string
   ) {
     const prisma = prismaClient;
 
@@ -23,8 +22,7 @@ export class AtualizarProjetoService {
         pauta: pauta,
         justificativa: justificativa,
         ementa: ementa,
-        ambitoId: ambitoId,
-        ambito: ambito,
+        ambitoId: ambitoId
       },
     });
     return resposta;

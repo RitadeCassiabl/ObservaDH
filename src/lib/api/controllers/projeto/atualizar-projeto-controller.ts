@@ -53,19 +53,18 @@ export class AtualizarProjetoController {
             pauta,
             justificativa,
             ementa,
-            ambitoId,
-            ambito);
+            ambitoId);
 
         if (resposta) {
             return new RespostaApi(
                 true,
-                "O Direito violado foi atualizado com sucesso",
+                "O Projeto de lei foi atualizado com sucesso",
                 resposta
             );
         } else {
             return new RespostaApi(
                 false,
-                "O Direito violado não foi atualizado, por algum motivo"
+                "O Projeto de lei não foi atualizado, por algum motivo"
             );
         }
     }

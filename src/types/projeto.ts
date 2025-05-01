@@ -1,34 +1,34 @@
 //TODO: modificações necessárias
-
 import { SerializacaoDesserializacao } from "./serializacao-desserializacao";
+import {Ambito} from "./ambito";
 
 class Projeto {
   id?: string;
-  ano?: string;
-  numero_pl?: string;
-  pauta?: string;
-  justificativa?: string;
-  ementa?: string;
+  ano: string;
+  numero_pl: string;
+  pauta: string;
+  justificativa: string;
+  ementa: string;
   ambitoId?: string;
-  ambito?: string;
+  ambito?: Ambito;
   autores?: string[];
   partidos?: string[];
   direitosViolados?: string[];
   ideologias?: string[];
 
   constructor(
-    id?: string,
-    ano?: string,
-    numero_pl?: string,
-    pauta?: string,
-    justificativa?: string,
-    ementa?: string,
+    ano: string,
+    numero_pl: string,
+    pauta: string,
+    justificativa: string,
+    ementa: string,
     ambitoId?: string,
-    ambito?: string,
+    ambito?: Ambito,
     autores?: string[],
     partidos?: string[],
     direitosViolados?: string[],
-    ideologias?: string[]
+    ideologias?: string[],
+    id?: string
   ) {
     this.id = id;
     this.ano = ano;
@@ -44,7 +44,7 @@ class Projeto {
     this.ideologias = ideologias;
   }
 
-  serializarProjeto(projeto: Projeto ): string {
+  serializarProjeto(projeto: Projeto): string {
     return SerializacaoDesserializacao.serializar(projeto) as string;
   }
 

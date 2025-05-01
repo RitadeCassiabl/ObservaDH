@@ -1,6 +1,6 @@
-import { AtualizarProjetoController } from "@/lib/api/controllers/projeto/atualizar-projeto-controller";
-import { BuscarProjetoController } from "@/lib/api/controllers/projeto/buscar-projeto-controller";
-import { DeletarProjetoController } from "@/lib/api/controllers/projeto/deletar-projeto-controller";
+import { AtualizarAmbitoController } from "@/lib/api/controllers/ambito/atualizar-ambito-controller";
+import { BuscarAmbitoController } from "@/lib/api/controllers/ambito/buscar-ambito-controller";
+import { DeletarAmbitoController } from "@/lib/api/controllers/ambito/deletar-ambito-controller";
 import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
@@ -14,26 +14,16 @@ export async function PATCH(
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informação para a busca do Projeto de lei"
+        "Estão faltando informação para a busca do âmbito"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
 
-    const { ano, numero_pl, pauta, justificativa, ementa, ambitoId, ambito } =
-      await request.json();
+    const { nome } = await request.json();
 
-    const controller = new AtualizarProjetoController();
+    const controller = new AtualizarAmbitoController();
 
-    const resposta = await controller.executar(
-      id,
-      ano,
-      numero_pl,
-      pauta,
-      justificativa,
-      ementa,
-      ambitoId,
-      ambito
-    );
+    const resposta = await controller.executar(id, nome);
 
     return NextResponse.json(
       { resposta },
@@ -45,20 +35,19 @@ export async function PATCH(
   }
 }
 
-export async function DELETE(request: Request,{ params }: { params: { id?: string } }) {
-
+export async function DELETE({ params }: { params: { id?: string } }) {
   try {
     const { id } = params;
 
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informação para a busca do Projeto de lei"
+        "Está faltando informação para a busca do âmbito"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
 
-    const controller = new DeletarProjetoController();
+    const controller = new DeletarAmbitoController();
 
     const resposta = await controller.executar(id);
 
@@ -72,18 +61,18 @@ export async function DELETE(request: Request,{ params }: { params: { id?: strin
   }
 }
 
-export async function GET(request: Request,{ params }: { params: { id?: string } }) {
+export async function GET({ params }: { params: { id?: string } }) {
   try {
     const { id } = params;
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informação para a busca do Projeto de lei"
+        "Estão faltando informação para a busca do âmbito"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
 
-    const controller = new BuscarProjetoController();
+    const controller = new BuscarAmbitoController();
 
     const resposta = await controller.executar(id);
 

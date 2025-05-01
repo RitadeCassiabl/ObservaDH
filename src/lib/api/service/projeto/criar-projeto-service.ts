@@ -1,6 +1,5 @@
 import { Projeto } from "@/types/projeto";
 import { prismaClient } from "@/services/prisma/prisma";
-
 export class CriarProjetoService {
   async executar(projeto: Projeto) {
     const prisma = prismaClient;
@@ -12,8 +11,9 @@ export class CriarProjetoService {
         pauta: projeto.pauta,
         justificativa: projeto.justificativa,
         ementa: projeto.ementa,
-        ambitoId: projeto.ambitoId,
-        ambito: projeto.ambito,
+        ...(projeto.ambitoId !== undefined
+          ? { ambitoId: projeto.ambitoId }
+          : { ambito: { create: projeto.ambito } }),
         autores: {
           create: [],
         },

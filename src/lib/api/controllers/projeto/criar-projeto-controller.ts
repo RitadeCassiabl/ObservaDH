@@ -2,6 +2,7 @@ import { Projeto } from "@/types/projeto";
 import { CriarProjetoService } from "../../service/projeto/criar-projeto-service";
 import { RespostaApi } from "@/types/resposta-api";
 import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-service";
+import { Ambito } from "@/types/ambito";
 
 export class CriarProjetoController {
   async executar(
@@ -11,7 +12,7 @@ export class CriarProjetoController {
     justificativa: string,
     ementa: string,
     ambitoId: string,
-    ambito: string
+    ambito: Ambito
   ) {
     if (
       !ano ||
