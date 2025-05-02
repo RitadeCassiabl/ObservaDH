@@ -6,9 +6,9 @@ export class DeletarIdeologiaService {
 
         const resposta = await prisma.ideologia.delete({
             where: {
-                id: id
-            }
-        })
+                id: id,
+            },
+        });
         return resposta;
     }
 }

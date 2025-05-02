@@ -35,7 +35,10 @@ export async function PATCH(
   }
 }
 
-export async function DELETE({ params }: { params: { id?: string } }) {
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id?: string } }
+) {
   try {
     const { id } = params;
 
@@ -61,7 +64,10 @@ export async function DELETE({ params }: { params: { id?: string } }) {
   }
 }
 
-export async function GET({ params }: { params: { id?: string } }) {
+export async function GET(
+  request: Request,
+  { params }: { params: { id?: string } }
+) {
   try {
     const { id } = params;
     if (!id) {
