@@ -1,4 +1,5 @@
 import { prismaClient } from "@/services/prisma/prisma";
+import { Esfera } from "@/types/esfera";
 
 export class AtualizarProjetoService {
   async executar(
@@ -8,7 +9,8 @@ export class AtualizarProjetoService {
     pauta: string,
     justificativa: string,
     ementa: string,
-    ambitoId: string
+    esferaId: string,
+    esfera: Esfera
   ) {
     const prisma = prismaClient;
 
@@ -22,7 +24,12 @@ export class AtualizarProjetoService {
         pauta: pauta,
         justificativa: justificativa,
         ementa: ementa,
-        ambitoId: ambitoId
+        esferaId: esferaId,
+        esfera: {
+          update: {
+            nome: esfera.nome,
+          },
+        },
       },
     });
     return resposta;

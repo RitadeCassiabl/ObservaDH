@@ -11,9 +11,9 @@ export class CriarProjetoService {
         pauta: projeto.pauta,
         justificativa: projeto.justificativa,
         ementa: projeto.ementa,
-        ...(projeto.ambitoId !== undefined
-          ? { ambitoId: projeto.ambitoId }
-          : { ambito: { create: projeto.ambito } }),
+        ...(projeto.esferaId !== undefined
+          ? { esferaId: projeto.esferaId }
+          : { esfera: { create: projeto.esfera } }),
         autores: {
           create: [],
         },
