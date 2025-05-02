@@ -2,7 +2,7 @@ import { Projeto } from "@/types/projeto";
 import { CriarProjetoService } from "../../service/projeto/criar-projeto-service";
 import { RespostaApi } from "@/types/resposta-api";
 import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-service";
-import { Ambito } from "@/types/esfera";
+import { Esfera } from "@/types/esfera";
 
 export class CriarProjetoController {
   async executar(
@@ -11,8 +11,8 @@ export class CriarProjetoController {
     pauta: string,
     justificativa: string,
     ementa: string,
-    ambitoId: string,
-    ambito: Ambito
+    esferaId: string,
+    esfera: Esfera
   ) {
     if (
       !ano ||
@@ -20,8 +20,8 @@ export class CriarProjetoController {
       !pauta ||
       !justificativa ||
       !ementa ||
-      !ambitoId ||
-      !ambito
+      !esferaId ||
+      !esfera
     ) {
       return new RespostaApi(
         false,
@@ -45,8 +45,8 @@ export class CriarProjetoController {
       pauta,
       justificativa,
       ementa,
-      ambitoId,
-      ambito
+      esferaId,
+      esfera
     );
 
     const resposta = await service.executar(projeto);

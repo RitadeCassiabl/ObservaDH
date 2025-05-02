@@ -1,6 +1,7 @@
 import { RespostaApi } from "@/types/resposta-api";
 import { AtualizarProjetoService } from "../../service/projeto/atualizar-projeto-service";
 import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-service";
+import { Esfera } from "@/types/esfera";
 
 export class AtualizarProjetoController {
     async executar(id: string, ano: string,
@@ -8,22 +9,21 @@ export class AtualizarProjetoController {
         pauta: string,
         justificativa: string,
         ementa: string,
-        ambitoId: string,
-        ambito: string) {
+        esferaId: string,
+        esfera: Esfera) {
 
         if (!id || !ano ||
             !numero_pl ||
             !pauta ||
             !justificativa ||
             !ementa ||
-            !ambitoId ||
-            !ambito) {
+            !esferaId ||
+            !esfera)
             return new RespostaApi(
                 false,
                 "Estão faltando informações para a alteração do Projeto de lei"
             );
 
-        }
 
         const serviceAuxiliar = new BuscarProjetoService()
 
@@ -53,7 +53,9 @@ export class AtualizarProjetoController {
             pauta,
             justificativa,
             ementa,
-            ambitoId);
+            esferaId,
+            esfera
+        );
 
         if (resposta) {
             return new RespostaApi(
