@@ -14,7 +14,7 @@ export async function PATCH(
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informação para a busca da esfera"
+        "Estão faltando informações para a busca da esfera"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
@@ -42,7 +42,7 @@ export async function DELETE({ params }: { params: { id?: string } }) {
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Está faltando informação para a busca da esfera"
+        "Estão faltando informações para a busca da esfera"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
@@ -67,7 +67,7 @@ export async function GET({ params }: { params: { id?: string } }) {
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informação para a busca da esfera"
+        "Estão faltando informações para a busca da esfera"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }

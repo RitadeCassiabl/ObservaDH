@@ -6,6 +6,7 @@ export class AtualizarProjetoService {
     id: string,
     ano: string,
     numero_pl: string,
+    pautaId: string,
     pauta: string,
     justificativa: string,
     ementa: string,
@@ -21,6 +22,7 @@ export class AtualizarProjetoService {
       data: {
         ano: ano,
         numero_pl: numero_pl,
+        pautaId: pautaId,
         pauta: pauta,
         justificativa: justificativa,
         ementa: ementa,

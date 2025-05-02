@@ -5,21 +5,22 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { ano, numero_pl, pauta, justificativa, ementa, ambitoId, ambito } =
+    const { ano, numero_pl, pautaId, pauta, justificativa, ementa, esferaId, esfera } =
       await request.json();
 
     if (
       !ano ||
       !numero_pl ||
+      !pautaId ||
       !pauta ||
       !justificativa ||
       !ementa ||
-      !ambitoId ||
-      !ambito
+      !esferaId ||
+      !esfera
     ) {
       const respostaApi = new RespostaApi(
         false,
-        "Estão faltando infomações para a criação do Projeto de lei"
+        "Estão faltando infomações para a criação do projeto de lei"
       );
 
       return NextResponse.json({ respostaApi }, { status: 400 });
@@ -29,11 +30,12 @@ export async function POST(request: Request) {
       const resposta = await controller.executar(
         ano,
         numero_pl,
+        pautaId,
         pauta,
         justificativa,
         ementa,
-        ambitoId,
-        ambito
+        esferaId,
+        esfera
       );
 
       return NextResponse.json(

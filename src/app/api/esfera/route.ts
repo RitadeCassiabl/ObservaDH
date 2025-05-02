@@ -3,7 +3,6 @@ import { ListarEsferaController } from "@/lib/api/controllers/esfera/listar-esfe
 import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
-
 export async function POST(request: Request) {
   try {
     const { nome } = await request.json();
@@ -14,11 +13,7 @@ export async function POST(request: Request) {
         "Estão faltando infomações para a criação da esfera"
       );
 
-      return NextResponse.json(
-        { respostaApi },
-        { status: 400 }
-      ); 
-
+      return NextResponse.json({ respostaApi }, { status: 400 });
     } else {
       const controller = new CriarEsferaController();
 
@@ -28,40 +23,28 @@ export async function POST(request: Request) {
         { resposta },
         { status: resposta.sucesso ? 200 : 400 }
       );
-
     }
   } catch (error) {
-
     const respostaApi = new RespostaApi(false, "erro interno", error);
 
-    return NextResponse.json(
-      { respostaApi },
-      { status: 500 }
-    );
+    return NextResponse.json({ respostaApi }, { status: 500 });
   }
 }
 
-
 export async function GET() {
   try {
-    const controller = new ListarEsferaController()
-    const resposta = await controller.executar()
+    const controller = new ListarEsferaController();
+    const resposta = await controller.executar();
 
     if (!resposta.sucesso) {
       return NextResponse.json({
         resposta,
-        status: 400
-      })
+        status: 400,
+      });
     }
-    return NextResponse.json(
-      { resposta },
-      { status: 200 }
-    )
+    return NextResponse.json({ resposta }, { status: 200 });
   } catch (error) {
     const respostaApi = new RespostaApi(false, "erro interno", error);
-    return NextResponse.json(
-      { respostaApi },
-      { status: 500 }
-    );
+    return NextResponse.json({ respostaApi }, { status: 500 });
   }
 }

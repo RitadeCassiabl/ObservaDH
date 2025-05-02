@@ -14,13 +14,21 @@ export async function PATCH(
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informação para a busca do Projeto de lei"
+        "Estão faltando informações para a busca do projeto de lei"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
 
-    const { ano, numero_pl, pauta, justificativa, ementa, ambitoId, ambito } =
-      await request.json();
+    const {
+      ano,
+      numero_pl,
+      pautaId,
+      pauta,
+      justificativa,
+      ementa,
+      esferaId,
+      esfera,
+    } = await request.json();
 
     const controller = new AtualizarProjetoController();
 
@@ -28,11 +36,12 @@ export async function PATCH(
       id,
       ano,
       numero_pl,
+      pautaId,
       pauta,
       justificativa,
       ementa,
-      ambitoId,
-      ambito
+      esferaId,
+      esfera
     );
 
     return NextResponse.json(
@@ -45,15 +54,17 @@ export async function PATCH(
   }
 }
 
-export async function DELETE(request: Request,{ params }: { params: { id?: string } }) {
-
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id?: string } }
+) {
   try {
     const { id } = params;
 
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informação para a busca do Projeto de lei"
+        "Estão faltando informações para a busca do projeto de lei"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
@@ -72,13 +83,16 @@ export async function DELETE(request: Request,{ params }: { params: { id?: strin
   }
 }
 
-export async function GET(request: Request,{ params }: { params: { id?: string } }) {
+export async function GET(
+  request: Request,
+  { params }: { params: { id?: string } }
+) {
   try {
     const { id } = params;
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informação para a busca do Projeto de lei"
+        "Estão faltando informações para a busca do projeto de lei"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }

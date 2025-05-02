@@ -7,7 +7,7 @@ export class DeletarEsferaController {
     if (!id) {
       return new RespostaApi(
         false,
-        "Estão faltando informações para deletar o âmbito"
+        "Estão faltando informações para deletar a esfera"
       );
     }
 
@@ -16,7 +16,7 @@ export class DeletarEsferaController {
     const existe = await serviceAuxiliar.buscarPorId(id);
 
     if (!existe) {
-      return new RespostaApi(false, "O esfera não existe");
+      return new RespostaApi(false, "A esfera não existe");
     }
 
     const service = new DeletarEsferaService();
@@ -24,11 +24,11 @@ export class DeletarEsferaController {
     const resposta = await service.executar(id);
 
     if (resposta) {
-      return new RespostaApi(true, "O esfera foi deletado com sucesso");
+      return new RespostaApi(true, "A esfera foi deletada com sucesso");
     } else {
       return new RespostaApi(
         false,
-        "Houve um erro na hora de deletar o esfera"
+        "Houve um erro na hora de deletar a esfera"
       );
     }
   }

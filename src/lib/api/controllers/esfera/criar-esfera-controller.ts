@@ -8,7 +8,7 @@ export class CriarEsferaController {
     if (!nome) {
       return new RespostaApi(
         false,
-        "Estão faltando informações para criar o esfera"
+        "Estão faltando informações para criar a esfera"
       );
     }
 
@@ -17,7 +17,7 @@ export class CriarEsferaController {
     const existe = await serviceAuxiliar.buscarPorNome(nome);
 
     if (existe) {
-      return new RespostaApi(false, "O esfera já existe");
+      return new RespostaApi(false, "A esfera já existe");
     }
 
     const service = new CriarEsferaService();
@@ -27,15 +27,11 @@ export class CriarEsferaController {
     const resposta = await service.executar(esfera);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "Esfera criado com sucesso",
-        resposta
-      );
+      return new RespostaApi(true, "A esfera foi criada com sucesso", resposta);
     } else {
       return new RespostaApi(
         false,
-        "Houve algum problema na criação do esfera"
+        "Houve algum problema na criação da esfera"
       );
     }
   }
