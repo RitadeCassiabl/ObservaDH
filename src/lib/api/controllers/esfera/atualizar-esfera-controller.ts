@@ -7,7 +7,7 @@ export class AtualizarEsferaController {
     if (!id || !nome) {
       return new RespostaApi(
         false,
-        "Estão faltando informações para a alteração dA esfera"
+        "Estão faltando informações para a alteração da esfera"
       );
     }
 
@@ -22,7 +22,7 @@ export class AtualizarEsferaController {
     const novoEsfera = await serviceAuxiliar.buscarPorNome(nome);
 
     if (novoEsfera) {
-      return new RespostaApi(false, "O novo esfera já existe");
+      return new RespostaApi(false, "A nova esfera já existe");
     }
 
     const service = new AtualizarEsferaService();
@@ -32,13 +32,13 @@ export class AtualizarEsferaController {
     if (resposta) {
       return new RespostaApi(
         true,
-        "A esfera foi atualizado com sucesso",
+        "A esfera foi atualizada com sucesso",
         resposta
       );
     } else {
       return new RespostaApi(
         false,
-        "A esfera não foi atualizado, por algum motivo"
+        "A esfera não foi atualizada, por algum motivo"
       );
     }
   }

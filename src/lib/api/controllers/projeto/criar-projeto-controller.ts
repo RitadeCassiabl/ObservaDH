@@ -8,6 +8,7 @@ export class CriarProjetoController {
   async executar(
     ano: string,
     numero_pl: string,
+    pautaId: string,
     pauta: string,
     justificativa: string,
     ementa: string,
@@ -17,6 +18,7 @@ export class CriarProjetoController {
     if (
       !ano ||
       !numero_pl ||
+      !pautaId ||
       !pauta ||
       !justificativa ||
       !ementa ||
@@ -25,7 +27,7 @@ export class CriarProjetoController {
     ) {
       return new RespostaApi(
         false,
-        "Estão faltando informações para criar o Projeto de lei"
+        "Estão faltando informações para criar o projeto de lei"
       );
     }
 
@@ -34,7 +36,7 @@ export class CriarProjetoController {
     const existe = await serviceAuxiliar.buscarPorNumeroPL(numero_pl);
 
     if (existe) {
-      return new RespostaApi(false, "O Projeto de lei já existe");
+      return new RespostaApi(false, "O projeto de lei já existe");
     }
 
     const service = new CriarProjetoService();
@@ -42,6 +44,7 @@ export class CriarProjetoController {
     const projeto = new Projeto(
       ano,
       numero_pl,
+      pautaId,
       pauta,
       justificativa,
       ementa,
@@ -60,7 +63,7 @@ export class CriarProjetoController {
     } else {
       return new RespostaApi(
         false,
-        "Houve algum problema na criação do Projeto de lei"
+        "Houve algum problema na criação do projeto de lei"
       );
     }
   }

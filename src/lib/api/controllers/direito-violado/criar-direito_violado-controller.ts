@@ -10,7 +10,7 @@ export class CriarDireitoVioladoController {
         if (!nome) {
             return new RespostaApi(
                 false,
-                "Está faltando infomação para a criação do direito violado"
+                "Estão faltando infomações para a criação do direito violado"
             );
         }
 

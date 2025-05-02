@@ -8,6 +8,7 @@ export class CriarProjetoService {
       data: {
         ano: projeto.ano,
         numero_pl: projeto.numero_pl,
+        pautaId: projeto.pautaId,
         pauta: projeto.pauta,
         justificativa: projeto.justificativa,
         ementa: projeto.ementa,

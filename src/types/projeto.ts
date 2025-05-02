@@ -6,6 +6,7 @@ class Projeto {
   id?: string;
   ano: string;
   numero_pl: string;
+  pautaId: string;
   pauta: string;
   justificativa: string;
   ementa: string;
@@ -19,6 +20,7 @@ class Projeto {
   constructor(
     ano: string,
     numero_pl: string,
+    pautaId: string,
     pauta: string,
     justificativa: string,
     ementa: string,
@@ -33,6 +35,7 @@ class Projeto {
     this.id = id;
     this.ano = ano;
     this.numero_pl = numero_pl;
+    this.pautaId = pautaId;
     this.pauta = pauta;
     this.justificativa = justificativa;
     this.ementa = ementa;
