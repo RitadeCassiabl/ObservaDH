@@ -1,10 +1,10 @@
-import { prismaClient } from "@/services/prisma/prisma";
+import { prismaClient } from '@/services/prisma/prisma';
 
-export class DeletarProfissaoService {
+export class DeletarDireitoVioladoService {
     async executar(id: string) {
         const prisma = prismaClient;
 
-        const resposta = await prisma.profissao.delete({
+        const resposta = await prisma.direitoViolado.delete({
             where: {
                 id: id
             }

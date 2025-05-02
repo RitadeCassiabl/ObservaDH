@@ -1,22 +1,22 @@
 import { RespostaApi } from "@/types/resposta-api";
-import { ListarProfissoesService } from "../../service/profissao/listar-profissao-service";
+import { ListarTemaService } from "../../service/tema/listar-tema-service";
 
-export class ListarProfissoesController {
+export class ListarTemaController {
     async executar() {
-        const service = new ListarProfissoesService()
+        const service = new ListarTemaService();
 
         const resposta = await service.executar();
 
         if (resposta) {
             return new RespostaApi(
                 true,
-                `${resposta.length} profissão(ões) foram encontrada(s)`,
+                `${resposta.length} tema(s) foram encontrados`,
                 resposta
-            )
+            );
         } else {
             return new RespostaApi(
                 false,
-                "Nenhuma profissões encontradas"
+                "Nenhum tema foi encontrado."
             )
         }
     }
