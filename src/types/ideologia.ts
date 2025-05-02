@@ -1,12 +1,11 @@
-import { Projeto } from "./projeto";
 import { SerializacaoDesserializacao } from "./serializacao-desserializacao";
 
 class Ideologia {
   id?: string;
   nome: string;
-  projetos?: Projeto[];
+  projetos?: string[];
 
-  constructor(nome: string, projetos?: Projeto[], id?: string) {
+  constructor(nome: string, projetos?: string[], id?: string) {
     this.nome = nome;
     this.projetos = projetos;
     this.id = id;
