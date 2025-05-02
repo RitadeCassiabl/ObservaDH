@@ -1,6 +1,6 @@
-import { AtualizarAmbitoController } from "@/lib/api/controllers/ambito/atualizar-ambito-controller";
-import { BuscarAmbitoController } from "@/lib/api/controllers/ambito/buscar-ambito-controller";
-import { DeletarAmbitoController } from "@/lib/api/controllers/ambito/deletar-ambito-controller";
+import { AtualizarEsferaController } from "@/lib/api/controllers/esfera/atualizar-esfera-controller";
+import { BuscarEsferaController } from "@/lib/api/controllers/esfera/buscar-esfera-controller";
+import { DeletarEsferaController } from "@/lib/api/controllers/esfera/deletar-esfera-controller";
 import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
@@ -14,14 +14,14 @@ export async function PATCH(
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informação para a busca do âmbito"
+        "Estão faltando informação para a busca da esfera"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
 
     const { nome } = await request.json();
 
-    const controller = new AtualizarAmbitoController();
+    const controller = new AtualizarEsferaController();
 
     const resposta = await controller.executar(id, nome);
 
@@ -42,12 +42,12 @@ export async function DELETE({ params }: { params: { id?: string } }) {
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Está faltando informação para a busca do âmbito"
+        "Está faltando informação para a busca da esfera"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
 
-    const controller = new DeletarAmbitoController();
+    const controller = new DeletarEsferaController();
 
     const resposta = await controller.executar(id);
 
@@ -67,12 +67,12 @@ export async function GET({ params }: { params: { id?: string } }) {
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informação para a busca do âmbito"
+        "Estão faltando informação para a busca da esfera"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
 
-    const controller = new BuscarAmbitoController();
+    const controller = new BuscarEsferaController();
 
     const resposta = await controller.executar(id);
 

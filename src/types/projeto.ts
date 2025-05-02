@@ -1,6 +1,6 @@
 //TODO: modificações necessárias
 import { SerializacaoDesserializacao } from "./serializacao-desserializacao";
-import {Ambito} from "./ambito";
+import {Esfera} from "./esfera";
 
 class Projeto {
   id?: string;
@@ -9,8 +9,8 @@ class Projeto {
   pauta: string;
   justificativa: string;
   ementa: string;
-  ambitoId: string;
-  ambito: Ambito;
+  esferaId: string;
+  esfera: Esfera;
   autores?: string[];
   partidos?: string[];
   direitosViolados?: string[];
@@ -22,8 +22,8 @@ class Projeto {
     pauta: string,
     justificativa: string,
     ementa: string,
-    ambitoId: string,
-    ambito: Ambito,
+    esferaId: string,
+    esfera: Esfera,
     autores?: string[],
     partidos?: string[],
     direitosViolados?: string[],
@@ -36,8 +36,8 @@ class Projeto {
     this.pauta = pauta;
     this.justificativa = justificativa;
     this.ementa = ementa;
-    this.ambitoId = ambitoId;
-    this.ambito = ambito;
+    this.esferaId = esferaId;
+    this.esfera = esfera;
     this.autores = autores;
     this.partidos = partidos;
     this.direitosViolados = direitosViolados;

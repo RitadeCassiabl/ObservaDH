@@ -1,7 +1,7 @@
 import { Projeto } from "./projeto";
 import { SerializacaoDesserializacao } from "./serializacao-desserializacao";
 
-class Ambito {
+class Esfera {
   id?: string;
   nome: string;
   projetos?: Projeto[];
@@ -12,13 +12,13 @@ class Ambito {
     this.projetos = projetos;
   }
 
-  serializarAmbito(ambito: Ambito): string {
-    return SerializacaoDesserializacao.serializar(ambito) as string;
+  serializarEsfera(esfera: Esfera): string {
+    return SerializacaoDesserializacao.serializar(esfera) as string;
   }
 
-  desserializarAmbito(text: string): Ambito {
-    return SerializacaoDesserializacao.desserializar(text) as Ambito;
+  desserializarEsfera(text: string): Esfera {
+    return SerializacaoDesserializacao.desserializar(text) as Esfera;
   }
 }
 
-export { Ambito };
+export { Esfera };

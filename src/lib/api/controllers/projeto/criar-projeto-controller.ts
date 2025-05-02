@@ -2,7 +2,7 @@ import { Projeto } from "@/types/projeto";
 import { CriarProjetoService } from "../../service/projeto/criar-projeto-service";
 import { RespostaApi } from "@/types/resposta-api";
 import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-service";
-import { Ambito } from "@/types/ambito";
+import { Ambito } from "@/types/esfera";
 
 export class CriarProjetoController {
   async executar(

@@ -1,9 +1,9 @@
 import { RespostaApi } from "@/types/resposta-api";
-import { ListarAmbitoService } from "../../service/ambito/listar-ambito-service";
+import { ListarEsferaService } from "../../service/esfera/listar-esfera-service";
 
-export class ListarAmbitoController {
+export class ListarEsferaController {
     async executar() {
-        const service = new ListarAmbitoService();
+        const service = new ListarEsferaService();
 
         const resposta = await service.executar();
 
@@ -16,7 +16,7 @@ export class ListarAmbitoController {
         } else {
             return new RespostaApi(
                 false,
-                "Nenhum Ambito foi encontrado"
+                "Nenhum Esfera foi encontrado"
             );
         }
     }

@@ -1,10 +1,10 @@
 import { prismaClient } from '@/services/prisma/prisma';
 
-export class DeletarAmbitoService {
+export class DeletarEsferaService {
     async executar(id: string) {
         const prisma = prismaClient;
 
-        const resposta = await prisma.ambito.delete({
+        const resposta = await prisma.esfera.delete({
             where: {
                 id: id
             }

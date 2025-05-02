@@ -1,11 +1,11 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class BuscarAmbitoService {
+export class BuscarEsferaService {
 
     async buscarPorId(id: string) {
         const prisma = prismaClient;
 
-        const resposta = await prisma.ambito.findUnique({
+        const resposta = await prisma.esfera.findUnique({
             where: {
                 id: id
             }
@@ -17,7 +17,7 @@ export class BuscarAmbitoService {
     async buscarPorNome(nome: string) {
         const prisma = prismaClient;
 
-        const resposta = await prisma.ambito.findFirst({
+        const resposta = await prisma.esfera.findFirst({
             where: {
                 nome: nome
             }

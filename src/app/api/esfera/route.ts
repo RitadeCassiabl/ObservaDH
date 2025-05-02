@@ -1,5 +1,5 @@
-import { CriarAmbitoController } from "@/lib/api/controllers/ambito/criar-ambito-controller";
-import { ListarAmbitoController } from "@/lib/api/controllers/ambito/listar-ambito-controller";
+import { CriarEsferaController } from "@/lib/api/controllers/esfera/criar-esfera-controller";
+import { ListarEsferaController } from "@/lib/api/controllers/esfera/listar-esfera-controller";
 import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     if (!nome) {
       const respostaApi = new RespostaApi(
         false,
-        "Estão faltando infomações para a criação do âmbito"
+        "Estão faltando infomações para a criação da esfera"
       );
 
       return NextResponse.json(
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       ); 
 
     } else {
-      const controller = new CriarAmbitoController();
+      const controller = new CriarEsferaController();
 
       const resposta = await controller.executar(nome);
 
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
-    const controller = new ListarAmbitoController()
+    const controller = new ListarEsferaController()
     const resposta = await controller.executar()
 
     if (!resposta.sucesso) {

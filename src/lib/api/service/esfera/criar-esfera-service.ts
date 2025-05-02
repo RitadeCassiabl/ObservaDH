@@ -1,12 +1,12 @@
-import { Ambito } from "@/types/ambito";
+import { Esfera } from "@/types/esfera";
 import { prismaClient } from "@/services/prisma/prisma";
-export class CriarAmbitoService {
-  async executar(ambito: Ambito) {
+export class CriarEsferaService {
+  async executar(esfera: Esfera) {
     const prisma = prismaClient;
 
-    const resposta = await prisma.ambito.create({
+    const resposta = await prisma.esfera.create({
       data: {
-        nome: ambito.nome,
+        nome: esfera.nome,
         projetos: {
           create: [],
         },

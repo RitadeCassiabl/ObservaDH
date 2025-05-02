@@ -1,10 +1,10 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class ListarAmbitoService {
+export class ListarEsferaService {
     async executar() {
         const prisma = prismaClient;
 
-        const resposta = await prisma.ambito.findMany({});
+        const resposta = await prisma.esfera.findMany({});
 
         return resposta;
     }
