@@ -1,6 +1,6 @@
-import { AtualizarEsferaController } from "@/lib/api/controllers/esfera/atualizar-esfera-controller";
-import { BuscarEsferaController } from "@/lib/api/controllers/esfera/buscar-esfera-controller";
-import { DeletarEsferaController } from "@/lib/api/controllers/esfera/deletar-esfera-controller";
+import { AtualizarIdeologiaController } from "@/lib/api/controllers/ideologia/atualizar-ideologia-controller";
+import { BuscarIdeologiaController } from "@/lib/api/controllers/ideologia/buscar-ideologia-controller";
+import { DeletarIdeologiaController } from "@/lib/api/controllers/ideologia/deletar-ideologia-controller";
 import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
@@ -14,14 +14,14 @@ export async function PATCH(
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informações para a busca da esfera"
+        "Estão faltando informações para a busca da ideologia"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
 
     const { nome } = await request.json();
 
-    const controller = new AtualizarEsferaController();
+    const controller = new AtualizarIdeologiaController();
 
     const resposta = await controller.executar(id, nome);
 
@@ -45,12 +45,12 @@ export async function DELETE(
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informações para a busca da esfera"
+        "Estão faltando informações para a busca da ideologia"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
 
-    const controller = new DeletarEsferaController();
+    const controller = new DeletarIdeologiaController();
 
     const resposta = await controller.executar(id);
 
@@ -73,12 +73,12 @@ export async function GET(
     if (!id) {
       const resposta = new RespostaApi(
         false,
-        "Estão faltando informações para a busca da esfera"
+        "Estão faltando informações para a busca da ideologia"
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
 
-    const controller = new BuscarEsferaController();
+    const controller = new BuscarIdeologiaController();
 
     const resposta = await controller.executar(id);
 
