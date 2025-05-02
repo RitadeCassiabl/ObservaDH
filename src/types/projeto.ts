@@ -9,8 +9,8 @@ class Projeto {
   pauta: string;
   justificativa: string;
   ementa: string;
-  ambitoId?: string;
-  ambito?: Ambito;
+  ambitoId: string;
+  ambito: Ambito;
   autores?: string[];
   partidos?: string[];
   direitosViolados?: string[];
@@ -22,8 +22,8 @@ class Projeto {
     pauta: string,
     justificativa: string,
     ementa: string,
-    ambitoId?: string,
-    ambito?: Ambito,
+    ambitoId: string,
+    ambito: Ambito,
     autores?: string[],
     partidos?: string[],
     direitosViolados?: string[],
