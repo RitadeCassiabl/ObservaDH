@@ -1,5 +1,6 @@
-import { ListarTemaController } from "@/lib/api/controllers/pauta/listar-pauta-controller"
-import { CriarTemaController } from "@/lib/api/controllers/pauta/criar-pauta-controller";
+
+import { CriarPautaController } from "@/lib/api/controllers/pauta/criar-pauta-controller";
+import { ListarPautaController } from "@/lib/api/controllers/pauta/listar-pauta-controller";
 import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
@@ -8,7 +9,7 @@ export async function POST(request: Request) {
 
         const { nome } = await request.json();
 
-        const controller = new CriarTemaController();
+        const controller = new CriarPautaController();
 
         const resposta = await controller.executar(nome);
 
@@ -34,7 +35,7 @@ export async function POST(request: Request) {
 export async function GET() {
     try {
 
-        const controller = new ListarTemaController();
+        const controller = new ListarPautaController();
 
         const resposta = await controller.executar();
 

@@ -1,8 +1,7 @@
 import { RespostaApi } from "@/types/resposta-api";
-import { BuscarTemaService } from "../../service/pauta/buscar-pauta-service";
+import { BuscarPautaService } from "../../service/pauta/buscar-pauta-service";
 
-
-export class BuscarTemaController {
+export class BuscarPautaController {
     async executar(id: string) {
         if (!id) {
             return new RespostaApi(
@@ -11,7 +10,7 @@ export class BuscarTemaController {
             )
         }
 
-        const service = new BuscarTemaService();
+        const service = new BuscarPautaService();
 
         const resposta = await service.buscarPorID(id);
 

@@ -1,8 +1,9 @@
 import { RespostaApi } from "@/types/resposta-api";
-import { BuscarTemaService } from "../../service/pauta/buscar-pauta-service";
-import { AtualizarTemaService } from "../../service/pauta/atualizar-pauta-service";
+import { BuscarPautaService } from "../../service/pauta/buscar-pauta-service";
+import { AtualizarPautaService } from "../../service/pauta/atualizar-pauta-service";
 
-export class AtualizarTemaController {
+
+export class AtualizarPautaController {
 
     async executar(id: string, nome: string) {
 
@@ -13,9 +14,10 @@ export class AtualizarTemaController {
             );
         }
 
-        const buscarTemaService = new BuscarTemaService();
+        const buscarPautaService = new BuscarPautaService();
 
-        const temaExistente = await buscarTemaService.buscarPorID(id);
+        const temaExistente = await buscarPautaService.buscarPorID(id);
+        
         if (!temaExistente) {
             return new RespostaApi(
                 false,
@@ -23,7 +25,7 @@ export class AtualizarTemaController {
             );
         }
 
-        const novoTemaExistente = await buscarTemaService.buscarPorNome(nome);
+        const novoTemaExistente = await buscarPautaService.buscarPorNome(nome);
         if (novoTemaExistente) {
             return new RespostaApi(
                 false,
@@ -31,7 +33,7 @@ export class AtualizarTemaController {
             );
         }
 
-        const service = new AtualizarTemaService()
+        const service = new AtualizarPautaService()
 
         const resposta = await service.executar(id, nome);
 

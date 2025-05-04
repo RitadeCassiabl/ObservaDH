@@ -1,6 +1,7 @@
-import { AtualizarTemaController } from "@/lib/api/controllers/pauta/atualizar-pauta-controller";
-import { DeletarTemaController } from "@/lib/api/controllers/pauta/deletar-pauta-controller"
-import { BuscarTemaController } from "@/lib/api/controllers/pauta/buscar-pauta-controller";
+
+import { AtualizarPautaController } from "@/lib/api/controllers/pauta/atualizar-pauta-controller"
+import { BuscarPautaController } from "@/lib/api/controllers/pauta/buscar-pauta-controller"
+import { DeletarPautaController } from "@/lib/api/controllers/pauta/deletar-pauta-controller"
 import { RespostaApi } from "@/types/resposta-api"
 import { NextResponse } from "next/server"
 
@@ -17,7 +18,7 @@ export async function DELETE(request: Request,
             return NextResponse.json({ respostaApi }, { status: 400 })
         }
 
-        const controller = new DeletarTemaController();
+        const controller = new DeletarPautaController();
 
         const resposta = await controller.executar(id);
 
@@ -46,7 +47,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
 
         const { nome } = await request.json()
 
-        const controller = new AtualizarTemaController();
+        const controller = new AtualizarPautaController();
 
         const resposta = await controller.executar(id, nome);
 
@@ -79,7 +80,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
             return NextResponse.json({ respostaApi }, { status: 400 })
         }
 
-        const controller = new BuscarTemaController()
+        const controller = new BuscarPautaController()
 
         const resposta = await controller.executar(id);
 

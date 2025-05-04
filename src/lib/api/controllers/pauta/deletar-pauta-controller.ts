@@ -1,8 +1,8 @@
 import { RespostaApi } from "@/types/resposta-api";
-import { BuscarTemaService } from "../../service/pauta/buscar-pauta-service";
-import { DeletarTemaService } from "../../service/pauta/deletar-pauta-service";
+import { BuscarPautaService } from "../../service/pauta/buscar-pauta-service";
+import { DeletarPautaService } from "../../service/pauta/deletar-pauta-service";
 
-export class DeletarTemaController {
+export class DeletarPautaController {
     async executar(id: string) {
 
         if (!id) {
@@ -12,7 +12,7 @@ export class DeletarTemaController {
             )
         }
 
-        const serviceAuxiliar = new BuscarTemaService()
+        const serviceAuxiliar = new BuscarPautaService()
 
         const existe = await serviceAuxiliar.buscarPorID(id);
 
@@ -23,7 +23,7 @@ export class DeletarTemaController {
             )
         }
 
-        const service = new DeletarTemaService();
+        const service = new DeletarPautaService();
 
         const resposta = await service.executar(id)
 
