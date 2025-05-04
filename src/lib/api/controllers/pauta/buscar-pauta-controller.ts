@@ -1,12 +1,13 @@
 import { RespostaApi } from "@/types/resposta-api";
-import { BuscarTemaService } from "../../service/tema/buscar-tema-service";
+import { BuscarTemaService } from "../../service/pauta/buscar-pauta-service";
+
 
 export class BuscarTemaController {
     async executar(id: string) {
         if (!id) {
             return new RespostaApi(
                 false,
-                "Falta informações para a busca do tema"
+                "Falta informações para a busca da pauta"
             )
         }
 
@@ -17,13 +18,13 @@ export class BuscarTemaController {
         if (resposta) {
             return new RespostaApi(
                 false,
-                "O tema foi encontrado com sucesso",
+                "A pauta foi encontrada com sucesso",
                 resposta
             )
         } else {
             return new RespostaApi(
                 false,
-                "O tema não foi encontrado"
+                "A pauta não foi encontrada"
             )
         }
     }

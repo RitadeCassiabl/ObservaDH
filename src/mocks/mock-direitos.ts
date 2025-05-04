@@ -1,8 +1,8 @@
 const graficoRosquinhaDadosMock = [
-    { tema: "saude", pl: 275, fill: "#FF977A" },
-    { tema: "LIEG", pl: 200, fill: "#FDFF78" },
-    { tema: "LIB", pl: 187, fill: "#F693F9" },
-    { tema: "Educacao", pl: 173, fill: "#87D9FF"},
+    { pauta: "saude", pl: 275, fill: "#FF977A" },
+    { pauta: "LIEG", pl: 200, fill: "#FDFF78" },
+    { pauta: "LIB", pl: 187, fill: "#F693F9" },
+    { pauta: "Educacao", pl: 173, fill: "#87D9FF"},
   ]
 
   

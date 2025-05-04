@@ -1,14 +1,14 @@
 import { prismaClient } from "@/services/prisma/prisma";
-import { Tema } from "@/types/tema";
+import { Pauta } from "@/types/pauta";
 
 
 export class CriarTemaService {
-    async executar(tema: Tema) {
+    async executar(pauta: Pauta) {
         const prisma = prismaClient;
 
-        const resposta = await prisma.tema.create({
+        const resposta = await prisma.pauta.create({
             data: {
-                nome: tema.nome,
+                nome: pauta.nome,
                 projetos: {
                     create: []
                 }

@@ -4,7 +4,7 @@ export class AtualizarTemaService {
     async executar(id: string, nome: string) {
         const prisma = prismaClient;
 
-        const resposta = prisma.tema.update({
+        const resposta = prisma.pauta.update({
             where: {
                 id: id,
             }, data: {

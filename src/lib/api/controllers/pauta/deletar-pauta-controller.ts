@@ -1,6 +1,6 @@
 import { RespostaApi } from "@/types/resposta-api";
-import { BuscarTemaService } from "../../service/tema/buscar-tema-service";
-import { DeletarTemaService } from "../../service/tema/deletar-tema-service";
+import { BuscarTemaService } from "../../service/pauta/buscar-pauta-service";
+import { DeletarTemaService } from "../../service/pauta/deletar-pauta-service";
 
 export class DeletarTemaController {
     async executar(id: string) {
@@ -8,7 +8,7 @@ export class DeletarTemaController {
         if (!id) {
             return new RespostaApi(
                 false,
-                "Falta informações para deletar o tema"
+                "Falta informações para deletar a pauta"
             )
         }
 
@@ -19,7 +19,7 @@ export class DeletarTemaController {
         if (!existe) {
             return new RespostaApi(
                 false,
-                "O tema já não existe"
+                "A pauta já não existe"
             )
         }
 
@@ -35,7 +35,7 @@ export class DeletarTemaController {
         } else {
             return new RespostaApi(
                 false,
-                "Houve algum problema ao deletar o tema"
+                "Houve algum problema ao deletar a pauta"
             )
         }
     }
