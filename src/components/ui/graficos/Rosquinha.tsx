@@ -50,7 +50,7 @@ const GraficoRosquinha: React.FC<graficoRosquinhaProps> = ({ dados }) => {
               cursor={false}
               content={<ChartTooltipContent hideLabel className="min-w-36" />}
             />
-            <Pie data={dados} dataKey="pl" nameKey="tema" innerRadius={60} />
+            <Pie data={dados} dataKey="pl" nameKey="pauta" innerRadius={60} />
             <ChartLegend
               className="flex justify-between text-white text-base"
               content={<ChartLegendContent />}

@@ -4,7 +4,7 @@ export class DeletarTemaService {
     async executar(id: string) {
         const prisma = prismaClient;
 
-        const resposta = prisma.tema.delete({
+        const resposta = prisma.pauta.delete({
             where: {
                 id: id,
             }

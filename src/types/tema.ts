@@ -1,5 +1,5 @@
 //TODO: modificar ao implementar projetos
-class Tema {
+class Pauta {
     id?: string;
     nome: string;
     projetos?: string[];
@@ -15,4 +15,4 @@ class Tema {
     }
 }
 
-export { Tema }
+export { Pauta }

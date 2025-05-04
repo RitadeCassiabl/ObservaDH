@@ -1,6 +1,6 @@
-import { AtualizarTemaController } from "@/lib/api/controllers/tema/atualizar-tema-controller";
-import { DeletarTemaController } from "@/lib/api/controllers/tema/deletar-tema-controller"
-import { BuscarTemaController } from "@/lib/api/controllers/tema/buscar-tema-controller";
+import { AtualizarTemaController } from "@/lib/api/controllers/pauta/atualizar-pauta-controller";
+import { DeletarTemaController } from "@/lib/api/controllers/pauta/deletar-pauta-controller"
+import { BuscarTemaController } from "@/lib/api/controllers/pauta/buscar-pauta-controller";
 import { RespostaApi } from "@/types/resposta-api"
 import { NextResponse } from "next/server"
 

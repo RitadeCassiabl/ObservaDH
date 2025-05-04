@@ -1,5 +1,5 @@
 export type DadosGraficoRosquinha = {
     pl: number;
-    tema: string;
+    pauta: string;
     fill: string;
 }

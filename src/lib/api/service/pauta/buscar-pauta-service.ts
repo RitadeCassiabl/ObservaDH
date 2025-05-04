@@ -4,7 +4,7 @@ export class BuscarTemaService {
     async buscarPorID(id: string) {
         const prisma = prismaClient;
 
-        const resposta = await prisma.tema.findUnique({
+        const resposta = await prisma.pauta.findUnique({
             where: {
                 id: id
             }
@@ -15,7 +15,7 @@ export class BuscarTemaService {
     async buscarPorNome(nome: string) {
         const prisma = prismaClient;
 
-        const resposta = await prisma.tema.findUnique({
+        const resposta = await prisma.pauta.findUnique({
             where: {
                 nome: nome
             }

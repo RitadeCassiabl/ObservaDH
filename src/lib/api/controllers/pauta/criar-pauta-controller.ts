@@ -1,8 +1,8 @@
 
-import { Tema } from "@/types/tema";
+import { Pauta } from "@/types/pauta";
 import { RespostaApi } from "@/types/resposta-api";
-import { CriarTemaService } from "../../service/tema/criar-tema-service";
-import { BuscarTemaService } from "../../service/tema/buscar-tema-service";
+import { CriarTemaService } from "../../service/pauta/criar-pauta-service";
+import { BuscarTemaService } from "../../service/pauta/buscar-pauta-service";
 
 export class CriarTemaController {
     async executar(nome: string) {
@@ -10,7 +10,7 @@ export class CriarTemaController {
         if (!nome) {
             return new RespostaApi(
                 false,
-                "Falta informações para a criação do tema"
+                "Falta informações para a criação da pauta"
             )
         }
 
@@ -21,26 +21,26 @@ export class CriarTemaController {
         if (existe) {
             return new RespostaApi(
                 false,
-                "O tema já existe"
+                "A pauta já existe"
             )
         }
 
         const service = new CriarTemaService();
 
-        const tema = new Tema(nome)
+        const pauta = new Pauta(nome)
 
-        const resposta = await service.executar(tema)
+        const resposta = await service.executar(pauta)
 
         if (resposta) {
             return new RespostaApi(
                 true,
-                "Tema criado com sucesso",
+                "Pauta criado com sucesso",
                 resposta
             )
         } else {
             return new RespostaApi(
                 false,
-                "Houve algum problema na criação do tema"
+                "Houve algum problema na criação da pauta"
             )
         }
     }

@@ -1,6 +1,6 @@
 import { RespostaApi } from "@/types/resposta-api";
-import { BuscarTemaService } from "../../service/tema/buscar-tema-service";
-import { AtualizarTemaService } from "../../service/tema/atualizar-tema-service";
+import { BuscarTemaService } from "../../service/pauta/buscar-pauta-service";
+import { AtualizarTemaService } from "../../service/pauta/atualizar-pauta-service";
 
 export class AtualizarTemaController {
 
@@ -9,7 +9,7 @@ export class AtualizarTemaController {
         if (!id || !nome) {
             return new RespostaApi(
                 false,
-                "Faltam informações para atualizar o tema."
+                "Faltam informações para atualizar a pauta."
             );
         }
 
@@ -19,7 +19,7 @@ export class AtualizarTemaController {
         if (!temaExistente) {
             return new RespostaApi(
                 false,
-                `O tema não existe.`
+                `A pauta não existe.`
             );
         }
 
@@ -27,7 +27,7 @@ export class AtualizarTemaController {
         if (novoTemaExistente) {
             return new RespostaApi(
                 false,
-                `O novo tema já existe.`
+                `O novo pauta já existe.`
             );
         }
 
@@ -38,13 +38,13 @@ export class AtualizarTemaController {
         if (resposta) {
             return new RespostaApi(
                 true,
-                `O tema foi atualizado para ${nome || ""} com sucesso`,
+                `A pauta foi atualizado para ${nome || ""} com sucesso`,
                 resposta
             )
         } else {
             return new RespostaApi(
                 false,
-                "Houve algum problema na atualização do tema"
+                "Houve algum problema na atualização da pauta"
             )
         }
 

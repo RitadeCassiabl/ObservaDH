@@ -1,5 +1,5 @@
-import { ListarTemaController } from "@/lib/api/controllers/tema/listar-tema-controller"
-import { CriarTemaController } from "@/lib/api/controllers/tema/criar-tema-controller";
+import { ListarTemaController } from "@/lib/api/controllers/pauta/listar-pauta-controller"
+import { CriarTemaController } from "@/lib/api/controllers/pauta/criar-pauta-controller";
 import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
