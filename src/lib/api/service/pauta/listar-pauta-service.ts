@@ -1,6 +1,6 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class ListarTemaService {
+export class ListarPautaService {
     async executar() {
         const prisma = prismaClient;
 

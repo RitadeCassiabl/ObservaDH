@@ -1,10 +1,10 @@
 
 import { Pauta } from "@/types/pauta";
 import { RespostaApi } from "@/types/resposta-api";
-import { CriarTemaService } from "../../service/pauta/criar-pauta-service";
-import { BuscarTemaService } from "../../service/pauta/buscar-pauta-service";
+import { BuscarPautaService } from "../../service/pauta/buscar-pauta-service";
+import { CriarPautaService } from "../../service/pauta/criar-pauta-service";
 
-export class CriarTemaController {
+export class CriarPautaController {
     async executar(nome: string) {
 
         if (!nome) {
@@ -14,7 +14,7 @@ export class CriarTemaController {
             )
         }
 
-        const serviceAuxiliar = new BuscarTemaService()
+        const serviceAuxiliar = new BuscarPautaService()
 
         const existe = await serviceAuxiliar.buscarPorNome(nome);
 
@@ -25,7 +25,7 @@ export class CriarTemaController {
             )
         }
 
-        const service = new CriarTemaService();
+        const service = new CriarPautaService();
 
         const pauta = new Pauta(nome)
 

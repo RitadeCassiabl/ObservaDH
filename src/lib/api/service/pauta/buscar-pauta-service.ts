@@ -1,6 +1,6 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class BuscarTemaService {
+export class BuscarPautaService {
     async buscarPorID(id: string) {
         const prisma = prismaClient;
 

@@ -74,13 +74,13 @@ model Profissao {
 }
 
 model Ambito {
-  id      String    @id @db.VarChar(36)
-  nome    String
-  Projeto Projeto[]
+  id       String    @id @default(uuid()) @db.VarChar(36)
+  nome     String
+  Projetos Projeto[]
 }
 
 model Pauta {
-  id      String    @id @db.VarChar(36)
-  nome    String    @unique
-  Projeto Projeto[]
+  id       String    @id @default(uuid()) @db.VarChar(36)
+  nome     String    @unique
+  Projetos Projeto[]
 }

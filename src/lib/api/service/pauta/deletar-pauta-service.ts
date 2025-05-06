@@ -1,6 +1,6 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class DeletarTemaService {
+export class DeletarPautaService {
     async executar(id: string) {
         const prisma = prismaClient;
 

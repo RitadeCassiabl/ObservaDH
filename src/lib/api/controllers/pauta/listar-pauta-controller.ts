@@ -1,9 +1,9 @@
 import { RespostaApi } from "@/types/resposta-api";
-import { ListarTemaService } from "../../service/pauta/listar-pauta-service";
+import { ListarPautaService } from "../../service/pauta/listar-pauta-service";
 
-export class ListarTemaController {
+export class ListarPautaController {
     async executar() {
-        const service = new ListarTemaService();
+        const service = new ListarPautaService();
 
         const resposta = await service.executar();
 
