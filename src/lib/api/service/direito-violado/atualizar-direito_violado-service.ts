@@ -1,17 +1,17 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class AtualizarDireitoVioladoService {
-    async executar(nome: string, novoNome: string) {
-        const prisma = prismaClient;
+  async executar(id: string, nome: string) {
+    const prisma = prismaClient;
 
-        const resposta = await prisma.direitoViolado.update({
-            where: {
-                nome: nome
-            },
-            data: {
-                nome: novoNome
-            }
-        })
-        return resposta;
-    }
+    const resposta = await prisma.direitoViolado.update({
+      where: {
+        id: id,
+      },
+      data: {
+        nome: nome,
+      },
+    });
+    return resposta;
+  }
 }

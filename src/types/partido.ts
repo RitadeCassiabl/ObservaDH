@@ -1,33 +1,23 @@
-export type PartidoModel = {
+class Partido {
+    id?: number;
     nome: string;
-    sigla: string;
-    propostas: string;
-    url_imagem: string;
-    parlamentares: string;
-};
-
-export class Partido {
-    id?: string;
-    nome: string;
-    sigla: string;
-    imagem: string;
+    codigo: string;
     projetos?: string[];
     politicos?: string[];
 
     constructor(
         nome: string,
-        sigla: string,
-        imagem: string,
-        id?: string,
-        projetos?: string[],
-        politicos?: string[]
+        codigo: string,
+        politicos?: string[],
+        id?: number,
+        projetos?: string[]
     ) {
-        this.nome = nome;
-        this.sigla = sigla;
-        this.imagem = imagem;
         this.id = id;
-        this.projetos = projetos || [];
-        this.politicos = politicos || [];
+        this.nome = nome;
+        this.codigo = codigo;
+        this.politicos = politicos;
+        this.projetos = projetos;
     }
-
 }
+
+export { Partido };

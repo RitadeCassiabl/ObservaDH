@@ -1,10 +1,10 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
 }
 
 model Projeto {
@@ -15,13 +15,13 @@ model Projeto {
   justificativa    String
   ementa           String
   ambitoId         String
-  ambito           Ambito           @relation(fields: [ambitoId], references: [id])
-  temaId           String
-  tema             Tema             @relation(fields: [temaId], references: [id])
+  pautaId          String
+  Ambito           Ambito           @relation(fields: [ambitoId], references: [id])
+  Pauta            Pauta            @relation(fields: [pautaId], references: [id])
+  direitosViolados DireitoViolado[] @relation("DireitoVioladoToProjeto")
+  ideologias       Ideologia[]      @relation("IdeologiaToProjeto")
+  partidos         Partido[]        @relation("PartidoToProjeto")
   autores          Politico[]       @relation("ProjetoAutores")
-  partidos         Partido[]
-  direitosViolados DireitoViolado[]
-  ideologias       Ideologia[]
 }
 
 model Politico {
@@ -34,10 +34,10 @@ model Politico {
   ideologia      String
   dataNascimento DateTime
   estadoId       String
-  estado         Estado      @relation(fields: [estadoId], references: [id])
   partidoId      String
+  estado         Estado      @relation(fields: [estadoId], references: [id])
   partido        Partido     @relation(fields: [partidoId], references: [id])
-  profissoes     Profissao[]
+  profissoes     Profissao[] @relation("PoliticoToProfissao")
   projetos       Projeto[]   @relation("ProjetoAutores")
 }
 
@@ -47,7 +47,7 @@ model Partido {
   sigla     String     @unique
   imagem    String?
   politicos Politico[]
-  projetos  Projeto[]
+  projetos  Projeto[]  @relation("PartidoToProjeto")
 }
 
 model Estado {
@@ -56,32 +56,32 @@ model Estado {
   politicos Politico[]
 }
 
-model Tema {
-  id       String    @id @default(uuid()) @db.VarChar(36)
-  nome     String    @unique
-  projetos Projeto[]
-}
-
-model Ambito {
-  id       String    @id @default(uuid()) @db.VarChar(36)
-  nome     String
-  projetos Projeto[]
-}
-
 model DireitoViolado {
   id       String    @id @default(uuid()) @db.VarChar(36)
   nome     String    @unique
-  projetos Projeto[]
+  projetos Projeto[] @relation("DireitoVioladoToProjeto")
 }
 
 model Ideologia {
   id       String    @id @default(uuid()) @db.VarChar(36)
   nome     String
-  projetos Projeto[]
+  projetos Projeto[] @relation("IdeologiaToProjeto")
 }
 
 model Profissao {
   id        String     @id @default(uuid()) @db.VarChar(36)
   nome      String     @unique
-  politicos Politico[]
+  politicos Politico[] @relation("PoliticoToProfissao")
+}
+
+model Ambito {
+  id       String    @id @default(uuid()) @db.VarChar(36)
+  nome     String
+  Projetos Projeto[]
+}
+
+model Pauta {
+  id       String    @id @default(uuid()) @db.VarChar(36)
+  nome     String    @unique
+  Projetos Projeto[]
 }
