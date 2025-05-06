@@ -1,7 +1,9 @@
-import { PartidoModel } from "@/types/partido";
+
+import { PartidoModel } from "@/types/interfaces/partido";
 import { oswald } from "../../../lib/fonts/fonts";
 import CardDivider from "./card-divider";
 
+// TODO: Rename interface "cardComponentePartidoProps" to match the regular expression ^[A-Z][a-zA-Z0-9]*$.
 interface cardComponentePartidoProps {
   partido: PartidoModel;
 }

@@ -16,7 +16,7 @@ import {
 } from "@/lib/utils/projeto-projeto-utils";
 
 import { elemento } from "@/types/elemento-dropdown";
-import { PartidoModel } from "@/types/partido";
+import { PartidoModel } from "@/types/interfaces/partido";
 import { ProjetoLei } from "@/types/projeto-lei";
 
 import MainLayout from "@/components/ui/layouts/main-layout";
@@ -136,7 +136,7 @@ const RankingParlamentares = ({
             <p>{"Nome"}</p>
           </section>
           <section className="w-1/2 h-full px-12 grid grid-cols-3 gap-4 items-center">
-            <p>{"PartidoModel"}</p>
+            <p>{"Partido"}</p>
             <p>{"Estado"}</p>
             <p>{"Propostas"}</p>
           </section>
@@ -180,7 +180,7 @@ const RankingPartidos = ({ partidosOrdenados }: RankingPartidosProps) => {
       <div className="flex flex-col gap-10 justify-center">
         <div className="flex flex-row w-full px-16 h-[4.25rem] bg-[#122144] border border-b-0 border-[#87D9FF] rounded-t-[5px] font-semibold text-2xl text-[#87D9FF]">
           <section className="w-1/2 h-full px-16 grid grid-cols-2 gap-4 items-center">
-            <p>{"PartidoModel"}</p>
+            <p>{"Partido"}</p>
             <p>{"Nome"}</p>
           </section>
           <section className="w-1/2 h-full px-12 grid grid-cols-3 gap-4 items-center">
