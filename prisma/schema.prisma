@@ -44,7 +44,8 @@ model Politico {
 model Partido {
   id        String     @id @default(uuid()) @db.VarChar(36)
   nome      String     @unique
-  codigo    String     @unique
+  sigla     String     @unique
+  imagem    String?
   politicos Politico[]
   projetos  Projeto[]  @relation("PartidoToProjeto")
 }

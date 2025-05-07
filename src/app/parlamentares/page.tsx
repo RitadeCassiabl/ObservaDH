@@ -16,7 +16,7 @@ import {
 } from "@/lib/utils/projeto-projeto-utils";
 
 import { elemento } from "@/types/elemento-dropdown";
-import { Partido } from "@/types/partido";
+import { PartidoModel } from "@/types/interfaces/partido";
 import { ProjetoLei } from "@/types/projeto-lei";
 
 import MainLayout from "@/components/ui/layouts/main-layout";
@@ -164,7 +164,7 @@ const RankingParlamentares = ({
 };
 
 interface RankingPartidosProps {
-  partidosOrdenados: Partido[];
+  partidosOrdenados: PartidoModel[];
 }
 
 const RankingPartidos = ({ partidosOrdenados }: RankingPartidosProps) => {

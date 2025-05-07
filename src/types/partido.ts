@@ -1,5 +1,5 @@
 class Partido {
-    id?: number;
+    id?: string;
     nome: string;
     codigo: string;
     projetos?: string[];
@@ -9,7 +9,7 @@ class Partido {
         nome: string,
         codigo: string,
         politicos?: string[],
-        id?: number,
+        id?: string,
         projetos?: string[]
     ) {
         this.id = id;

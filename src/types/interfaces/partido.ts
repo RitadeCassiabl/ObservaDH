@@ -1,4 +1,4 @@
-export type Partido = {
+export type PartidoModel = {
     nome: string;
     sigla: string;
     propostas: string;
