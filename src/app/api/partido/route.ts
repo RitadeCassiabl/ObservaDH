@@ -1,4 +1,5 @@
 import { CriarPartidoController } from '@/lib/api/controllers/partido/criar-partido-controller';
+import { ListarPartidoController } from '@/lib/api/controllers/partido/listar-partido-controller';
 import { RespostaApi } from '@/types/resposta-api';
 import { NextResponse } from 'next/server';
 
@@ -10,7 +11,7 @@ export async function POST(request: Request) {
 
         const resposta = await controller.executar(nome, codigo)
 
-        return NextResponse.json({ resposta }, { status: 200 })
+        return NextResponse.json({ resposta }, {  status: resposta.sucesso ? 200 : 400 })
 
     } catch (error) {
         const respostaApi = new RespostaApi(false, "erro interno", error);
@@ -21,13 +22,14 @@ export async function POST(request: Request) {
     }
 }
 
-export async function GET(request: Request) {
+export async function GET() {
     try {
-        const controller = new CriarPartidoController();
 
-        // const resposta = await controller
+        const controller = new ListarPartidoController();
 
-        // return NextResponse.json({ resposta }, { status: 200 })
+        const resposta = await controller.executar()
+
+        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
 
     } catch (error) {
         const respostaApi = new RespostaApi(false, "erro interno", error);
