@@ -12,6 +12,16 @@ export class BuscarPartidoService {
         return resposta
     }
 
+    async BuscarPorCodigo(codigo: string) {
+        const prisma = prismaClient;
+
+        const resposta = await prisma.partido.findUnique(
+            {
+                where: { codigo: codigo }
+            }
+        )
+        return resposta
+    }
 
     async BuscarPorNome(nome: string) {
         const prisma = prismaClient;
