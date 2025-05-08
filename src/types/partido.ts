@@ -1,20 +1,20 @@
 class Partido {
     id?: string;
     nome: string;
-    codigo: string;
+    sigla: string;
     projetos?: string[];
     politicos?: string[];
 
     constructor(
         nome: string,
-        codigo: string,
+        sigla: string,
         politicos?: string[],
         id?: string,
         projetos?: string[]
     ) {
         this.id = id;
         this.nome = nome;
-        this.codigo = codigo;
+        this.sigla = sigla;
         this.politicos = politicos;
         this.projetos = projetos;
     }

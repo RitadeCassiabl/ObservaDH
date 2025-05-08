@@ -25,7 +25,7 @@
  *               dados:
  *                 id: "d7f72cce-b2f5-4a7e-a913-65fa3f88cd84"
  *                 nome: "Partido da Esperança Nacional"
- *                 codigo: "PEN"
+ *                 sigla: "PEN"
  *       400:
  *         description: ID ausente ou partido não encontrado
  *         content:
@@ -99,13 +99,13 @@
  *             type: object
  *             required:
  *               - nome
- *               - codigo
+ *               - sigla
  *               - politicos
  *               - projetos
  *             properties:
  *               nome:
  *                 type: string
- *               codigo:
+ *               sigla:
  *                 type: string
  *               politicos:
  *                 type: array
@@ -117,7 +117,7 @@
  *                   type: string
  *           example:
  *             nome: "Partido Renovado"
- *             codigo: "PRN"
+ *             sigla: "PRN"
  *             politicos: ["uuid1", "uuid2"]
  *             projetos: ["uuid3", "uuid4"]
  *     responses:
@@ -133,7 +133,7 @@
  *               dados:
  *                 id: "d7f72cce-b2f5-4a7e-a913-65fa3f88cd84"
  *                 nome: "Partido Renovado"
- *                 codigo: "PRN"
+ *                 sigla: "PRN"
  *       400:
  *         description: Faltam informações ou dados inválidos
  *         content:
@@ -217,9 +217,9 @@ export async function PATCH(request: Request, { params }: { params: { id: string
     try {
 
         const { id } = params;
-        const { nome, codigo, politicos, projetos } = await request.json();
+        const { nome, sigla, politicos, projetos } = await request.json();
 
-        if (!id || !nome || !codigo || !politicos || !projetos) {
+        if (!id || !nome || !sigla || !politicos || !projetos) {
             const respostaApi = new RespostaApi(false, "falta informação para atualizar o partido");
 
             return NextResponse.json(
@@ -230,7 +230,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
 
         const controller = new AtualizarPartidoController();
 
-        const resposta = await controller.executar(id, nome, codigo, politicos, projetos);
+        const resposta = await controller.executar(id, nome, sigla, politicos, projetos);
 
         return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
 
