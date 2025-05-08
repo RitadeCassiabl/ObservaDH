@@ -4,7 +4,7 @@ import { AtualizarPartidoService } from "../../service/partido/atualizar-partido
 import { RespostaApi } from "@/types/resposta-api";
 
 export class AtualizarPartidoController {
-    async executar(id: string, nome: string, codigo: string, politicos: string[], projetos: string[]) {
+    async executar(id: string, nome: string, sigla: string, politicos: string[], projetos: string[]) {
 
         const buscarService = new BuscarPartidoService();
         const atualizarService = new AtualizarPartidoService();
@@ -24,7 +24,7 @@ export class AtualizarPartidoController {
             }
         }
 
-        const partidoAtualizado = new Partido(nome, codigo, politicos, id, projetos);
+        const partidoAtualizado = new Partido(nome, sigla, politicos, id, projetos);
 
         const resultado = await atualizarService.executar(partidoAtualizado);
 

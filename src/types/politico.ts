@@ -23,12 +23,12 @@ class Politico {
         partidoId: string,
         ideologia: string,
         dataNascimento: Date,
-        id?: string,
         foto?: string,
         estado?: string,
         partido?: string,
         projetos?: string[],
         profissoes?: string[]
+        id?: string,
     }) {
         this.id = data.id;
         this.nome = data.nome;

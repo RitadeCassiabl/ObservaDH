@@ -15,12 +15,12 @@
  *             type: object
  *             required:
  *               - nome
- *               - codigo
+ *               - sigla
  *             properties:
  *               nome:
  *                 type: string
  *                 example: Partido da Esperança Nacional
- *               codigo:
+ *               sigla:
  *                 type: string
  *                 example: PEN
  *     responses:
@@ -36,7 +36,7 @@
  *               dados:
  *                 id: "d7f72cce-b2f5-4a7e-a913-65fa3f88cd84"
  *                 nome: "Partido da Esperança Nacional"
- *                 codigo: "PEN"
+ *                 sigla: "PEN"
  *       400:
  *         description: Erro de validação (dados inválidos ou duplicados)
  *         content:
@@ -86,10 +86,10 @@
  *               dados:
  *                 - id: "1f3c1f25-1122-43a6-bf61-0fbf6e84e278"
  *                   nome: "Partido Socialista dos Trabalhadores"
- *                   codigo: "PST"
+ *                   sigla: "PST"
  *                 - id: "71a8bcce-84d4-4c84-92ea-481872e8b5d4"
  *                   nome: "Partido Verde Ambiental"
- *                   codigo: "PVA"
+ *                   sigla: "PVA"
  *       500:
  *         description: Erro interno ao listar partidos
  *         content:
@@ -108,11 +108,11 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
     try {
-        const { nome, codigo } = await request.json();
+        const { nome, sigla } = await request.json();
 
         const controller = new CriarPartidoController();
 
-        const resposta = await controller.executar(nome, codigo)
+        const resposta = await controller.executar(nome, sigla)
 
         return NextResponse.json({ resposta }, {  status: resposta.sucesso ? 200 : 400 })
 
