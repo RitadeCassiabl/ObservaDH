@@ -31,8 +31,8 @@ const CardMiniProjetos: React.FC<miniCardProjetosProps> = ({ miniProjeto }) => {
               ? miniProjeto.numero
               : miniProjeto.pauta
           }
-          cor_texto="text-[#050B17]"
-          cor_segundo_texto="text-[#1A326E] text-xl"
+          corTexto="text-[#050B17]"
+          corSegundoTexto="text-[#1A326E] text-xl"
           className="font-semibold"
         />
       ))}

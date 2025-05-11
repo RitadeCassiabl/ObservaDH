@@ -5,9 +5,9 @@ const oswald = Oswald({
   subsets: ["latin"]
 });
 
-const titillium_web = Titillium_Web({
+const titilliumWeb = Titillium_Web({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
 
-export { oswald, titillium_web };
+export { oswald, titilliumWeb };

@@ -48,7 +48,7 @@ const apresentacao = {
 };
 export { apresentacao };
 
-const cards_esfera = [
+const cardsEsfera = [
   {
     subtitulo: "Visão",
     titulo: "Geral",
@@ -74,8 +74,9 @@ const cards_esfera = [
     cor: "text-[#F693F9]"
   }
 ];
-export { cards_esfera };
-const cards_informativos = [
+export { cardsEsfera };
+
+const cardsInformativos = [
   {
     titulo: "Conheça",
     subtitulo: "os Parlamentares",
@@ -104,4 +105,4 @@ const cards_informativos = [
   }
 ];
 
-export { cards_informativos };
+export { cardsInformativos };

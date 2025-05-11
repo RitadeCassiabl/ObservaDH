@@ -3,9 +3,8 @@ import {
   graficoRosquinhaDadosMock,
 } from "@/mocks/mock-direitos";
 import { legendas } from "@/mocks/mock-parlamentares";
-import { projetosMock } from "@/mocks/mock-projetos";
+import { projetosMock} from "@/mocks/mock-projetos";
 
-import { obterPautasUnicas } from "@/lib/utils/projeto-projeto-utils";
 
 import { CarrosselPlsProps } from "@/domain/interfaces/carrossel-interface";
 import { elemento } from "@/domain/interfaces/elemento-dropdown";
@@ -27,9 +26,12 @@ import {
 } from "@/components/ui-shacnui/carousel";
 import Titulo from "@/components/ui/titulo-pages";
 import GraficoRosquinha from "@/components/ui/graficos/Rosquinha";
+import obterPautasUnicas from "@/lib/utils/projeto-utils/obter-pautas-unicas";
 
 const direitos: React.FC = () => {
-  const elementos_dropdown = obterPautasUnicas(projetosMock);
+
+  
+  const elementosDropdown = obterPautasUnicas({ projetos: projetosMock });
 
   //render
   return (
@@ -40,9 +42,9 @@ const direitos: React.FC = () => {
           grande={"dos Projetos de Lei"}
         />
         <DadosEstatisticos
-          dados_grafico_vertical={graficoBarrasVerticalDadosMock}
-          dados_rosquinha={graficoRosquinhaDadosMock}
-          elementos_dropdown={elementos_dropdown}
+          dadosGraficoVertical={graficoBarrasVerticalDadosMock}
+          dadosRosquinha={graficoRosquinhaDadosMock}
+          elementosDropdown={elementosDropdown}
         />
         <Carrossel projetos={projetosMock} />
       </div>
@@ -51,15 +53,15 @@ const direitos: React.FC = () => {
 };
 
 interface DadosEstastisticosProps {
-  elementos_dropdown: elemento[];
-  dados_rosquinha: DadosGraficoRosquinha[];
-  dados_grafico_vertical: DadosGraficoBarrasVertical[];
+  elementosDropdown: elemento[];
+  dadosRosquinha: DadosGraficoRosquinha[];
+  dadosGraficoVertical: DadosGraficoBarrasVertical[];
 }
 
 const DadosEstatisticos = ({
-  elementos_dropdown,
-  dados_rosquinha,
-  dados_grafico_vertical,
+  elementosDropdown,
+  dadosRosquinha,
+  dadosGraficoVertical,
 }: DadosEstastisticosProps) => {
   return (
     <>
@@ -68,13 +70,13 @@ const DadosEstatisticos = ({
           <DropdownButton
             className="w-32"
             titulo="Pauta"
-            elementos={elementos_dropdown}
+            elementos={elementosDropdown}
           />
         </div>
         <div className="flex flex-row w-full items-center justify-center gap-20">
-          <GraficoRosquinha dados={dados_rosquinha} />
+          <GraficoRosquinha dados={dadosRosquinha} />
           <Card.Legenda
-            cor_texto="text-[#D974FD]"
+            corTexto="text-[#D974FD]"
             resumo={legendas[0].resumo}
             texto={legendas[0].texto}
           >
@@ -85,7 +87,7 @@ const DadosEstatisticos = ({
       </section>
       <section className="w-full flex flex-row gap-[4.5rem] justify-center ">
         <Card.Legenda
-          cor_texto="text-[#FDFF78]"
+          corTexto="text-[#FDFF78]"
           resumo={legendas[0].resumo}
           texto={legendas[0].texto}
         >
@@ -98,7 +100,7 @@ const DadosEstatisticos = ({
             </Texto.Linha>
           </Texto.Raiz>
         </Card.Legenda>
-        <GraficoBarrasVertical dados={dados_grafico_vertical} />
+        <GraficoBarrasVertical dados={dadosGraficoVertical} />
       </section>
     </>
   );

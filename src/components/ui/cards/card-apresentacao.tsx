@@ -1,4 +1,4 @@
-import { oswald, titillium_web } from "../../../lib/fonts/fonts";
+import { oswald, titilliumWeb } from "../../../lib/fonts/fonts";
 import React from "react";
 
 interface CardApresentacaoProps {
@@ -21,7 +21,7 @@ const CardApresentacao: React.FC<CardApresentacaoProps> = ({
           className={`${oswald.className} text-[5rem] text-white text-shadow-xl font-normal`}
         >
           {subtitulo}{" "}
-          <span className={`${cor} ${titillium_web.className} font-extralight`}>
+          <span className={`${cor} ${titilliumWeb.className} font-extralight`}>
             {titulo}
           </span>
         </h2>

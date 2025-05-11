@@ -1,15 +1,10 @@
 import { MdOutlineFilterAlt } from "react-icons/md";
 
-import { apresentacao, legendas, projetosMock } from "../../mocks/mock-projetos";
-
 import {
-  contarPautasPorAno,
-  contarProjetosPorAno,
-  obterAnosUnicos,
-  obterEsferasUnicas,
-  obterEstadosUnicos,
-  obterPautasUnicas,
-} from "@/lib/utils/projeto-projeto-utils";
+  apresentacao,
+  legendas,
+  projetosMock,
+} from "../../mocks/mock-projetos";
 
 import { CarrosselPlsProps } from "@/domain/interfaces/carrossel-interface";
 import { ProjetoLei } from "@/domain/interfaces/projeto-lei";
@@ -32,14 +27,20 @@ import GraficoMapa from "@/components/ui/graficos/grafico-mapa";
 import MainLayout from "@/components/ui/layouts/main-layout";
 import Texto from "@/components/ui/componente-texto";
 
+import contarPautasPorAno from "@/lib/utils/projeto-utils/contar-pautas-por-ano";
+import contarProjetosPorAno from "@/lib/utils/projeto-utils/contar-projetos-por-ano";
+import obterAnosUnicos from "@/lib/utils/projeto-utils/obter-anos-unicos";
+import obterEsferasUnicas from "@/lib/utils/projeto-utils/obter-esferas-unicas";
+import obterEstadosUnicos from "@/lib/utils/projeto-utils/obter-estados-unico";
+import obterPautasUnicas from "@/lib/utils/projeto-utils/obter-pautas-unicas";
 
 const page: React.FC = () => {
-  const esferas = obterEsferasUnicas(projetosMock);
-  const anos = obterAnosUnicos(projetosMock);
-  const estados = obterEstadosUnicos(projetosMock);
-  const pautas = obterPautasUnicas(projetosMock);
+  const esferas = obterEsferasUnicas({ projetos: projetosMock });
+  const anos = obterAnosUnicos({ projetos: projetosMock });
+  const estados = obterEstadosUnicos({ projetos: projetosMock });
+  const pautas = obterPautasUnicas({ projetos: projetosMock });
 
-  const dropdown_items = [
+  const dropdownItems = [
     {
       titulo: "Esfera",
       elementos: esferas,
@@ -64,7 +65,7 @@ const page: React.FC = () => {
         <Apresentacao apresentacao={apresentacao} />
         <GraficoMapa />
         <Divisor />
-        <PropostasDados items={dropdown_items} projetos={projetosMock} />
+        <PropostasDados items={dropdownItems} projetos={projetosMock} />
       </div>
     </MainLayout>
   );
@@ -74,7 +75,7 @@ interface apresentacaoProps {
   apresentacao: {
     subtitulo: string;
     titulo: string;
-    cor_texto: string;
+    corTexto: string;
     texto: string;
   };
 }
@@ -85,7 +86,7 @@ const Apresentacao = ({ apresentacao }: apresentacaoProps) => {
       <Card.Apresentacao
         subtitulo={apresentacao.subtitulo}
         titulo={apresentacao.titulo}
-        cor={apresentacao.cor_texto}
+        cor={apresentacao.corTexto}
       >
         {apresentacao.texto}
       </Card.Apresentacao>
@@ -119,8 +120,6 @@ const Filtro = ({ items }: FiltroElementosProps) => {
     </section>
   );
 };
-
-
 
 const CarrosselPls = ({ projetos }: CarrosselPlsProps) => {
   return (
@@ -165,7 +164,7 @@ const NumeroPls = () => {
   return (
     <section className="w-full flex justify-center gap-[4.5rem]">
       <Card.Legenda
-        cor_texto={legendas.find((item) => item.titulo === "PL's")?.cor}
+        corTexto={legendas.find((item) => item.titulo === "PL's")?.cor}
         texto={legendas.find((item) => item.titulo === "PL's")?.texto}
         resumo={legendas.find((item) => item.titulo === "PL's")?.resumo}
       >
@@ -182,7 +181,9 @@ const NumeroPls = () => {
           </Texto.Linha>
         </Texto.Raiz>
       </Card.Legenda>
-      <GraficoLinhaPontos dados={contarProjetosPorAno(projetosMock)} />
+      <GraficoLinhaPontos
+        dados={contarProjetosPorAno({ data: projetosMock })}
+      />
     </section>
   );
 };
@@ -194,7 +195,7 @@ const NumeroPautas = () => {
         dados={contarPautasPorAno(projetosMock)}
       />
       <Card.Legenda
-        cor_texto={legendas.find((item) => item.titulo === "Pautas")?.cor}
+        corTexto={legendas.find((item) => item.titulo === "Pautas")?.cor}
         texto={legendas.find((item) => item.titulo === "Pautas")?.texto}
         resumo={legendas.find((item) => item.titulo === "Pautas")?.resumo}
       >

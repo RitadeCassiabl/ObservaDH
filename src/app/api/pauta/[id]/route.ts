@@ -11,7 +11,6 @@ export async function DELETE(request: Request,
 ) {
     try {
         const { id } = params
-        console.log(id)
         if (!id) {
             const respostaApi = new RespostaApi({ sucesso: false, mensagem: "id não informado" })
 

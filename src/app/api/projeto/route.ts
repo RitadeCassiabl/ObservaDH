@@ -5,12 +5,12 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { ano, numero_pl, pautaId, pauta, justificativa, ementa, esferaId, esfera } =
+    const { ano, numeroPl, pautaId, pauta, justificativa, ementa, esferaId, esfera } =
       await request.json();
 
     if (
       !ano ||
-      !numero_pl ||
+      !numeroPl ||
       !pautaId ||
       !pauta ||
       !justificativa ||
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
 
       const resposta = await controller.executar(
         ano,
-        numero_pl,
+        numeroPl,
         pautaId,
         pauta,
         justificativa,

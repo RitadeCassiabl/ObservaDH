@@ -14,20 +14,20 @@ import Texto from "../componente-texto";
 
 interface saibaMaisProps {
   className?: string;
-  cor_texto?: string;
+  corTexto?: string;
   texto: string;
 }
 
 const CardSaibaMais: React.FC<saibaMaisProps> = ({
   className,
-  cor_texto,
+  corTexto,
   texto,
 }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <button
-          className={`flex flex-row text-xl items-center gap-4 ${className} ${cor_texto}`}
+          className={`flex flex-row text-xl items-center gap-4 ${className} ${corTexto}`}
         >
           <FaPlus size={18} /> Saiba mais
         </button>
@@ -38,7 +38,7 @@ const CardSaibaMais: React.FC<saibaMaisProps> = ({
             <Texto.Linha>
               <Texto.Forte.Oswald>{"Aprofundamento"}</Texto.Forte.Oswald>
               <Texto.Espaco />
-              <Texto.Pequeno.Titillium className={`${className} ${cor_texto}`}>
+              <Texto.Pequeno.Titillium className={`${className} ${corTexto}`}>
                 {"dos dados"}
               </Texto.Pequeno.Titillium>
             </Texto.Linha>

@@ -26,7 +26,7 @@ const page = () => {
   const infos = [
     {
       titulo: "Número",
-      valor: projeto.numero_pl,
+      valor: projeto.numeroPl,
     },
     { titulo: "Ano", valor: projeto.ano },
     {
@@ -65,7 +65,7 @@ const page = () => {
                 titulo={info.titulo}
                 valor={info.valor}
                 className="text-4xl"
-                cor_texto="text-[#87D9FF]"
+                corTexto="text-[#87D9FF]"
               />
             ))}
           </section>

@@ -15,6 +15,8 @@ const esferas = [
   },
 ];
 
+
+//TODO: fazer o mapa de calor funcional
 const GraficoMapa: React.FC = () => {
   return (
     <article className="w-[80rem] h-[45.625rem] flex gap-2 ">

@@ -3,17 +3,6 @@ import { MdOutlineFilterAlt } from "react-icons/md";
 import { legendas } from "@/mocks/mock-parlamentares";
 import { projetosMock, partidosMock } from "@/mocks/mock-projetos";
 
-import {
-  contarGeneroPorIdeologia,
-  contarPropostasPorParlamentar,
-  contarReligiaoPorEtnia,
-  obterEsferasUnicas,
-  obterEstadosUnicos,
-  obterGeneroUnico,
-  obterIdeologiasUnica,
-  obterPartidosUnicos,
-  obterProfissoesUnicas,
-} from "@/lib/utils/projeto-projeto-utils";
 
 import { elemento } from "@/domain/interfaces/elemento-dropdown";
 import { PartidoModel } from "@/domain/interfaces/partido";
@@ -32,19 +21,29 @@ import GraficoBarraMultiplas from "@/components/ui/graficos/barras-multiplas";
 
 import Titulo from "@/components/ui/titulo-pages";
 
+import contarGeneroPorIdeologia from "@/lib/utils/projeto-utils/contar-genero-por-ideologia";
+import contarPropostasPorParlamentar from "@/lib/utils/projeto-utils/contar-proposta-por-parlamentar";
+import contarReligiaoPorEtnia from "@/lib/utils/projeto-utils/contar-religiao-por-etnia";
+import obterEsferasUnicas from "@/lib/utils/projeto-utils/obter-esferas-unicas";
+import obterEstadosUnicos from "@/lib/utils/projeto-utils/obter-estados-unico";
+import obterGeneroUnico from "@/lib/utils/projeto-utils/obter-genero-unico";
+import obterIdeologiasUnica from "@/lib/utils/projeto-utils/obter-ideologias-unica";
+import obterPartidosUnicos from "@/lib/utils/projeto-utils/obter-partidos-unicos";
+import obterProfissoesUnicas from "@/lib/utils/projeto-utils/obter-profissoes-unicas";
+
 const page: React.FC = () => {
   const partidosOrdenados = [...partidosMock].sort(
     (a, b) => parseInt(b.propostas) - parseInt(a.propostas)
   );
 
-  const esferas = obterEsferasUnicas(projetosMock);
-  const estados = obterEstadosUnicos(projetosMock);
-  const genero = obterGeneroUnico(projetosMock);
-  const partidos = obterPartidosUnicos(projetosMock);
-  const ideologias = obterIdeologiasUnica(projetosMock);
-  const profissoes = obterProfissoesUnicas(projetosMock);
+  const esferas = obterEsferasUnicas({ projetos: projetosMock });
+  const estados = obterEstadosUnicos({ projetos: projetosMock });
+  const genero = obterGeneroUnico({ parlamentares: projetosMock });
+  const partidos = obterPartidosUnicos({ projetos: projetosMock });
+  const ideologias = obterIdeologiasUnica({ projetos: projetosMock });
+  const profissoes = obterProfissoesUnicas({ projetos: projetosMock });
 
-  const dropdown_items = [
+  const dropdownItems = [
     {
       elementos: esferas,
       titulo: "Esfera",
@@ -78,7 +77,7 @@ const page: React.FC = () => {
         <Titulo pequeno={"Ranking"} grande={"dos Parlamentares"} />
         <RankingParlamentares
           projetos={projetosMock}
-          items_filtro={dropdown_items}
+          itemsFiltro={dropdownItems}
         />
         <RankingPartidos partidosOrdenados={partidosOrdenados} />
         <DadosEstatisticos projetos={projetosMock} legendas={legendas} />
@@ -116,7 +115,7 @@ const Filtro = ({ items }: FiltroElementosProps) => {
 
 interface RankingParlamentaresProps {
   projetos: ProjetoLei[];
-  items_filtro: {
+  itemsFiltro: {
     elementos: elemento[];
     titulo: string;
   }[];
@@ -124,11 +123,11 @@ interface RankingParlamentaresProps {
 
 const RankingParlamentares = ({
   projetos,
-  items_filtro,
+  itemsFiltro,
 }: RankingParlamentaresProps) => {
   return (
     <article className="flex flex-col w-full gap-20">
-      <Filtro items={items_filtro} />
+      <Filtro items={itemsFiltro} />
       <div className="flex flex-col gap-10 justify-center">
         <div className="flex flex-row w-full px-16 h-[4.25rem] bg-[#122144] border border-b-0 border-[#87D9FF] rounded-t-[5px] font-semibold text-2xl text-[#87D9FF]">
           <section className="w-1/2 h-full px-16 grid grid-cols-2 gap-4 items-center">
@@ -148,7 +147,7 @@ const RankingParlamentares = ({
           {projetos.map((item) => {
             return item.parlamentares.map((parlamentar) => (
               <Card.ComponenteParlamentar
-                key={`${item.numero_pl}-${parlamentar.nome}`}
+                key={`${item.numeroPl}-${parlamentar.nome}`}
                 parlamentar={parlamentar}
                 propostas={contarPropostasPorParlamentar(
                   projetos,
@@ -211,7 +210,7 @@ interface DadosEstatisticosProps {
   projetos: ProjetoLei[];
   legendas: {
     texto: string;
-    cor_texto: string;
+    corTexto: string;
     resumo: string;
   }[];
 }
@@ -228,7 +227,7 @@ const DadosEstatisticos = ({ projetos, legendas }: DadosEstatisticosProps) => {
             <GraficoBarraMultiplas dados={contarGeneroPorIdeologia(projetos)} />
             <Card.Legenda
               texto={legendas[0].texto}
-              cor_texto={legendas[0].cor_texto}
+              corTexto={legendas[0].corTexto}
               resumo={legendas[0].resumo}
             >
               <Texto.Raiz className="text-5xl w-full">
@@ -248,7 +247,7 @@ const DadosEstatisticos = ({ projetos, legendas }: DadosEstatisticosProps) => {
           <section className="flex justify-center gap-20">
             <CardLegenda
               texto={legendas[1].texto}
-              cor_texto={legendas[1].cor_texto}
+              corTexto={legendas[1].corTexto}
               resumo={legendas[1].resumo}
             >
               <Texto.Raiz className="text-5xl w-full">

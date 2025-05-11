@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { oswald } from "../../../lib/fonts/fonts";
 import CardDivider from "./card-divider";
 import CardParlamentar from "./card-parlamentar";
@@ -19,11 +20,15 @@ const CardComponenteParlamentar: React.FC<componentePros> = ({
           <CardParlamentar parlamentar={parlamentar}>
             <section className="w-full items-center imagem-hover text-white hover:text-[#93F996] h-full px-16 grid grid-cols-2">
               <div className="w-1/2">
-                <img
-                  src={parlamentar.url_imagem}
-                  alt=""
-                  className="h-24 w-24 rounded-full object-cover"
-                />
+                <div className="relative h-24 w-24">
+                  <Image
+                    src={parlamentar.urlImagem}
+                    alt={`${parlamentar.nome}-${parlamentar.genero}`}
+                    fill
+                    unoptimized
+                    className="rounded-full object-cover"
+                  />
+                </div>
               </div>
               <div className="w-1/2">
                 <p className=" text-3xl font-medium text-nowrap">

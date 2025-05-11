@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -22,6 +21,7 @@ import { projetosMock } from "@/mocks/mock-projetos";
 import CardItemRenderizacao from "./card-item-renderizacao";
 import CardMiniProjetos from "./card-mini-projeto";
 import Texto from "../componente-texto";
+import Image from "next/image";
 
 interface saibaMaisProps {
   parlamentar: parlamentar;
@@ -44,11 +44,15 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
           <article className="flex flex-col gap-8">
             <section className="flex flex-row w-full justify-between items-start">
               <div className="flex flex-row items-center gap-10">
-                <img
-                  src={parlamentar.url_imagem}
-                  className="h-44 w-44 rounded-full border-2 border-white object-cover"
-                  alt=""
-                />
+                <div className="relative h-44 w-44">
+                  <Image
+                    src={parlamentar.urlImagem}
+                    alt=""
+                    fill
+                    unoptimized
+                    className="rounded-full border-2 border-white object-cover"
+                  />
+                </div>
                 <p className="text-5xl text-shadow-xl font-normal text-white truncate">
                   {parlamentar.nome}
                 </p>
@@ -100,7 +104,7 @@ const CardParlamentar: React.FC<saibaMaisProps> = ({
                       <CardMiniProjetos
                         miniProjeto={{
                           id: item.id,
-                          numero: item.numero_pl,
+                          numero: item.numeroPl,
                           ano: item.ano,
                           pauta: item.pauta,
                         }}

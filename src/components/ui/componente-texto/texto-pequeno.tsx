@@ -1,4 +1,4 @@
-import { oswald, titillium_web } from "../../../lib/fonts/fonts";
+import { oswald, titilliumWeb } from "../../../lib/fonts/fonts";
 
 interface TextProps {
   children?: React.ReactNode;
@@ -13,7 +13,7 @@ const TextoPequeno = {
     </span>
   ),
   Titillium: ({ children, className }: TextProps) => (
-    <span className={`font-light ${titillium_web.className} ${className}`}>
+    <span className={`font-light ${titilliumWeb.className} ${className}`}>
       {children}
     </span>
   ),

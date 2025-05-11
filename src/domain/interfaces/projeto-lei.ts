@@ -5,7 +5,7 @@ export type ProjetoLei = {
     ano: string;
     pauta: string;
     ementa: string;
-    numero_pl: string;
+    numeroPl: string;
     violacoes: string[];
     ideologia: string[];
     justificativa: string;

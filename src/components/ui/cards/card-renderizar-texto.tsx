@@ -1,4 +1,4 @@
-import { oswald, titillium_web } from "../../../lib/fonts/fonts";
+import { oswald, titilliumWeb } from "../../../lib/fonts/fonts";
 
 interface RenderizarTextoProps {
   titulo: string;
@@ -19,7 +19,7 @@ const CardRenderizarTexto: React.FC<RenderizarTextoProps> = ({
         {titulo}:
       </span>
       <span
-        className={`${titillium_web.className} font-normal text-xl text-white`}
+        className={`${titilliumWeb.className} font-normal text-xl text-white`}
       >
         {conteudo}
       </span>

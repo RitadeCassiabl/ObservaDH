@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
-import { oswald, titillium_web } from "../../../lib/fonts/fonts";
+import { oswald, titilliumWeb } from "../../../lib/fonts/fonts";
 
 
 interface CardEsferaProps {
@@ -23,7 +23,7 @@ const CardEsfera: React.FC<CardEsferaProps> = ({
       <section className="w-full h-full flex flex-col gap-12 content">
           <h2 className={`text-[5rem] text-white text-shadow-xl font-normal ${oswald.className}`}>
             {subtitulo}
-            <span className={`${cor} font-light ${titillium_web.className}`}>{titulo}</span>
+            <span className={`${cor} font-light ${titilliumWeb.className}`}>{titulo}</span>
           </h2>
           <section className="h-[21.45rem] w-full overflow-y-auto shadow-inner no-scrollbar">
             <div className="text-white text-2xl font-light text-justify ">

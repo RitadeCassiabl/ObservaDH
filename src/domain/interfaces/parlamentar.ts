@@ -8,5 +8,5 @@ export type parlamentar = {
   religiao: string;
   profissao: string;
   ideologia: string;
-  url_imagem: string;
+  urlImagem: string;
 };

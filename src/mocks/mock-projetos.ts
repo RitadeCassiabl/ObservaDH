@@ -3,7 +3,7 @@
 const apresentacao = {
   subtitulo: "Como funciona a",
   titulo: "criação de um PL",
-  cor_texto: "text-[#FDFF78]",
+  corTexto: "text-[#FDFF78]",
   texto: ` 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat nisi nec orci maximus, eu tempus metus viverra. Pellentesque non ante turpis. Mauris venenatis vel purus non gravida. Vestibulum a ante semper, efficitur justo sit amet, iaculis enim. Pellentesque facilisis ultricies sem. Donec mollis gravida lectus, et aliquet felis lobortis vel. Donec accumsan augue vestibulum bibendum feugiat. Donec ac auctor ex. Cras tortor ex, pellentesque vel condimentum eu, posuere in nulla. Sed metus risus, finibus at erat a, porta ullamcorper dolor.
     Donec cursus vestibulum mattis. Vestibulum sodales quam eget sem ullamcorper ultricies consequat in nisl. Donec nisl quam, aliquet quis ultricies eget, euismod sit amet turpis. Phasellus nulla turpis, consequat consectetur dapibus sit amet, viverra ut neque. Cras nec porta dui. Pellentesque ut magna ex. Nam felis turpis, imperdiet ac accumsan a, maximus at nibh. In non augue maximus, venenatis velit id, varius leo. Suspendisse et quam quis ipsum rutrum ullamcorper non eu dui. Nulla condimentum nisl ligula, sed rhoncus urna sagittis non. Pellentesque pulvinar mattis odio, id egestas nunc rhoncus posuere. Cras malesuada nisl dolor. Nullam pulvinar nibh elit, ut dapibus nibh sodales sed. Nam ligula nisi, convallis vitae fringilla consectetur, pulvinar ac nisi. Maecenas faucibus leo et libero ullamcorper, auctor sollicitudin est condimentum.`
@@ -30,11 +30,11 @@ const projetosMock = [
   {
     id: "1",
     ano: "2021",
-    numero_pl: "PL123/2021",
+    numeroPl: "PL123/2021",
     pauta: "Linguagem Neutra",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "João Silva",
         genero: "Masculino",
@@ -72,11 +72,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "2",
     ano: "2021",
-    numero_pl: "PL456/2023",
+    numeroPl: "PL456/2023",
     pauta: "Atletas Trans",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
         nome: "Ana Costa",
         genero: "Feminino",
@@ -110,11 +110,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "3",
     ano: "2024",
-    numero_pl: "PL789/2022",
+    numeroPl: "PL789/2022",
     pauta: "Banheiros Multigênero",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Carlos Almeida",
         genero: "Não Binário",
@@ -127,7 +127,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
         ideologia: "Centro Esquerda"
       },
       {
-        url_imagem:
+        urlImagem:
           "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
         nome: "Fernanda Oliveira",
         genero: "Feminino",
@@ -161,11 +161,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "4",
     ano: "2020",
-    numero_pl: "PL321/2020",
+    numeroPl: "PL321/2020",
     pauta: "Propaganda LGBT",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Lucas Pereira",
         genero: "Masculino",
@@ -199,11 +199,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "5",
     ano: "2022",
-    numero_pl: "PL432/2022",
+    numeroPl: "PL432/2022",
     pauta: "Atletas Trans",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
         nome: "Mariana Souza",
         genero: "Feminino",
@@ -217,7 +217,7 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
       },
 
       {
-        url_imagem:
+        urlImagem:
           "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
         nome: "Fernanda Oliveira",
         genero: "Feminino",
@@ -251,11 +251,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "6",
     ano: "2022",
-    numero_pl: "PL112/2022",
+    numeroPl: "PL112/2022",
     pauta: "Banheiros Multigênero",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Joaquim Ferreira",
         genero: "Masculino",
@@ -289,11 +289,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "7",
     ano: "2021",
-    numero_pl: "PL543/2021",
+    numeroPl: "PL543/2021",
     pauta: "Propaganda LGBT",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Ricardo Santos",
         genero: "Masculino",
@@ -326,11 +326,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "8",
     ano: "2021",
-    numero_pl: "PL234/2021",
+    numeroPl: "PL234/2021",
     pauta: "Linguagem Neutra",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
         nome: "Beatriz Silva",
         genero: "Feminino",
@@ -364,11 +364,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "9",
     ano: "2023",
-    numero_pl: "PL678/2023",
+    numeroPl: "PL678/2023",
     pauta: "Atletas Trans",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "André Oliveira",
         genero: "Masculino",
@@ -402,11 +402,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "10",
     ano: "2023",
-    numero_pl: "PL891/2023",
+    numeroPl: "PL891/2023",
     pauta: "Banheiros Multigênero",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
         nome: "Luciana Costa",
         genero: "Feminino",
@@ -440,11 +440,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "11",
     ano: "2023",
-    numero_pl: "PL234/2023",
+    numeroPl: "PL234/2023",
     pauta: "Propaganda LGBT",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Carlos Rocha",
         genero: "Masculino",
@@ -478,11 +478,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "12",
     ano: "2021",
-    numero_pl: "PL987/2021",
+    numeroPl: "PL987/2021",
     pauta: "Linguagem Neutra",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "José Pereira",
         genero: "Masculino",
@@ -516,11 +516,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "13",
     ano: "2022",
-    numero_pl: "PL110/2022",
+    numeroPl: "PL110/2022",
     pauta: "Atletas Trans",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
         nome: "Cláudia Lima",
         genero: "Feminino",
@@ -554,11 +554,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "14",
     ano: "2023",
-    numero_pl: "PL111/2023",
+    numeroPl: "PL111/2023",
     pauta: "Banheiros Multigênero",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Fernando Souza",
         genero: "Masculino",
@@ -592,11 +592,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "15",
     ano: "2021",
-    numero_pl: "PL123/2021",
+    numeroPl: "PL123/2021",
     pauta: "Propaganda LGBT",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
         nome: "Gabriela Santos",
         genero: "Feminino",
@@ -629,11 +629,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "16",
     ano: "2022",
-    numero_pl: "PL123/2022",
+    numeroPl: "PL123/2022",
     pauta: "Linguagem Neutra",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
         nome: "Joana Silva",
         genero: "Feminino",
@@ -667,11 +667,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "17",
     ano: "2021",
-    numero_pl: "PL765/2021",
+    numeroPl: "PL765/2021",
     pauta: "Atletas Trans",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "André Gomes",
         genero: "Masculino",
@@ -705,11 +705,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "18",
     ano: "2023",
-    numero_pl: "PL1111/2023",
+    numeroPl: "PL1111/2023",
     pauta: "Banheiros Multigênero",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
         nome: "Tânia Costa",
         genero: "Feminino",
@@ -743,11 +743,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "19",
     ano: "2023",
-    numero_pl: "PL453/2023",
+    numeroPl: "PL453/2023",
     pauta: "Propaganda LGBT",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://superawesomevectors.com/wp-content/uploads/2016/02/businessman-with-suit-flat-vector-icon-800x566.jpg",
         nome: "Daniel Oliveira",
         genero: "Masculino",
@@ -781,11 +781,11 @@ Quam lorem odio sollicitudin vehicula turpis. Maximus fames tortor pharetra pulv
   {
     id: "20",
     ano: "2022",
-    numero_pl: "PL899/2022",
+    numeroPl: "PL899/2022",
     pauta: "Linguagem Neutra",
     parlamentares: [
       {
-        url_imagem:
+        urlImagem:
           "https://static.vecteezy.com/system/resources/thumbnails/043/361/881/small/default-placeholder-avatar-profile-on-gray-background-woman-avatar-user-profile-person-icon-silhouette-profile-picture-for-unknown-or-anonymous-individual-for-social-media-website-free-vector.jpg",
         nome: "Roberta Lima",
         genero: "Feminino",
@@ -824,7 +824,7 @@ const partidosMock = [
     sigla: "PL",
     parlamentares: "10",
     propostas: "9",
-    url_imagem:
+    urlImagem:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/2023_logo_of_the_Liberal_Party_%28Brazil%2C_2006%29.svg/1200px-2023_logo_of_the_Liberal_Party_%28Brazil%2C_2006%29.svg.png"
   },
   {
@@ -832,7 +832,7 @@ const partidosMock = [
     sigla: "PP",
     parlamentares: "15",
     propostas: "12",
-    url_imagem:
+    urlImagem:
       "https://amigosdepelotas.com.br/wp-content/uploads/2019/05/PP.png"
   },
   {
@@ -840,7 +840,7 @@ const partidosMock = [
     sigla: "UB",
     parlamentares: "20",
     propostas: "18",
-    url_imagem:
+    urlImagem:
       "https://s2-oglobo.glbimg.com/spWSXaxi1WhIbbeOAj0O38unXrI=/1200x/smart/filters:cover():strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/T/Q/ddIKCrSAuk686zXBpeoA/uniao.png"
   },
   {
@@ -848,7 +848,7 @@ const partidosMock = [
     sigla: "DEM",
     parlamentares: "8",
     propostas: "7",
-    url_imagem:
+    urlImagem:
       "https://static.poder360.com.br/2020/11/logo-dem_Prancheta-1.jpg"
   },
 
@@ -857,7 +857,7 @@ const partidosMock = [
     sigla: "PSC",
     parlamentares: "5",
     propostas: "4",
-    url_imagem:
+    urlImagem:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShokk0wx76h4rATLJDY7ERLpeJptsWWJx0OA&s"
   },
   {
@@ -865,7 +865,7 @@ const partidosMock = [
     sigla: "PRTB",
     parlamentares: "3",
     propostas: "2",
-    url_imagem:
+    urlImagem:
       "https://neamp.pucsp.br/images/logos/partido-renovador-trabalhista-brasileiro-prtb.png"
   },
   {
@@ -873,7 +873,7 @@ const partidosMock = [
     sigla: "PTB",
     parlamentares: "7",
     propostas: "6",
-    url_imagem:
+    urlImagem:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYRW_WKqEG8YkBOPxxo7xz-OEoCu1yYjGsbg&s"
   },
   {
@@ -881,7 +881,7 @@ const partidosMock = [
     sigla: "PROS",
     parlamentares: "6",
     propostas: "5",
-    url_imagem:
+    urlImagem:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrbPqUzX3zp6pnSIddFufdZaXNw-Kr6eNA3A&s"
   },
   {
@@ -889,7 +889,7 @@ const partidosMock = [
     sigla: "NOVO",
     parlamentares: "12",
     propostas: "10",
-    url_imagem:
+    urlImagem:
       "https://www.curitiba.pr.leg.br/vereadores/imagens/logos-partidos/LogopartidoNovo.png/image"
   },
   {
@@ -897,7 +897,7 @@ const partidosMock = [
     sigla: "AVANTE",
     parlamentares: "4",
     propostas: "3",
-    url_imagem:
+    urlImagem:
       "https://http2.mlstatic.com/D_NQ_NP_898952-MLB73111613612_122023-O.webp"
   },
 
@@ -906,7 +906,7 @@ const partidosMock = [
     sigla: "PATRI",
     parlamentares: "5",
     propostas: "4",
-    url_imagem:
+    urlImagem:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBz59t0ghrmPQNe8BnbNKqjVZBhmS1NYr4_4lI5COQKuNRehTRApgLKhzVv1taEHc9aBk&usqp=CAU"
   },
   {
@@ -914,7 +914,7 @@ const partidosMock = [
     sigla: "SD",
     parlamentares: "6",
     propostas: "5",
-    url_imagem:
+    urlImagem:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRhWe0kYkWQDiqeTCjZsLMEJbwep9-dPxYOA&s"
   }
 ];

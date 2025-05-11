@@ -1,7 +1,7 @@
 "use client";
 
 import { ProjetoLei } from "@/domain/interfaces/projeto-lei";
-import { titillium_web, oswald } from "../../../lib/fonts/fonts";
+import { titilliumWeb, oswald } from "../../../lib/fonts/fonts";
 import CardRenderizarTexto from "./card-renderizar-texto";
 
 interface CardProjetosProps {
@@ -14,7 +14,7 @@ const CardProjeto: React.FC<CardProjetosProps> = ({ projeto }) => {
       <section className="flex gap-6">
         <CardRenderizarTexto conteudo={projeto.ano} titulo="Ano" />
         <CardRenderizarTexto
-          conteudo={projeto.numero_pl}
+          conteudo={projeto.numeroPl}
           titulo="Número do PL"
         />
       </section>
@@ -30,7 +30,7 @@ const CardProjeto: React.FC<CardProjetosProps> = ({ projeto }) => {
           {projeto.parlamentares.map((parlamentar, index) => (
             <span
               key={index}
-              className={`${titillium_web.className} font-normal text-xl text-white`}
+              className={`${titilliumWeb.className} font-normal text-xl text-white`}
             >
               {parlamentar.estado}
             </span>
@@ -50,7 +50,7 @@ const CardProjeto: React.FC<CardProjetosProps> = ({ projeto }) => {
           {projeto.parlamentares.map((parlamentar, index) => (
             <span
               key={index}
-              className={`${titillium_web.className} font-normal text-xl text-white`}
+              className={`${titilliumWeb.className} font-normal text-xl text-white`}
             >
               {parlamentar.nome} - {parlamentar.partido}
             </span>
@@ -66,7 +66,7 @@ const CardProjeto: React.FC<CardProjetosProps> = ({ projeto }) => {
             Ementa:
           </span>
           <p
-            className={`${titillium_web.className} font-normal text-xl text-white`}
+            className={`${titilliumWeb.className} font-normal text-xl text-white`}
           >
             {projeto.ementa}
           </p>

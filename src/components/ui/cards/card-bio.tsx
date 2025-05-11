@@ -1,9 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 import { Desenvolvedor } from "@/domain/interfaces/desenvolvedor";
-import { oswald, titillium_web } from "../../../lib/fonts/fonts";
+import { oswald, titilliumWeb } from "../../../lib/fonts/fonts";
 import IconLattes from "../icons/icon-lattes";
 import { FaGithub } from "react-icons/fa6";
 import { LinkType } from "@/domain/interfaces/link-type";
+import Image from "next/image";
 
 interface CardBioProps {
   desenvolvedor: Desenvolvedor;
@@ -12,14 +12,17 @@ interface CardBioProps {
 const CardBio: React.FC<CardBioProps> = ({ desenvolvedor }) => {
   return (
     <div
-      className={`w-[70.5rem] h-[37.5rem] p-12 flex flex-row gap-14  bg-gradient-to-b from-[#122144] to-[#1A326E] rounded-[10px] border-2 border-[#AFC4F9] shadow-[#1A326E] shadow-xl  ${titillium_web.className}`}
+      className={`w-[70.5rem] h-[37.5rem] p-12 flex flex-row gap-14  bg-gradient-to-b from-[#122144] to-[#1A326E] rounded-[10px] border-2 border-[#AFC4F9] shadow-[#1A326E] shadow-xl  ${titilliumWeb.className}`}
     >
       <section>
-        <img
-          src={desenvolvedor.foto}
-          alt=""
-          className="min-w-[21.875rem] min-h-[31.25rem] rounded-[10px] object-cover border-2 border-[#91ADF4] select-none"
-        />
+        <div className="relative min-w-[21.875rem] min-h-[31.25rem]">
+          <Image
+            src={desenvolvedor.foto}
+            alt={desenvolvedor.nome}
+            fill
+            className="rounded-[10px] object-cover border-2 border-[#91ADF4] select-none"
+          />
+        </div>
       </section>
       <section className="flex flex-col w-full">
         <div className="w-full flex justify-end gap-4 select-none">

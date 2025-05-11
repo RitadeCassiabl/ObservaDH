@@ -1,10 +1,9 @@
 import { mockSobre } from "@/mocks/mock-sobre";
 
 import MainLayout from "@/components/ui/layouts/main-layout";
-
+import Image from "next/image";
 
 const page: React.FC = () => {
-  
   //render
   return (
     <MainLayout>
@@ -14,9 +13,9 @@ const page: React.FC = () => {
             <Sobre
               key={index}
               isReverse={index % 2 == 0 ? true : false}
-              texto_longo={item.texto_longo}
+              textoLongo={item.textoLongo}
               texto={item.texto}
-              url_imagem={item.url_imagem}
+              urlImagem={item.urlImagem}
             />
           );
         })}
@@ -26,32 +25,36 @@ const page: React.FC = () => {
 };
 
 interface sobreProps {
-  texto_longo: string;
+  textoLongo: string;
   texto: string;
-  url_imagem: string;
+  urlImagem: string;
   isReverse?: boolean;
 }
 
 const Sobre: React.FC<sobreProps> = ({
   texto,
-  texto_longo,
-  url_imagem,
+  textoLongo,
+  urlImagem,
   isReverse,
 }) => {
   return (
     <div className="flex flex-col gap-[4.5rem]">
       <article>
-        <p>{texto_longo}</p>
+        <p>{textoLongo}</p>
       </article>
       <article
         className={`flex h-auto gap-10 ${isReverse ? "flex-row-reverse" : ""}`}
       >
         <section className="">
-          <img
-            src={url_imagem}
-            alt="imagem de apresentação"
-            className="object-cover min-w-[32.5rem] min-h-[30rem] w-[32.5rem] h-[30rem] rounded-[10px] border-2 border-[#87D9FF]"
-          />
+          <div className="relative min-w-[32.5rem] min-h-[30rem] w-[32.5rem] h-[30rem] rounded-[10px] border-2 border-[#87D9FF] overflow-hidden">
+            <Image
+              src={urlImagem}
+              alt="imagem de apresentação"
+              fill
+              style={{ objectFit: "cover" }}
+              className="select-none"
+            />
+          </div>
         </section>
         <section className="">
           <p className="">{texto}</p>

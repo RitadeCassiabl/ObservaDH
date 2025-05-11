@@ -1,9 +1,8 @@
-
 import { PartidoModel } from "@/domain/interfaces/partido";
 import { oswald } from "../../../lib/fonts/fonts";
 import CardDivider from "./card-divider";
+import Image from "next/image";
 
-// TODO: Rename interface "cardComponentePartidoProps" to match the regular expression ^[A-Z][a-zA-Z0-9]*$.
 interface cardComponentePartidoProps {
   partido: PartidoModel;
 }
@@ -17,11 +16,14 @@ const CardComponentePartido: React.FC<cardComponentePartidoProps> = ({
         <section className="flex flex-row h-full w-1/2 ">
           <section className="w-full items-center text-white h-full px-16 grid grid-cols-2">
             <div className="w-1/2">
-              <img
-                src={partido.url_imagem}
-                alt=""
-                className="h-24 w-24 rounded-full object-cover"
-              />
+              <div className="relative h-24 w-24">
+                <Image
+                  src={partido.urlImagem}
+                  alt={`${partido.nome} – ${partido.sigla}`}
+                  fill
+                  className="rounded-full object-cover select-none"
+                />
+              </div>
             </div>
             <div className="w-1/2">
               <p className=" text-3xl font-medium text-nowrap">

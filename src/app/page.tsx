@@ -1,7 +1,7 @@
 import {
   apresentacao,
-  cards_esfera,
-  cards_informativos,
+  cardsEsfera,
+  cardsInformativos,
 } from "../mocks/mock-home";
 
 import Card from "@/components/ui/cards";
@@ -28,7 +28,7 @@ const page: React.FC = () => {
           className="w-9/12 h-auto flex flex-col gap-16"
           id=" CARDS DE REDIRECIONAMENTO - PLS "
         >
-          {cards_esfera.map((card, index) => (
+          {cardsEsfera.map((card, index) => (
             <div
               key={index}
               className={`w-full flex ${
@@ -47,14 +47,14 @@ const page: React.FC = () => {
         </article>
 
         <article className="flex w-full flex-col items-center px-[5rem] gap-24 xl:flex-row xl:justify-evenly">
-          {cards_informativos.map((item) => (
+          {cardsInformativos.map((item) => (
             <Card.Informativo
               key={item.titulo}
               rota={item.rota}
               subtitulo={item.subtitulo}
               texto={item.texto}
               titulo={item.titulo}
-              cor_texto={item.cor}
+              corTexto={item.cor}
               isSubtitleHTML={item.isSubtitleHTML}
             />
           ))}
