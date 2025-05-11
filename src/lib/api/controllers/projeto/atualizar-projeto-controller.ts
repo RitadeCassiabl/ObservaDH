@@ -1,4 +1,4 @@
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarProjetoService } from "../../service/projeto/atualizar-projeto-service";
 import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-service";
 

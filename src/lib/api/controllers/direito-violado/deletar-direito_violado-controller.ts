@@ -1,4 +1,4 @@
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { DeletarDireitoVioladoService } from "../../service/direito-violado/deletar-direito_violado-service";
 import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
 

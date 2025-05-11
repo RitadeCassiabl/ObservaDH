@@ -1,5 +1,5 @@
 import { prismaClient } from "@/services/prisma/prisma";
-import { Partido } from "@/types/partido";
+import { Partido } from "@/domain/models/partido";
 
 export class CriarPartidoService {
     async executar(partido: Partido) {

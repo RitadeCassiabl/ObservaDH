@@ -1,6 +1,6 @@
 
-import { Pauta } from "@/types/pauta";
-import { RespostaApi } from "@/types/resposta-api";
+import { Pauta } from "@/domain/models/pauta";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { BuscarPautaService } from "../../service/pauta/buscar-pauta-service";
 import { CriarPautaService } from "../../service/pauta/criar-pauta-service";
 

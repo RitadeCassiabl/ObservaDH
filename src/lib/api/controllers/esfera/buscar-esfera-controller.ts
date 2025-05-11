@@ -1,5 +1,5 @@
 import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service";
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class BuscarEsferaController {
   async executar(id: string) {

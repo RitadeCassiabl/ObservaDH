@@ -1,4 +1,4 @@
-import { Esfera } from "@/types/esfera";
+import { Esfera } from "@/domain/models/esfera";
 import { prismaClient } from "@/services/prisma/prisma";
 export class CriarEsferaService {
   async executar(esfera: Esfera) {

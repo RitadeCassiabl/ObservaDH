@@ -1,4 +1,4 @@
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { DeletarPartidoService } from "../../service/partido/deletar-partido-service";
 import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
 

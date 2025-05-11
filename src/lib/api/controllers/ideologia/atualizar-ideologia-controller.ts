@@ -1,4 +1,4 @@
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarIdeologiaService } from "../../service/ideologia/atualizar-ideologia-service";
 import { BuscarIdeologiaService } from "../../service/ideologia/buscar-ideologia-service";
 

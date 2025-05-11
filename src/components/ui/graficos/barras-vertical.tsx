@@ -12,7 +12,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui-shacnui/chart"
-import { DadosGraficoBarrasVertical } from "@/types/graficos/barras-vertical"
+import { DadosGraficoBarrasVertical } from "@/domain/graficos/barras-vertical"
 
 
 

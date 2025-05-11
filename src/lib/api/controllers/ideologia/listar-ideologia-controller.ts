@@ -1,4 +1,4 @@
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { ListarIdeologiaService } from "../../service/ideologia/listar-ideologia-service";
 
 export class ListarIdeologiaController {

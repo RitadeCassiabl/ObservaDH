@@ -1,6 +1,6 @@
-import { DireitoViolado } from '@/types/direito-violado';
+import { DireitoViolado } from '@/domain/models/direito-violado';
 import { CriarDireitoVioladoService } from "../../service/direito-violado/criar-direito_violado-service";
-import { RespostaApi } from '@/types/resposta-api';
+import { RespostaApi } from '@/domain/models/resposta-api';
 import { BuscarDireitoVioladoService } from '../../service/direito-violado/buscar-direito_violado-service';
 
 export class CriarDireitoVioladoController {

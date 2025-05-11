@@ -1,6 +1,6 @@
-import { DadosGraficoBarraEmpilhadaVertical } from "@/types/graficos/barra-empilhada-vertical";
-import { DadosGraficoBarrasMultiplas } from "@/types/graficos/barras-multiplas";
-import { ProjetoLei } from "@/types/interfaces/projeto-lei";
+import { DadosGraficoBarraEmpilhadaVertical } from "@/domain/graficos/barra-empilhada-vertical";
+import { DadosGraficoBarrasMultiplas } from "@/domain/graficos/barras-multiplas";
+import { ProjetoLei } from "@/domain/interfaces/projeto-lei";
 
 function contarProjetosPorAno(data: ProjetoLei[]) {
   const anosContagem: Record<string, number> = {};

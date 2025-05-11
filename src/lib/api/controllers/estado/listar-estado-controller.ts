@@ -1,4 +1,4 @@
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { ListarEstadoService } from "../../service/estado/listar-estado-service";
 
 export class ListarEstadoController {

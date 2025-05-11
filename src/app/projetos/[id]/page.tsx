@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import { oswald } from "@/lib/fonts/fonts";
 import { buscarProjetoPorId } from "@/lib/utils/busca";
 
-import { ProjetoLei } from "@/types/interfaces/projeto-lei";
+import { ProjetoLei } from "@/domain/interfaces/projeto-lei";
 
 import Card from "@/components/ui/cards";
 import MainLayout from "@/components/ui/layouts/main-layout";

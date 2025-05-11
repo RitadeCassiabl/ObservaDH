@@ -1,7 +1,7 @@
-import { Partido } from "@/types/partido";
+import { Partido } from "@/domain/models/partido";
 import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
 import { AtualizarPartidoService } from "../../service/partido/atualizar-partido-service";
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class AtualizarPartidoController {
     async executar(id: string, nome: string, sigla: string, politicos: string[], projetos: string[]) {

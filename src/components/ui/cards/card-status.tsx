@@ -3,7 +3,7 @@ import React from "react";
 
 import CardDivider from "./card-divider";
 import CardStatusItem from "./card-status-item";
-import { StatusType } from "@/types/interfaces/status";
+import { StatusType } from "@/domain/interfaces/status";
 
 interface StatusCardProps {
   status: StatusType;

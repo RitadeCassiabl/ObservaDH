@@ -154,7 +154,7 @@
 import { AtualizarPartidoController } from "@/lib/api/controllers/partido/atualizar-partido-controller";
 import { BuscarPartidoController } from "@/lib/api/controllers/partido/buscar-partido-controller";
 import { DeletarPartidoController } from "@/lib/api/controllers/partido/deletar-partido-controller";
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { NextResponse } from "next/server";
 
 export async function GET(

@@ -1,8 +1,8 @@
-import { Projeto } from "@/types/projeto";
+import { Projeto } from "@/domain/models/projeto";
 import { CriarProjetoService } from "../../service/projeto/criar-projeto-service";
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-service";
-import { Esfera } from "@/types/esfera";
+import { Esfera } from "@/domain/models/esfera";
 
 export class CriarProjetoController {
   async executar(

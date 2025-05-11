@@ -1,4 +1,4 @@
-import { Profissao } from "@/types/profissao";
+import { Profissao } from "@/domain/models/profissao";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class CriarProfissaoService {

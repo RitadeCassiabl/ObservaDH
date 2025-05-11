@@ -1,6 +1,6 @@
-import { Partido } from "@/types/partido";
+import { Partido } from "@/domain/models/partido";
 import { CriarPartidoService } from "../../service/partido/criar-partido-service";
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
 
 class CriarPartidoController {

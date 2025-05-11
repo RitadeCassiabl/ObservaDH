@@ -1,4 +1,4 @@
-import { Estado } from "@/types/estado";
+import { Estado } from "@/domain/models/estado";
 import { prismaClient } from "@/services/prisma/prisma";
 export class CriarEstadoService {
   async executar(estado: Estado) {

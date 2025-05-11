@@ -1,6 +1,6 @@
 import { CriarEstadoController } from "@/lib/api/controllers/estado/criar-estado-controller";
 import { ListarEstadoController } from "@/lib/api/controllers/estado/listar-estado-controller";
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {

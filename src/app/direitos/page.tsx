@@ -7,10 +7,10 @@ import { projetosMock } from "@/mocks/mock-projetos";
 
 import { obterPautasUnicas } from "@/lib/utils/projeto-projeto-utils";
 
-import { CarrosselPlsProps } from "@/types/interfaces/carrossel-interface";
-import { elemento } from "@/types/interfaces/elemento-dropdown";
-import { DadosGraficoBarrasVertical } from "@/types/graficos/barras-vertical";
-import { DadosGraficoRosquinha } from "@/types/graficos/rosquinha";
+import { CarrosselPlsProps } from "@/domain/interfaces/carrossel-interface";
+import { elemento } from "@/domain/interfaces/elemento-dropdown";
+import { DadosGraficoBarrasVertical } from "@/domain/graficos/barras-vertical";
+import { DadosGraficoRosquinha } from "@/domain/graficos/rosquinha";
 
 import Card from "@/components/ui/cards";
 import Texto from "@/components/ui/componente-texto";

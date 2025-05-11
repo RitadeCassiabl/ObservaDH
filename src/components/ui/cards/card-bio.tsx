@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { Desenvolvedor } from "@/types/interfaces/desenvolvedor";
+import { Desenvolvedor } from "@/domain/interfaces/desenvolvedor";
 import { oswald, titillium_web } from "../../../lib/fonts/fonts";
 import IconLattes from "../icons/icon-lattes";
 import { FaGithub } from "react-icons/fa6";
-import { LinkType } from "@/types/interfaces/link-type";
+import { LinkType } from "@/domain/interfaces/link-type";
 
 interface CardBioProps {
   desenvolvedor: Desenvolvedor;

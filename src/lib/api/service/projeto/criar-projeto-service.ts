@@ -1,4 +1,4 @@
-import { Projeto } from "@/types/projeto";
+import { Projeto } from "@/domain/models/projeto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class CriarProjetoService {

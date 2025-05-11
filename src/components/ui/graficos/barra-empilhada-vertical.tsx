@@ -12,7 +12,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui-shacnui/chart";
 import React from "react";
-import { DadosGraficoBarraEmpilhadaVertical } from "@/types/graficos/barra-empilhada-vertical";
+import { DadosGraficoBarraEmpilhadaVertical } from "@/domain/graficos/barra-empilhada-vertical";
 
 const chartConfig = {
   branco: {

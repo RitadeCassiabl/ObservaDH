@@ -1,4 +1,4 @@
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
 
 export class BuscarPartidoController {

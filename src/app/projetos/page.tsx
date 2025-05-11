@@ -11,9 +11,9 @@ import {
   obterPautasUnicas,
 } from "@/lib/utils/projeto-projeto-utils";
 
-import { CarrosselPlsProps } from "@/types/interfaces/carrossel-interface";
-import { ProjetoLei } from "@/types/interfaces/projeto-lei";
-import { elemento } from "@/types/interfaces/elemento-dropdown";
+import { CarrosselPlsProps } from "@/domain/interfaces/carrossel-interface";
+import { ProjetoLei } from "@/domain/interfaces/projeto-lei";
+import { elemento } from "@/domain/interfaces/elemento-dropdown";
 
 import { Button } from "@/components/ui-shacnui/button";
 import {

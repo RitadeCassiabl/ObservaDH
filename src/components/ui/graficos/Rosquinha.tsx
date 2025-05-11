@@ -9,7 +9,7 @@ import {
   ChartLegend,
   ChartLegendContent,
 } from "@/components/ui-shacnui/chart";
-import { DadosGraficoRosquinha } from "@/types/graficos/rosquinha";
+import { DadosGraficoRosquinha } from "@/domain/graficos/rosquinha";
 
 const chartConfig = {
   pl: {

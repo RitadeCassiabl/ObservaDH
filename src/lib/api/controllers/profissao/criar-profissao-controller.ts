@@ -1,6 +1,6 @@
-import { Profissao } from "@/types/profissao";
+import { Profissao } from "@/domain/models/profissao";
 import { CriarProfissaoService } from "../../service/profissao/criar-profissao-service";
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { BuscarProfissaoService } from "../../service/profissao/buscar-profissao-service";
 
 export class CriarProfissaoController {

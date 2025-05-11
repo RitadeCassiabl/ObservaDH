@@ -1,5 +1,5 @@
 
-import { PartidoModel } from "@/types/interfaces/partido";
+import { PartidoModel } from "@/domain/interfaces/partido";
 import { oswald } from "../../../lib/fonts/fonts";
 import CardDivider from "./card-divider";
 

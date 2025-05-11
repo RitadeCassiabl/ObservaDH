@@ -1,5 +1,5 @@
 import { prismaClient } from "@/services/prisma/prisma";
-import { Pauta } from "@/types/pauta";
+import { Pauta } from "@/domain/models/pauta";
 
 
 

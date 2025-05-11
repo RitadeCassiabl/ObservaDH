@@ -1,4 +1,4 @@
-import { Ideologia } from "@/types/ideologia";
+import { Ideologia } from "@/domain/models/ideologia";
 import { prismaClient } from "@/services/prisma/prisma";
 export class CriarIdeologiaService {
   async executar(ideologia: Ideologia) {

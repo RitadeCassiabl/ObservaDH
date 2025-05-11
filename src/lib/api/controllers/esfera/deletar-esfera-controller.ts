@@ -1,4 +1,4 @@
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { DeletarEsferaService } from "../../service/esfera/deletar-esfera-service";
 import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service";
 

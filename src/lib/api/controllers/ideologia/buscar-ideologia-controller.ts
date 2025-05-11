@@ -1,5 +1,5 @@
 import { BuscarIdeologiaService } from "../../service/ideologia/buscar-ideologia-service";
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class BuscarIdeologiaController {
   async executar(id: string) {

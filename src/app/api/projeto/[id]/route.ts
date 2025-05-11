@@ -1,7 +1,7 @@
 import { AtualizarProjetoController } from "@/lib/api/controllers/projeto/atualizar-projeto-controller";
 import { BuscarProjetoController } from "@/lib/api/controllers/projeto/buscar-projeto-controller";
 import { DeletarProjetoController } from "@/lib/api/controllers/projeto/deletar-projeto-controller";
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { NextResponse } from "next/server";
 
 export async function PATCH(

@@ -2,7 +2,7 @@
 import { DeletarProfissaoController } from "@/lib/api/controllers/profissao/deletar-profissao-controller";
 import { BuscarProfissaoController } from "@/lib/api/controllers/profissao/buscar-profissao-controller";
 import { AtualizarProfissaoController } from "@/lib/api/controllers/profissao/atualizar-profissao-controller";
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { NextResponse } from "next/server";
 
 export async function DELETE(

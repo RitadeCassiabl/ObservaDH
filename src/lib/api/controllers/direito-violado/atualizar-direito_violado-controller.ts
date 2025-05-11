@@ -1,4 +1,4 @@
-import { RespostaApi } from "@/types/resposta-api";
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarDireitoVioladoService } from "../../service/direito-violado/atualizar-direito_violado-service";
 import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
 
