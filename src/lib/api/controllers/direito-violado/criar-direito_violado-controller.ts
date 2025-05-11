@@ -1,7 +1,8 @@
-import { DireitoViolado } from "@/domain/models/direito-violado";
-import { CriarDireitoVioladoService } from "../../service/direito-violado/criar-direito_violado-service";
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
+import { CriarDireitoVioladoService } from "../../service/direito-violado/criar-direito_violado-service";
+
+import { DireitoViolado } from "@/domain/models/direito-violado";
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class CriarDireitoVioladoController {
 	async executar(nome: string) {

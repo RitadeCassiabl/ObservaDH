@@ -1,15 +1,23 @@
 import { MdOutlineFilterAlt } from "react-icons/md";
 
-import {
-	apresentacao,
-	legendas,
-	projetosMock,
-} from "../../mocks/mock-projetos";
-
 import { CarrosselPlsProps } from "@/domain/interfaces/carrossel-interface";
-import { ProjetoLei } from "@/domain/interfaces/projeto-lei";
 import { elemento } from "@/domain/interfaces/elemento-dropdown";
+import { ProjetoLei } from "@/domain/interfaces/projeto-lei";
 
+import contarPautasPorAno from "@/lib/utils/projeto-utils/contar-pautas-por-ano";
+import contarProjetosPorAno from "@/lib/utils/projeto-utils/contar-projetos-por-ano";
+import obterAnosUnicos from "@/lib/utils/projeto-utils/obter-anos-unicos";
+import obterEsferasUnicas from "@/lib/utils/projeto-utils/obter-esferas-unicas";
+import obterEstadosUnicos from "@/lib/utils/projeto-utils/obter-estados-unico";
+import obterPautasUnicas from "@/lib/utils/projeto-utils/obter-pautas-unicas";
+
+import Card from "@/components/ui/cards";
+import Texto from "@/components/ui/componente-texto";
+import DropdownButton from "@/components/ui/dropdown/dropdown-button";
+import GraficoBarraEmpilhadaHorizontal from "@/components/ui/graficos/barra-empilhada-hoizontal";
+import GraficoMapa from "@/components/ui/graficos/grafico-mapa";
+import GraficoLinhaPontos from "@/components/ui/graficos/linha-pontos";
+import MainLayout from "@/components/ui/layouts/main-layout";
 import { Button } from "@/components/ui-shacnui/button";
 import {
 	Carousel,
@@ -19,20 +27,11 @@ import {
 	CarouselPrevious,
 } from "@/components/ui-shacnui/carousel";
 
-import Card from "@/components/ui/cards";
-import DropdownButton from "@/components/ui/dropdown/dropdown-button";
-import GraficoBarraEmpilhadaHorizontal from "@/components/ui/graficos/barra-empilhada-hoizontal";
-import GraficoLinhaPontos from "@/components/ui/graficos/linha-pontos";
-import GraficoMapa from "@/components/ui/graficos/grafico-mapa";
-import MainLayout from "@/components/ui/layouts/main-layout";
-import Texto from "@/components/ui/componente-texto";
-
-import contarPautasPorAno from "@/lib/utils/projeto-utils/contar-pautas-por-ano";
-import contarProjetosPorAno from "@/lib/utils/projeto-utils/contar-projetos-por-ano";
-import obterAnosUnicos from "@/lib/utils/projeto-utils/obter-anos-unicos";
-import obterEsferasUnicas from "@/lib/utils/projeto-utils/obter-esferas-unicas";
-import obterEstadosUnicos from "@/lib/utils/projeto-utils/obter-estados-unico";
-import obterPautasUnicas from "@/lib/utils/projeto-utils/obter-pautas-unicas";
+import {
+	apresentacao,
+	legendas,
+	projetosMock,
+} from "../../mocks/mock-projetos";
 
 const page: React.FC = () => {
 	const esferas = obterEsferasUnicas({ projetos: projetosMock });

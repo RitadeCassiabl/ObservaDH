@@ -1,7 +1,8 @@
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { CriarDireitoVioladoController } from "@/lib/api/controllers/direito-violado/criar-direito_violado-controller";
 import { ListarDireitoVioladoController } from "@/lib/api/controllers/direito-violado/listar-direito_violado-controller";
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
 	try {

@@ -1,11 +1,11 @@
+import Card from "@/components/ui/cards";
+import MainLayout from "@/components/ui/layouts/main-layout";
+
 import {
 	apresentacao,
 	cardsEsfera,
 	cardsInformativos,
 } from "../mocks/mock-home";
-
-import Card from "@/components/ui/cards";
-import MainLayout from "@/components/ui/layouts/main-layout";
 
 const page: React.FC = () => {
 	//render

@@ -1,8 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import CardItemRenderizacao from "./card-item-renderizacao";
+
 import { miniProjeto } from "@/domain/interfaces/mini-projeto";
+
+import CardItemRenderizacao from "./card-item-renderizacao";
 
 interface miniCardProjetosProps {
 	miniProjeto: miniProjeto;

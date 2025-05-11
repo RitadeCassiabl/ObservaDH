@@ -1,6 +1,7 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { DeletarEsferaService } from "../../service/esfera/deletar-esfera-service";
 import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service";
+import { DeletarEsferaService } from "../../service/esfera/deletar-esfera-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class DeletarEsferaController {
 	async executar(id: string) {

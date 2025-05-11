@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import swaggerJSDoc from "swagger-jsdoc";
 
 import swaggerOptions from "@/lib/swaggerOptions";
-import swaggerJSDoc from "swagger-jsdoc";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
 	const spec = swaggerJSDoc(swaggerOptions);

@@ -1,8 +1,9 @@
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarDireitoVioladoController } from "@/lib/api/controllers/direito-violado/atualizar-direito_violado-controller";
 import { BuscarDireitoVioladoController } from "@/lib/api/controllers/direito-violado/buscar-direito_violado-controller";
 import { DeletarDireitoVioladoController } from "@/lib/api/controllers/direito-violado/deletar-direito_violado-controller";
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function PATCH(
 	request: Request,

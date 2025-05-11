@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import { Card, CardContent } from "@/components/ui-shacnui/card";
@@ -11,7 +12,7 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui-shacnui/chart";
-import React from "react";
+
 import { DadosGraficoBarraEmpilhadaVertical } from "@/domain/graficos/barra-empilhada-vertical";
 
 const chartConfig = {

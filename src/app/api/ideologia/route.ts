@@ -1,7 +1,8 @@
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { CriarIdeologiaController } from "@/lib/api/controllers/ideologia/criar-ideologia-controller";
 import { ListarIdeologiaController } from "@/lib/api/controllers/ideologia/listar-ideologia-controller";
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
 	try {

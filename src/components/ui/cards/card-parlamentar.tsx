@@ -1,3 +1,9 @@
+import React from "react";
+import { IoMdClose } from "react-icons/io";
+import Image from "next/image";
+
+import { parlamentar } from "@/domain/interfaces/parlamentar";
+
 import {
 	AlertDialog,
 	AlertDialogCancel,
@@ -5,23 +11,20 @@ import {
 	AlertDialogDescription,
 	AlertDialogTrigger,
 } from "@/components/ui-shacnui/alert-dialog";
-import { parlamentar } from "@/domain/interfaces/parlamentar";
-import React from "react";
-
-import { IoMdClose } from "react-icons/io";
-
 import {
 	Carousel,
 	CarouselContent,
 	CarouselItem,
-	CarouselPrevious,
 	CarouselNext,
+	CarouselPrevious,
 } from "@/components/ui-shacnui/carousel";
-import { projetosMock } from "@/mocks/mock-projetos";
+
+import Texto from "../componente-texto";
+
 import CardItemRenderizacao from "./card-item-renderizacao";
 import CardMiniProjetos from "./card-mini-projeto";
-import Texto from "../componente-texto";
-import Image from "next/image";
+
+import { projetosMock } from "@/mocks/mock-projetos";
 
 interface saibaMaisProps {
 	parlamentar: parlamentar;

@@ -6,13 +6,13 @@ import {
 	CardContent,
 	CardDescription,
 } from "@/components/ui-shacnui/card";
-
 import {
 	ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui-shacnui/chart";
+
 import { DadosGraficoLinhaPontos } from "@/domain/graficos/linha-pontos";
 
 const chartConfig = {

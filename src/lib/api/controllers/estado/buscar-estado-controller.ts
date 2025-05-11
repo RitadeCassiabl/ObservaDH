@@ -1,4 +1,5 @@
 import { BuscarEstadoService } from "../../service/estado/buscar-estado-service";
+
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class BuscarEstadoController {

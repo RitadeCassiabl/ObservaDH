@@ -1,8 +1,8 @@
 "use client";
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
-import { Card, CardContent } from "@/components/ui-shacnui/card";
 
+import { Card, CardContent } from "@/components/ui-shacnui/card";
 import {
 	ChartConfig,
 	ChartContainer,
@@ -11,6 +11,7 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui-shacnui/chart";
+
 import { DadosGraficoBarraEmpilhadaHorizontal } from "@/domain/graficos/barra-empilhada-horizontal";
 
 const chartConfig = {

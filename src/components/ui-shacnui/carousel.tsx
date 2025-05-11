@@ -7,6 +7,7 @@ import useEmblaCarousel, {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { cn } from "@/lib/utils/utils";
+
 import { Button } from "@/components/ui-shacnui/button";
 
 type CarouselApi = UseEmblaCarouselType[1];
@@ -260,10 +261,10 @@ const CarouselNext = React.forwardRef<
 CarouselNext.displayName = "CarouselNext";
 
 export {
-	type CarouselApi,
 	Carousel,
+	type CarouselApi,
 	CarouselContent,
 	CarouselItem,
-	CarouselPrevious,
 	CarouselNext,
+	CarouselPrevious,
 };

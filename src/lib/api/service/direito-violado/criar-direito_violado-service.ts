@@ -1,5 +1,5 @@
-import { prismaClient } from "@/services/prisma/prisma";
 import { DireitoViolado } from "@/domain/models/direito-violado";
+import { prismaClient } from "@/services/prisma/prisma";
 
 export class CriarDireitoVioladoService {
 	async executar(direitoViolado: DireitoViolado) {

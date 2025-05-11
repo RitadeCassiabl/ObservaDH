@@ -1,5 +1,6 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { ListarDireitoVioladoService } from "../../service/direito-violado/listar-direito_violado_service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class ListarDireitoVioladoController {
 	async executar() {

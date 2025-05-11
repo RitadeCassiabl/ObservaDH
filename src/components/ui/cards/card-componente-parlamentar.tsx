@@ -1,8 +1,11 @@
 import Image from "next/image";
+
+import { parlamentar } from "@/domain/interfaces/parlamentar";
+
 import { oswald } from "../../../lib/fonts/fonts";
+
 import CardDivider from "./card-divider";
 import CardParlamentar from "./card-parlamentar";
-import { parlamentar } from "@/domain/interfaces/parlamentar";
 
 interface componentePros {
 	parlamentar: parlamentar;

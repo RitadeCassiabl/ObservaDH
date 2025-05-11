@@ -1,5 +1,6 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { ListarProfissoesService } from "../../service/profissao/listar-profissao-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class ListarProfissoesController {
 	async executar() {

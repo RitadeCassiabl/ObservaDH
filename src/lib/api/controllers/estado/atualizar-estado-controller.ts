@@ -1,6 +1,7 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarEstadoService } from "../../service/estado/atualizar-estado-service";
 import { BuscarEstadoService } from "../../service/estado/buscar-estado-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class AtualizarEstadoController {
 	async executar(id: string, nome: string) {

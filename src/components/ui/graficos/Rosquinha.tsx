@@ -1,14 +1,16 @@
 "use client";
 import { Pie, PieChart } from "recharts";
+
 import { Card, CardContent } from "@/components/ui-shacnui/card";
 import {
 	ChartConfig,
 	ChartContainer,
-	ChartTooltip,
-	ChartTooltipContent,
 	ChartLegend,
 	ChartLegendContent,
+	ChartTooltip,
+	ChartTooltipContent,
 } from "@/components/ui-shacnui/chart";
+
 import { DadosGraficoRosquinha } from "@/domain/graficos/rosquinha";
 
 const chartConfig = {

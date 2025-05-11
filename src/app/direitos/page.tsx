@@ -1,21 +1,15 @@
-import {
-	graficoBarrasVerticalDadosMock,
-	graficoRosquinhaDadosMock,
-} from "@/mocks/mock-direitos";
-import { legendas } from "@/mocks/mock-parlamentares";
-import { projetosMock } from "@/mocks/mock-projetos";
-
 import { CarrosselPlsProps } from "@/domain/interfaces/carrossel-interface";
 import { elemento } from "@/domain/interfaces/elemento-dropdown";
-import { DadosGraficoBarrasVertical } from "@/domain/graficos/barras-vertical";
-import { DadosGraficoRosquinha } from "@/domain/graficos/rosquinha";
+
+import obterPautasUnicas from "@/lib/utils/projeto-utils/obter-pautas-unicas";
 
 import Card from "@/components/ui/cards";
 import Texto from "@/components/ui/componente-texto";
 import DropdownButton from "@/components/ui/dropdown/dropdown-button";
 import GraficoBarrasVertical from "@/components/ui/graficos/barras-vertical";
-
+import GraficoRosquinha from "@/components/ui/graficos/Rosquinha";
 import MainLayout from "@/components/ui/layouts/main-layout";
+import Titulo from "@/components/ui/titulo-pages";
 import {
 	Carousel,
 	CarouselContent,
@@ -23,9 +17,15 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "@/components/ui-shacnui/carousel";
-import Titulo from "@/components/ui/titulo-pages";
-import GraficoRosquinha from "@/components/ui/graficos/Rosquinha";
-import obterPautasUnicas from "@/lib/utils/projeto-utils/obter-pautas-unicas";
+
+import { DadosGraficoBarrasVertical } from "@/domain/graficos/barras-vertical";
+import { DadosGraficoRosquinha } from "@/domain/graficos/rosquinha";
+import {
+	graficoBarrasVerticalDadosMock,
+	graficoRosquinhaDadosMock,
+} from "@/mocks/mock-direitos";
+import { legendas } from "@/mocks/mock-parlamentares";
+import { projetosMock } from "@/mocks/mock-projetos";
 
 const direitos: React.FC = () => {
 	const elementosDropdown = obterPautasUnicas({ projetos: projetosMock });

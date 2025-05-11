@@ -3,14 +3,15 @@
 
 import { useParams } from "next/navigation";
 
-import { oswald } from "@/lib/fonts/fonts";
-import { buscarProjetoPorId } from "@/lib/utils/busca";
-
 import { ProjetoLei } from "@/domain/interfaces/projeto-lei";
+
+import { buscarProjetoPorId } from "@/lib/utils/busca";
 
 import Card from "@/components/ui/cards";
 import MainLayout from "@/components/ui/layouts/main-layout";
 import Titulo from "@/components/ui/titulo-pages";
+
+import { oswald } from "@/lib/fonts/fonts";
 
 const page = () => {
 	const { id } = useParams();

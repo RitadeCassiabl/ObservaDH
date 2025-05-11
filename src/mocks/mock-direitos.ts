@@ -14,4 +14,4 @@ const graficoBarrasVerticalDadosMock = [
 	{ pauta: "Anti_Socio", pls: 145, fill: "#FF977A" },
 	{ pauta: "Imuta_Socio", pls: 150, fill: "#E1EAFF" },
 ];
-export { graficoRosquinhaDadosMock, graficoBarrasVerticalDadosMock };
+export { graficoBarrasVerticalDadosMock, graficoRosquinhaDadosMock };

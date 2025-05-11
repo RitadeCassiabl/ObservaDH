@@ -1,7 +1,8 @@
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { CriarPautaController } from "@/lib/api/controllers/pauta/criar-pauta-controller";
 import { ListarPautaController } from "@/lib/api/controllers/pauta/listar-pauta-controller";
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
 	try {

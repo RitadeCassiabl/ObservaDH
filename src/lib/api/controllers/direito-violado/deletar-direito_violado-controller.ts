@@ -1,6 +1,7 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { DeletarDireitoVioladoService } from "../../service/direito-violado/deletar-direito_violado-service";
 import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
+import { DeletarDireitoVioladoService } from "../../service/direito-violado/deletar-direito_violado-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class DeletarDireitoVioladoController {
 	async executar(id: string) {

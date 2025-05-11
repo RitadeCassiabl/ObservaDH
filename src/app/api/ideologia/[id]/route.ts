@@ -1,8 +1,9 @@
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarIdeologiaController } from "@/lib/api/controllers/ideologia/atualizar-ideologia-controller";
 import { BuscarIdeologiaController } from "@/lib/api/controllers/ideologia/buscar-ideologia-controller";
 import { DeletarIdeologiaController } from "@/lib/api/controllers/ideologia/deletar-ideologia-controller";
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function PATCH(
 	request: Request,

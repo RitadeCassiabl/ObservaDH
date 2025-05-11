@@ -945,4 +945,4 @@ const legendas = [
      `,
 	},
 ];
-export { partidosMock, legendas, apresentacao, mockStatus, projetosMock };
+export { apresentacao, legendas, mockStatus, partidosMock, projetosMock };

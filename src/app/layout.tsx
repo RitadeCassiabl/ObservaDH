@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
+
 import { titilliumWeb } from "@/lib/fonts/fonts";
 
 export const metadata: Metadata = {

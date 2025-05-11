@@ -1,6 +1,7 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarIdeologiaService } from "../../service/ideologia/atualizar-ideologia-service";
 import { BuscarIdeologiaService } from "../../service/ideologia/buscar-ideologia-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class AtualizarIdeologiaController {
 	async executar(id: string, nome: string) {

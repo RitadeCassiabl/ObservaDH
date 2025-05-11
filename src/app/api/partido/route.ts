@@ -101,10 +101,11 @@
  *               mensagem: Erro interno
  */
 
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { CriarPartidoController } from "@/lib/api/controllers/partido/criar-partido-controller";
 import { ListarPartidoController } from "@/lib/api/controllers/partido/listar-partido-controller";
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
 	try {

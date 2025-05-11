@@ -1,6 +1,7 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { DeletarIdeologiaService } from "../../service/ideologia/deletar-ideologia-service";
 import { BuscarIdeologiaService } from "../../service/ideologia/buscar-ideologia-service";
+import { DeletarIdeologiaService } from "../../service/ideologia/deletar-ideologia-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class DeletarIdeologiaController {
 	async executar(id: string) {

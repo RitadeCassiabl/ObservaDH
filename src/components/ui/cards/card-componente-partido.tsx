@@ -1,7 +1,10 @@
-import { PartidoModel } from "@/domain/interfaces/partido";
-import { oswald } from "../../../lib/fonts/fonts";
-import CardDivider from "./card-divider";
 import Image from "next/image";
+
+import { PartidoModel } from "@/domain/interfaces/partido";
+
+import { oswald } from "../../../lib/fonts/fonts";
+
+import CardDivider from "./card-divider";
 
 interface cardComponentePartidoProps {
 	partido: PartidoModel;

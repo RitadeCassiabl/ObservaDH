@@ -1,8 +1,9 @@
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarPautaController } from "@/lib/api/controllers/pauta/atualizar-pauta-controller";
 import { BuscarPautaController } from "@/lib/api/controllers/pauta/buscar-pauta-controller";
 import { DeletarPautaController } from "@/lib/api/controllers/pauta/deletar-pauta-controller";
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function DELETE(
 	request: Request,

@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
+import Link from "next/link";
+
 import { oswald, titilliumWeb } from "../../../lib/fonts/fonts";
 
 interface CardEsferaProps {

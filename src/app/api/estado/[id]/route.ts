@@ -1,8 +1,9 @@
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarEstadoController } from "@/lib/api/controllers/estado/atualizar-estado-controller";
 import { BuscarEstadoController } from "@/lib/api/controllers/estado/buscar-estado-controller";
 import { DeletarEstadoController } from "@/lib/api/controllers/estado/deletar-estado-controller";
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function PATCH(
 	request: Request,

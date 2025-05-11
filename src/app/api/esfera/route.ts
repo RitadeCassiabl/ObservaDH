@@ -1,7 +1,8 @@
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { CriarEsferaController } from "@/lib/api/controllers/esfera/criar-esfera-controller";
 import { ListarEsferaController } from "@/lib/api/controllers/esfera/listar-esfera-controller";
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
 	try {

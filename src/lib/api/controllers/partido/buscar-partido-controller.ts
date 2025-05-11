@@ -1,5 +1,6 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class BuscarPartidoController {
 	async executar(id: string) {

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import swaggerJSDoc from "swagger-jsdoc";
+
 import swaggerOptions from "@/lib/swaggerOptions";
 
 export function GET() {

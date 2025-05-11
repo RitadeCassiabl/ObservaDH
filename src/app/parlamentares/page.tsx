@@ -1,24 +1,8 @@
 import { MdOutlineFilterAlt } from "react-icons/md";
 
-import { legendas } from "@/mocks/mock-parlamentares";
-import { projetosMock, partidosMock } from "@/mocks/mock-projetos";
-
 import { elemento } from "@/domain/interfaces/elemento-dropdown";
 import { PartidoModel } from "@/domain/interfaces/partido";
 import { ProjetoLei } from "@/domain/interfaces/projeto-lei";
-
-import MainLayout from "@/components/ui/layouts/main-layout";
-import { Button } from "@/components/ui-shacnui/button";
-
-import Card from "@/components/ui/cards";
-import CardLegenda from "@/components/ui/cards/card-legenda";
-import DropdownButton from "@/components/ui/dropdown/dropdown-button";
-import Texto from "@/components/ui/componente-texto";
-
-import GraficoBarraEmpilhadaVertical from "@/components/ui/graficos/barra-empilhada-vertical";
-import GraficoBarraMultiplas from "@/components/ui/graficos/barras-multiplas";
-
-import Titulo from "@/components/ui/titulo-pages";
 
 import contarGeneroPorIdeologia from "@/lib/utils/projeto-utils/contar-genero-por-ideologia";
 import contarPropostasPorParlamentar from "@/lib/utils/projeto-utils/contar-proposta-por-parlamentar";
@@ -29,6 +13,19 @@ import obterGeneroUnico from "@/lib/utils/projeto-utils/obter-genero-unico";
 import obterIdeologiasUnica from "@/lib/utils/projeto-utils/obter-ideologias-unica";
 import obterPartidosUnicos from "@/lib/utils/projeto-utils/obter-partidos-unicos";
 import obterProfissoesUnicas from "@/lib/utils/projeto-utils/obter-profissoes-unicas";
+
+import Card from "@/components/ui/cards";
+import CardLegenda from "@/components/ui/cards/card-legenda";
+import Texto from "@/components/ui/componente-texto";
+import DropdownButton from "@/components/ui/dropdown/dropdown-button";
+import GraficoBarraEmpilhadaVertical from "@/components/ui/graficos/barra-empilhada-vertical";
+import GraficoBarraMultiplas from "@/components/ui/graficos/barras-multiplas";
+import MainLayout from "@/components/ui/layouts/main-layout";
+import Titulo from "@/components/ui/titulo-pages";
+import { Button } from "@/components/ui-shacnui/button";
+
+import { legendas } from "@/mocks/mock-parlamentares";
+import { partidosMock, projetosMock } from "@/mocks/mock-projetos";
 
 const page: React.FC = () => {
 	const partidosOrdenados = [...partidosMock].sort(

@@ -1,6 +1,7 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { BuscarPautaService } from "../../service/pauta/buscar-pauta-service";
 import { DeletarPautaService } from "../../service/pauta/deletar-pauta-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class DeletarPautaController {
 	async executar(id: string) {

@@ -1,7 +1,8 @@
-import { mockSobre } from "@/mocks/mock-sobre";
+import Image from "next/image";
 
 import MainLayout from "@/components/ui/layouts/main-layout";
-import Image from "next/image";
+
+import { mockSobre } from "@/mocks/mock-sobre";
 
 const page: React.FC = () => {
 	//render

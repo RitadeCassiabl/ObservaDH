@@ -1,6 +1,7 @@
-import { Partido } from "@/domain/models/partido";
-import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
 import { AtualizarPartidoService } from "../../service/partido/atualizar-partido-service";
+import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
+
+import { Partido } from "@/domain/models/partido";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class AtualizarPartidoController {

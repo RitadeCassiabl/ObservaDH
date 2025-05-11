@@ -2,11 +2,11 @@
 
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
+import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
 
-import clsx from "clsx";
 import useDescobertaCabecalho from "@/lib/utils/cabecalho-utils";
 
 interface Cabecalho {

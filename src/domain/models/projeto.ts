@@ -1,5 +1,5 @@
-import { SerializacaoDesserializacao } from "./serializacao-desserializacao";
 import { Esfera } from "./esfera";
+import { SerializacaoDesserializacao } from "./serializacao-desserializacao";
 
 class Projeto {
 	id?: string;

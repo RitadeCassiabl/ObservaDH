@@ -1,6 +1,7 @@
 // import { Profissao } from "@/lib/database/models/Profissao";
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarProfissaoService } from "../../service/profissao/atualizar-profissao-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class AtualizarProfissaoController {
 	async executar(id: string, nome: string) {

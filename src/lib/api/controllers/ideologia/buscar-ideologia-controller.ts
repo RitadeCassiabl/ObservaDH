@@ -1,4 +1,5 @@
 import { BuscarIdeologiaService } from "../../service/ideologia/buscar-ideologia-service";
+
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class BuscarIdeologiaController {

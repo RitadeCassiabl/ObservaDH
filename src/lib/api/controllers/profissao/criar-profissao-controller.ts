@@ -1,7 +1,8 @@
-import { Profissao } from "@/domain/models/profissao";
-import { CriarProfissaoService } from "../../service/profissao/criar-profissao-service";
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { BuscarProfissaoService } from "../../service/profissao/buscar-profissao-service";
+import { CriarProfissaoService } from "../../service/profissao/criar-profissao-service";
+
+import { Profissao } from "@/domain/models/profissao";
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class CriarProfissaoController {
 	async executar(nome: string) {

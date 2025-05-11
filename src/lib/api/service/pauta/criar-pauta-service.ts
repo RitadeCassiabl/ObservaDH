@@ -1,5 +1,5 @@
-import { prismaClient } from "@/services/prisma/prisma";
 import { Pauta } from "@/domain/models/pauta";
+import { prismaClient } from "@/services/prisma/prisma";
 
 export class CriarPautaService {
 	async executar(pauta: Pauta) {

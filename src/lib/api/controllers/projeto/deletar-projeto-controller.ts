@@ -1,6 +1,7 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { DeletarProjetoService } from "../../service/projeto/deletar-projeto-service";
 import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-service";
+import { DeletarProjetoService } from "../../service/projeto/deletar-projeto-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class DeletarProjetoController {
 	async executar(id: string) {

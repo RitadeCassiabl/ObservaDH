@@ -9,6 +9,7 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui-shacnui/chart";
+
 import { DadosGraficoBarrasVertical } from "@/domain/graficos/barras-vertical";
 
 const chartConfig = {

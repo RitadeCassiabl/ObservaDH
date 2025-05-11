@@ -1,3 +1,5 @@
+import { elemento } from "@/domain/interfaces/elemento-dropdown";
+
 import {
 	Select,
 	SelectContent,
@@ -5,7 +7,6 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui-shacnui/select";
-import { elemento } from "@/domain/interfaces/elemento-dropdown";
 
 interface DropdownButtonProps {
 	titulo?: string;

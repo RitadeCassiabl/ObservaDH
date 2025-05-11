@@ -1,8 +1,9 @@
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarEsferaController } from "@/lib/api/controllers/esfera/atualizar-esfera-controller";
 import { BuscarEsferaController } from "@/lib/api/controllers/esfera/buscar-esfera-controller";
 import { DeletarEsferaController } from "@/lib/api/controllers/esfera/deletar-esfera-controller";
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function PATCH(
 	request: Request,

@@ -1,5 +1,6 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { ListarPautaService } from "../../service/pauta/listar-pauta-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class ListarPautaController {
 	async executar() {

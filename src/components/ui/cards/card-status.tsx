@@ -1,9 +1,11 @@
-import { titilliumWeb } from "../../../lib/fonts/fonts";
 import React from "react";
+
+import { StatusType } from "@/domain/interfaces/status";
+
+import { titilliumWeb } from "../../../lib/fonts/fonts";
 
 import CardDivider from "./card-divider";
 import CardStatusItem from "./card-status-item";
-import { StatusType } from "@/domain/interfaces/status";
 
 interface StatusCardProps {
 	status: StatusType;

@@ -1,7 +1,8 @@
-import { Partido } from "@/domain/models/partido";
-import { CriarPartidoService } from "../../service/partido/criar-partido-service";
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
+import { CriarPartidoService } from "../../service/partido/criar-partido-service";
+
+import { Partido } from "@/domain/models/partido";
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 class CriarPartidoController {
 	async executar(nome: string, sigla: string) {

@@ -1,5 +1,6 @@
-import { oswald, titilliumWeb } from "../../../lib/fonts/fonts";
 import React from "react";
+
+import { oswald, titilliumWeb } from "../../../lib/fonts/fonts";
 
 interface CardApresentacaoProps {
 	titulo: string;

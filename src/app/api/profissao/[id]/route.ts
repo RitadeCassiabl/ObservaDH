@@ -1,8 +1,9 @@
-import { DeletarProfissaoController } from "@/lib/api/controllers/profissao/deletar-profissao-controller";
-import { BuscarProfissaoController } from "@/lib/api/controllers/profissao/buscar-profissao-controller";
-import { AtualizarProfissaoController } from "@/lib/api/controllers/profissao/atualizar-profissao-controller";
-import { RespostaApi } from "@/domain/models/resposta-api";
 import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
+import { AtualizarProfissaoController } from "@/lib/api/controllers/profissao/atualizar-profissao-controller";
+import { BuscarProfissaoController } from "@/lib/api/controllers/profissao/buscar-profissao-controller";
+import { DeletarProfissaoController } from "@/lib/api/controllers/profissao/deletar-profissao-controller";
 
 export async function DELETE(
 	_request: Request,

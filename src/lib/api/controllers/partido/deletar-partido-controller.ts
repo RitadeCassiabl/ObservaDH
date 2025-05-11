@@ -1,6 +1,7 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { DeletarPartidoService } from "../../service/partido/deletar-partido-service";
 import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
+import { DeletarPartidoService } from "../../service/partido/deletar-partido-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class DeletarPartidoController {
 	async executar(id: string) {

@@ -1,6 +1,7 @@
-import { RespostaApi } from "@/domain/models/resposta-api";
-import { DeletarProfissaoService } from "../../service/profissao/deletar-profissao-service";
 import { BuscarProfissaoService } from "../../service/profissao/buscar-profissao-service";
+import { DeletarProfissaoService } from "../../service/profissao/deletar-profissao-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class DeletarProfissaoController {
 	async executar(id: string) {
