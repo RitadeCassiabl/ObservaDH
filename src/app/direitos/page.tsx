@@ -16,7 +16,7 @@ import Card from "@/components/ui/cards";
 import Texto from "@/components/ui/componente-texto";
 import DropdownButton from "@/components/ui/dropdown/dropdown-button";
 import GraficoBarrasVertical from "@/components/ui/graficos/barras-vertical";
-import GraficoRosquinha from "@/components/ui/graficos/rosquinha";
+
 import MainLayout from "@/components/ui/layouts/main-layout";
 import {
   Carousel,
@@ -26,6 +26,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui-shacnui/carousel";
 import Titulo from "@/components/ui/titulo-pages";
+import GraficoRosquinha from "@/components/ui/graficos/Rosquinha";
 
 const direitos: React.FC = () => {
   const elementos_dropdown = obterPautasUnicas(projetosMock);

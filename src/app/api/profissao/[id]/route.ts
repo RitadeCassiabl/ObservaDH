@@ -1,3 +1,4 @@
+
 import { DeletarProfissaoController } from "@/lib/api/controllers/profissao/deletar-profissao-controller";
 import { BuscarProfissaoController } from "@/lib/api/controllers/profissao/buscar-profissao-controller";
 import { AtualizarProfissaoController } from "@/lib/api/controllers/profissao/atualizar-profissao-controller";

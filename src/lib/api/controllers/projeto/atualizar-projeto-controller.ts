@@ -1,7 +1,6 @@
 import { RespostaApi } from "@/types/resposta-api";
 import { AtualizarProjetoService } from "../../service/projeto/atualizar-projeto-service";
 import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-service";
-import { Esfera } from "@/types/esfera";
 
 export class AtualizarProjetoController {
   async executar(
@@ -13,7 +12,6 @@ export class AtualizarProjetoController {
     justificativa: string,
     ementa: string,
     esferaId: string,
-    esfera: Esfera
   ) {
     if (
       !id ||
@@ -23,8 +21,7 @@ export class AtualizarProjetoController {
       !pauta ||
       !justificativa ||
       !ementa ||
-      !esferaId ||
-      !esfera
+      !esferaId
     )
       return new RespostaApi(
         false,
@@ -56,7 +53,6 @@ export class AtualizarProjetoController {
       justificativa,
       ementa,
       esferaId,
-      esfera
     );
 
     if (resposta) {

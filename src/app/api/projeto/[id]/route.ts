@@ -26,8 +26,7 @@ export async function PATCH(
       pauta,
       justificativa,
       ementa,
-      esferaId,
-      esfera,
+      esferaId
     } = await request.json();
 
     const controller = new AtualizarProjetoController();
@@ -41,7 +40,6 @@ export async function PATCH(
       justificativa,
       ementa,
       esferaId,
-      esfera
     );
 
     return NextResponse.json(

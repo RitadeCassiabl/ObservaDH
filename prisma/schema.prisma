@@ -11,12 +11,11 @@ model Projeto {
   id               String           @id @default(uuid()) @db.VarChar(36)
   ano              String
   numero_pl        String           @unique
-  pauta            String
   justificativa    String
   ementa           String
-  ambitoId         String
+  esferaId         String
   pautaId          String
-  Ambito           Ambito           @relation(fields: [ambitoId], references: [id])
+  Esfera           Esfera           @relation(fields: [esferaId], references: [id])
   Pauta            Pauta            @relation(fields: [pautaId], references: [id])
   direitosViolados DireitoViolado[] @relation("DireitoVioladoToProjeto")
   ideologias       Ideologia[]      @relation("IdeologiaToProjeto")
@@ -74,7 +73,7 @@ model Profissao {
   politicos Politico[] @relation("PoliticoToProfissao")
 }
 
-model Ambito {
+model Esfera {
   id       String    @id @default(uuid()) @db.VarChar(36)
   nome     String
   Projetos Projeto[]

@@ -12,12 +12,12 @@ export class BuscarPartidoService {
         return resposta
     }
 
-    async BuscarPorCodigo(codigo: string) {
+    async BuscarPorCodigo(sigla: string) {
         const prisma = prismaClient;
 
         const resposta = await prisma.partido.findUnique(
             {
-                where: { codigo: codigo }
+                where: { sigla: sigla }
             }
         )
         return resposta

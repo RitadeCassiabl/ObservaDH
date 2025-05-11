@@ -4,9 +4,9 @@ import { Partido } from "@/types/partido";
     import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
 
     class CriarPartidoController {
-        async executar(nome: string, codigo: string) {
+        async executar(nome: string, sigla: string) {
 
-            if (!nome || !codigo) {
+            if (!nome || !sigla) {
                 return new RespostaApi(false,
                     "Nome e código são obrigatórios"
                 )
@@ -20,7 +20,7 @@ import { Partido } from "@/types/partido";
                 )
             }
 
-            const codigoexiste = await serviceAuxiliar.BuscarPorCodigo(codigo);
+            const codigoexiste = await serviceAuxiliar.BuscarPorCodigo(sigla);
 
             if (codigoexiste) {
                 return new RespostaApi(false,
@@ -30,7 +30,7 @@ import { Partido } from "@/types/partido";
 
             const service = new CriarPartidoService();
 
-            const partido = new Partido(nome, codigo);
+            const partido = new Partido(nome, sigla);
 
             const resposta = await service.executar(partido)
 
