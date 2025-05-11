@@ -5,11 +5,11 @@ import TextoEspaco from "./texto-espaco";
 import TextoPequeno from "./texto-pequeno";
 
 const Texto = {
-  Raiz: TextoRaiz,
-  Linha: TextoLinha,
-  Forte: TextoForte,
-  Espaco: TextoEspaco,
-  Pequeno: TextoPequeno,
+	Raiz: TextoRaiz,
+	Linha: TextoLinha,
+	Forte: TextoForte,
+	Espaco: TextoEspaco,
+	Pequeno: TextoPequeno,
 };
 
 export default Texto;

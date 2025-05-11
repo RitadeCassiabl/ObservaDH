@@ -1,7 +1,7 @@
 import { ProjetoLei } from "./projeto-lei";
 
 interface CarrosselPlsProps {
-  projetos: ProjetoLei[];
+	projetos: ProjetoLei[];
 }
 
-export type {CarrosselPlsProps}
+export type { CarrosselPlsProps };

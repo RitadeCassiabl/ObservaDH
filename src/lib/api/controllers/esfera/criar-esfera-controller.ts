@@ -4,40 +4,42 @@ import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service"
 import { Esfera } from "@/domain/models/esfera";
 
 export class CriarEsferaController {
-  async executar(nome: string) {
-    if (!nome) {
-      return new RespostaApi({
-        sucesso:
-          false,
-        mensagem:
-          "Estão faltando informações para criar a esfera"
-      }
-      );
-    }
+	async executar(nome: string) {
+		if (!nome) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Estão faltando informações para criar a esfera",
+			});
+		}
 
-    const serviceAuxiliar = new BuscarEsferaService();
+		const serviceAuxiliar = new BuscarEsferaService();
 
-    const existe = await serviceAuxiliar.buscarPorNome(nome);
+		const existe = await serviceAuxiliar.buscarPorNome(nome);
 
-    if (existe) {
-      return new RespostaApi({ sucesso: false, mensagem: "A esfera já existe" });
-    }
+		if (existe) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "A esfera já existe",
+			});
+		}
 
-    const service = new CriarEsferaService();
+		const service = new CriarEsferaService();
 
-    const esfera = new Esfera({ nome: nome });
+		const esfera = new Esfera({ nome: nome });
 
-    const resposta = await service.executar(esfera);
+		const resposta = await service.executar(esfera);
 
-    if (resposta) {
-      return new RespostaApi({ sucesso: true, mensagem: "A esfera foi criada com sucesso", dados: resposta });
-    } else {
-      return new RespostaApi({
-        sucesso:
-          false,
-        mensagem:
-          "Houve algum problema na criação da esfera"
-      });
-    }
-  }
+		if (resposta) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "A esfera foi criada com sucesso",
+				dados: resposta,
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Houve algum problema na criação da esfera",
+			});
+		}
+	}
 }

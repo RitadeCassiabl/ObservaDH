@@ -2,35 +2,29 @@ import { BuscarIdeologiaService } from "../../service/ideologia/buscar-ideologia
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class BuscarIdeologiaController {
-  async executar(id: string) {
-    if (!id) {
-      return new RespostaApi({
-        sucesso:
-          false,
-        mensagem:
-          "Estão fatando informações para a busca da ideologia"
-      }
-      );
-    }
+	async executar(id: string) {
+		if (!id) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Estão fatando informações para a busca da ideologia",
+			});
+		}
 
-    const service = new BuscarIdeologiaService();
+		const service = new BuscarIdeologiaService();
 
-    const resposta = await service.buscarPorId(id);
+		const resposta = await service.buscarPorId(id);
 
-    if (resposta) {
-      return new RespostaApi({
-        sucesso:
-          true,
-        mensagem:
-          "A ideologia foi encontrada com sucesso",
-        dados:
-          resposta
-      }
-      );
-    } else {
-      return new RespostaApi({ sucesso: false, mensagem: "Nenhuma ideologia foi encontrada" }
-
-      );
-    }
-  }
+		if (resposta) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "A ideologia foi encontrada com sucesso",
+				dados: resposta,
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Nenhuma ideologia foi encontrada",
+			});
+		}
+	}
 }

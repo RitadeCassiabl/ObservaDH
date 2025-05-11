@@ -16,21 +16,21 @@ import CardComponentePartido from "./card-componente-partido";
 import CardComponenteParlamentar from "./card-componente-parlamentar";
 
 const Card = {
-  Bio: CardBio,
-  Esfera: CardEsfera,
-  Status: CardStatus,
-  Legenda: CardLegenda,
-  Projeto: CardProjeto,
-  SaibaMais: CardSaibaMais,
-  StatusItem: CardStatusItem,
-  Parlamentar: CardParlamentar,
-  Informativo: CardInformativo,
-  MiniProjeto: CardMiniProjetos,
-  Apresentacao: CardApresentacao,
-  RenderizarTexto: CardRenderizarTexto,
-  RenderizacaoItem: CardItemRenderizacao,
-  ComponentePartido: CardComponentePartido,
-  ComponenteParlamentar: CardComponenteParlamentar,
+	Bio: CardBio,
+	Esfera: CardEsfera,
+	Status: CardStatus,
+	Legenda: CardLegenda,
+	Projeto: CardProjeto,
+	SaibaMais: CardSaibaMais,
+	StatusItem: CardStatusItem,
+	Parlamentar: CardParlamentar,
+	Informativo: CardInformativo,
+	MiniProjeto: CardMiniProjetos,
+	Apresentacao: CardApresentacao,
+	RenderizarTexto: CardRenderizarTexto,
+	RenderizacaoItem: CardItemRenderizacao,
+	ComponentePartido: CardComponentePartido,
+	ComponenteParlamentar: CardComponenteParlamentar,
 };
 
 export default Card;

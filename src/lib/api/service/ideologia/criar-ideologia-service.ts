@@ -1,17 +1,17 @@
 import { Ideologia } from "@/domain/models/ideologia";
 import { prismaClient } from "@/services/prisma/prisma";
 export class CriarIdeologiaService {
-  async executar(ideologia: Ideologia) {
-    const prisma = prismaClient;
+	async executar(ideologia: Ideologia) {
+		const prisma = prismaClient;
 
-    const resposta = await prisma.ideologia.create({
-      data: {
-        nome: ideologia.nome,
-        projetos: {
-          create: [],
-        },
-      },
-    });
-    return resposta;
-  }
+		const resposta = await prisma.ideologia.create({
+			data: {
+				nome: ideologia.nome,
+				projetos: {
+					create: [],
+				},
+			},
+		});
+		return resposta;
+	}
 }

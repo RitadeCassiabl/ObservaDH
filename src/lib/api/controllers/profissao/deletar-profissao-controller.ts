@@ -3,46 +3,40 @@ import { DeletarProfissaoService } from "../../service/profissao/deletar-profiss
 import { BuscarProfissaoService } from "../../service/profissao/buscar-profissao-service";
 
 export class DeletarProfissaoController {
-  async executar(id: string) {
-    if (!id) {
-      return new RespostaApi({
-        sucesso:
-          false,
-        mensagem:
-          "Faltam informações para deletar a profissão"
-      }
-      );
-    }
+	async executar(id: string) {
+		if (!id) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Faltam informações para deletar a profissão",
+			});
+		}
 
-    const serviceAuxiliar = new BuscarProfissaoService();
+		const serviceAuxiliar = new BuscarProfissaoService();
 
-    const existe = await serviceAuxiliar.buscarPorId(id);
+		const existe = await serviceAuxiliar.buscarPorId(id);
 
-    if (!existe) {
-      return new RespostaApi({ sucesso: false, mensagem: "A profissão já não existe" });
-    }
+		if (!existe) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "A profissão já não existe",
+			});
+		}
 
-    const service = new DeletarProfissaoService();
+		const service = new DeletarProfissaoService();
 
-    const resposta = await service.executar(id);
+		const resposta = await service.executar(id);
 
-    if (resposta) {
-      return new RespostaApi({
-        sucesso:
-          true,
-        mensagem:
-          "A profissão foi deletada com sucesso",
-        dados: resposta
-      }
-      );
-    } else {
-      return new RespostaApi({
-        sucesso:
-          false,
-        mensagem:
-          "Houve algum erro para deletar o profissão"
-      }
-      );
-    }
-  }
+		if (resposta) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "A profissão foi deletada com sucesso",
+				dados: resposta,
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Houve algum erro para deletar o profissão",
+			});
+		}
+	}
 }

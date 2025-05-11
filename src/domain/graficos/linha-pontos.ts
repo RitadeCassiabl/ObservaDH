@@ -1,4 +1,4 @@
 export type DadosGraficoLinhaPontos = {
-    ano: string;
-    projetos: number;
-  };
+	ano: string;
+	projetos: number;
+};

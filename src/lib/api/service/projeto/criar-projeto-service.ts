@@ -2,41 +2,38 @@ import { Projeto } from "@/domain/models/projeto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class CriarProjetoService {
-  async executar(projeto: Projeto) {
-    const prisma = prismaClient;
+	async executar(projeto: Projeto) {
+		const prisma = prismaClient;
 
-    const resposta = await prisma.projeto.create({
+		const resposta = await prisma.projeto.create({
+			data: {
+				ano: projeto.ano,
+				ementa: projeto.ementa,
+				pautaId: projeto.pautaId,
+				esferaId: projeto.esferaId,
+				numeroPl: projeto.numeroPl,
+				justificativa: projeto.justificativa,
 
-      data: {
-        ano: projeto.ano,
-        ementa: projeto.ementa,
-        pautaId: projeto.pautaId,
-        esferaId: projeto.esferaId,
-        numeroPl: projeto.numeroPl,
-        justificativa: projeto.justificativa,
+				autores: {
+					create: [],
+				},
 
-        autores: {
-          create: [],
-        },
+				partidos: {
+					create: [],
+				},
 
-        partidos: {
-          create: [],
-        },
+				ideologias: {
+					create: [],
+				},
 
+				direitosViolados: {
+					create: [],
+				},
+			},
+		});
 
-        ideologias: {
-          create: [],
-        },
-
-        direitosViolados: {
-          create: [],
-        },
-      }
-
-    })
-
-    return resposta;
-  }
+		return resposta;
+	}
 }
 // data: {
 //   ano: projeto.ano,

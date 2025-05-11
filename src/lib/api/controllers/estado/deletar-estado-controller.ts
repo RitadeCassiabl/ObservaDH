@@ -3,39 +3,39 @@ import { DeletarEstadoService } from "../../service/estado/deletar-estado-servic
 import { BuscarEstadoService } from "../../service/estado/buscar-estado-service";
 
 export class DeletarEstadoController {
-  async executar(id: string) {
-    if (!id) {
-      return new RespostaApi({
-        sucesso:
-          false,
-        mensagem:
-          "Estão faltando informações para deletar o estado"
-      }
-      );
-    }
+	async executar(id: string) {
+		if (!id) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Estão faltando informações para deletar o estado",
+			});
+		}
 
-    const serviceAuxiliar = new BuscarEstadoService();
+		const serviceAuxiliar = new BuscarEstadoService();
 
-    const existe = await serviceAuxiliar.buscarPorId(id);
+		const existe = await serviceAuxiliar.buscarPorId(id);
 
-    if (!existe) {
-      return new RespostaApi({ sucesso: false, mensagem: "O estado não existe" });
-    }
+		if (!existe) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "O estado não existe",
+			});
+		}
 
-    const service = new DeletarEstadoService();
+		const service = new DeletarEstadoService();
 
-    const resposta = await service.executar(id);
+		const resposta = await service.executar(id);
 
-    if (resposta) {
-      return new RespostaApi({ sucesso: true, mensagem: "O estado foi deletado com sucesso" });
-    } else {
-      return new RespostaApi({
-        sucesso:
-          false,
-        mensagem:
-          "Houve um erro na hora de deletar o estado"
-      }
-      );
-    }
-  }
+		if (resposta) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "O estado foi deletado com sucesso",
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Houve um erro na hora de deletar o estado",
+			});
+		}
+	}
 }

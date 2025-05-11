@@ -1,4 +1,4 @@
 export type elemento = {
-  value: string;
-  titulo: string;
+	value: string;
+	titulo: string;
 };

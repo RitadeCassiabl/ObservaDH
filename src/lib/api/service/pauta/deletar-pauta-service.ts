@@ -1,15 +1,15 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class DeletarPautaService {
-    async executar(id: string) {
-        const prisma = prismaClient;
+	async executar(id: string) {
+		const prisma = prismaClient;
 
-        const resposta = prisma.pauta.delete({
-            where: {
-                id: id,
-            }
-        })
+		const resposta = prisma.pauta.delete({
+			where: {
+				id: id,
+			},
+		});
 
-        return resposta;
-    }
+		return resposta;
+	}
 }

@@ -1,5 +1,5 @@
 export type DadosGraficoBarrasVertical = {
-  pls: number;
-  fill: string;
-  pauta: string;
-}
+	pls: number;
+	fill: string;
+	pauta: string;
+};

@@ -158,84 +158,111 @@ import { RespostaApi } from "@/domain/models/resposta-api";
 import { NextResponse } from "next/server";
 
 export async function GET(
-    request: Request, { params }: { params: { id: string } }
+	request: Request,
+	{ params }: { params: { id: string } }
 ) {
-    try {
-        const { id } = params;
+	try {
+		const { id } = params;
 
-        if (!id) {
-            const respostaApi = new RespostaApi({ sucesso: false, mensagem: "falta informação para buscar o partido" });
+		if (!id) {
+			const respostaApi = new RespostaApi({
+				sucesso: false,
+				mensagem: "falta informação para buscar o partido",
+			});
 
-            return NextResponse.json(
-                { respostaApi },
-                { status: 400 }
-            )
-        }
+			return NextResponse.json({ respostaApi }, { status: 400 });
+		}
 
-        const controller = new BuscarPartidoController();
+		const controller = new BuscarPartidoController();
 
-        const resposta = await controller.executar(id);
+		const resposta = await controller.executar(id);
 
-        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 400 }
+		);
+	} catch (error) {
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "Ocorreu um erro inesperado",
+			dados: error,
+		});
 
-    } catch (error) {
-
-        const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
-
-        return NextResponse.json({ respostaApi }, { status: 500 })
-
-    }
-
+		return NextResponse.json({ respostaApi }, { status: 500 });
+	}
 }
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
-    try {
-        const { id } = params;
+export async function DELETE(
+	request: Request,
+	{ params }: { params: { id: string } }
+) {
+	try {
+		const { id } = params;
 
-        if (!id) {
-            const respostaApi = new RespostaApi({ sucesso: false, mensagem: "falta informação para deletar o partido" });
+		if (!id) {
+			const respostaApi = new RespostaApi({
+				sucesso: false,
+				mensagem: "falta informação para deletar o partido",
+			});
 
-            return NextResponse.json(
-                { respostaApi },
-                { status: 400 }
-            )
-        }
+			return NextResponse.json({ respostaApi }, { status: 400 });
+		}
 
-        const controller = new DeletarPartidoController();
+		const controller = new DeletarPartidoController();
 
-        const resposta = await controller.executar(id);
+		const resposta = await controller.executar(id);
 
-        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
-
-    } catch (error) {
-        const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
-        return NextResponse.json({ respostaApi }, { status: 500 })
-    }
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 400 }
+		);
+	} catch (error) {
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "Ocorreu um erro inesperado",
+			dados: error,
+		});
+		return NextResponse.json({ respostaApi }, { status: 500 });
+	}
 }
 
-export async function PATCH(request: Request, { params }: { params: { id: string } }) {
-    try {
+export async function PATCH(
+	request: Request,
+	{ params }: { params: { id: string } }
+) {
+	try {
+		const { id } = params;
+		const { nome, sigla, politicos, projetos } = await request.json();
 
-        const { id } = params;
-        const { nome, sigla, politicos, projetos } = await request.json();
+		if (!id || !nome || !sigla || !politicos || !projetos) {
+			const respostaApi = new RespostaApi({
+				sucesso: false,
+				mensagem: "falta informação para atualizar o partido",
+			});
 
-        if (!id || !nome || !sigla || !politicos || !projetos) {
-            const respostaApi = new RespostaApi({ sucesso: false, mensagem: "falta informação para atualizar o partido" });
+			return NextResponse.json({ respostaApi }, { status: 400 });
+		}
 
-            return NextResponse.json(
-                { respostaApi },
-                { status: 400 }
-            )
-        }
+		const controller = new AtualizarPartidoController();
 
-        const controller = new AtualizarPartidoController();
+		const resposta = await controller.executar(
+			id,
+			nome,
+			sigla,
+			politicos,
+			projetos
+		);
 
-        const resposta = await controller.executar(id, nome, sigla, politicos, projetos);
-
-        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
-
-    } catch (error) {
-        const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
-        return NextResponse.json({ respostaApi }, { status: 500 })
-    }
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 400 }
+		);
+	} catch (error) {
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "Ocorreu um erro inesperado",
+			dados: error,
+		});
+		return NextResponse.json({ respostaApi }, { status: 500 });
+	}
 }

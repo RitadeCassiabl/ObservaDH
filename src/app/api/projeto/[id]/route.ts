@@ -5,115 +5,110 @@ import { RespostaApi } from "@/domain/models/resposta-api";
 import { NextResponse } from "next/server";
 
 export async function PATCH(
-  request: Request,
-  { params }: { params: { id?: string } }
+	request: Request,
+	{ params }: { params: { id?: string } }
 ) {
-  try {
-    const { id } = params;
+	try {
+		const { id } = params;
 
-    if (!id) {
-      const resposta = new RespostaApi({
-        sucesso:
-          false,
-        mensagem:
-          "Estão faltando informações para a busca do projeto de lei"
-      }
-      );
-      return NextResponse.json({ resposta }, { status: 400 });
-    }
+		if (!id) {
+			const resposta = new RespostaApi({
+				sucesso: false,
+				mensagem: "Estão faltando informações para a busca do projeto de lei",
+			});
+			return NextResponse.json({ resposta }, { status: 400 });
+		}
 
-    const {
-      ano,
-      numeroPl,
-      pautaId,
-      justificativa,
-      ementa,
-      esferaId
-    } = await request.json();
+		const { ano, numeroPl, pautaId, justificativa, ementa, esferaId } =
+			await request.json();
 
-    const controller = new AtualizarProjetoController();
+		const controller = new AtualizarProjetoController();
 
-    const resposta = await controller.executar(
-      {
-        id: id,
-        ano: ano,
-        ementa: ementa,
-        pautaId: pautaId,
-        esferaId: esferaId,
-        numeroPl: numeroPl,
-        justificativa: justificativa,
-      }
-    );
+		const resposta = await controller.executar({
+			id: id,
+			ano: ano,
+			ementa: ementa,
+			pautaId: pautaId,
+			esferaId: esferaId,
+			numeroPl: numeroPl,
+			justificativa: justificativa,
+		});
 
-    return NextResponse.json(
-      { resposta },
-      { status: resposta.sucesso ? 200 : 400 }
-    );
-  } catch (error) {
-    const resposta = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
-    return NextResponse.json({ resposta }, { status: 500 });
-  }
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 400 }
+		);
+	} catch (error) {
+		const resposta = new RespostaApi({
+			sucesso: false,
+			mensagem: "Ocorreu um erro inesperado",
+			dados: error,
+		});
+		return NextResponse.json({ resposta }, { status: 500 });
+	}
 }
 
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id?: string } }
+	request: Request,
+	{ params }: { params: { id?: string } }
 ) {
-  try {
-    const { id } = params;
+	try {
+		const { id } = params;
 
-    if (!id) {
-      const resposta = new RespostaApi({
-        sucesso:
-          false,
-        mensagem:
-          "Estão faltando informações para a busca do projeto de lei"
-      }
-      );
-      return NextResponse.json({ resposta }, { status: 400 });
-    }
+		if (!id) {
+			const resposta = new RespostaApi({
+				sucesso: false,
+				mensagem: "Estão faltando informações para a busca do projeto de lei",
+			});
+			return NextResponse.json({ resposta }, { status: 400 });
+		}
 
-    const controller = new DeletarProjetoController();
+		const controller = new DeletarProjetoController();
 
-    const resposta = await controller.executar(id);
+		const resposta = await controller.executar(id);
 
-    return NextResponse.json(
-      { resposta },
-      { status: resposta.sucesso ? 200 : 400 }
-    );
-  } catch (error) {
-    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
-    return NextResponse.json({ respostaApi }, { status: 500 });
-  }
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 400 }
+		);
+	} catch (error) {
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "Ocorreu um erro inesperado",
+			dados: error,
+		});
+		return NextResponse.json({ respostaApi }, { status: 500 });
+	}
 }
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id?: string } }
+	request: Request,
+	{ params }: { params: { id?: string } }
 ) {
-  try {
-    const { id } = params;
-    if (!id) {
-      const resposta = new RespostaApi({
-        sucesso:
-          false,
-        mensagem:
-          "Estão faltando informações para a busca do projeto de lei"
-      }
-      );
-      return NextResponse.json({ resposta }, { status: 400 });
-    }
+	try {
+		const { id } = params;
+		if (!id) {
+			const resposta = new RespostaApi({
+				sucesso: false,
+				mensagem: "Estão faltando informações para a busca do projeto de lei",
+			});
+			return NextResponse.json({ resposta }, { status: 400 });
+		}
 
-    const controller = new BuscarProjetoController();
+		const controller = new BuscarProjetoController();
 
-    const resposta = await controller.executar(id);
+		const resposta = await controller.executar(id);
 
-    return NextResponse.json(
-      { resposta },
-      { status: resposta.sucesso ? 200 : 404 }
-    );
-  } catch (error) {
-    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
-    return NextResponse.json({ respostaApi }, { status: 500 });
-  }
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 404 }
+		);
+	} catch (error) {
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "Ocorreu um erro inesperado",
+			dados: error,
+		});
+		return NextResponse.json({ respostaApi }, { status: 500 });
+	}
 }

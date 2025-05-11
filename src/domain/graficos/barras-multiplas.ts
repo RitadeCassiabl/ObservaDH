@@ -1,5 +1,5 @@
 export type DadosGraficoBarrasMultiplas = {
-  homens: number;
-  mulheres: number;
-  ideologia: string;
+	homens: number;
+	mulheres: number;
+	ideologia: string;
 };
