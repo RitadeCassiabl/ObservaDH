@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarPautaController } from "@/lib/api/controllers/pauta/atualizar-pauta-controller";
@@ -6,7 +6,7 @@ import { BuscarPautaController } from "@/lib/api/controllers/pauta/buscar-pauta-
 import { DeletarPautaController } from "@/lib/api/controllers/pauta/deletar-pauta-controller";
 
 export async function DELETE(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id: string } }
 ) {
 	try {
@@ -39,7 +39,7 @@ export async function DELETE(
 }
 
 export async function PATCH(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id: string } }
 ) {
 	try {
@@ -75,7 +75,7 @@ export async function PATCH(
 }
 
 export async function GET(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id: string } }
 ) {
 	try {

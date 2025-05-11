@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarProjetoController } from "@/lib/api/controllers/projeto/atualizar-projeto-controller";
@@ -6,7 +6,7 @@ import { BuscarProjetoController } from "@/lib/api/controllers/projeto/buscar-pr
 import { DeletarProjetoController } from "@/lib/api/controllers/projeto/deletar-projeto-controller";
 
 export async function PATCH(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
@@ -50,7 +50,7 @@ export async function PATCH(
 }
 
 export async function DELETE(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
@@ -83,7 +83,7 @@ export async function DELETE(
 }
 
 export async function GET(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarDireitoVioladoController } from "@/lib/api/controllers/direito-violado/atualizar-direito_violado-controller";
@@ -6,7 +6,7 @@ import { BuscarDireitoVioladoController } from "@/lib/api/controllers/direito-vi
 import { DeletarDireitoVioladoController } from "@/lib/api/controllers/direito-violado/deletar-direito_violado-controller";
 
 export async function PATCH(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
@@ -20,11 +20,15 @@ export async function PATCH(
 			return NextResponse.json({ resposta }, { status: 400 });
 		}
 
-		const { nome } = await request.json();
+		const { nome, projetos } = await request.json();
 
 		const controller = new AtualizarDireitoVioladoController();
 
-		const resposta = await controller.executar(id, nome);
+		const resposta = await controller.executar({
+			id: id,
+			nome: nome,
+			projetos: projetos,
+		});
 
 		return NextResponse.json(
 			{ resposta },
@@ -41,7 +45,7 @@ export async function PATCH(
 }
 
 export async function DELETE(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
@@ -74,7 +78,7 @@ export async function DELETE(
 }
 
 export async function GET(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarProfissaoController } from "@/lib/api/controllers/profissao/atualizar-profissao-controller";
@@ -6,6 +6,7 @@ import { BuscarProfissaoController } from "@/lib/api/controllers/profissao/busca
 import { DeletarProfissaoController } from "@/lib/api/controllers/profissao/deletar-profissao-controller";
 
 export async function DELETE(
+	request: NextRequest,
 	_request: Request,
 	{ params }: { params: { id?: string } }
 ) {
@@ -48,7 +49,7 @@ export async function DELETE(
 }
 
 export async function GET(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	const { id } = params;
@@ -84,7 +85,7 @@ export async function GET(
 }
 
 export async function PATCH(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	const { id } = params;

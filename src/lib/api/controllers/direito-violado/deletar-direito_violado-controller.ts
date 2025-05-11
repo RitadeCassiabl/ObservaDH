@@ -14,7 +14,7 @@ export class DeletarDireitoVioladoController {
 
 		const serviceAuxiliar = new BuscarDireitoVioladoService();
 
-		const existe = await serviceAuxiliar.buscarPorId(id);
+		const existe = await serviceAuxiliar.buscarPorId({ id: id });
 
 		if (!existe) {
 			return new RespostaApi({
@@ -25,7 +25,7 @@ export class DeletarDireitoVioladoController {
 
 		const service = new DeletarDireitoVioladoService();
 
-		const resposta = await service.executar(id);
+		const resposta = await service.executar({ id: id });
 
 		if (resposta) {
 			return new RespostaApi({

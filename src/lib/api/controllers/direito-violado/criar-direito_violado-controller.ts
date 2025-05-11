@@ -28,7 +28,7 @@ export class CriarDireitoVioladoController {
 
 		const service = new CriarDireitoVioladoService();
 
-		const resposta = await service.executar(direitoViolado);
+		const resposta = await service.executar({ direitoViolado: direitoViolado });
 
 		if (resposta) {
 			return new RespostaApi({

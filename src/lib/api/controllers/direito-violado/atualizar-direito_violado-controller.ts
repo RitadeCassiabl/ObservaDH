@@ -1,10 +1,19 @@
 import { AtualizarDireitoVioladoService } from "../../service/direito-violado/atualizar-direito_violado-service";
 import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
 
+import { DireitoViolado } from "@/domain/models/direito-violado";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class AtualizarDireitoVioladoController {
-	async executar(id: string, nome: string) {
+	async executar({
+		id,
+		nome,
+		projetos,
+	}: {
+		id: string;
+		nome: string;
+		projetos: string[];
+	}) {
 		if (!id || !nome) {
 			return new RespostaApi({
 				sucesso: false,
@@ -14,7 +23,7 @@ export class AtualizarDireitoVioladoController {
 
 		const serviceAuxiliar = new BuscarDireitoVioladoService();
 
-		const existe = await serviceAuxiliar.buscarPorId(id);
+		const existe = await serviceAuxiliar.buscarPorId({ id: id });
 
 		if (!existe) {
 			return new RespostaApi({
@@ -34,7 +43,13 @@ export class AtualizarDireitoVioladoController {
 
 		const service = new AtualizarDireitoVioladoService();
 
-		const resposta = await service.executar(id, nome);
+		const direito = new DireitoViolado({
+			id: id,
+			nome: nome,
+			projetos: projetos,
+		});
+
+		const resposta = await service.executar({ direitoViolado: direito });
 
 		if (resposta) {
 			return new RespostaApi({

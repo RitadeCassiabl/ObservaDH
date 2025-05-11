@@ -151,7 +151,7 @@
  *               $ref: '#/components/schemas/RespostaApi'
  */
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarPartidoController } from "@/lib/api/controllers/partido/atualizar-partido-controller";
@@ -159,7 +159,7 @@ import { BuscarPartidoController } from "@/lib/api/controllers/partido/buscar-pa
 import { DeletarPartidoController } from "@/lib/api/controllers/partido/deletar-partido-controller";
 
 export async function GET(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id: string } }
 ) {
 	try {
@@ -194,7 +194,7 @@ export async function GET(
 }
 
 export async function DELETE(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id: string } }
 ) {
 	try {
@@ -228,7 +228,7 @@ export async function DELETE(
 }
 
 export async function PATCH(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id: string } }
 ) {
 	try {

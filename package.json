@@ -7,7 +7,9 @@
 		"build": "prisma generate && next build",
 		"start": "next start",
 		"lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"prepare": "prisma generate",
+		"check": "npm run prepare && npm run format && eslint . --ext .js,.jsx,.ts,.tsx && prettier --check . && tsc --noEmit && next build && npm audit && npm outdated"
 	},
 	"dependencies": {
 		"@prisma/client": "^6.7.0",
@@ -31,7 +33,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^20",
-		"@types/react": "^19",
+		"@types/react": "^18",
 		"@types/react-dom": "^18",
 		"@types/swagger-jsdoc": "^6.0.4",
 		"@types/swagger-ui-react": "^5.18.0",

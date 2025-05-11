@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarEsferaController } from "@/lib/api/controllers/esfera/atualizar-esfera-controller";
@@ -6,7 +6,7 @@ import { BuscarEsferaController } from "@/lib/api/controllers/esfera/buscar-esfe
 import { DeletarEsferaController } from "@/lib/api/controllers/esfera/deletar-esfera-controller";
 
 export async function PATCH(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
@@ -41,7 +41,7 @@ export async function PATCH(
 }
 
 export async function DELETE(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
@@ -74,7 +74,7 @@ export async function DELETE(
 }
 
 export async function GET(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {

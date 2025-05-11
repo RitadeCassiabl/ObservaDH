@@ -25,7 +25,7 @@ export class DeletarProfissaoController {
 
 		const service = new DeletarProfissaoService();
 
-		const resposta = await service.executar(id);
+		const resposta = await service.executar({ id: id });
 
 		if (resposta) {
 			return new RespostaApi({

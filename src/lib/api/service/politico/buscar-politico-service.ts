@@ -1,7 +1,7 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class BuscarPoliticoService {
-	async executar(id: string) {
+	async executar({ id }: { id: string }) {
 		const prisma = prismaClient;
 
 		const resposta = await prisma.politico.findUnique({

@@ -125,10 +125,11 @@
  *               mensagem: "Erro interno ao criar o político"
  */
 
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { CriarPoliticoController } from "@/lib/api/controllers/politico/criar-politico-controller";
 import { ListarPoliticoContoller } from "@/lib/api/controllers/politico/listar-politico-controller";
-import { RespostaApi } from "@/types/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
 	try {
@@ -167,7 +168,11 @@ export async function POST(request: Request) {
 			{ status: resposta.sucesso ? 201 : 400 }
 		);
 	} catch (error) {
-		const resposta = new RespostaApi(false, "erro interno", error);
+		const resposta = new RespostaApi({
+			sucesso: false,
+			mensagem: "erro interno",
+			dados: error,
+		});
 		return NextResponse.json({ resposta }, { status: 500 });
 	}
 }
@@ -182,7 +187,11 @@ export async function GET() {
 			{ status: resposta.sucesso ? 200 : 400 }
 		);
 	} catch (error) {
-		const resposta = new RespostaApi(false, "erro interno", error);
+		const resposta = new RespostaApi({
+			sucesso: false,
+			mensagem: "erro interno",
+			dados: error,
+		});
 		return NextResponse.json({ resposta }, { status: 500 });
 	}
 }

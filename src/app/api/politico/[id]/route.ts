@@ -1,11 +1,12 @@
+import { NextRequest, NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarPoliticoController } from "@/lib/api/controllers/politico/atualizar-politico-controller";
 import { BuscarPoliticoController } from "@/lib/api/controllers/politico/buscar-politico-controller";
 import { DeletarPoliticoController } from "@/lib/api/controllers/politico/deletar-politico-controller";
-import { RespostaApi } from "@/types/resposta-api";
-import { NextResponse } from "next/server";
 
 export async function PATCH(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
@@ -26,7 +27,10 @@ export async function PATCH(
 		} = await request.json();
 
 		if (!id) {
-			const resposta = new RespostaApi(false, "Id não informado");
+			const resposta = new RespostaApi({
+				sucesso: false,
+				mensagem: "Id não informado",
+			});
 			return NextResponse.json(resposta, { status: 400 });
 		}
 
@@ -52,7 +56,11 @@ export async function PATCH(
 			{ status: resposta.sucesso ? 200 : 400 }
 		);
 	} catch (error) {
-		const respostaApi = new RespostaApi(false, "erro interno", error);
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "erro interno",
+			dados: error,
+		});
 
 		return NextResponse.json(
 			{
@@ -65,12 +73,18 @@ export async function PATCH(
 	}
 }
 
-export async function GET({ params }: { params: { id?: string } }) {
+export async function GET(
+	request: NextRequest,
+	{ params }: { params: { id: string } }
+) {
 	try {
 		const { id } = params;
 
 		if (!id) {
-			const respostaApi = new RespostaApi(false, "id não informado");
+			const respostaApi = new RespostaApi({
+				sucesso: false,
+				mensagem: "id não informado",
+			});
 			return NextResponse.json(
 				{
 					respostaApi,
@@ -94,7 +108,11 @@ export async function GET({ params }: { params: { id?: string } }) {
 			}
 		);
 	} catch (error) {
-		const respostaApi = new RespostaApi(false, "erro interno", error);
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "erro interno",
+			dados: error,
+		});
 
 		return NextResponse.json(
 			{
@@ -107,12 +125,18 @@ export async function GET({ params }: { params: { id?: string } }) {
 	}
 }
 
-export async function DELETE({ params }: { params: { id?: string } }) {
+export async function DELETE(
+	request: NextRequest,
+	{ params }: { params: { id?: string } }
+) {
 	try {
 		const { id } = params;
 
 		if (!id) {
-			const respostaApi = new RespostaApi(false, "id não informado");
+			const respostaApi = new RespostaApi({
+				sucesso: false,
+				mensagem: "id não informado",
+			});
 			return NextResponse.json(
 				{
 					respostaApi,
@@ -136,7 +160,11 @@ export async function DELETE({ params }: { params: { id?: string } }) {
 			}
 		);
 	} catch (error) {
-		const respostaApi = new RespostaApi(false, "erro interno", error);
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "erro interno",
+			dados: error,
+		});
 
 		return NextResponse.json(
 			{

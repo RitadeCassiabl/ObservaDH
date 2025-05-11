@@ -13,14 +13,15 @@ export class AtualizarPoliticoService {
 
 			data: {
 				nome: politico.nome,
-				foto: politico.foto ?? undefined,
 				sexo: politico.sexo,
 				raca: politico.raca,
-				religiao: politico.religiao,
-				ideologia: politico.ideologia,
+
 				dataNascimento: nascimento,
-				partidoId: politico.partidoId,
+				religiao: politico.religiao,
 				estadoId: politico.estadoId,
+				ideologia: politico.ideologia,
+				partidoId: politico.partidoId,
+				foto: politico.foto ?? undefined,
 				profissoes: {
 					connect:
 						politico.profissoes?.map((profissao) => ({ id: profissao })) ?? [],

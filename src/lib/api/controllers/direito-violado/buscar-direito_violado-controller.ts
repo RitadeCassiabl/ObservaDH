@@ -13,7 +13,7 @@ export class BuscarDireitoVioladoController {
 
 		const service = new BuscarDireitoVioladoService();
 
-		const resposta = await service.buscarPorId(id);
+		const resposta = await service.buscarPorId({ id: id });
 
 		if (resposta) {
 			return new RespostaApi({

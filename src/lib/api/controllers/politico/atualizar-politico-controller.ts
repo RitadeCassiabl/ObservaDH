@@ -1,7 +1,8 @@
-import Politico from "@/types/politico";
-import { RespostaApi } from "@/types/resposta-api";
 import { AtualizarPoliticoService } from "../../service/politico/atualizar-politico-service";
 import { BuscarPoliticoService } from "../../service/politico/buscar-politico-service";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
+import Politico from "@/types/politico";
 
 export class AtualizarPoliticoController {
 	async executar(
@@ -29,18 +30,21 @@ export class AtualizarPoliticoController {
 			!ideologia ||
 			!data_nascimento
 		) {
-			return new RespostaApi(
-				false,
-				"Falta informação para a criação do político"
-			);
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Falta informação para a criação do político",
+			});
 		}
 
 		const serviceAuxiliar = new BuscarPoliticoService();
 
-		const existe = await serviceAuxiliar.executar(id);
+		const existe = await serviceAuxiliar.executar({ id: id });
 
 		if (!existe) {
-			return new RespostaApi(false, "o politico não existe");
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "o politico não existe",
+			});
 		}
 
 		const service = new AtualizarPoliticoService();
@@ -64,9 +68,16 @@ export class AtualizarPoliticoController {
 		const resposta = await service.executar(politico);
 
 		if (resposta) {
-			return new RespostaApi(true, "Político atualizado com sucesso", resposta);
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "Político atualizado com sucesso",
+				dados: resposta,
+			});
 		} else {
-			return new RespostaApi(false, "Político atualizado com sucesso");
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Político atualizado com sucesso",
+			});
 		}
 	}
 }

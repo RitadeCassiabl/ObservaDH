@@ -1,6 +1,7 @@
-import Politico from "@/types/politico";
 import { CriarPolitcoService } from "../../service/politico/criar-politico-service";
-import { RespostaApi } from "@/types/resposta-api";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
+import Politico from "@/types/politico";
 
 export class CriarPoliticoController {
 	async executar(
@@ -28,10 +29,10 @@ export class CriarPoliticoController {
 			!ideologia ||
 			!data_nascimento
 		) {
-			return new RespostaApi(
-				false,
-				"Falta informação para a criação do político"
-			);
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Falta informação para a criação do político",
+			});
 		}
 
 		const politico = new Politico({
@@ -53,12 +54,16 @@ export class CriarPoliticoController {
 		const resposta = await service.executar(politico);
 
 		if (resposta) {
-			return new RespostaApi(true, "Político criado", resposta);
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "Político criado",
+				dados: resposta,
+			});
 		} else {
-			return new RespostaApi(
-				true,
-				"Houve algum problema na criação do político"
-			);
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Houve algum problema na criação do político",
+			});
 		}
 	}
 }

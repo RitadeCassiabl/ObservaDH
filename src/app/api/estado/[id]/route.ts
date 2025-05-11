@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 import { AtualizarEstadoController } from "@/lib/api/controllers/estado/atualizar-estado-controller";
@@ -6,7 +6,7 @@ import { BuscarEstadoController } from "@/lib/api/controllers/estado/buscar-esta
 import { DeletarEstadoController } from "@/lib/api/controllers/estado/deletar-estado-controller";
 
 export async function PATCH(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
@@ -41,7 +41,7 @@ export async function PATCH(
 }
 
 export async function DELETE(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
@@ -74,7 +74,7 @@ export async function DELETE(
 }
 
 export async function GET(
-	request: Request,
+	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {

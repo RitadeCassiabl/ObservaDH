@@ -15,7 +15,7 @@ export class CriarProfissaoController {
 
 		const serviceAuxiliar = new BuscarProfissaoService();
 
-		const existe = await serviceAuxiliar.buscarPorNome(nome);
+		const existe = await serviceAuxiliar.buscarPorNome({ nome: nome });
 
 		if (existe) {
 			return new RespostaApi({
