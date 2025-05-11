@@ -7,7 +7,8 @@ export class CriarEsferaService {
     const resposta = await prisma.esfera.create({
       data: {
         nome: esfera.nome,
-        Projetos: {
+
+        projetos: {
           create: [],
         },
       },

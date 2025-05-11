@@ -5,8 +5,12 @@ export class BuscarDireitoVioladoController {
   async executar(id: string) {
     if (!id) {
       return new RespostaApi(
-        false,
-        "Estão faltando informações para a busca do direito violado"
+        {
+          sucesso:
+            false,
+          mensagem:
+            "Estão faltando informações para a busca do direito violado"
+        }
       );
     }
 
@@ -15,13 +19,16 @@ export class BuscarDireitoVioladoController {
     const resposta = await service.buscarPorId(id);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "O direito violado foi encontrado com sucesso",
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "O direito violado foi encontrado com sucesso",
+        dados: resposta
+      }
       );
     } else {
-      return new RespostaApi(false, "Nenhum direito violado foi encontrado");
+      return new RespostaApi({ sucesso: false, mensagem: "Nenhum direito violado foi encontrado" });
     }
   }
 }

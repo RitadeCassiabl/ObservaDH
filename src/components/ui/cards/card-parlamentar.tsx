@@ -6,7 +6,7 @@ import {
   AlertDialogDescription,
   AlertDialogTrigger,
 } from "@/components/ui-shacnui/alert-dialog";
-import { parlamentar } from "@/types/parlamentar";
+import { parlamentar } from "@/types/interfaces/parlamentar";
 import React from "react";
 
 import { IoMdClose } from "react-icons/io";

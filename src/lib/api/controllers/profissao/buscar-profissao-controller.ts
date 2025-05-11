@@ -8,13 +8,17 @@ export class BuscarProfissaoController {
     const resposta = await service.buscarPorId(id);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "Profissão encontrada com sucesso",
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "Profissão encontrada com sucesso",
+        dados:
+          resposta
+      }
       );
     } else {
-      return new RespostaApi(false, "A profissão não foi encontrada");
+      return new RespostaApi({ sucesso: false, mensagem: "A profissão não foi encontrada" });
     }
   }
 }

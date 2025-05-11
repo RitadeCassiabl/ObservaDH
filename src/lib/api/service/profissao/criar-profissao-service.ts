@@ -8,6 +8,7 @@ export class CriarProfissaoService {
     const resposta = await prisma.profissao.create({
       data: {
         nome: profissao.nome,
+        
         politicos: {
           create: [],
         },

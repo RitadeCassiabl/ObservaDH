@@ -9,8 +9,10 @@ export async function POST(request: Request) {
 
     if (!nome) {
       const respostaApi = new RespostaApi(
-        false,
-        "Estão faltando infomações para a criação da ideologia"
+        {
+          sucesso: false,
+          mensagem: "Estão faltando infomações para a criação da ideologia"
+        }
       );
 
       return NextResponse.json({ respostaApi }, { status: 400 });
@@ -25,7 +27,7 @@ export async function POST(request: Request) {
       );
     }
   } catch (error) {
-    const respostaApi = new RespostaApi(false, "erro interno", error);
+    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
 
     return NextResponse.json({ respostaApi }, { status: 500 });
   }
@@ -44,7 +46,7 @@ export async function GET() {
     }
     return NextResponse.json({ resposta }, { status: 200 });
   } catch (error) {
-    const respostaApi = new RespostaApi(false, "erro interno", error);
+    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
     return NextResponse.json({ respostaApi }, { status: 500 });
   }
 }

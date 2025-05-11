@@ -1,17 +1,31 @@
-//TODO: modificar ao implementar projetos
+import { SerializacaoDesserializacao } from "./serializacao-desserializacao";
+
 class DireitoViolado {
+  id?: string;
+  nome: string;
+  projetos?: string[];
+
+  constructor({
+    id,
+    nome,
+    projetos
+  }: {
     id?: string;
     nome: string;
     projetos?: string[];
+  }) {
+    this.id = id;
+    this.nome = nome;
+    this.projetos = projetos;
+  }
 
-    constructor(
-        nome: string,
-        projetos?: string[],
-        id?: string
-    ) {
-        this.nome = nome;
-        this.projetos = projetos;
-        this.id = id;
-    }
+  serializarDireitoViolado(direito: DireitoViolado): string {
+    return SerializacaoDesserializacao.serializar(direito) as string;
+  }
+
+  desserializarDireitoViolado(text: string): DireitoViolado {
+    return SerializacaoDesserializacao.desserializar(text) as DireitoViolado;
+  }
 }
+
 export { DireitoViolado };

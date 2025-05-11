@@ -6,9 +6,12 @@ export class DeletarPautaController {
     async executar(id: string) {
 
         if (!id) {
-            return new RespostaApi(
-                false,
-                "Falta informações para deletar a pauta"
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "Falta informações para deletar a pauta"
+            }
             )
         }
 
@@ -17,9 +20,12 @@ export class DeletarPautaController {
         const existe = await serviceAuxiliar.buscarPorID(id);
 
         if (!existe) {
-            return new RespostaApi(
-                false,
-                "A pauta já não existe"
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "A pauta já não existe"
+            }
             )
         }
 
@@ -28,14 +34,20 @@ export class DeletarPautaController {
         const resposta = await service.executar(id)
 
         if (resposta) {
-            return new RespostaApi(
-                true,
-                `${resposta.nome} foi deletado`
+            return new RespostaApi({
+                sucesso:
+                    true,
+                mensagem:
+                    `${resposta.nome} foi deletado`
+            }
             );
         } else {
-            return new RespostaApi(
-                false,
-                "Houve algum problema ao deletar a pauta"
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "Houve algum problema ao deletar a pauta"
+            }
             )
         }
     }

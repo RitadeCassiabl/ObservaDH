@@ -4,9 +4,12 @@ import { RespostaApi } from "@/types/resposta-api";
 export class BuscarIdeologiaController {
   async executar(id: string) {
     if (!id) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para a busca da ideologia"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão fatando informações para a busca da ideologia"
+      }
       );
     }
 
@@ -15,13 +18,19 @@ export class BuscarIdeologiaController {
     const resposta = await service.buscarPorId(id);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "A ideologia foi encontrada com sucesso",
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "A ideologia foi encontrada com sucesso",
+        dados:
+          resposta
+      }
       );
     } else {
-      return new RespostaApi(false, "Nenhuma ideologia foi encontrada");
+      return new RespostaApi({ sucesso: false, mensagem: "Nenhuma ideologia foi encontrada" }
+
+      );
     }
   }
 }

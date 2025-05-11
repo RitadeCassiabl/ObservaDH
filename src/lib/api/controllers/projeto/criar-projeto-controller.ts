@@ -7,7 +7,7 @@ import { Esfera } from "@/types/esfera";
 export class CriarProjetoController {
   async executar(
     ano: string,
-    numero_pl: string,
+    numeroPl: string,
     pautaId: string,
     pauta: string,
     justificativa: string,
@@ -17,7 +17,7 @@ export class CriarProjetoController {
   ) {
     if (
       !ano ||
-      !numero_pl ||
+      !numeroPl ||
       !pautaId ||
       !pauta ||
       !justificativa ||
@@ -25,45 +25,56 @@ export class CriarProjetoController {
       !esferaId ||
       !esfera
     ) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para criar o projeto de lei"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para criar o projeto de lei"
+      }
       );
     }
 
     const serviceAuxiliar = new BuscarProjetoService();
 
-    const existe = await serviceAuxiliar.buscarPorNumeroPL(numero_pl);
+    const existe = await serviceAuxiliar.buscarPorNumeroPL({ numeroPl });
 
     if (existe) {
-      return new RespostaApi(false, "O projeto de lei já existe");
+      return new RespostaApi({ sucesso: false, mensagem: "O projeto de lei já existe" });
     }
 
     const service = new CriarProjetoService();
 
-    const projeto = new Projeto(
+    const projeto = new Projeto({
       ano,
-      numero_pl,
+      numeroPl,
       pautaId,
       pauta,
       justificativa,
       ementa,
       esferaId,
       esfera
+    }
     );
 
     const resposta = await service.executar(projeto);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "Projeto de lei criado com sucesso",
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "Projeto de lei criado com sucesso",
+        dados:
+          resposta
+      }
       );
     } else {
-      return new RespostaApi(
-        false,
-        "Houve algum problema na criação do projeto de lei"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Houve algum problema na criação do projeto de lei"
+      }
       );
     }
   }

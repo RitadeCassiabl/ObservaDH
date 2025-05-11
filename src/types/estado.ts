@@ -5,9 +5,17 @@ class Estado {
   nome: string;
   politicos?: string[];
 
-  constructor(nome: string, id?: string, politicos?: string[]) {
-    this.nome = nome;
+  constructor({
+    id,
+    nome,
+    politicos
+  }: {
+    id?: string;
+    nome: string;
+    politicos?: string[];
+  }) {
     this.id = id;
+    this.nome = nome;
     this.politicos = politicos;
   }
 

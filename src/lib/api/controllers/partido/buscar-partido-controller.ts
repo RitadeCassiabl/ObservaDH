@@ -8,9 +8,9 @@ export class BuscarPartidoController {
         const partido = await service.BuscarPorID(id);
 
         if (partido) {
-            return new RespostaApi(true, "Partido encontrado", partido);
+            return new RespostaApi({ sucesso: true, mensagem: "Partido encontrado", dados: partido });
         } else {
-            return new RespostaApi(false, "Partido não encontrado");
+            return new RespostaApi({ sucesso: false, mensagem: "Partido não encontrado" });
         }
 
     }

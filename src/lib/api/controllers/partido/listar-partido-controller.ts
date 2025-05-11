@@ -7,9 +7,9 @@ export class ListarPartidoController {
         const resposta = await service.executar()
 
         if (resposta) {
-            return new RespostaApi(true, `${resposta.length} Partido(s) encontrado(s)`, resposta);
+            return new RespostaApi({ sucesso: true, mensagem: `${resposta.length} Partido(s) encontrado(s)`, dados: resposta });
         } else {
-            return new RespostaApi(false, "Nenhum partido encontrado");
+            return new RespostaApi({ sucesso: false, mensagem: "Nenhum partido encontrado" });
         }
     }
 }

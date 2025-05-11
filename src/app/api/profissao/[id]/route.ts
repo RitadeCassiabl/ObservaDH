@@ -12,9 +12,12 @@ export async function DELETE(
   const { id } = params;
 
   if (!id) {
-    const respostaApi = new RespostaApi(
-      false,
-      "Estão faltando informações para deletar a profissão"
+    const respostaApi = new RespostaApi({
+      sucesso:
+        false,
+      mensagem:
+        "Estão faltando informações para deletar a profissão"
+    }
     );
     return NextResponse.json({
       respostaApi,
@@ -37,7 +40,7 @@ export async function DELETE(
       }
     );
   } catch (error) {
-    const respostaApi = new RespostaApi(false, "Erro interno", error);
+    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
 
     return NextResponse.json({ respostaApi }, { status: 500 });
   }
@@ -51,8 +54,10 @@ export async function GET(
 
   if (!id) {
     const resposta = new RespostaApi(
-      false,
-      "O id da profissão não foi informado"
+      {
+        sucesso: false,
+        mensagem: "O id da profissão não foi informado"
+      }
     );
 
     return NextResponse.json({ resposta }, { status: 400 });
@@ -69,7 +74,7 @@ export async function GET(
       }
     );
   } catch (error) {
-    const resposta = new RespostaApi(false, "Erro interno", error);
+    const resposta = new RespostaApi({ sucesso: false, mensagem: "Erro interno", dados: error });
 
     return NextResponse.json({ resposta }, { status: 500 });
   }
@@ -84,9 +89,12 @@ export async function PATCH(
   const nome = body?.nome;
 
   if (!id) {
-    const respostaApi = new RespostaApi(
-      false,
-      "O id da profissão não foi informado"
+    const respostaApi = new RespostaApi({
+      sucesso:
+        false,
+      mensagem:
+        "O id da profissão não foi informado"
+    }
     );
     return NextResponse.json({
       respostaApi,
@@ -105,7 +113,7 @@ export async function PATCH(
       }
     );
   } catch (error) {
-    const respostaApi = new RespostaApi(false, "Erro interno", error);
+    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Erro interno", dados: error });
 
     return NextResponse.json({ respostaApi }, { status: 500 });
   }

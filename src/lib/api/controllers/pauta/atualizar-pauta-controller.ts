@@ -8,28 +8,37 @@ export class AtualizarPautaController {
     async executar(id: string, nome: string) {
 
         if (!id || !nome) {
-            return new RespostaApi(
-                false,
-                "Faltam informações para atualizar a pauta."
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "Faltam informações para atualizar a pauta."
+            }
             );
         }
 
         const buscarPautaService = new BuscarPautaService();
 
         const temaExistente = await buscarPautaService.buscarPorID(id);
-        
+
         if (!temaExistente) {
-            return new RespostaApi(
-                false,
-                `A pauta não existe.`
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    `A pauta não existe.`
+            }
             );
         }
 
         const novoTemaExistente = await buscarPautaService.buscarPorNome(nome);
         if (novoTemaExistente) {
-            return new RespostaApi(
-                false,
-                `O novo pauta já existe.`
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    `O novo pauta já existe.`
+            }
             );
         }
 
@@ -38,15 +47,22 @@ export class AtualizarPautaController {
         const resposta = await service.executar(id, nome);
 
         if (resposta) {
-            return new RespostaApi(
-                true,
-                `A pauta foi atualizado para ${nome || ""} com sucesso`,
-                resposta
+            return new RespostaApi({
+                sucesso:
+                    true,
+                mensagem:
+                    `A pauta foi atualizado para ${nome || ""} com sucesso`,
+                dados:
+                    resposta
+            }
             )
         } else {
-            return new RespostaApi(
-                false,
-                "Houve algum problema na atualização da pauta"
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "Houve algum problema na atualização da pauta"
+            }
             )
         }
 

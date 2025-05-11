@@ -164,7 +164,7 @@ export async function GET(
         const { id } = params;
 
         if (!id) {
-            const respostaApi = new RespostaApi(false, "falta informação para buscar o partido");
+            const respostaApi = new RespostaApi({ sucesso: false, mensagem: "falta informação para buscar o partido" });
 
             return NextResponse.json(
                 { respostaApi },
@@ -180,7 +180,7 @@ export async function GET(
 
     } catch (error) {
 
-        const respostaApi = new RespostaApi(false, "erro interno", error);
+        const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
 
         return NextResponse.json({ respostaApi }, { status: 500 })
 
@@ -193,7 +193,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
         const { id } = params;
 
         if (!id) {
-            const respostaApi = new RespostaApi(false, "falta informação para deletar o partido");
+            const respostaApi = new RespostaApi({ sucesso: false, mensagem: "falta informação para deletar o partido" });
 
             return NextResponse.json(
                 { respostaApi },
@@ -208,7 +208,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
         return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
 
     } catch (error) {
-        const respostaApi = new RespostaApi(false, "erro interno", error);
+        const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
         return NextResponse.json({ respostaApi }, { status: 500 })
     }
 }
@@ -220,7 +220,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
         const { nome, sigla, politicos, projetos } = await request.json();
 
         if (!id || !nome || !sigla || !politicos || !projetos) {
-            const respostaApi = new RespostaApi(false, "falta informação para atualizar o partido");
+            const respostaApi = new RespostaApi({ sucesso: false, mensagem: "falta informação para atualizar o partido" });
 
             return NextResponse.json(
                 { respostaApi },
@@ -235,7 +235,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
         return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
 
     } catch (error) {
-        const respostaApi = new RespostaApi(false, "erro interno", error);
+        const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
         return NextResponse.json({ respostaApi }, { status: 500 })
     }
 }

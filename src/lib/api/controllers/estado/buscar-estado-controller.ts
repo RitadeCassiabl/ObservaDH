@@ -4,9 +4,12 @@ import { RespostaApi } from "@/types/resposta-api";
 export class BuscarEstadoController {
   async executar(id: string) {
     if (!id) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para a busca do estado"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para a busca do estado"
+      }
       );
     }
 
@@ -15,13 +18,17 @@ export class BuscarEstadoController {
     const resposta = await service.buscarPorId(id);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "O estado foi encontrado com sucesso",
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "O estado foi encontrado com sucesso",
+        dados:
+          resposta
+      }
       );
     } else {
-      return new RespostaApi(false, "Nenhum estado foi encontrado");
+      return new RespostaApi({ sucesso: false, mensagem: "Nenhum estado foi encontrado" });
     }
   }
 }

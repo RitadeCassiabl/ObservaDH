@@ -8,13 +8,17 @@ export class ListarIdeologiaController {
     const resposta = await service.executar();
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        `${resposta.length} ideologia(s) foram encontradas`,
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          `${resposta.length} ideologia(s) foram encontradas`,
+        dados:
+          resposta
+      }
       );
     } else {
-      return new RespostaApi(false, "Nenhuma ideologia foi encontrada");
+      return new RespostaApi({ sucesso: false, mensagem: "Nenhuma ideologia foi encontrada" });
     }
   }
 }

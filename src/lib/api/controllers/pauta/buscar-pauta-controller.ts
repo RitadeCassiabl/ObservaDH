@@ -4,9 +4,12 @@ import { BuscarPautaService } from "../../service/pauta/buscar-pauta-service";
 export class BuscarPautaController {
     async executar(id: string) {
         if (!id) {
-            return new RespostaApi(
-                false,
-                "Falta informações para a busca da pauta"
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "Falta informações para a busca da pauta"
+            }
             )
         }
 
@@ -15,15 +18,22 @@ export class BuscarPautaController {
         const resposta = await service.buscarPorID(id);
 
         if (resposta) {
-            return new RespostaApi(
-                false,
-                "A pauta foi encontrada com sucesso",
-                resposta
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "A pauta foi encontrada com sucesso",
+                dados:
+                    resposta
+            }
             )
         } else {
-            return new RespostaApi(
-                false,
-                "A pauta não foi encontrada"
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "A pauta não foi encontrada"
+            }
             )
         }
     }

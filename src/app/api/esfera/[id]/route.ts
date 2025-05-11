@@ -13,8 +13,10 @@ export async function PATCH(
 
     if (!id) {
       const resposta = new RespostaApi(
-        false,
-        "Estão faltando informações para a busca da esfera"
+        {
+          sucesso: false,
+          mensagem: "Estão faltando informações para a busca da esfera"
+        }
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
@@ -30,7 +32,7 @@ export async function PATCH(
       { status: resposta.sucesso ? 200 : 400 }
     );
   } catch (error) {
-    const resposta = new RespostaApi(false, "erro interno", error);
+    const resposta = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
     return NextResponse.json({ resposta }, { status: 500 });
   }
 }
@@ -44,8 +46,10 @@ export async function DELETE(
 
     if (!id) {
       const resposta = new RespostaApi(
-        false,
-        "Estão faltando informações para a busca da esfera"
+        {
+          sucesso: false,
+          mensagem: "Estão faltando informações para a busca da esfera"
+        }
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
@@ -59,7 +63,7 @@ export async function DELETE(
       { status: resposta.sucesso ? 200 : 400 }
     );
   } catch (error) {
-    const respostaApi = new RespostaApi(false, "erro interno", error);
+    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
     return NextResponse.json({ respostaApi }, { status: 500 });
   }
 }
@@ -71,9 +75,10 @@ export async function GET(
   try {
     const { id } = params;
     if (!id) {
-      const resposta = new RespostaApi(
-        false,
-        "Estão faltando informações para a busca da esfera"
+      const resposta = new RespostaApi({
+        sucesso: false,
+        mensagem: "Estão faltando informações para a busca da esfera"
+      }
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
@@ -87,7 +92,7 @@ export async function GET(
       { status: resposta.sucesso ? 200 : 404 }
     );
   } catch (error) {
-    const respostaApi = new RespostaApi(false, "erro interno", error);
+    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
     return NextResponse.json({ respostaApi }, { status: 500 });
   }
 }

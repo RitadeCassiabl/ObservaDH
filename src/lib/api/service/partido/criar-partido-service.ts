@@ -10,10 +10,11 @@ export class CriarPartidoService {
             data: {
                 nome: partido.nome,
                 sigla: partido.sigla,
-                politicos: {
+
+                projetos: {
                     create: []
                 },
-                projetos: {
+                politicos: {
                     create: []
                 }
             }

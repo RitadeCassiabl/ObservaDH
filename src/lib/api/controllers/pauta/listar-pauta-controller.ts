@@ -8,15 +8,22 @@ export class ListarPautaController {
         const resposta = await service.executar();
 
         if (resposta) {
-            return new RespostaApi(
-                true,
-                `${resposta.length} pauta(s) foram encontrados`,
-                resposta
+            return new RespostaApi({
+                sucesso:
+                    true,
+                mensagem:
+                    `${resposta.length} pauta(s) foram encontrados`,
+                dados:
+                    resposta
+            }
             );
         } else {
-            return new RespostaApi(
-                false,
-                "Nenhum pauta foi encontrado."
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "Nenhum pauta foi encontrado."
+            }
             )
         }
     }

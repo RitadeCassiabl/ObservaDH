@@ -3,7 +3,17 @@ class RespostaApi {
   mensagem: string;
   dados?: unknown;
 
-  constructor(sucesso: boolean, mensagem: string, dados?: unknown) {
+  constructor(
+    {
+      sucesso,
+      mensagem,
+      dados
+    }:
+      {
+        sucesso: boolean,
+        mensagem: string,
+        dados?: unknown
+      }) {
     this.sucesso = sucesso;
     this.mensagem = mensagem;
     this.dados = dados;

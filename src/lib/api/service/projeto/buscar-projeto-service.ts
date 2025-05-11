@@ -2,7 +2,7 @@ import { prismaClient } from "@/services/prisma/prisma";
 
 export class BuscarProjetoService {
 
-    async buscarPorId(id: string) {
+    async buscarPorId({ id }: { id: string }) {
         const prisma = prismaClient;
 
         const resposta = await prisma.projeto.findUnique({
@@ -14,12 +14,12 @@ export class BuscarProjetoService {
         return resposta;
     }
 
-    async buscarPorNumeroPL(numero_pl: string) {
+    async buscarPorNumeroPL({ numeroPl }: { numeroPl: string }) {
         const prisma = prismaClient;
 
         const resposta = await prisma.projeto.findUnique({
             where: {
-                numero_pl: numero_pl
+                numeroPl: numeroPl
             }
         })
         return resposta;

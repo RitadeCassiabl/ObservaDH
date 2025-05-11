@@ -5,9 +5,12 @@ import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service"
 export class AtualizarEsferaController {
   async executar(id: string, nome: string) {
     if (!id || !nome) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para a alteração da esfera"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para a alteração da esfera"
+      }
       );
     }
 
@@ -16,13 +19,13 @@ export class AtualizarEsferaController {
     const existe = await serviceAuxiliar.buscarPorId(id);
 
     if (!existe) {
-      return new RespostaApi(false, "A esfera não existe");
+      return new RespostaApi({ sucesso: false, mensagem: "A esfera não existe" });
     }
 
     const novoEsfera = await serviceAuxiliar.buscarPorNome(nome);
 
     if (novoEsfera) {
-      return new RespostaApi(false, "A nova esfera já existe");
+      return new RespostaApi({ sucesso: false, mensagem: "A nova esfera já existe" });
     }
 
     const service = new AtualizarEsferaService();
@@ -30,15 +33,21 @@ export class AtualizarEsferaController {
     const resposta = await service.executar(id, nome);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "A esfera foi atualizada com sucesso",
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "A esfera foi atualizada com sucesso",
+        dados: resposta
+      }
       );
     } else {
-      return new RespostaApi(
-        false,
-        "A esfera não foi atualizada, por algum motivo"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "A esfera não foi atualizada, por algum motivo"
+      }
       );
     }
   }

@@ -13,7 +13,7 @@ export async function DELETE(request: Request,
         const { id } = params
         console.log(id)
         if (!id) {
-            const respostaApi = new RespostaApi(false, "id não informado")
+            const respostaApi = new RespostaApi({ sucesso: false, mensagem: "id não informado" })
 
             return NextResponse.json({ respostaApi }, { status: 400 })
         }
@@ -22,14 +22,17 @@ export async function DELETE(request: Request,
 
         const resposta = await controller.executar(id);
 
-        return NextResponse.json({ resposta } , { status: resposta.sucesso ? 200 : 400 })
+        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
 
 
     } catch (error) {
-        const respostaApi = new RespostaApi(
-            false,
-            "erro interno",
-            error
+        const respostaApi = new RespostaApi({
+            sucesso:
+                false,
+            mensagem: "Ocorreu um erro inesperado",
+            dados:
+                error
+        }
         )
         return NextResponse.json({ respostaApi, status: 500 })
     }
@@ -40,7 +43,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
         const { id } = params
 
         if (!id) {
-            const respostaApi = new RespostaApi(false, "id não informado")
+            const respostaApi = new RespostaApi({ sucesso: false, mensagem: "id não informado" })
 
             return NextResponse.json({ respostaApi }, { status: 400 })
         }
@@ -57,10 +60,12 @@ export async function PATCH(request: Request, { params }: { params: { id: string
         )
 
     } catch (error) {
-        const respostaApi = new RespostaApi(
-            false,
-            "erro interno",
-            error
+        const respostaApi = new RespostaApi({
+            sucesso:
+                false,
+            mensagem: "Ocorreu um erro inesperado", dados:
+                error
+        }
         )
         return NextResponse.json(
             { respostaApi },
@@ -75,7 +80,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
         const { id } = params
 
         if (!id) {
-            const respostaApi = new RespostaApi(false, "id não informado")
+            const respostaApi = new RespostaApi({ sucesso: false, mensagem: "id não informado" })
 
             return NextResponse.json({ respostaApi }, { status: 400 })
         }
@@ -87,10 +92,11 @@ export async function GET(request: Request, { params }: { params: { id: string }
         return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
 
     } catch (error) {
-        const respostaApi = new RespostaApi(
-            false,
-            "erro interno",
-            error
+        const respostaApi = new RespostaApi({
+            sucesso: false,
+            mensagem: "Ocorreu um erro inesperado",
+            dados: error
+        }
         )
         return NextResponse.json(
             { respostaApi },

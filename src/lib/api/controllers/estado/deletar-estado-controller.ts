@@ -5,9 +5,12 @@ import { BuscarEstadoService } from "../../service/estado/buscar-estado-service"
 export class DeletarEstadoController {
   async executar(id: string) {
     if (!id) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para deletar o estado"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para deletar o estado"
+      }
       );
     }
 
@@ -16,7 +19,7 @@ export class DeletarEstadoController {
     const existe = await serviceAuxiliar.buscarPorId(id);
 
     if (!existe) {
-      return new RespostaApi(false, "O estado não existe");
+      return new RespostaApi({ sucesso: false, mensagem: "O estado não existe" });
     }
 
     const service = new DeletarEstadoService();
@@ -24,11 +27,14 @@ export class DeletarEstadoController {
     const resposta = await service.executar(id);
 
     if (resposta) {
-      return new RespostaApi(true, "O estado foi deletado com sucesso");
+      return new RespostaApi({ sucesso: true, mensagem: "O estado foi deletado com sucesso" });
     } else {
-      return new RespostaApi(
-        false,
-        "Houve um erro na hora de deletar o estado"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Houve um erro na hora de deletar o estado"
+      }
       );
     }
   }

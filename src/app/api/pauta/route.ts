@@ -19,10 +19,11 @@ export async function POST(request: Request) {
         )
 
     } catch (error) {
-        const respostaApi = new RespostaApi(
-            false,
-            "erro interno",
-            error
+        const respostaApi = new RespostaApi({
+            sucesso: false,
+            mensagem: "Ocorreu um erro inesperado",
+            dados: error
+        }
         )
         return NextResponse.json(
             { respostaApi },
@@ -39,12 +40,12 @@ export async function GET() {
 
         const resposta = await controller.executar();
 
-        return NextResponse.json({ resposta } , { status: resposta.sucesso ? 200 : 400 })
+        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
     } catch (error) {
-        const respostaApi = new RespostaApi(
-            false,
-            "erro interno",
-            error
+        const respostaApi = new RespostaApi({
+            sucesso: false,
+            mensagem: "Ocorreu um erro inesperado", 
+            dados: error}
         )
         return NextResponse.json(
             { respostaApi },

@@ -8,13 +8,16 @@ export class ListarEstadoController {
     const resposta = await service.executar();
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        `${resposta.length} estado(s) foram encontrados`,
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          `${resposta.length} estado(s) foram encontrados`,
+        dados: resposta
+      }
       );
     } else {
-      return new RespostaApi(false, "Nenhum estado foi encontrado");
+      return ({ sucesso: false, mensagem: "Nenhum estado foi encontrado" });
     }
   }
 }

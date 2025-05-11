@@ -13,25 +13,25 @@ export class AtualizarPartidoController {
         const partidoExistente = await buscarService.BuscarPorID(id);
 
         if (!partidoExistente) {
-            return new RespostaApi(false, "Partido não encontrado");
+            return new RespostaApi({ sucesso: false, mensagem: "Partido não encontrado" });
         }
 
         if (nome !== partidoExistente.nome) {
 
             const partidoComMesmoNome = await buscarService.BuscarPorNome(nome);
             if (partidoComMesmoNome && partidoComMesmoNome.id !== id) {
-                return new RespostaApi(false, "Já existe um partido com este nome");
+                return new RespostaApi({ sucesso: false, mensagem: "Já existe um partido com este nome" });
             }
         }
 
-        const partidoAtualizado = new Partido(nome, sigla, politicos, id, projetos);
+        const partidoAtualizado = new Partido({ id: id, nome: nome, sigla: sigla, politicos: politicos, projetos: projetos });
 
         const resultado = await atualizarService.executar(partidoAtualizado);
 
         if (resultado) {
-            return new RespostaApi(true, "Partido atualizado com sucesso", resultado);
+            return new RespostaApi({ sucesso: true, mensagem: "Partido atualizado com sucesso", dados: resultado });
         } else {
-            return new RespostaApi(false, "Erro ao atualizar o partido");
+            return new RespostaApi({ sucesso: false, mensagem: "Erro ao atualizar o partido" });
         }
 
     }

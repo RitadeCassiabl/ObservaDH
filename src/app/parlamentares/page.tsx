@@ -15,9 +15,9 @@ import {
   obterProfissoesUnicas,
 } from "@/lib/utils/projeto-projeto-utils";
 
-import { elemento } from "@/types/elemento-dropdown";
+import { elemento } from "@/types/interfaces/elemento-dropdown";
 import { PartidoModel } from "@/types/interfaces/partido";
-import { ProjetoLei } from "@/types/projeto-lei";
+import { ProjetoLei } from "@/types/interfaces/projeto-lei";
 
 import MainLayout from "@/components/ui/layouts/main-layout";
 import { Button } from "@/components/ui-shacnui/button";

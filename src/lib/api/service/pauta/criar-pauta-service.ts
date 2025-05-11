@@ -10,7 +10,7 @@ export class CriarPautaService {
         const resposta = await prisma.pauta.create({
             data: {
                 nome: pauta.nome,
-                Projetos: {
+                projetos: {
                     create: []
                 }
             }

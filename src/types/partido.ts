@@ -1,23 +1,39 @@
+import { SerializacaoDesserializacao } from "./serializacao-desserializacao";
+
 class Partido {
+  id?: string;
+  nome: string;
+  sigla: string;
+  projetos?: string[];
+  politicos?: string[];
+
+  constructor({
+    id,
+    nome,
+    sigla,
+    projetos,
+    politicos
+  }: {
     id?: string;
     nome: string;
     sigla: string;
     projetos?: string[];
     politicos?: string[];
+  }) {
+    this.id = id;
+    this.nome = nome;
+    this.sigla = sigla;
+    this.projetos = projetos;
+    this.politicos = politicos;
+  }
 
-    constructor(
-        nome: string,
-        sigla: string,
-        politicos?: string[],
-        id?: string,
-        projetos?: string[]
-    ) {
-        this.id = id;
-        this.nome = nome;
-        this.sigla = sigla;
-        this.politicos = politicos;
-        this.projetos = projetos;
-    }
+  serializarPartido(partido: Partido): string {
+    return SerializacaoDesserializacao.serializar(partido) as string;
+  }
+
+  desserializarPartido(text: string): Partido {
+    return SerializacaoDesserializacao.desserializar(text) as Partido;
+  }
 }
 
 export { Partido };

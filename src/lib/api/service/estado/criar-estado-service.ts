@@ -7,6 +7,7 @@ export class CriarEstadoService {
     const resposta = await prisma.estado.create({
       data: {
         nome: estado.nome,
+        
         politicos: {
           create: [],
         },

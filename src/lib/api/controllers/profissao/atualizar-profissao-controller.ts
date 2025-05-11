@@ -5,9 +5,12 @@ import { AtualizarProfissaoService } from "../../service/profissao/atualizar-pro
 export class AtualizarProfissaoController {
     async executar(id: string, nome: string) {
         if (!id || !nome) {
-            const respostaApi = new RespostaApi(
-                false,
-                "Estão faltando informações para a atualização da profissão"
+            const respostaApi = new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "Estão faltando informações para a atualização da profissão"
+            }
             );
 
             return respostaApi;
@@ -21,9 +24,9 @@ export class AtualizarProfissaoController {
         const resposta = await service.executar(id, nome)
 
         if (resposta) {
-            return new RespostaApi(true, "Profissão atualizada com sucesso", resposta)
+            return new RespostaApi({ sucesso: true, mensagem: "Profissão atualizada com sucesso", dados: resposta })
         } else {
-            return new RespostaApi(false, "Houve algum problema na atualização da profissão")
+            return new RespostaApi({ sucesso: false, mensagem: "Houve algum problema na atualização da profissão" })
 
         }
     }

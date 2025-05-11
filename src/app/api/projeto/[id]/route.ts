@@ -12,18 +12,20 @@ export async function PATCH(
     const { id } = params;
 
     if (!id) {
-      const resposta = new RespostaApi(
-        false,
-        "Estão faltando informações para a busca do projeto de lei"
+      const resposta = new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para a busca do projeto de lei"
+      }
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
 
     const {
       ano,
-      numero_pl,
+      numeroPl,
       pautaId,
-      pauta,
       justificativa,
       ementa,
       esferaId
@@ -32,14 +34,15 @@ export async function PATCH(
     const controller = new AtualizarProjetoController();
 
     const resposta = await controller.executar(
-      id,
-      ano,
-      numero_pl,
-      pautaId,
-      pauta,
-      justificativa,
-      ementa,
-      esferaId,
+      {
+        id: id,
+        ano: ano,
+        ementa: ementa,
+        pautaId: pautaId,
+        esferaId: esferaId,
+        numeroPl: numeroPl,
+        justificativa: justificativa,
+      }
     );
 
     return NextResponse.json(
@@ -47,7 +50,7 @@ export async function PATCH(
       { status: resposta.sucesso ? 200 : 400 }
     );
   } catch (error) {
-    const resposta = new RespostaApi(false, "erro interno", error);
+    const resposta = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
     return NextResponse.json({ resposta }, { status: 500 });
   }
 }
@@ -60,9 +63,12 @@ export async function DELETE(
     const { id } = params;
 
     if (!id) {
-      const resposta = new RespostaApi(
-        false,
-        "Estão faltando informações para a busca do projeto de lei"
+      const resposta = new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para a busca do projeto de lei"
+      }
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
@@ -76,7 +82,7 @@ export async function DELETE(
       { status: resposta.sucesso ? 200 : 400 }
     );
   } catch (error) {
-    const respostaApi = new RespostaApi(false, "erro interno", error);
+    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
     return NextResponse.json({ respostaApi }, { status: 500 });
   }
 }
@@ -88,9 +94,12 @@ export async function GET(
   try {
     const { id } = params;
     if (!id) {
-      const resposta = new RespostaApi(
-        false,
-        "Estão faltando informações para a busca do projeto de lei"
+      const resposta = new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para a busca do projeto de lei"
+      }
       );
       return NextResponse.json({ resposta }, { status: 400 });
     }
@@ -104,7 +113,7 @@ export async function GET(
       { status: resposta.sucesso ? 200 : 404 }
     );
   } catch (error) {
-    const respostaApi = new RespostaApi(false, "erro interno", error);
+    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
     return NextResponse.json({ respostaApi }, { status: 500 });
   }
 }

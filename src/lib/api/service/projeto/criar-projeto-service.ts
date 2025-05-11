@@ -9,25 +9,28 @@ export class CriarProjetoService {
 
       data: {
         ano: projeto.ano,
-        numero_pl: projeto.numero_pl,
-        pautaId: projeto.pautaId,
-        justificativa: projeto.justificativa,
         ementa: projeto.ementa,
+        pautaId: projeto.pautaId,
+        esferaId: projeto.esferaId,
+        numeroPl: projeto.numeroPl,
+        justificativa: projeto.justificativa,
 
         autores: {
           create: [],
         },
+
         partidos: {
           create: [],
         },
-        direitosViolados: {
-          create: [],
-        },
+
+
         ideologias: {
           create: [],
         },
-        esferaId: projeto.esferaId,
 
+        direitosViolados: {
+          create: [],
+        },
       }
 
     })

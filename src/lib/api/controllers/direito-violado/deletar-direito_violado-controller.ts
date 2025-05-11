@@ -5,9 +5,12 @@ import { BuscarDireitoVioladoService } from "../../service/direito-violado/busca
 export class DeletarDireitoVioladoController {
   async executar(id: string) {
     if (!id) {
-      return new RespostaApi(
-        false,
-        "Faltam informações para deletar o direito violado"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Faltam informações para deletar o direito violado"
+      }
       );
     }
 
@@ -16,7 +19,7 @@ export class DeletarDireitoVioladoController {
     const existe = await serviceAuxiliar.buscarPorId(id);
 
     if (!existe) {
-      return new RespostaApi(false, "O direito violado já não existe");
+      return new RespostaApi({ sucesso: false, mensagem: "O direito violado já não existe" });
     }
 
     const service = new DeletarDireitoVioladoService();
@@ -24,14 +27,19 @@ export class DeletarDireitoVioladoController {
     const resposta = await service.executar(id);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "O direito violado foi deletado com sucesso"
-      );
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "O direito violado foi deletado com sucesso"
+      });
     } else {
-      return new RespostaApi(
-        false,
-        "O direito violado não foi deletado por algum motivo"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "O direito violado não foi deletado por algum motivo"
+      }
       );
     }
   }

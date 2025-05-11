@@ -7,6 +7,7 @@ export class AtualizarEsferaService {
       where: {
         id: id,
       },
+      
       data: {
         nome: nome,
       },

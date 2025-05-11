@@ -10,8 +10,9 @@ export class AtualizarPartidoService {
                 id: partido.id
             },
             data: {
-                sigla: partido.sigla,
                 nome: partido.nome,
+                sigla: partido.sigla,
+
                 projetos: {
                     connect: partido.projetos?.map(projeto => ({ id: projeto })) || []
                 },

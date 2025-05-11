@@ -5,9 +5,12 @@ import { BuscarProfissaoService } from "../../service/profissao/buscar-profissao
 export class DeletarProfissaoController {
   async executar(id: string) {
     if (!id) {
-      return new RespostaApi(
-        false,
-        "Faltam informações para deletar a profissão"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Faltam informações para deletar a profissão"
+      }
       );
     }
 
@@ -16,7 +19,7 @@ export class DeletarProfissaoController {
     const existe = await serviceAuxiliar.buscarPorId(id);
 
     if (!existe) {
-      return new RespostaApi(false, "A profissão já não existe");
+      return new RespostaApi({ sucesso: false, mensagem: "A profissão já não existe" });
     }
 
     const service = new DeletarProfissaoService();
@@ -24,15 +27,21 @@ export class DeletarProfissaoController {
     const resposta = await service.executar(id);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "A profissão foi deletada com sucesso",
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "A profissão foi deletada com sucesso",
+        dados: resposta
+      }
       );
     } else {
-      return new RespostaApi(
-        false,
-        "Houve algum erro para deletar o profissão"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Houve algum erro para deletar o profissão"
+      }
       );
     }
   }

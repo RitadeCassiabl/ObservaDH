@@ -4,9 +4,12 @@ import { RespostaApi } from "@/types/resposta-api";
 export class BuscarEsferaController {
   async executar(id: string) {
     if (!id) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para a busca da esfera"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para a busca da esfera"
+      }
       );
     }
 
@@ -15,13 +18,17 @@ export class BuscarEsferaController {
     const resposta = await service.buscarPorId(id);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "A esfera foi encontrada com sucesso",
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "A esfera foi encontrada com sucesso",
+        dados:
+          resposta
+      }
       );
     } else {
-      return new RespostaApi(false, "Nenhuma esfera foi encontrada");
+      return new RespostaApi({ sucesso: false, mensagem: "Nenhuma esfera foi encontrada" });
     }
   }
 }

@@ -8,13 +8,16 @@ export class ListarDireitoVioladoController {
     const resposta = await service.executar();
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        `${resposta.length} direito(s) violado(s) foram encontrados`,
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          `${resposta.length} direito(s) violado(s) foram encontrados`,
+        dados: resposta
+      }
       );
     } else {
-      return new RespostaApi(false, "Nenhum direito violado foi encontrado");
+      return new RespostaApi({ sucesso: false, mensagem: "Nenhum direito violado foi encontrado" });
     }
   }
 }

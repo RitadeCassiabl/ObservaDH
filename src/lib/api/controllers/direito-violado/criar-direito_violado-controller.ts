@@ -8,24 +8,31 @@ export class CriarDireitoVioladoController {
     async executar(nome: string) {
 
         if (!nome) {
-            return new RespostaApi(
-                false,
-                "Estão faltando infomações para a criação do direito violado"
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "Estão faltando infomações para a criação do direito violado"
+            }
             );
         }
 
         const serviceAuxiliar = new BuscarDireitoVioladoService();
 
         const existe = await serviceAuxiliar.buscarPorNome(nome);
-        
+
         if (existe) {
             return new RespostaApi(
-                false,
-                "O direito violado já existe"
+                {
+                    sucesso:
+                        false,
+                    mensagem:
+                        "O direito violado já existe"
+                }
             );
         }
 
-        const direitoViolado = new DireitoViolado(nome);
+        const direitoViolado = new DireitoViolado({ nome: nome });
 
         const service = new CriarDireitoVioladoService();
 
@@ -33,14 +40,23 @@ export class CriarDireitoVioladoController {
 
         if (resposta) {
             return new RespostaApi(
-                true,
-                "Direito Violado criado com sucesso",
-                resposta
+                {
+                    sucesso:
+                        true,
+                    mensagem:
+                        "Direito Violado criado com sucesso",
+                    dados:
+                        resposta
+                }
             );
         } else {
             return new RespostaApi(
-                false,
-                "Houve algum problema na criação do direito violado"
+                {
+                    sucesso:
+                        false,
+                    mensagem:
+                        "Houve algum problema na criação do direito violado"
+                }
             );
         }
     }

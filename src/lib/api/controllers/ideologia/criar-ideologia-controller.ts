@@ -6,9 +6,12 @@ import { Ideologia } from "@/types/ideologia";
 export class CriarIdeologiaController {
   async executar(nome: string) {
     if (!nome) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para criar a ideologia"
+      return ({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para criar a ideologia"
+      }
       );
     }
 
@@ -17,21 +20,24 @@ export class CriarIdeologiaController {
     const existe = await serviceAuxiliar.buscarPorNome(nome);
 
     if (existe) {
-      return new RespostaApi(false, "A ideologia já existe");
+      return ({ sucesso: false, mensagem: "A ideologia já existe" });
     }
 
     const service = new CriarIdeologiaService();
 
-    const ideologia = new Ideologia(nome);
+    const ideologia = new Ideologia({ nome: nome });
 
     const resposta = await service.executar(ideologia);
 
     if (resposta) {
-      return new RespostaApi(true, "A ideologia foi criada com sucesso", resposta);
+      return new RespostaApi({ sucesso: true, mensagem: "A ideologia foi criada com sucesso", dados: resposta });
     } else {
-      return new RespostaApi(
-        false,
-        "Houve algum problema na criação da ideologia"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Houve algum problema na criação da ideologia"
+      }
       );
     }
   }

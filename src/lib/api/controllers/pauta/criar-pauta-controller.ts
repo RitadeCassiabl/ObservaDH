@@ -8,9 +8,12 @@ export class CriarPautaController {
     async executar(nome: string) {
 
         if (!nome) {
-            return new RespostaApi(
-                false,
-                "Falta informações para a criação da pauta"
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "Falta informações para a criação da pauta"
+            }
             )
         }
 
@@ -19,28 +22,38 @@ export class CriarPautaController {
         const existe = await serviceAuxiliar.buscarPorNome(nome);
 
         if (existe) {
-            return new RespostaApi(
-                false,
-                "A pauta já existe"
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "A pauta já existe"
+            }
             )
         }
 
         const service = new CriarPautaService();
 
-        const pauta = new Pauta(nome)
+        const pauta = new Pauta({ nome: nome })
 
         const resposta = await service.executar(pauta)
 
         if (resposta) {
-            return new RespostaApi(
-                true,
-                "Pauta criado com sucesso",
-                resposta
+            return new RespostaApi({
+                sucesso:
+                    true,
+                mensagem:
+                    "Pauta criado com sucesso",
+                dados:
+                    resposta
+            }
             )
         } else {
-            return new RespostaApi(
-                false,
-                "Houve algum problema na criação da pauta"
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "Houve algum problema na criação da pauta"
+            }
             )
         }
     }

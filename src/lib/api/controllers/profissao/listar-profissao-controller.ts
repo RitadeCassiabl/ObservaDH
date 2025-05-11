@@ -8,13 +8,17 @@ export class ListarProfissoesController {
     const resposta = await service.executar();
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        `${resposta.length} profissão(ões) foram encontrada(s)`,
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          `${resposta.length} profissão(ões) foram encontrada(s)`,
+        dados:
+          resposta
+      }
       );
     } else {
-      return new RespostaApi(false, "Nenhuma profissões encontradas");
+      return new RespostaApi({ sucesso: false, mensagem: "Nenhuma profissões encontradas" });
     }
   }
 }

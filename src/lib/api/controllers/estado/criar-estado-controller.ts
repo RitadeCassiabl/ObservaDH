@@ -6,9 +6,12 @@ import { Estado } from "@/types/estado";
 export class CriarEstadoController {
   async executar(nome: string) {
     if (!nome) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para criar o estado"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para criar o estado"
+      }
       );
     }
 
@@ -17,21 +20,24 @@ export class CriarEstadoController {
     const existe = await serviceAuxiliar.buscarPorNome(nome);
 
     if (existe) {
-      return new RespostaApi(false, "O estado já existe");
+      return new RespostaApi({ sucesso: false, mensagem: "O estado já existe" });
     }
 
     const service = new CriarEstadoService();
 
-    const estado = new Estado(nome);
+    const estado = new Estado({ nome: nome });
 
     const resposta = await service.executar(estado);
 
     if (resposta) {
-      return new RespostaApi(true, "O estado foi criado com sucesso", resposta);
+      return new RespostaApi({ sucesso: true, mensagem: "O estado foi criado com sucesso", dados: resposta });
     } else {
-      return new RespostaApi(
-        false,
-        "Houve algum problema na criação do estado"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Houve algum problema na criação do estado"
+      }
       );
     }
   }

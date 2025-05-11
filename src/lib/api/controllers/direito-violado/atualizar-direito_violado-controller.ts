@@ -6,8 +6,10 @@ export class AtualizarDireitoVioladoController {
   async executar(id: string, nome: string) {
     if (!id || !nome) {
       return new RespostaApi(
-        false,
-        "Faltam informações para a alteração do direito violado"
+        {
+          sucesso: false,
+          mensagem: "Faltam informações para a alteração do direito violado"
+        }
       );
     }
 
@@ -16,13 +18,13 @@ export class AtualizarDireitoVioladoController {
     const existe = await serviceAuxiliar.buscarPorId(id);
 
     if (!existe) {
-      return new RespostaApi(false, "O direito violado não existe");
+      return new RespostaApi({ sucesso: false, mensagem: "O direito violado não existe" });
     }
 
     const novoDireitoViolado = await serviceAuxiliar.buscarPorNome(nome);
 
     if (novoDireitoViolado) {
-      return new RespostaApi(false, "O novo direito violado já existe");
+      return new RespostaApi({ sucesso: false, mensagem: "O novo direito violado já existe" });
     }
 
     const service = new AtualizarDireitoVioladoService();
@@ -30,15 +32,21 @@ export class AtualizarDireitoVioladoController {
     const resposta = await service.executar(id, nome);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "O Direito violado foi atualizado com sucesso",
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "O Direito violado foi atualizado com sucesso",
+        dados:
+          resposta
+      }
       );
     } else {
       return new RespostaApi(
-        false,
-        "O Direito violado não foi atualizado, por algum motivo"
+        {
+          sucesso: false,
+          mensagem: "O Direito violado não foi atualizado, por algum motivo"
+        }
       );
     }
   }

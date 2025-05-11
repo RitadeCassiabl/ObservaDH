@@ -5,9 +5,12 @@ import { BuscarIdeologiaService } from "../../service/ideologia/buscar-ideologia
 export class DeletarIdeologiaController {
   async executar(id: string) {
     if (!id) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para deletar a ideologia"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para deletar a ideologia"
+      }
       );
     }
 
@@ -16,7 +19,7 @@ export class DeletarIdeologiaController {
     const existe = await serviceAuxiliar.buscarPorId(id);
 
     if (!existe) {
-      return new RespostaApi(false, "A ideologia não existe");
+      return new RespostaApi({ sucesso: false, mensagem: "A ideologia não existe" });
     }
 
     const service = new DeletarIdeologiaService();
@@ -24,11 +27,14 @@ export class DeletarIdeologiaController {
     const resposta = await service.executar(id);
 
     if (resposta) {
-      return new RespostaApi(true, "A ideologia foi deletada com sucesso");
+      return new RespostaApi({ sucesso: true, mensagem: "A ideologia foi deletada com sucesso" });
     } else {
-      return new RespostaApi(
-        false,
-        "Houve um erro na hora de deletar a ideologia"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Houve um erro na hora de deletar a ideologia"
+      }
       );
     }
   }

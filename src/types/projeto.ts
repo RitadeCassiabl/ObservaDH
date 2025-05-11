@@ -1,11 +1,10 @@
-//TODO: modificações necessárias
 import { SerializacaoDesserializacao } from "./serializacao-desserializacao";
-import {Esfera} from "./esfera";
+import { Esfera } from "./esfera";
 
 class Projeto {
   id?: string;
   ano: string;
-  numero_pl: string;
+  numeroPl: string;
   pautaId: string;
   pauta: string;
   justificativa: string;
@@ -18,33 +17,50 @@ class Projeto {
   ideologias?: string[];
 
   constructor(
-    ano: string,
-    numero_pl: string,
-    pautaId: string,
-    pauta: string,
-    justificativa: string,
-    ementa: string,
-    esferaId: string,
-    esfera: Esfera,
-    autores?: string[],
-    partidos?: string[],
-    direitosViolados?: string[],
-    ideologias?: string[],
-    id?: string
+    {
+      id,
+      ano,
+      pauta,
+      ementa,
+      esfera,
+      pautaId,
+      numeroPl,
+      esferaId,
+      autores,
+      partidos,
+      ideologias,
+      justificativa,
+      direitosViolados
+    }:
+      {
+        id?: string
+        ano: string,
+        pauta: string,
+        ementa: string,
+        esfera: Esfera,
+        pautaId: string,
+        numeroPl: string,
+        esferaId: string,
+        autores?: string[],
+        partidos?: string[],
+        ideologias?: string[],
+        justificativa: string,
+        direitosViolados?: string[],
+      }
   ) {
     this.id = id;
     this.ano = ano;
-    this.numero_pl = numero_pl;
-    this.pautaId = pautaId;
     this.pauta = pauta;
-    this.justificativa = justificativa;
     this.ementa = ementa;
-    this.esferaId = esferaId;
     this.esfera = esfera;
     this.autores = autores;
+    this.pautaId = pautaId;
     this.partidos = partidos;
-    this.direitosViolados = direitosViolados;
+    this.esferaId = esferaId;
+    this.numeroPl = numeroPl;
     this.ideologias = ideologias;
+    this.justificativa = justificativa;
+    this.direitosViolados = direitosViolados;
   }
 
   serializarProjeto(projeto: Projeto): string {

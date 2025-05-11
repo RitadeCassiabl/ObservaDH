@@ -6,9 +6,12 @@ import { Esfera } from "@/types/esfera";
 export class CriarEsferaController {
   async executar(nome: string) {
     if (!nome) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para criar a esfera"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para criar a esfera"
+      }
       );
     }
 
@@ -17,22 +20,24 @@ export class CriarEsferaController {
     const existe = await serviceAuxiliar.buscarPorNome(nome);
 
     if (existe) {
-      return new RespostaApi(false, "A esfera já existe");
+      return new RespostaApi({ sucesso: false, mensagem: "A esfera já existe" });
     }
 
     const service = new CriarEsferaService();
 
-    const esfera = new Esfera(nome);
+    const esfera = new Esfera({ nome: nome });
 
     const resposta = await service.executar(esfera);
 
     if (resposta) {
-      return new RespostaApi(true, "A esfera foi criada com sucesso", resposta);
+      return new RespostaApi({ sucesso: true, mensagem: "A esfera foi criada com sucesso", dados: resposta });
     } else {
-      return new RespostaApi(
-        false,
-        "Houve algum problema na criação da esfera"
-      );
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Houve algum problema na criação da esfera"
+      });
     }
   }
 }

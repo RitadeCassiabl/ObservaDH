@@ -12,8 +12,9 @@ export async function POST(request: Request) {
     const resposta = await controller.executar(nome);
 
     return NextResponse.json({ resposta });
+
   } catch (error) {
-    const respostaApi = new RespostaApi(false, "erro interno", error);
+    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
     return NextResponse.json({ respostaApi }, { status: 500 });
   }
 }
@@ -29,7 +30,7 @@ export async function GET() {
       { status: resposta.sucesso ? 200 : 400 }
     );
   } catch (error) {
-    const respostaApi = new RespostaApi(false, "erro interno", error);
+    const respostaApi = new RespostaApi({ sucesso: false, mensagem: "Ocorreu um erro inesperado", dados: error });
     return NextResponse.json({ respostaApi }, { status: 500 });
   }
 }

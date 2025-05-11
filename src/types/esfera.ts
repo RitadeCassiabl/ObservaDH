@@ -5,7 +5,15 @@ class Esfera {
   nome: string;
   projetos?: string[];
 
-  constructor(nome: string, projetos?: string[], id?: string) {
+  constructor({
+    id,
+    nome,
+    projetos
+  }: {
+    id?: string;
+    nome: string;
+    projetos?: string[];
+  }) {
     this.id = id;
     this.nome = nome;
     this.projetos = projetos;

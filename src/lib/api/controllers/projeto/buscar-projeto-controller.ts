@@ -4,24 +4,31 @@ import { RespostaApi } from "@/types/resposta-api";
 export class BuscarProjetoController {
   async executar(id: string) {
     if (!id) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para a busca do projeto de lei"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para a busca do projeto de lei"
+      }
       );
     }
 
     const service = new BuscarProjetoService();
 
-    const resposta = await service.buscarPorId(id);
+    const resposta = await service.buscarPorId({ id: id });
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "Projeto de lei encontrado com sucesso",
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "Projeto de lei encontrado com sucesso",
+        dados:
+          resposta
+      }
       );
     } else {
-      return new RespostaApi(false, "Nenhum projeto de lei foi encontrado");
+      return new RespostaApi({ sucesso: false, mensagem: "Nenhum projeto de lei foi encontrado"});
     }
   }
 }

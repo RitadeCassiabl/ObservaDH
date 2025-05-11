@@ -10,25 +10,34 @@ export class DeletarPartidoController {
         const existe = await serviceAuxiliar.BuscarPorID(id);
 
         if (!existe) {
-            return new RespostaApi(
-                false,
-                "O partido já não existe!"
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "O partido já não existe!"
+            }
             )
         }
 
         const service = new DeletarPartidoService();
-        
+
         const resposta = await service.executar(id);
 
         if (resposta) {
-            return new RespostaApi(
-                true,
-                "Partido deletado com sucesso",
+            return new RespostaApi({
+                sucesso:
+                    true,
+                mensagem:
+                    "Partido deletado com sucesso"
+            }
             )
         } else {
-            return new RespostaApi(
-                false,
-                "Houve algum problema ao deletar o partido",
+            return new RespostaApi({
+                sucesso:
+                    false,
+                mensagem:
+                    "Houve algum problema ao deletar o partido"
+            }
             )
         }
     }

@@ -8,13 +8,17 @@ export class ListarProjetoController {
     const resposta = await service.executar();
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        `${resposta.length} projeto(s) de lei foram encontrados`,
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          `${resposta.length} projeto(s) de lei foram encontrados`,
+        dados:
+          resposta
+      }
       );
     } else {
-      return new RespostaApi(false, "Nenhum projeto de lei foi encontrado");
+      return new RespostaApi({ sucesso: false, mensagem: "Nenhum projeto de lei foi encontrado" });
     }
   }
 }

@@ -1,4 +1,4 @@
-import { ProjetoLei } from "../projeto-lei";
+import { ProjetoLei } from "./projeto-lei";
 
 interface CarrosselPlsProps {
   projetos: ProjetoLei[];

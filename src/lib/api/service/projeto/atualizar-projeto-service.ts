@@ -2,13 +2,24 @@ import { prismaClient } from "@/services/prisma/prisma";
 
 export class AtualizarProjetoService {
   async executar(
-    id: string,
-    ano: string,
-    numero_pl: string,
-    pautaId: string,
-    justificativa: string,
-    ementa: string,
-    esferaId: string,
+    {
+      id,
+      ano,
+      ementa,
+      pautaId,
+      esferaId,
+      numeroPl,
+      justificativa
+    }:
+      {
+        id: string,
+        ano: string,
+        ementa: string,
+        pautaId: string,
+        esferaId: string
+        numeroPl: string,
+        justificativa: string,
+      }
   ) {
     const prisma = prismaClient;
 
@@ -18,11 +29,11 @@ export class AtualizarProjetoService {
       },
       data: {
         ano: ano,
-        numero_pl: numero_pl,
-        pautaId: pautaId,
-        justificativa: justificativa,
         ementa: ementa,
+        pautaId: pautaId,
         esferaId: esferaId,
+        numeroPl: numeroPl,
+        justificativa: justificativa,
       },
     });
     return resposta;

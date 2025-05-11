@@ -5,9 +5,12 @@ import { BuscarIdeologiaService } from "../../service/ideologia/buscar-ideologia
 export class AtualizarIdeologiaController {
   async executar(id: string, nome: string) {
     if (!id || !nome) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para a alteração da ideologia"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "Estão faltando informações para a alteração da ideologia"
+      }
       );
     }
 
@@ -16,13 +19,13 @@ export class AtualizarIdeologiaController {
     const existe = await serviceAuxiliar.buscarPorId(id);
 
     if (!existe) {
-      return new RespostaApi(false, "A ideologia não existe");
+      return new RespostaApi({ sucesso: false, mensagem: "A ideologia não existe" });
     }
 
     const novoIdeologia = await serviceAuxiliar.buscarPorNome(nome);
 
     if (novoIdeologia) {
-      return new RespostaApi(false, "A nova ideologia já existe");
+      return new RespostaApi({ sucesso: false, mensagem: "A nova ideologia já existe" });
     }
 
     const service = new AtualizarIdeologiaService();
@@ -30,15 +33,21 @@ export class AtualizarIdeologiaController {
     const resposta = await service.executar(id, nome);
 
     if (resposta) {
-      return new RespostaApi(
-        true,
-        "A ideologia foi atualizada com sucesso",
-        resposta
+      return new RespostaApi({
+        sucesso:
+          true,
+        mensagem:
+          "A ideologia foi atualizada com sucesso",
+        dados: resposta
+      }
       );
     } else {
-      return new RespostaApi(
-        false,
-        "A ideologia não foi atualizada, por algum motivo"
+      return new RespostaApi({
+        sucesso:
+          false,
+        mensagem:
+          "A ideologia não foi atualizada, por algum motivo"
+      }
       );
     }
   }
