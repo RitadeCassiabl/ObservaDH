@@ -1,10 +1,18 @@
-// import { Profissao } from "@/lib/database/models/Profissao";
 import { AtualizarProfissaoService } from "../../service/profissao/atualizar-profissao-service";
 
+import { Profissao } from "@/domain/models/profissao";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class AtualizarProfissaoController {
-	async executar(id: string, nome: string) {
+	async executar({
+		id,
+		nome,
+		politicos,
+	}: {
+		id: string;
+		nome: string;
+		politicos: string[];
+	}) {
 		if (!id || !nome) {
 			const respostaApi = new RespostaApi({
 				sucesso: false,
@@ -16,9 +24,13 @@ export class AtualizarProfissaoController {
 
 		const service = new AtualizarProfissaoService();
 
-		//TODO: adicionar Políticos
-		//const profissao = new Profissao(nome, politicos, id)
-		const resposta = await service.executar(id, nome);
+		const profissao = new Profissao({
+			id: id,
+			nome: nome,
+			politicos: politicos,
+		});
+
+		const resposta = await service.executar({ profissao: profissao });
 
 		if (resposta) {
 			return new RespostaApi({

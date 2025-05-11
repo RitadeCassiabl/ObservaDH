@@ -24,7 +24,7 @@ export async function DELETE(
 
 	try {
 		const controller = new DeletarProfissaoController();
-		const resposta = await controller.executar(id);
+		const resposta = await controller.executar({ id: id });
 
 		if (!resposta.sucesso) {
 			return NextResponse.json({ resposta }, { status: 400 });
@@ -64,7 +64,7 @@ export async function GET(
 
 	try {
 		const controller = new BuscarProfissaoController();
-		const resposta = await controller.executar(id);
+		const resposta = await controller.executar({ id });
 
 		return NextResponse.json(
 			{ resposta },
@@ -88,8 +88,7 @@ export async function PATCH(
 	{ params }: { params: { id?: string } }
 ) {
 	const { id } = params;
-	const body = await request.json();
-	const nome = body?.nome;
+	const { nome, politicos } = await request.json();
 
 	if (!id) {
 		const respostaApi = new RespostaApi({
@@ -104,7 +103,11 @@ export async function PATCH(
 
 	try {
 		const controller = new AtualizarProfissaoController();
-		const resposta = await controller.executar(id, nome);
+		const resposta = await controller.executar({
+			id: id,
+			nome: nome,
+			politicos: politicos,
+		});
 
 		return NextResponse.json(
 			{ resposta },

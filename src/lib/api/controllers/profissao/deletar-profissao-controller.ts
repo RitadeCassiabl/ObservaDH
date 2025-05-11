@@ -4,7 +4,7 @@ import { DeletarProfissaoService } from "../../service/profissao/deletar-profiss
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class DeletarProfissaoController {
-	async executar(id: string) {
+	async executar({ id }: { id: string }) {
 		if (!id) {
 			return new RespostaApi({
 				sucesso: false,

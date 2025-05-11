@@ -6,7 +6,7 @@ import { ListarProfissoesController } from "@/lib/api/controllers/profissao/list
 
 export async function POST(request: Request) {
 	try {
-		const { nome } = await request.json();
+		const { nome, politicos } = await request.json();
 
 		if (!nome) {
 			const respostaApi = new RespostaApi({
@@ -18,7 +18,10 @@ export async function POST(request: Request) {
 		} else {
 			const controller = new CriarProfissaoController();
 
-			const resposta = await controller.executar(nome);
+			const resposta = await controller.executar({
+				nome: nome,
+				politicos: politicos,
+			});
 
 			return NextResponse.json(
 				{ resposta },

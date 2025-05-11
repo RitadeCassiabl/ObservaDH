@@ -1,15 +1,21 @@
+import { DireitoViolado } from "@/domain/models/direito-violado";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class AtualizarDireitoVioladoService {
-	async executar(id: string, nome: string) {
+	async executar({ direitoViolado }: { direitoViolado: DireitoViolado }) {
 		const prisma = prismaClient;
 
 		const resposta = await prisma.direitoViolado.update({
 			where: {
-				id: id,
+				id: direitoViolado.id,
 			},
 			data: {
-				nome: nome,
+				nome: direitoViolado.nome,
+				projetos: {
+					connect: direitoViolado.projetos?.map((direito) => ({
+						id: direito,
+					})),
+				},
 			},
 		});
 		return resposta;

@@ -1,7 +1,7 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class BuscarDireitoVioladoService {
-	async buscarPorId(id: string) {
+	async buscarPorId({ id }: { id: string }) {
 		const prisma = prismaClient;
 
 		const resposta = await prisma.direitoViolado.findUnique({

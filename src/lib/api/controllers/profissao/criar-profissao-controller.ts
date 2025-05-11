@@ -5,7 +5,7 @@ import { Profissao } from "@/domain/models/profissao";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class CriarProfissaoController {
-	async executar(nome: string) {
+	async executar({ nome, politicos }: { nome: string; politicos: string[] }) {
 		if (!nome) {
 			return new RespostaApi({
 				sucesso: false,
@@ -26,7 +26,7 @@ export class CriarProfissaoController {
 
 		const service = new CriarProfissaoService();
 
-		const profissao = new Profissao({ nome: nome });
+		const profissao = new Profissao({ nome: nome, politicos: politicos });
 
 		const resposta = await service.executar(profissao);
 

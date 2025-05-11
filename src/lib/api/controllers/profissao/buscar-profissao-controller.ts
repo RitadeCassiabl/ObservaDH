@@ -3,7 +3,7 @@ import { BuscarProfissaoService } from "../../service/profissao/buscar-profissao
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class BuscarProfissaoController {
-	async executar(id: string) {
+	async executar({ id }: { id: string }) {
 		const service = new BuscarProfissaoService();
 
 		const resposta = await service.buscarPorId(id);

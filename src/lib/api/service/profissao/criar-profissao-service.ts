@@ -10,10 +10,13 @@ export class CriarProfissaoService {
 				nome: profissao.nome,
 
 				politicos: {
-					create: [],
+					connect: profissao.politicos?.map((politico) => ({
+						id: politico,
+					})),
 				},
 			},
 		});
+
 		return resposta;
 	}
 }
