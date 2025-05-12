@@ -1,20 +1,24 @@
-import { RespostaApi } from "@/types/resposta-api";
 import { ListarEsferaService } from "../../service/esfera/listar-esfera-service";
 
+import { RespostaApi } from "@/domain/models/resposta-api";
+
 export class ListarEsferaController {
-  async executar() {
-    const service = new ListarEsferaService();
+	async executar() {
+		const service = new ListarEsferaService();
 
-    const resposta = await service.executar();
+		const resposta = await service.executar();
 
-    if (resposta) {
-      return new RespostaApi(
-        true,
-        `${resposta.length} esfera(s) foram encontradas`,
-        resposta
-      );
-    } else {
-      return new RespostaApi(false, "Nenhuma esfera foi encontrada");
-    }
-  }
+		if (resposta) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: `${resposta.length} esfera(s) foram encontradas`,
+				dados: resposta,
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Nenhuma esfera foi encontrada",
+			});
+		}
+	}
 }

@@ -1,11 +1,11 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class ListarProfissoesService {
-    async executar() {
-        const prisma = prismaClient;
+	async executar() {
+		const prisma = prismaClient;
 
-        const resposta = prisma.profissao.findMany();
+		const resposta = prisma.profissao.findMany();
 
-        return resposta;
-    }
-} 
+		return resposta;
+	}
+}

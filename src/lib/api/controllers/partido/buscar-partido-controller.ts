@@ -1,17 +1,24 @@
-import { RespostaApi } from "@/types/resposta-api";
 import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
 
+import { RespostaApi } from "@/domain/models/resposta-api";
+
 export class BuscarPartidoController {
-    async executar(id: string) {
-        const service = new BuscarPartidoService();
+	async executar(id: string) {
+		const service = new BuscarPartidoService();
 
-        const partido = await service.BuscarPorID(id);
+		const partido = await service.BuscarPorID(id);
 
-        if (partido) {
-            return new RespostaApi(true, "Partido encontrado", partido);
-        } else {
-            return new RespostaApi(false, "Partido não encontrado");
-        }
-
-    }
+		if (partido) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "Partido encontrado",
+				dados: partido,
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Partido não encontrado",
+			});
+		}
+	}
 }

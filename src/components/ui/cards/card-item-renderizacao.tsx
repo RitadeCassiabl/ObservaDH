@@ -1,35 +1,35 @@
 import { oswald } from "../../../lib/fonts/fonts";
 
 interface itemRenderProps {
-  titulo: string;
-  valor: string;
-  className?: string;
-  cor_texto?: string;
-  cor_segundo_texto?: string;
+	titulo: string;
+	valor: string;
+	className?: string;
+	corTexto?: string;
+	corSegundoTexto?: string;
 }
 
 const CardItemRenderizacao: React.FC<itemRenderProps> = ({
-  titulo,
-  valor,
-  className,
-  cor_texto,
-  cor_segundo_texto,
+	titulo,
+	valor,
+	className,
+	corTexto,
+	corSegundoTexto,
 }) => {
-  return (
-    <p className={`text-2xl  ${className} ${oswald.className}`}>
-      <span className={`mr-2  ${cor_texto ? cor_texto : "text-[#AFC4F9]"}`}>
-        {titulo}
-        {":"}
-      </span>
-      <span
-        className={`truncate ${
-          cor_segundo_texto ? cor_segundo_texto : "text-white"
-        } `}
-      >
-        {valor}
-      </span>
-    </p>
-  );
+	return (
+		<p className={`text-2xl  ${className} ${oswald.className}`}>
+			<span className={`mr-2  ${corTexto ? corTexto : "text-[#AFC4F9]"}`}>
+				{titulo}
+				{":"}
+			</span>
+			<span
+				className={`truncate ${
+					corSegundoTexto ? corSegundoTexto : "text-white"
+				} `}
+			>
+				{valor}
+			</span>
+		</p>
+	);
 };
 
 export default CardItemRenderizacao;

@@ -15,12 +15,12 @@
  *             type: object
  *             required:
  *               - nome
- *               - sigla
+ *               - codigo
  *             properties:
  *               nome:
  *                 type: string
  *                 example: Partido da Esperança Nacional
- *               sigla:
+ *               codigo:
  *                 type: string
  *                 example: PEN
  *     responses:
@@ -36,7 +36,7 @@
  *               dados:
  *                 id: "d7f72cce-b2f5-4a7e-a913-65fa3f88cd84"
  *                 nome: "Partido da Esperança Nacional"
- *                 sigla: "PEN"
+ *                 codigo: "PEN"
  *       400:
  *         description: Erro de validação (dados inválidos ou duplicados)
  *         content:
@@ -86,10 +86,10 @@
  *               dados:
  *                 - id: "1f3c1f25-1122-43a6-bf61-0fbf6e84e278"
  *                   nome: "Partido Socialista dos Trabalhadores"
- *                   sigla: "PST"
+ *                   codigo: "PST"
  *                 - id: "71a8bcce-84d4-4c84-92ea-481872e8b5d4"
  *                   nome: "Partido Verde Ambiental"
- *                   sigla: "PVA"
+ *                   codigo: "PVA"
  *       500:
  *         description: Erro interno ao listar partidos
  *         content:
@@ -101,44 +101,50 @@
  *               mensagem: Erro interno
  */
 
-import { CriarPartidoController } from '@/lib/api/controllers/partido/criar-partido-controller';
-import { ListarPartidoController } from '@/lib/api/controllers/partido/listar-partido-controller';
-import { RespostaApi } from '@/types/resposta-api';
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
+import { CriarPartidoController } from "@/lib/api/controllers/partido/criar-partido-controller";
+import { ListarPartidoController } from "@/lib/api/controllers/partido/listar-partido-controller";
 
 export async function POST(request: Request) {
-    try {
-        const { nome, sigla } = await request.json();
+	try {
+		const { nome, sigla } = await request.json();
 
-        const controller = new CriarPartidoController();
+		const controller = new CriarPartidoController();
 
-        const resposta = await controller.executar(nome, sigla)
+		const resposta = await controller.executar(nome, sigla);
 
-        return NextResponse.json({ resposta }, {  status: resposta.sucesso ? 200 : 400 })
-
-    } catch (error) {
-        const respostaApi = new RespostaApi(false, "erro interno", error);
-        return NextResponse.json(
-            { respostaApi },
-            { status: 500 }
-        )
-    }
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 400 }
+		);
+	} catch (error) {
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "Ocorreu um erro inesperado",
+			dados: error,
+		});
+		return NextResponse.json({ respostaApi }, { status: 500 });
+	}
 }
 
 export async function GET() {
-    try {
+	try {
+		const controller = new ListarPartidoController();
 
-        const controller = new ListarPartidoController();
+		const resposta = await controller.executar();
 
-        const resposta = await controller.executar()
-
-        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
-
-    } catch (error) {
-        const respostaApi = new RespostaApi(false, "erro interno", error);
-        return NextResponse.json(
-            { respostaApi },
-            { status: 500 }
-        )
-    }
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 400 }
+		);
+	} catch (error) {
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "Ocorreu um erro inesperado",
+			dados: error,
+		});
+		return NextResponse.json({ respostaApi }, { status: 500 });
+	}
 }

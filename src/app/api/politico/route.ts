@@ -125,65 +125,73 @@
  *               mensagem: "Erro interno ao criar o político"
  */
 
-import { CriarPoliticoController } from "@/lib/api/controllers/politico/criar-politico-controller";
-import { ListarPoliticoContoller } from "@/lib/api/controllers/politico/listar-politico-controller";
-import { RespostaApi } from "@/types/resposta-api";
 import { NextResponse } from "next/server";
 
+import { RespostaApi } from "@/domain/models/resposta-api";
+import { CriarPoliticoController } from "@/lib/api/controllers/politico/criar-politico-controller";
+import { ListarPoliticoContoller } from "@/lib/api/controllers/politico/listar-politico-controller";
+
 export async function POST(request: Request) {
-    try {
-        const {
-            nome,
-            sexo,
-            raca,
-            religiao,
-            estado_id,
-            partido_id,
-            ideologia,
-            data_nascimento,
-            foto,
-            profissoes,
-            projetos,
-        } = await request.json();
+	try {
+		const {
+			nome,
+			sexo,
+			raca,
+			religiao,
+			estado_id,
+			partido_id,
+			ideologia,
+			data_nascimento,
+			foto,
+			profissoes,
+			projetos,
+		} = await request.json();
 
-        const controller = new CriarPoliticoController();
+		const controller = new CriarPoliticoController();
 
-        const resposta = await controller.executar(
-            nome,
-            sexo,
-            raca,
-            religiao,
-            estado_id,
-            partido_id,
-            ideologia,
-            data_nascimento,
-            foto,
-            profissoes,
-            projetos
-        );
+		const resposta = await controller.executar(
+			nome,
+			sexo,
+			raca,
+			religiao,
+			estado_id,
+			partido_id,
+			ideologia,
+			data_nascimento,
+			foto,
+			profissoes,
+			projetos
+		);
 
-        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 201 : 400 });
-
-
-    } catch (error) {
-        const resposta = new RespostaApi(false, 'erro interno', error)
-        return NextResponse.json(
-            { resposta },
-            { status: 500 }
-        );
-
-    }
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 201 : 400 }
+		);
+	} catch (error) {
+		const resposta = new RespostaApi({
+			sucesso: false,
+			mensagem: "erro interno",
+			dados: error,
+		});
+		return NextResponse.json({ resposta }, { status: 500 });
+	}
 }
 export async function GET() {
-    try {
-        const controller = new ListarPoliticoContoller();
+	try {
+		const controller = new ListarPoliticoContoller();
 
-        const resposta = await controller.executar();
+		const resposta = await controller.executar();
 
-        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 });
-
-    } catch (error) {
-        const resposta = new RespostaApi(false, 'erro interno', error)
-        return NextResponse.json({ resposta }, { status: 500 })
-    }
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 400 }
+		);
+	} catch (error) {
+		const resposta = new RespostaApi({
+			sucesso: false,
+			mensagem: "erro interno",
+			dados: error,
+		});
+		return NextResponse.json({ resposta }, { status: 500 });
+	}
 }

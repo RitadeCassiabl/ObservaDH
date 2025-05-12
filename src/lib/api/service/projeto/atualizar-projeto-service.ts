@@ -1,39 +1,38 @@
 import { prismaClient } from "@/services/prisma/prisma";
-import { Esfera } from "@/types/esfera";
 
 export class AtualizarProjetoService {
-  async executar(
-    id: string,
-    ano: string,
-    numero_pl: string,
-    pautaId: string,
-    pauta: string,
-    justificativa: string,
-    ementa: string,
-    esferaId: string,
-    esfera: Esfera
-  ) {
-    const prisma = prismaClient;
+	async executar({
+		id,
+		ano,
+		ementa,
+		pautaId,
+		esferaId,
+		numeroPl,
+		justificativa,
+	}: {
+		id: string;
+		ano: string;
+		ementa: string;
+		pautaId: string;
+		esferaId: string;
+		numeroPl: string;
+		justificativa: string;
+	}) {
+		const prisma = prismaClient;
 
-    const resposta = await prisma.projeto.update({
-      where: {
-        id: id,
-      },
-      data: {
-        ano: ano,
-        numero_pl: numero_pl,
-        pautaId: pautaId,
-        pauta: pauta,
-        justificativa: justificativa,
-        ementa: ementa,
-        esferaId: esferaId,
-        esfera: {
-          update: {
-            nome: esfera.nome,
-          },
-        },
-      },
-    });
-    return resposta;
-  }
+		const resposta = await prisma.projeto.update({
+			where: {
+				id: id,
+			},
+			data: {
+				ano: ano,
+				ementa: ementa,
+				pautaId: pautaId,
+				esferaId: esferaId,
+				numeroPl: numeroPl,
+				justificativa: justificativa,
+			},
+		});
+		return resposta;
+	}
 }

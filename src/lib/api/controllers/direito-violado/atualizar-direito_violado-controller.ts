@@ -1,45 +1,67 @@
-import { RespostaApi } from "@/types/resposta-api";
 import { AtualizarDireitoVioladoService } from "../../service/direito-violado/atualizar-direito_violado-service";
 import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
 
+import { DireitoViolado } from "@/domain/models/direito-violado";
+import { RespostaApi } from "@/domain/models/resposta-api";
+
 export class AtualizarDireitoVioladoController {
-  async executar(id: string, nome: string) {
-    if (!id || !nome) {
-      return new RespostaApi(
-        false,
-        "Faltam informações para a alteração do direito violado"
-      );
-    }
+	async executar({
+		id,
+		nome,
+		projetos,
+	}: {
+		id: string;
+		nome: string;
+		projetos: string[];
+	}) {
+		if (!id || !nome) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Faltam informações para a alteração do direito violado",
+			});
+		}
 
-    const serviceAuxiliar = new BuscarDireitoVioladoService();
+		const serviceAuxiliar = new BuscarDireitoVioladoService();
 
-    const existe = await serviceAuxiliar.buscarPorId(id);
+		const existe = await serviceAuxiliar.buscarPorId({ id: id });
 
-    if (!existe) {
-      return new RespostaApi(false, "O direito violado não existe");
-    }
+		if (!existe) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "O direito violado não existe",
+			});
+		}
 
-    const novoDireitoViolado = await serviceAuxiliar.buscarPorNome(nome);
+		const novoDireitoViolado = await serviceAuxiliar.buscarPorNome(nome);
 
-    if (novoDireitoViolado) {
-      return new RespostaApi(false, "O novo direito violado já existe");
-    }
+		if (novoDireitoViolado) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "O novo direito violado já existe",
+			});
+		}
 
-    const service = new AtualizarDireitoVioladoService();
+		const service = new AtualizarDireitoVioladoService();
 
-    const resposta = await service.executar(id, nome);
+		const direito = new DireitoViolado({
+			id: id,
+			nome: nome,
+			projetos: projetos,
+		});
 
-    if (resposta) {
-      return new RespostaApi(
-        true,
-        "O Direito violado foi atualizado com sucesso",
-        resposta
-      );
-    } else {
-      return new RespostaApi(
-        false,
-        "O Direito violado não foi atualizado, por algum motivo"
-      );
-    }
-  }
+		const resposta = await service.executar({ direitoViolado: direito });
+
+		if (resposta) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "O Direito violado foi atualizado com sucesso",
+				dados: resposta,
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "O Direito violado não foi atualizado, por algum motivo",
+			});
+		}
+	}
 }
