@@ -1,38 +1,60 @@
-import { Partido } from "@/types/partido";
-import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
 import { AtualizarPartidoService } from "../../service/partido/atualizar-partido-service";
-import { RespostaApi } from "@/types/resposta-api";
+import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
+
+import { Partido } from "@/domain/models/partido";
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class AtualizarPartidoController {
-    async executar(id: string, nome: string, codigo: string, politicos: string[], projetos: string[]) {
+	async executar(
+		id: string,
+		nome: string,
+		sigla: string,
+		politicos: string[],
+		projetos: string[]
+	) {
+		const buscarService = new BuscarPartidoService();
+		const atualizarService = new AtualizarPartidoService();
 
-        const buscarService = new BuscarPartidoService();
-        const atualizarService = new AtualizarPartidoService();
+		const partidoExistente = await buscarService.BuscarPorID(id);
 
+		if (!partidoExistente) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Partido não encontrado",
+			});
+		}
 
-        const partidoExistente = await buscarService.BuscarPorID(id);
+		if (nome !== partidoExistente.nome) {
+			const partidoComMesmoNome = await buscarService.BuscarPorNome(nome);
+			if (partidoComMesmoNome && partidoComMesmoNome.id !== id) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Já existe um partido com este nome",
+				});
+			}
+		}
 
-        if (!partidoExistente) {
-            return new RespostaApi(false, "Partido não encontrado");
-        }
+		const partidoAtualizado = new Partido({
+			id: id,
+			nome: nome,
+			sigla: sigla,
+			politicos: politicos,
+			projetos: projetos,
+		});
 
-        if (nome !== partidoExistente.nome) {
+		const resultado = await atualizarService.executar(partidoAtualizado);
 
-            const partidoComMesmoNome = await buscarService.BuscarPorNome(nome);
-            if (partidoComMesmoNome && partidoComMesmoNome.id !== id) {
-                return new RespostaApi(false, "Já existe um partido com este nome");
-            }
-        }
-
-        const partidoAtualizado = new Partido(nome, codigo, politicos, id, projetos);
-
-        const resultado = await atualizarService.executar(partidoAtualizado);
-
-        if (resultado) {
-            return new RespostaApi(true, "Partido atualizado com sucesso", resultado);
-        } else {
-            return new RespostaApi(false, "Erro ao atualizar o partido");
-        }
-
-    }
+		if (resultado) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "Partido atualizado com sucesso",
+				dados: resultado,
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Erro ao atualizar o partido",
+			});
+		}
+	}
 }

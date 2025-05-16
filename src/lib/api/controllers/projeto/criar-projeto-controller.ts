@@ -1,70 +1,74 @@
-import { Projeto } from "@/types/projeto";
-import { CriarProjetoService } from "../../service/projeto/criar-projeto-service";
-import { RespostaApi } from "@/types/resposta-api";
 import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-service";
-import { Esfera } from "@/types/esfera";
+import { CriarProjetoService } from "../../service/projeto/criar-projeto-service";
+
+import { Esfera } from "@/domain/models/esfera";
+import { Projeto } from "@/domain/models/projeto";
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class CriarProjetoController {
-  async executar(
-    ano: string,
-    numero_pl: string,
-    pautaId: string,
-    pauta: string,
-    justificativa: string,
-    ementa: string,
-    esferaId: string,
-    esfera: Esfera
-  ) {
-    if (
-      !ano ||
-      !numero_pl ||
-      !pautaId ||
-      !pauta ||
-      !justificativa ||
-      !ementa ||
-      !esferaId ||
-      !esfera
-    ) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para criar o projeto de lei"
-      );
-    }
+	async executar(
+		ano: string,
+		numeroPl: string,
+		pautaId: string,
+		pauta: string,
+		justificativa: string,
+		ementa: string,
+		esferaId: string,
+		esfera: Esfera
+	) {
+		if (
+			!ano ||
+			!numeroPl ||
+			!pautaId ||
+			!pauta ||
+			!justificativa ||
+			!ementa ||
+			!esferaId ||
+			!esfera
+		) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Estão faltando informações para criar o projeto de lei",
+			});
+		}
 
-    const serviceAuxiliar = new BuscarProjetoService();
+		const serviceAuxiliar = new BuscarProjetoService();
 
-    const existe = await serviceAuxiliar.buscarPorNumeroPL(numero_pl);
+		const existe = await serviceAuxiliar.buscarPorNumeroPL({ numeroPl });
 
-    if (existe) {
-      return new RespostaApi(false, "O projeto de lei já existe");
-    }
+		if (existe) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "O projeto de lei já existe",
+			});
+		}
 
-    const service = new CriarProjetoService();
+		const service = new CriarProjetoService();
 
-    const projeto = new Projeto(
-      ano,
-      numero_pl,
-      pautaId,
-      pauta,
-      justificativa,
-      ementa,
-      esferaId,
-      esfera
-    );
+		const projeto = new Projeto({
+			ano,
+			numeroPl,
+			pautaId,
+			pauta,
+			justificativa,
+			ementa,
+			esferaId,
+			esfera,
+		});
 
-    const resposta = await service.executar(projeto);
+		const resposta = await service.executar(projeto);
 
-    if (resposta) {
-      return new RespostaApi(
-        true,
-        "Projeto de lei criado com sucesso",
-        resposta
-      );
-    } else {
-      return new RespostaApi(
-        false,
-        "Houve algum problema na criação do projeto de lei"
-      );
-    }
-  }
+		if (resposta) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "Projeto de lei criado com sucesso",
+				dados: resposta,
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Houve algum problema na criação do projeto de lei",
+			});
+		}
+	}
 }

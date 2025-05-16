@@ -3,39 +3,38 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
 
 import useDescobertaCabecalho from "@/lib/utils/cabecalho-utils";
 import Header from "./Header";
 
 interface Cabecalho {
-  titulo: string;
-  text: string;
+	titulo: string;
+	text: string;
 }
 
 const navBar: React.FC = () => {
-  const [title, setTitle] = useState<Cabecalho>({
-    titulo: "",
-    text: "",
-  });
-  const router = usePathname();
-  const { buscarCabecalhoPorLink } = useDescobertaCabecalho();
-  const buscarCabecalho = useCallback(
-    () => buscarCabecalhoPorLink(router),
-    [buscarCabecalhoPorLink, router]
-  );
+	const [title, setTitle] = useState<Cabecalho>({
+		titulo: "",
+		text: "",
+	});
+	const router = usePathname();
+	const { buscarCabecalhoPorLink } = useDescobertaCabecalho();
+	const buscarCabecalho = useCallback(
+		() => buscarCabecalhoPorLink(router),
+		[buscarCabecalhoPorLink, router]
+	);
 
-  useEffect(() => {
-    const item = buscarCabecalho();
-    if (item) {
-      setTitle(item);
-    } else {
-      setTitle({
-        titulo: "Projeto de Lei",
-        text: "",
-      });
-    }
-  }, [router, buscarCabecalho]);
+	useEffect(() => {
+		const item = buscarCabecalho();
+		if (item) {
+			setTitle(item);
+		} else {
+			setTitle({
+				titulo: "Projeto de Lei",
+				text: "",
+			});
+		}
+	}, [router, buscarCabecalho]);
 
   return (
     <div className="w-full h-full flex flex-col items-center bg-senado bg-cover bg-center border-b-2 border-[#001745]">

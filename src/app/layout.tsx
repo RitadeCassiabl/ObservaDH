@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
-import { titillium_web } from "@/lib/fonts/fonts";
+
+import { titilliumWeb } from "@/lib/fonts/fonts";
 
 export const metadata: Metadata = {
-  title: "ObservaDH",
-  description: "Observatório de Projetos de Lei voltados aos Direitos LGBTI+.",
+	title: "ObservaDH",
+	description: "Observatório de Projetos de Lei voltados aos Direitos LGBTI+.",
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="pt-br" className={titillium_web.className}>
-      <body className="bg-layout-principal antialiased no-scrollbar flex flex-col">
-        {children}
-      </body>
-    </html>
-  );
+	return (
+		<html lang="pt-br" className={titilliumWeb.className}>
+			<body className="bg-layout-principal antialiased no-scrollbar flex flex-col">
+				{children}
+			</body>
+		</html>
+	);
 }

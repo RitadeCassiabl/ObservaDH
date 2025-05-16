@@ -1,47 +1,46 @@
-import { DireitoViolado } from '@/types/direito-violado';
+import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
 import { CriarDireitoVioladoService } from "../../service/direito-violado/criar-direito_violado-service";
-import { RespostaApi } from '@/types/resposta-api';
-import { BuscarDireitoVioladoService } from '../../service/direito-violado/buscar-direito_violado-service';
+
+import { DireitoViolado } from "@/domain/models/direito-violado";
+import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class CriarDireitoVioladoController {
+	async executar(nome: string) {
+		if (!nome) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Estão faltando infomações para a criação do direito violado",
+			});
+		}
 
-    async executar(nome: string) {
+		const serviceAuxiliar = new BuscarDireitoVioladoService();
 
-        if (!nome) {
-            return new RespostaApi(
-                false,
-                "Estão faltando infomações para a criação do direito violado"
-            );
-        }
+		const existe = await serviceAuxiliar.buscarPorNome(nome);
 
-        const serviceAuxiliar = new BuscarDireitoVioladoService();
+		if (existe) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "O direito violado já existe",
+			});
+		}
 
-        const existe = await serviceAuxiliar.buscarPorNome(nome);
-        
-        if (existe) {
-            return new RespostaApi(
-                false,
-                "O direito violado já existe"
-            );
-        }
+		const direitoViolado = new DireitoViolado({ nome: nome });
 
-        const direitoViolado = new DireitoViolado(nome);
+		const service = new CriarDireitoVioladoService();
 
-        const service = new CriarDireitoVioladoService();
+		const resposta = await service.executar({ direitoViolado: direitoViolado });
 
-        const resposta = await service.executar(direitoViolado)
-
-        if (resposta) {
-            return new RespostaApi(
-                true,
-                "Direito Violado criado com sucesso",
-                resposta
-            );
-        } else {
-            return new RespostaApi(
-                false,
-                "Houve algum problema na criação do direito violado"
-            );
-        }
-    }
+		if (resposta) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "Direito Violado criado com sucesso",
+				dados: resposta,
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Houve algum problema na criação do direito violado",
+			});
+		}
+	}
 }

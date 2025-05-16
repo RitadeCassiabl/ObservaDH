@@ -1,22 +1,22 @@
-import { oswald, titillium_web } from "../../../lib/fonts/fonts";
+import { oswald, titilliumWeb } from "../../../lib/fonts/fonts";
 
 interface TextProps {
-  children?: React.ReactNode;
-  className?: string;
-  shadow?: boolean;
+	children?: React.ReactNode;
+	className?: string;
+	shadow?: boolean;
 }
 
 const TextoPequeno = {
-  Oswald: ({ children, className }: TextProps) => (
-    <span className={`font-light ${oswald.className} ${className}`}>
-      {children}
-    </span>
-  ),
-  Titillium: ({ children, className }: TextProps) => (
-    <span className={`font-light ${titillium_web.className} ${className}`}>
-      {children}
-    </span>
-  ),
+	Oswald: ({ children, className }: TextProps) => (
+		<span className={`font-light ${oswald.className} ${className}`}>
+			{children}
+		</span>
+	),
+	Titillium: ({ children, className }: TextProps) => (
+		<span className={`font-light ${titilliumWeb.className} ${className}`}>
+			{children}
+		</span>
+	),
 };
 
 export default TextoPequeno;

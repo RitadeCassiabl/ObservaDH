@@ -101,44 +101,50 @@
  *               mensagem: Erro interno
  */
 
-import { CriarPartidoController } from '@/lib/api/controllers/partido/criar-partido-controller';
-import { ListarPartidoController } from '@/lib/api/controllers/partido/listar-partido-controller';
-import { RespostaApi } from '@/types/resposta-api';
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+
+import { RespostaApi } from "@/domain/models/resposta-api";
+import { CriarPartidoController } from "@/lib/api/controllers/partido/criar-partido-controller";
+import { ListarPartidoController } from "@/lib/api/controllers/partido/listar-partido-controller";
 
 export async function POST(request: Request) {
-    try {
-        const { nome, codigo } = await request.json();
+	try {
+		const { nome, sigla } = await request.json();
 
-        const controller = new CriarPartidoController();
+		const controller = new CriarPartidoController();
 
-        const resposta = await controller.executar(nome, codigo)
+		const resposta = await controller.executar(nome, sigla);
 
-        return NextResponse.json({ resposta }, {  status: resposta.sucesso ? 200 : 400 })
-
-    } catch (error) {
-        const respostaApi = new RespostaApi(false, "erro interno", error);
-        return NextResponse.json(
-            { respostaApi },
-            { status: 500 }
-        )
-    }
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 400 }
+		);
+	} catch (error) {
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "Ocorreu um erro inesperado",
+			dados: error,
+		});
+		return NextResponse.json({ respostaApi }, { status: 500 });
+	}
 }
 
 export async function GET() {
-    try {
+	try {
+		const controller = new ListarPartidoController();
 
-        const controller = new ListarPartidoController();
+		const resposta = await controller.executar();
 
-        const resposta = await controller.executar()
-
-        return NextResponse.json({ resposta }, { status: resposta.sucesso ? 200 : 400 })
-
-    } catch (error) {
-        const respostaApi = new RespostaApi(false, "erro interno", error);
-        return NextResponse.json(
-            { respostaApi },
-            { status: 500 }
-        )
-    }
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 400 }
+		);
+	} catch (error) {
+		const respostaApi = new RespostaApi({
+			sucesso: false,
+			mensagem: "Ocorreu um erro inesperado",
+			dados: error,
+		});
+		return NextResponse.json({ respostaApi }, { status: 500 });
+	}
 }

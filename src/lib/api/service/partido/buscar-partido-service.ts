@@ -1,36 +1,30 @@
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class BuscarPartidoService {
-    async BuscarPorID(id: string) {
-        const prisma = prismaClient;
+	async BuscarPorID(id: string) {
+		const prisma = prismaClient;
 
-        const resposta = await prisma.partido.findUnique(
-            {
-                where: { id: id }
-            }
-        )
-        return resposta
-    }
+		const resposta = await prisma.partido.findUnique({
+			where: { id: id },
+		});
+		return resposta;
+	}
 
-    async BuscarPorCodigo(codigo: string) {
-        const prisma = prismaClient;
+	async BuscarPorCodigo(sigla: string) {
+		const prisma = prismaClient;
 
-        const resposta = await prisma.partido.findUnique(
-            {
-                where: { codigo: codigo }
-            }
-        )
-        return resposta
-    }
+		const resposta = await prisma.partido.findUnique({
+			where: { sigla: sigla },
+		});
+		return resposta;
+	}
 
-    async BuscarPorNome(nome: string) {
-        const prisma = prismaClient;
+	async BuscarPorNome(nome: string) {
+		const prisma = prismaClient;
 
-        const resposta = await prisma.partido.findUnique(
-            {
-                where: { nome: nome }
-            }
-        )
-        return resposta
-    }
+		const resposta = await prisma.partido.findUnique({
+			where: { nome: nome },
+		});
+		return resposta;
+	}
 }

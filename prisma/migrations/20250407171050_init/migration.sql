@@ -41,7 +41,7 @@ CREATE TABLE "Politico" (
 CREATE TABLE "Partido" (
     "id" SERIAL NOT NULL,
     "nome" TEXT NOT NULL,
-    "codigo" TEXT NOT NULL,
+    "sigla" TEXT NOT NULL,
 
     CONSTRAINT "Partido_pkey" PRIMARY KEY ("id")
 );
@@ -141,7 +141,7 @@ CREATE UNIQUE INDEX "Projeto_numero_pl_key" ON "Projeto"("numero_pl");
 CREATE UNIQUE INDEX "Partido_nome_key" ON "Partido"("nome");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Partido_codigo_key" ON "Partido"("codigo");
+CREATE UNIQUE INDEX "Partido_codigo_key" ON "Partido"("sigla");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Estado_nome_key" ON "Estado"("nome");

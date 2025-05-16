@@ -1,45 +1,52 @@
-import { RespostaApi } from "@/types/resposta-api";
 import { AtualizarEstadoService } from "../../service/estado/atualizar-estado-service";
 import { BuscarEstadoService } from "../../service/estado/buscar-estado-service";
 
+import { RespostaApi } from "@/domain/models/resposta-api";
+
 export class AtualizarEstadoController {
-  async executar(id: string, nome: string) {
-    if (!id || !nome) {
-      return new RespostaApi(
-        false,
-        "Estão faltando informações para a alteração do estado"
-      );
-    }
+	async executar(id: string, nome: string) {
+		if (!id || !nome) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Estão faltando informações para a alteração do estado",
+			});
+		}
 
-    const serviceAuxiliar = new BuscarEstadoService();
+		const serviceAuxiliar = new BuscarEstadoService();
 
-    const existe = await serviceAuxiliar.buscarPorId(id);
+		const existe = await serviceAuxiliar.buscarPorId(id);
 
-    if (!existe) {
-      return new RespostaApi(false, "O estado não existe");
-    }
+		if (!existe) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "O estado não existe",
+			});
+		}
 
-    const novoEstado = await serviceAuxiliar.buscarPorNome(nome);
+		const novoEstado = await serviceAuxiliar.buscarPorNome(nome);
 
-    if (novoEstado) {
-      return new RespostaApi(false, "O novo estado já existe");
-    }
+		if (novoEstado) {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "O novo estado já existe",
+			});
+		}
 
-    const service = new AtualizarEstadoService();
+		const service = new AtualizarEstadoService();
 
-    const resposta = await service.executar(id, nome);
+		const resposta = await service.executar(id, nome);
 
-    if (resposta) {
-      return new RespostaApi(
-        true,
-        "O estado foi atualizado com sucesso",
-        resposta
-      );
-    } else {
-      return new RespostaApi(
-        false,
-        "O estado não foi atualizado, por algum motivo"
-      );
-    }
-  }
+		if (resposta) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "O estado foi atualizado com sucesso",
+				dados: resposta,
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "O estado não foi atualizado, por algum motivo",
+			});
+		}
+	}
 }

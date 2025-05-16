@@ -26,7 +26,7 @@ Desenvolver o **Observatório Digital de Discurso e Direitos Humanos**, uma plat
 - **Linguagem**: TypeScript
 - **Banco de Dados**: Prisma e Postgre
 - **Frontend**: React e Next
-- **Backend**:  Next
+- **Backend**: Next
 - **Visualização de Dados**: a definir...
 
 ## Metodologia
@@ -56,4 +56,4 @@ Para dúvidas ou sugestões, entre em contato com os colaboradores:
     <img height="100" src="https://github.com/RitadeCassiabl.png" />
     </a>
 </div>
-<h2>Júlio César & Rita de Cássia</h2> 
+<h2>Júlio César & Rita de Cássia</h2>

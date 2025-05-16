@@ -10,14 +10,13 @@ datasource db {
 model Projeto {
   id               String           @id @default(uuid()) @db.VarChar(36)
   ano              String
-  numero_pl        String           @unique
-  pauta            String
-  justificativa    String
   ementa           String
-  ambitoId         String
   pautaId          String
-  Ambito           Ambito           @relation(fields: [ambitoId], references: [id])
-  Pauta            Pauta            @relation(fields: [pautaId], references: [id])
+  esferaId         String
+  numeroPl         String           @unique
+  justificativa    String
+  esfera           Esfera           @relation(fields: [esferaId], references: [id])
+  pauta            Pauta            @relation(fields: [pautaId], references: [id])
   direitosViolados DireitoViolado[] @relation("DireitoVioladoToProjeto")
   ideologias       Ideologia[]      @relation("IdeologiaToProjeto")
   partidos         Partido[]        @relation("PartidoToProjeto")
@@ -31,10 +30,10 @@ model Politico {
   sexo           String
   raca           String
   religiao       String
-  ideologia      String
-  dataNascimento DateTime
   estadoId       String
   partidoId      String
+  ideologia      String
+  dataNascimento DateTime
   estado         Estado      @relation(fields: [estadoId], references: [id])
   partido        Partido     @relation(fields: [partidoId], references: [id])
   profissoes     Profissao[] @relation("PoliticoToProfissao")
@@ -74,14 +73,14 @@ model Profissao {
   politicos Politico[] @relation("PoliticoToProfissao")
 }
 
-model Ambito {
+model Esfera {
   id       String    @id @default(uuid()) @db.VarChar(36)
   nome     String
-  Projetos Projeto[]
+  projetos Projeto[]
 }
 
 model Pauta {
   id       String    @id @default(uuid()) @db.VarChar(36)
   nome     String    @unique
-  Projetos Projeto[]
+  projetos Projeto[]
 }

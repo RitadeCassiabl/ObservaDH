@@ -1,30 +1,48 @@
-// import { Profissao } from "@/lib/database/models/Profissao";
-import { RespostaApi } from "@/types/resposta-api";
 import { AtualizarProfissaoService } from "../../service/profissao/atualizar-profissao-service";
 
+import { Profissao } from "@/domain/models/profissao";
+import { RespostaApi } from "@/domain/models/resposta-api";
+
 export class AtualizarProfissaoController {
-    async executar(id: string, nome: string) {
-        if (!id || !nome) {
-            const respostaApi = new RespostaApi(
-                false,
-                "Estão faltando informações para a atualização da profissão"
-            );
+	async executar({
+		id,
+		nome,
+		politicos,
+	}: {
+		id: string;
+		nome: string;
+		politicos: string[];
+	}) {
+		if (!id || !nome) {
+			const respostaApi = new RespostaApi({
+				sucesso: false,
+				mensagem: "Estão faltando informações para a atualização da profissão",
+			});
 
-            return respostaApi;
-        }
+			return respostaApi;
+		}
 
-        const service = new AtualizarProfissaoService()
+		const service = new AtualizarProfissaoService();
 
+		const profissao = new Profissao({
+			id: id,
+			nome: nome,
+			politicos: politicos,
+		});
 
-        //TODO: adicionar Políticos
-        //const profissao = new Profissao(nome, politicos, id)
-        const resposta = await service.executar(id, nome)
+		const resposta = await service.executar({ profissao: profissao });
 
-        if (resposta) {
-            return new RespostaApi(true, "Profissão atualizada com sucesso", resposta)
-        } else {
-            return new RespostaApi(false, "Houve algum problema na atualização da profissão")
-
-        }
-    }
+		if (resposta) {
+			return new RespostaApi({
+				sucesso: true,
+				mensagem: "Profissão atualizada com sucesso",
+				dados: resposta,
+			});
+		} else {
+			return new RespostaApi({
+				sucesso: false,
+				mensagem: "Houve algum problema na atualização da profissão",
+			});
+		}
+	}
 }
