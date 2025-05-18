@@ -6,11 +6,16 @@ import { ListarDireitoVioladoController } from "@/lib/api/controllers/direito-vi
 
 export async function POST(request: Request) {
 	try {
-		const { nome } = await request.json();
+		const { nome, sigla, descricao, projetos } = await request.json();
 
 		const controller = new CriarDireitoVioladoController();
 
-		const resposta = await controller.executar(nome);
+		const resposta = await controller.executar({
+			nome: nome,
+			sigla: sigla,
+			descricao: descricao,
+			projetos: projetos,
+		});
 
 		return NextResponse.json({ resposta });
 	} catch (error) {

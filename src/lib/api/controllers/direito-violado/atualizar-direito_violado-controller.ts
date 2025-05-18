@@ -8,10 +8,14 @@ export class AtualizarDireitoVioladoController {
 	async executar({
 		id,
 		nome,
+		sigla,
 		projetos,
+		descricao,
 	}: {
 		id: string;
 		nome: string;
+		sigla: string;
+		descricao: string;
 		projetos: string[];
 	}) {
 		if (!id || !nome) {
@@ -32,7 +36,9 @@ export class AtualizarDireitoVioladoController {
 			});
 		}
 
-		const novoDireitoViolado = await serviceAuxiliar.buscarPorNome(nome);
+		const novoDireitoViolado = await serviceAuxiliar.buscarPorNome({
+			nome: nome,
+		});
 
 		if (novoDireitoViolado) {
 			return new RespostaApi({
@@ -46,7 +52,9 @@ export class AtualizarDireitoVioladoController {
 		const direito = new DireitoViolado({
 			id: id,
 			nome: nome,
+			sigla: sigla,
 			projetos: projetos,
+			descricao: descricao,
 		});
 
 		const resposta = await service.executar({ direitoViolado: direito });

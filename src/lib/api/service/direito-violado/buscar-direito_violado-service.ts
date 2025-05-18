@@ -13,7 +13,7 @@ export class BuscarDireitoVioladoService {
 		return resposta;
 	}
 
-	async buscarPorNome(nome: string) {
+	async buscarPorNome({ nome }: { nome: string }) {
 		const prisma = prismaClient;
 
 		const resposta = await prisma.direitoViolado.findFirst({

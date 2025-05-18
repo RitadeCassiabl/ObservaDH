@@ -8,8 +8,10 @@ export class CriarDireitoVioladoService {
 		const resposta = await prisma.direitoViolado.create({
 			data: {
 				nome: direitoViolado.nome,
+				sigla: direitoViolado.sigla,
+				descricao: direitoViolado.descricao,
 				projetos: {
-					create: [],
+					connect: direitoViolado.projetos?.map((id: string) => ({ id })) ?? [],
 				},
 			},
 		});
