@@ -3,7 +3,7 @@ import { BuscarDireitoVioladoService } from "../../service/direito-violado/busca
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class BuscarDireitoVioladoController {
-	async executar(id: string) {
+	async executar({ id }: { id: string }) {
 		if (!id) {
 			return new RespostaApi({
 				sucesso: false,

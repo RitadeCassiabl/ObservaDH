@@ -4,7 +4,7 @@ import { DeletarDireitoVioladoService } from "../../service/direito-violado/dele
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class DeletarDireitoVioladoController {
-	async executar(id: string) {
+	async executar({ id }: { id: string }) {
 		if (!id) {
 			return new RespostaApi({
 				sucesso: false,

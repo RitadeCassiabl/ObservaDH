@@ -11,6 +11,8 @@ export class AtualizarDireitoVioladoService {
 			},
 			data: {
 				nome: direitoViolado.nome,
+				sigla: direitoViolado.sigla,
+				descricao: direitoViolado.descricao,
 				projetos: {
 					connect: direitoViolado.projetos?.map((direito) => ({
 						id: direito,
