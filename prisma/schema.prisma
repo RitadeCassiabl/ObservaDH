@@ -53,6 +53,7 @@ model Partido {
 model Estado {
     id        String     @id @default(uuid()) @db.VarChar(36)
     nome      String     @unique
+    sigla     String     @unique
     politicos Politico[]
 }
 
