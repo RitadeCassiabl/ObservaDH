@@ -5,8 +5,8 @@ import { Estado } from "@/domain/models/estado";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class CriarEstadoController {
-	async executar(nome: string) {
-		if (!nome) {
+	async executar({ sigla, nome }: { sigla: string; nome: string }) {
+		if (!nome || !sigla) {
 			return new RespostaApi({
 				sucesso: false,
 				mensagem: "Estão faltando informações para criar o estado",
@@ -26,9 +26,9 @@ export class CriarEstadoController {
 
 		const service = new CriarEstadoService();
 
-		const estado = new Estado({ nome: nome });
+		const estado = new Estado({ nome: nome, sigla: sigla });
 
-		const resposta = await service.executar(estado);
+		const resposta = await service.executar({ estado: estado });
 
 		if (resposta) {
 			return new RespostaApi({

@@ -7,6 +7,8 @@ export class CriarIdeologiaService {
 		const resposta = await prisma.ideologia.create({
 			data: {
 				nome: ideologia.nome,
+				sigla: ideologia.sigla,
+				descricao: ideologia.descricao,
 				projetos: {
 					create: [],
 				},

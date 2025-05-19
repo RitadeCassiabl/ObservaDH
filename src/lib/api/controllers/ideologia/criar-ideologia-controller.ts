@@ -5,8 +5,16 @@ import { Ideologia } from "@/domain/models/ideologia";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class CriarIdeologiaController {
-	async executar(nome: string) {
-		if (!nome) {
+	async executar({
+		nome,
+		descricao,
+		sigla,
+	}: {
+		nome: string;
+		descricao: string;
+		sigla: string;
+	}) {
+		if (!nome || !sigla || !descricao) {
 			return {
 				sucesso: false,
 				mensagem: "Estão faltando informações para criar a ideologia",
@@ -23,8 +31,11 @@ export class CriarIdeologiaController {
 
 		const service = new CriarIdeologiaService();
 
-		const ideologia = new Ideologia({ nome: nome });
-
+		const ideologia = new Ideologia({
+			nome: nome,
+			sigla: sigla,
+			descricao: descricao,
+		});
 		const resposta = await service.executar(ideologia);
 
 		if (resposta) {

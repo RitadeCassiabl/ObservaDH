@@ -5,7 +5,15 @@ import { Partido } from "@/domain/models/partido";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 class CriarPartidoController {
-	async executar(nome: string, sigla: string) {
+	async executar({
+		nome,
+		sigla,
+		imagem,
+	}: {
+		nome: string;
+		sigla: string;
+		imagem: string;
+	}) {
 		if (!nome || !sigla) {
 			return new RespostaApi({
 				sucesso: false,
@@ -33,7 +41,7 @@ class CriarPartidoController {
 
 		const service = new CriarPartidoService();
 
-		const partido = new Partido({ nome: nome, sigla: sigla });
+		const partido = new Partido({ nome: nome, sigla: sigla, imagem: imagem });
 
 		const resposta = await service.executar(partido);
 

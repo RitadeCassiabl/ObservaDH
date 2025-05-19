@@ -14,7 +14,7 @@
  *             type: object
  *             required:
  *               - nome
- *               - sexo
+ *               - genero
  *               - raca
  *               - religiao
  *               - estado_id
@@ -27,7 +27,7 @@
  *               nome:
  *                 type: string
  *                 example: João da Silva
- *               sexo:
+ *               genero:
  *                 type: string
  *                 enum: [Masculino, Feminino, Outro]
  *                 example: Masculino
@@ -83,7 +83,7 @@
  *               dados:
  *                 id: "c1d2e3f4-5678-90ab-cdef-1234567890ab"
  *                 nome: "João da Silva"
- *                 sexo: "Masculino"
+ *                 genero: "Masculino"
  *                 raca: "Branca"
  *                 religiao: "Católica"
  *                 estado_id: "a3f1c2d4-5b6e-7f8a-9b0c-d1e2f3a4b5c6"
@@ -135,33 +135,33 @@ export async function POST(request: Request) {
 	try {
 		const {
 			nome,
-			sexo,
+			genero,
 			raca,
 			religiao,
 			estado_id,
 			partido_id,
 			ideologia,
-			data_nascimento,
 			foto,
-			profissoes,
+			profissao_id,
 			projetos,
+			esfera_id,
 		} = await request.json();
 
 		const controller = new CriarPoliticoController();
 
-		const resposta = await controller.executar(
-			nome,
-			sexo,
-			raca,
-			religiao,
-			estado_id,
-			partido_id,
-			ideologia,
-			data_nascimento,
-			foto,
-			profissoes,
-			projetos
-		);
+		const resposta = await controller.executar({
+			nome: nome,
+			genero: genero,
+			raca: raca,
+			religiao: religiao,
+			estadoId: estado_id,
+			partidoId: partido_id,
+			ideologia: ideologia,
+			foto: foto,
+			profissaoId: profissao_id,
+			projetos: projetos,
+			esferaId: esfera_id,
+		});
 
 		return NextResponse.json(
 			{ resposta },

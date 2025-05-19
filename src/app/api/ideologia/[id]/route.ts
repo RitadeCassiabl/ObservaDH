@@ -20,11 +20,16 @@ export async function PATCH(
 			return NextResponse.json({ resposta }, { status: 400 });
 		}
 
-		const { nome } = await request.json();
+		const { nome, sigla, descricao } = await request.json();
 
 		const controller = new AtualizarIdeologiaController();
 
-		const resposta = await controller.executar(id, nome);
+		const resposta = await controller.executar({
+			id: id,
+			nome: nome,
+			descricao: descricao,
+			sigla: sigla,
+		});
 
 		return NextResponse.json(
 			{ resposta },

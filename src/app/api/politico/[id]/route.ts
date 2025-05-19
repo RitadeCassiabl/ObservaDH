@@ -14,16 +14,16 @@ export async function PATCH(
 
 		const {
 			nome,
-			sexo,
 			raca,
+			foto,
+			genero,
+			projetos,
 			religiao,
+			esfera_id,
+			ideologia,
 			estado_id,
 			partido_id,
-			ideologia,
-			data_nascimento,
-			foto,
-			profissoes,
-			projetos,
+			profissao_id,
 		} = await request.json();
 
 		if (!id) {
@@ -36,20 +36,20 @@ export async function PATCH(
 
 		const controller = new AtualizarPoliticoController();
 
-		const resposta = await controller.executar(
-			id,
-			nome,
-			sexo,
-			raca,
-			religiao,
-			estado_id,
-			partido_id,
-			ideologia,
-			data_nascimento,
-			foto,
-			profissoes,
-			projetos
-		);
+		const resposta = await controller.executar({
+			id: id,
+			nome: nome,
+			raca: raca,
+			foto: foto,
+			genero: genero,
+			religiao: religiao,
+			projetos: projetos,
+			estadoId: estado_id,
+			ideologia: ideologia,
+			partidoId: partido_id,
+			profissaoId: profissao_id,
+			esferaId: esfera_id,
+		});
 
 		return NextResponse.json(
 			{ resposta },

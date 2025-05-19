@@ -1,11 +1,22 @@
 import { AtualizarIdeologiaService } from "../../service/ideologia/atualizar-ideologia-service";
 import { BuscarIdeologiaService } from "../../service/ideologia/buscar-ideologia-service";
 
+import { Ideologia } from "@/domain/models/ideologia";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class AtualizarIdeologiaController {
-	async executar(id: string, nome: string) {
-		if (!id || !nome) {
+	async executar({
+		id,
+		nome,
+		sigla,
+		descricao,
+	}: {
+		id: string;
+		nome: string;
+		sigla: string;
+		descricao: string;
+	}) {
+		if (!id || !nome || !sigla || !descricao) {
 			return new RespostaApi({
 				sucesso: false,
 				mensagem: "Estão faltando informações para a alteração da ideologia",
@@ -34,7 +45,14 @@ export class AtualizarIdeologiaController {
 
 		const service = new AtualizarIdeologiaService();
 
-		const resposta = await service.executar(id, nome);
+		const ideologia = new Ideologia({
+			id: id,
+			nome: nome,
+			sigla: sigla,
+			descricao: descricao,
+		});
+
+		const resposta = await service.executar({ ideologia: ideologia });
 
 		if (resposta) {
 			return new RespostaApi({
