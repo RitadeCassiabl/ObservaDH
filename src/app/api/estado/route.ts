@@ -6,7 +6,7 @@ import { ListarEstadoController } from "@/lib/api/controllers/estado/listar-esta
 
 export async function POST(request: Request) {
 	try {
-		const { nome } = await request.json();
+		const { nome, sigla } = await request.json();
 
 		if (!nome) {
 			const respostaApi = new RespostaApi({
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 		} else {
 			const controller = new CriarEstadoController();
 
-			const resposta = await controller.executar(nome);
+			const resposta = await controller.executar({ nome, sigla });
 
 			return NextResponse.json(
 				{ resposta },
