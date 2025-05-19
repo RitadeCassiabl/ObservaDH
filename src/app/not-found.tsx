@@ -24,7 +24,7 @@ const page: React.FC = () => {
 					<p className="text-7xl">{"404 - Página não Encontrada"}</p>
 					<button
 						onClick={retornar}
-						className="rounded-[5px] bg-[#2C52A4] border-[#87D9FF] border-2 h-12 w-48 text-center text-[#91ADF4] text-xl"
+						className="rounded-[5px] bg-[#2C52A4] border-[#87D9FF] border-2 h-12 w-48 text-center text-[#91ADF4] text-xl hover:bg-[#122144]	duration-300 shadow-sm shadow-white"
 					>
 						{"Voltar a página inicial"}
 					</button>
