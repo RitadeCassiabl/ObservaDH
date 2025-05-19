@@ -1,14 +1,16 @@
+import { Estado } from "@/domain/models/estado";
 import { prismaClient } from "@/services/prisma/prisma";
 export class AtualizarEstadoService {
-	async executar(id: string, nome: string) {
+	async executar({ estado }: { estado: Estado }) {
 		const prisma = prismaClient;
 
 		const resposta = await prisma.estado.update({
 			where: {
-				id: id,
+				id: estado.id,
 			},
 			data: {
-				nome: nome,
+				sigla: estado.sigla,
+				nome: estado.nome,
 			},
 		});
 		return resposta;

@@ -1,34 +1,47 @@
 import { AtualizarPoliticoService } from "../../service/politico/atualizar-politico-service";
 import { BuscarPoliticoService } from "../../service/politico/buscar-politico-service";
 
+import Politico from "@/domain/models/politico";
 import { RespostaApi } from "@/domain/models/resposta-api";
-import Politico from "@/types/politico";
 
 export class AtualizarPoliticoController {
-	async executar(
-		id: string,
-		nome: string,
-		sexo: string,
-		raca: string,
-		religiao: string,
-		estado_id: string,
-		partido_id: string,
-		ideologia: string,
-		data_nascimento: string,
-		foto?: string,
-		profissoes?: string[],
-		projetos?: string[]
-	) {
+	async executar({
+		id,
+		nome,
+		genero,
+		raca,
+		religiao,
+		estadoId,
+		partidoId,
+		ideologia,
+		foto,
+		profissaoId,
+		projetos,
+		esferaId,
+	}: {
+		id: string;
+		nome: string;
+		genero: string;
+		raca: string;
+		religiao: string;
+		estadoId: string;
+		partidoId: string;
+		ideologia: string;
+		foto?: string;
+		esferaId: string;
+		profissaoId?: string;
+		projetos?: string[];
+	}) {
 		if (
 			!id ||
 			!nome ||
-			!sexo ||
+			!genero ||
 			!raca ||
 			!religiao ||
-			!estado_id ||
-			!partido_id ||
+			!estadoId ||
+			!partidoId ||
 			!ideologia ||
-			!data_nascimento
+			!esferaId
 		) {
 			return new RespostaApi({
 				sucesso: false,
@@ -49,23 +62,21 @@ export class AtualizarPoliticoController {
 
 		const service = new AtualizarPoliticoService();
 
-		const nascimento = new Date(data_nascimento);
-
 		const politico = new Politico({
-			nome: nome,
-			sexo: sexo,
-			raca: raca,
-			religiao: religiao,
-			estadoId: estado_id,
-			partidoId: partido_id,
-			ideologia: ideologia,
-			dataNascimento: nascimento,
-			foto: foto ?? "",
-			profissoes: profissoes ?? [],
-			projetos: projetos ?? [],
 			id: id,
+			nome: nome,
+			raca: raca,
+			genero: genero,
+			foto: foto ?? "",
+			estadoId: estadoId,
+			religiao: religiao,
+			partidoId: partidoId,
+			ideologia: ideologia,
+			projetos: projetos ?? [],
+			profissaoId: profissaoId,
+			esferaId: esferaId,
 		});
-		const resposta = await service.executar(politico);
+		const resposta = await service.executar({ politico: politico });
 
 		if (resposta) {
 			return new RespostaApi({

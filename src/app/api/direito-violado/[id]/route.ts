@@ -20,14 +20,16 @@ export async function PATCH(
 			return NextResponse.json({ resposta }, { status: 400 });
 		}
 
-		const { nome, projetos } = await request.json();
+		const { nome, projetos, sigla, descricao } = await request.json();
 
 		const controller = new AtualizarDireitoVioladoController();
 
 		const resposta = await controller.executar({
 			id: id,
 			nome: nome,
+			sigla: sigla,
 			projetos: projetos,
+			descricao: descricao,
 		});
 
 		return NextResponse.json(
@@ -61,7 +63,7 @@ export async function DELETE(
 
 		const controller = new DeletarDireitoVioladoController();
 
-		const resposta = await controller.executar(id);
+		const resposta = await controller.executar({ id: id });
 
 		return NextResponse.json(
 			{ resposta },
@@ -93,7 +95,7 @@ export async function GET(
 
 		const controller = new BuscarDireitoVioladoController();
 
-		const resposta = await controller.executar(id);
+		const resposta = await controller.executar({ id: id });
 
 		return NextResponse.json(
 			{ resposta },

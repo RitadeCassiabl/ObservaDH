@@ -5,8 +5,18 @@ import { DireitoViolado } from "@/domain/models/direito-violado";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class CriarDireitoVioladoController {
-	async executar(nome: string) {
-		if (!nome) {
+	async executar({
+		nome,
+		descricao,
+		sigla,
+		projetos,
+	}: {
+		nome: string;
+		descricao: string;
+		sigla: string;
+		projetos?: string[];
+	}) {
+		if (!nome || sigla || descricao) {
 			return new RespostaApi({
 				sucesso: false,
 				mensagem: "Estão faltando infomações para a criação do direito violado",
@@ -15,7 +25,7 @@ export class CriarDireitoVioladoController {
 
 		const serviceAuxiliar = new BuscarDireitoVioladoService();
 
-		const existe = await serviceAuxiliar.buscarPorNome(nome);
+		const existe = await serviceAuxiliar.buscarPorNome({ nome: nome });
 
 		if (existe) {
 			return new RespostaApi({
@@ -24,7 +34,12 @@ export class CriarDireitoVioladoController {
 			});
 		}
 
-		const direitoViolado = new DireitoViolado({ nome: nome });
+		const direitoViolado = new DireitoViolado({
+			nome: nome,
+			sigla: sigla,
+			descricao: descricao,
+			projetos: projetos,
+		});
 
 		const service = new CriarDireitoVioladoService();
 

@@ -1,11 +1,20 @@
 import { AtualizarEstadoService } from "../../service/estado/atualizar-estado-service";
 import { BuscarEstadoService } from "../../service/estado/buscar-estado-service";
 
+import { Estado } from "@/domain/models/estado";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class AtualizarEstadoController {
-	async executar(id: string, nome: string) {
-		if (!id || !nome) {
+	async executar({
+		id,
+		nome,
+		sigla,
+	}: {
+		id: string;
+		nome: string;
+		sigla: string;
+	}) {
+		if (!id || !nome || !sigla) {
 			return new RespostaApi({
 				sucesso: false,
 				mensagem: "Estão faltando informações para a alteração do estado",
@@ -34,7 +43,8 @@ export class AtualizarEstadoController {
 
 		const service = new AtualizarEstadoService();
 
-		const resposta = await service.executar(id, nome);
+		const estado = new Estado({ nome: nome, sigla: sigla, id: id });
+		const resposta = await service.executar({ estado });
 
 		if (resposta) {
 			return new RespostaApi({

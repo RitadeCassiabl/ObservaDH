@@ -12,10 +12,11 @@
 		"check": "npm run prepare && npm run format && eslint . --ext .js,.jsx,.ts,.tsx && prettier --check . && tsc --noEmit && next build && npm audit && npm outdated"
 	},
 	"dependencies": {
-		"@prisma/client": "^6.7.0",
+		"@prisma/client": "^6.8.2",
 		"@radix-ui/react-alert-dialog": "^1.1.4",
 		"@radix-ui/react-select": "^2.1.4",
 		"@radix-ui/react-slot": "^1.1.1",
+		"axios": "^1.9.0",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"embla-carousel-react": "^8.5.1",
@@ -31,6 +32,13 @@
 		"tailwind-merge": "^2.6.0",
 		"tailwindcss-animate": "^1.0.7"
 	},
+	"overrides": {
+		"prismjs": ">=1.30.0",
+		"@braintree/sanitize-url": "6.0.0",
+		"cookie": "0.8.0",
+		"dompurify": "3.2.4",
+		"fast-json-patch": "3.1.1"
+	},
 	"devDependencies": {
 		"@types/node": "^20",
 		"@types/react": "^18",
@@ -44,7 +52,7 @@
 		"eslint-plugin-simple-import-sort": "^12.1.1",
 		"postcss": "^8",
 		"prettier": "^3.5.3",
-		"prisma": "^6.7.0",
+		"prisma": "^6.8.2",
 		"tailwindcss": "^3.4.1",
 		"typescript": "^5"
 	}

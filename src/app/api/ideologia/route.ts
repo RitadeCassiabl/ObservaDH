@@ -6,7 +6,7 @@ import { ListarIdeologiaController } from "@/lib/api/controllers/ideologia/lista
 
 export async function POST(request: Request) {
 	try {
-		const { nome } = await request.json();
+		const { nome, sigla, descricao } = await request.json();
 
 		if (!nome) {
 			const respostaApi = new RespostaApi({
@@ -18,7 +18,11 @@ export async function POST(request: Request) {
 		} else {
 			const controller = new CriarIdeologiaController();
 
-			const resposta = await controller.executar(nome);
+			const resposta = await controller.executar({
+				nome: nome,
+				descricao: descricao,
+				sigla: sigla,
+			});
 
 			return NextResponse.json(
 				{ resposta },

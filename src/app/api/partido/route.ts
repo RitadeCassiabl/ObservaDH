@@ -1,6 +1,6 @@
 /**
  * @openapi
- * 
+ *
  * /api/partido:
  *   post:
  *     summary: Cria um novo partido
@@ -68,7 +68,7 @@
  *             example:
  *               sucesso: false
  *               mensagem: Houve algum problema na criação do partido
- 
+
  *   get:
  *     summary: Lista todos os partidos cadastrados
  *     tags:
@@ -109,11 +109,15 @@ import { ListarPartidoController } from "@/lib/api/controllers/partido/listar-pa
 
 export async function POST(request: Request) {
 	try {
-		const { nome, sigla } = await request.json();
+		const { nome, sigla, imagem } = await request.json();
 
 		const controller = new CriarPartidoController();
 
-		const resposta = await controller.executar(nome, sigla);
+		const resposta = await controller.executar({
+			nome: nome,
+			sigla: sigla,
+			imagem: imagem,
+		});
 
 		return NextResponse.json(
 			{ resposta },
