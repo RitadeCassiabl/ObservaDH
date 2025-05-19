@@ -1,40 +1,42 @@
 import { CriarPolitcoService } from "../../service/politico/criar-politico-service";
 
+import Politico from "@/domain/models/politico";
 import { RespostaApi } from "@/domain/models/resposta-api";
-import Politico from "@/types/politico";
 
 export class CriarPoliticoController {
 	async executar({
 		nome,
-		genero,
 		raca,
-		religiao,
-		partido_id,
-		estado_id,
-		ideologia,
 		foto,
-		profissaoId,
+		genero,
+		religiao,
 		projetos,
+		esferaId,
+		estadoId,
+		ideologia,
+		partidoId,
+		profissaoId,
 	}: {
 		nome: string;
-		genero: string;
 		raca: string;
-		religiao: string;
-		estado_id: string;
-		partido_id: string;
-		ideologia: string;
 		foto?: string;
-		profissaoId?: string;
+		genero: string;
+		esferaId: string;
+		religiao: string;
+		estadoId: string;
+		ideologia: string;
+		partidoId: string;
 		projetos?: string[];
+		profissaoId?: string;
 	}) {
 		if (
 			!nome ||
-			!genero ||
 			!raca ||
+			!genero ||
 			!religiao ||
-			!estado_id ||
-			!partido_id ||
-			!ideologia
+			!estadoId ||
+			!ideologia ||
+			!partidoId
 		) {
 			return new RespostaApi({
 				sucesso: false,
@@ -44,15 +46,16 @@ export class CriarPoliticoController {
 
 		const politico = new Politico({
 			nome: nome,
-			genero: genero,
 			raca: raca,
-			religiao: religiao,
-			estadoId: estado_id,
-			partidoId: partido_id,
-			ideologia: ideologia,
 			foto: foto,
-			profissaoId: profissaoId,
+			genero: genero,
+			esferaId: esferaId,
+			religiao: religiao,
 			projetos: projetos,
+			estadoId: estadoId,
+			ideologia: ideologia,
+			partidoId: partidoId,
+			profissaoId: profissaoId,
 		});
 
 		const service = new CriarPolitcoService();

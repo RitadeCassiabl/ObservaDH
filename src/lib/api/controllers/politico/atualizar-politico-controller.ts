@@ -1,8 +1,8 @@
 import { AtualizarPoliticoService } from "../../service/politico/atualizar-politico-service";
 import { BuscarPoliticoService } from "../../service/politico/buscar-politico-service";
 
+import Politico from "@/domain/models/politico";
 import { RespostaApi } from "@/domain/models/resposta-api";
-import Politico from "@/types/politico";
 
 export class AtualizarPoliticoController {
 	async executar({
@@ -17,6 +17,7 @@ export class AtualizarPoliticoController {
 		foto,
 		profissaoId,
 		projetos,
+		esferaId,
 	}: {
 		id: string;
 		nome: string;
@@ -27,6 +28,7 @@ export class AtualizarPoliticoController {
 		partidoId: string;
 		ideologia: string;
 		foto?: string;
+		esferaId: string;
 		profissaoId?: string;
 		projetos?: string[];
 	}) {
@@ -38,7 +40,8 @@ export class AtualizarPoliticoController {
 			!religiao ||
 			!estadoId ||
 			!partidoId ||
-			!ideologia
+			!ideologia ||
+			!esferaId
 		) {
 			return new RespostaApi({
 				sucesso: false,
@@ -71,6 +74,7 @@ export class AtualizarPoliticoController {
 			ideologia: ideologia,
 			projetos: projetos ?? [],
 			profissaoId: profissaoId,
+			esferaId: esferaId,
 		});
 		const resposta = await service.executar({ politico: politico });
 

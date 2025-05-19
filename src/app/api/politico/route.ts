@@ -144,6 +144,7 @@ export async function POST(request: Request) {
 			foto,
 			profissao_id,
 			projetos,
+			esfera_id,
 		} = await request.json();
 
 		const controller = new CriarPoliticoController();
@@ -153,12 +154,13 @@ export async function POST(request: Request) {
 			genero: genero,
 			raca: raca,
 			religiao: religiao,
-			estado_id: estado_id,
-			partido_id: partido_id,
+			estadoId: estado_id,
+			partidoId: partido_id,
 			ideologia: ideologia,
 			foto: foto,
 			profissaoId: profissao_id,
 			projetos: projetos,
+			esferaId: esfera_id,
 		});
 
 		return NextResponse.json(

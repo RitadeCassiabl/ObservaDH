@@ -1,12 +1,13 @@
 class Politico {
 	id?: string;
 	nome: string;
-	genero: string;
 	raca: string;
 	foto?: string;
+	genero: string;
 	estado?: string;
 	religiao: string;
 	partido?: string;
+	esferaId: string;
 	estadoId: string;
 	ideologia: string;
 	partidoId: string;
@@ -16,13 +17,14 @@ class Politico {
 	constructor({
 		id,
 		nome,
-		genero,
 		raca,
 		foto,
+		genero,
 		estado,
 		partido,
 		religiao,
 		projetos,
+		esferaId,
 		estadoId,
 		partidoId,
 		ideologia,
@@ -37,6 +39,7 @@ class Politico {
 		partido?: string;
 		religiao: string;
 		estadoId: string;
+		esferaId: string;
 		partidoId: string;
 		ideologia: string;
 		projetos?: string[];
@@ -44,17 +47,18 @@ class Politico {
 	}) {
 		this.id = id;
 		this.nome = nome;
-		this.genero = genero;
 		this.raca = raca;
 		this.foto = foto;
 		this.estado = estado;
+		this.genero = genero;
 		this.partido = partido;
+		this.esferaId = esferaId;
 		this.religiao = religiao;
 		this.projetos = projetos;
 		this.estadoId = estadoId;
-		this.profissaoId = profissaoId;
 		this.ideologia = ideologia;
 		this.partidoId = partidoId;
+		this.profissaoId = profissaoId;
 	}
 }
 export default Politico;

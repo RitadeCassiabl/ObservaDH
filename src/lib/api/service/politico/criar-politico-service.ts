@@ -1,5 +1,5 @@
+import Politico from "@/domain/models/politico";
 import { prismaClient } from "@/services/prisma/prisma";
-import Politico from "@/types/politico";
 
 export class CriarPolitcoService {
 	async executar({ politico }: { politico: Politico }) {

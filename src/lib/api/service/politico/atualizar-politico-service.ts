@@ -1,5 +1,5 @@
+import Politico from "@/domain/models/politico";
 import { prismaClient } from "@/services/prisma/prisma";
-import Politico from "@/types/politico";
 export class AtualizarPoliticoService {
 	async executar({ politico }: { politico: Politico }) {
 		const prisma = prismaClient;
@@ -13,6 +13,7 @@ export class AtualizarPoliticoService {
 				nome: politico.nome,
 				genero: politico.genero,
 				raca: politico.raca,
+				esferaId: politico.esferaId,
 				religiao: politico.religiao,
 				estadoId: politico.estadoId,
 				ideologia: politico.ideologia,

@@ -19,6 +19,7 @@ export async function PATCH(
 			genero,
 			projetos,
 			religiao,
+			esfera_id,
 			ideologia,
 			estado_id,
 			partido_id,
@@ -47,6 +48,7 @@ export async function PATCH(
 			ideologia: ideologia,
 			partidoId: partido_id,
 			profissaoId: profissao_id,
+			esferaId: esfera_id,
 		});
 
 		return NextResponse.json(
