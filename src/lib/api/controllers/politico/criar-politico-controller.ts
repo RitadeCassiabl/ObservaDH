@@ -4,30 +4,37 @@ import { RespostaApi } from "@/domain/models/resposta-api";
 import Politico from "@/types/politico";
 
 export class CriarPoliticoController {
-	async executar(
-		nome: string,
-		sexo: string,
-		raca: string,
-		religiao: string,
-		estado_id: string,
-		partido_id: string,
-		ideologia: string,
-		data_nascimento: string,
-		foto?: string,
-		profissoes?: string[],
-		projetos?: string[]
-	) {
-		const nascimento = new Date(data_nascimento);
-
+	async executar({
+		nome,
+		genero,
+		raca,
+		religiao,
+		partido_id,
+		estado_id,
+		ideologia,
+		foto,
+		profissaoId,
+		projetos,
+	}: {
+		nome: string;
+		genero: string;
+		raca: string;
+		religiao: string;
+		estado_id: string;
+		partido_id: string;
+		ideologia: string;
+		foto?: string;
+		profissaoId?: string;
+		projetos?: string[];
+	}) {
 		if (
 			!nome ||
-			!sexo ||
+			!genero ||
 			!raca ||
 			!religiao ||
 			!estado_id ||
 			!partido_id ||
-			!ideologia ||
-			!data_nascimento
+			!ideologia
 		) {
 			return new RespostaApi({
 				sucesso: false,
@@ -37,21 +44,20 @@ export class CriarPoliticoController {
 
 		const politico = new Politico({
 			nome: nome,
-			sexo: sexo,
+			genero: genero,
 			raca: raca,
 			religiao: religiao,
 			estadoId: estado_id,
 			partidoId: partido_id,
 			ideologia: ideologia,
-			dataNascimento: nascimento,
 			foto: foto,
-			profissoes: profissoes,
+			profissaoId: profissaoId,
 			projetos: projetos,
 		});
 
 		const service = new CriarPolitcoService();
 
-		const resposta = await service.executar(politico);
+		const resposta = await service.executar({ politico: politico });
 
 		if (resposta) {
 			return new RespostaApi({
