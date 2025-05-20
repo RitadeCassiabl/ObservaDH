@@ -6,26 +6,16 @@ import { ListarProjetoController } from "@/lib/api/controllers/projeto/listar-pr
 
 export async function POST(request: Request) {
 	try {
-		const {
-			ano,
-			numeroPl,
-			pautaId,
-			pauta,
-			justificativa,
-			ementa,
-			esferaId,
-			esfera,
-		} = await request.json();
+		const { ano, numero_pl, pauta_id, justificativa, ementa, esfera_id } =
+			await request.json();
 
 		if (
 			!ano ||
-			!numeroPl ||
-			!pautaId ||
-			!pauta ||
+			!numero_pl ||
+			!pauta_id ||
 			!justificativa ||
 			!ementa ||
-			!esferaId ||
-			!esfera
+			!esfera_id
 		) {
 			const respostaApi = new RespostaApi({
 				sucesso: false,
@@ -36,16 +26,14 @@ export async function POST(request: Request) {
 		} else {
 			const controller = new CriarProjetoController();
 
-			const resposta = await controller.executar(
-				ano,
-				numeroPl,
-				pautaId,
-				pauta,
-				justificativa,
-				ementa,
-				esferaId,
-				esfera
-			);
+			const resposta = await controller.executar({
+				ano: ano,
+				numeroPl: numero_pl,
+				pautaId: pauta_id,
+				justificativa: justificativa,
+				ementa: ementa,
+				esferaId: esfera_id,
+			});
 
 			return NextResponse.json(
 				{ resposta },

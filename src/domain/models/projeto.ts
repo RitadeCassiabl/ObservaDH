@@ -1,4 +1,5 @@
-import { Esfera } from "./esfera";
+import { Pauta } from "@prisma/client";
+
 import { SerializacaoDesserializacao } from "./serializacao-desserializacao";
 
 class Projeto {
@@ -6,11 +7,11 @@ class Projeto {
 	ano: string;
 	numeroPl: string;
 	pautaId: string;
-	pauta: string;
+	pauta?: string;
+	Pauta?: Pauta;
 	justificativa: string;
 	ementa: string;
 	esferaId: string;
-	esfera: Esfera;
 	autores?: string[];
 	partidos?: string[];
 	direitosViolados?: string[];
@@ -21,7 +22,6 @@ class Projeto {
 		ano,
 		pauta,
 		ementa,
-		esfera,
 		pautaId,
 		numeroPl,
 		esferaId,
@@ -33,9 +33,8 @@ class Projeto {
 	}: {
 		id?: string;
 		ano: string;
-		pauta: string;
+		pauta?: string;
 		ementa: string;
-		esfera: Esfera;
 		pautaId: string;
 		numeroPl: string;
 		esferaId: string;
@@ -49,7 +48,6 @@ class Projeto {
 		this.ano = ano;
 		this.pauta = pauta;
 		this.ementa = ementa;
-		this.esfera = esfera;
 		this.autores = autores;
 		this.pautaId = pautaId;
 		this.partidos = partidos;

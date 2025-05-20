@@ -5,13 +5,21 @@ import { Partido } from "@/domain/models/partido";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class AtualizarPartidoController {
-	async executar(
-		id: string,
-		nome: string,
-		sigla: string,
-		politicos: string[],
-		projetos: string[]
-	) {
+	async executar({
+		id,
+		nome,
+		sigla,
+		politicos,
+		projetos,
+		imagem,
+	}: {
+		id: string;
+		nome: string;
+		sigla: string;
+		politicos: string[];
+		projetos: string[];
+		imagem: string;
+	}) {
 		const buscarService = new BuscarPartidoService();
 		const atualizarService = new AtualizarPartidoService();
 
@@ -37,12 +45,15 @@ export class AtualizarPartidoController {
 		const partidoAtualizado = new Partido({
 			id: id,
 			nome: nome,
+			imagem: imagem,
 			sigla: sigla,
 			politicos: politicos,
 			projetos: projetos,
 		});
 
-		const resultado = await atualizarService.executar(partidoAtualizado);
+		const resultado = await atualizarService.executar({
+			partido: partidoAtualizado,
+		});
 
 		if (resultado) {
 			return new RespostaApi({

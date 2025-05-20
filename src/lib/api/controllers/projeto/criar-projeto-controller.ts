@@ -1,30 +1,32 @@
 import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-service";
 import { CriarProjetoService } from "../../service/projeto/criar-projeto-service";
 
-import { Esfera } from "@/domain/models/esfera";
 import { Projeto } from "@/domain/models/projeto";
 import { RespostaApi } from "@/domain/models/resposta-api";
 
 export class CriarProjetoController {
-	async executar(
-		ano: string,
-		numeroPl: string,
-		pautaId: string,
-		pauta: string,
-		justificativa: string,
-		ementa: string,
-		esferaId: string,
-		esfera: Esfera
-	) {
+	async executar({
+		ano,
+		numeroPl,
+		pautaId,
+		justificativa,
+		ementa,
+		esferaId,
+	}: {
+		ano: string;
+		numeroPl: string;
+		pautaId: string;
+		justificativa: string;
+		ementa: string;
+		esferaId: string;
+	}) {
 		if (
 			!ano ||
 			!numeroPl ||
 			!pautaId ||
-			!pauta ||
 			!justificativa ||
 			!ementa ||
-			!esferaId ||
-			!esfera
+			!esferaId
 		) {
 			return new RespostaApi({
 				sucesso: false,
@@ -49,14 +51,12 @@ export class CriarProjetoController {
 			ano,
 			numeroPl,
 			pautaId,
-			pauta,
 			justificativa,
 			ementa,
 			esferaId,
-			esfera,
 		});
 
-		const resposta = await service.executar(projeto);
+		const resposta = await service.executar({ projeto: projeto });
 
 		if (resposta) {
 			return new RespostaApi({

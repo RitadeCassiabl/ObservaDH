@@ -11,7 +11,7 @@ class Politico {
 	estadoId: string;
 	ideologia: string;
 	partidoId: string;
-	profissaoId?: string;
+	profissaoId: string;
 	projetos?: string[];
 
 	constructor({
@@ -34,7 +34,7 @@ class Politico {
 		nome: string;
 		genero: string;
 		raca: string;
-		foto?: string;
+		foto: string;
 		estado?: string;
 		partido?: string;
 		religiao: string;
@@ -43,7 +43,7 @@ class Politico {
 		partidoId: string;
 		ideologia: string;
 		projetos?: string[];
-		profissaoId?: string;
+		profissaoId: string;
 	}) {
 		this.id = id;
 		this.nome = nome;

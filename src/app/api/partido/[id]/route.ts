@@ -233,7 +233,7 @@ export async function PATCH(
 ) {
 	try {
 		const { id } = params;
-		const { nome, sigla, politicos, projetos } = await request.json();
+		const { nome, sigla, politicos, projetos, imagem } = await request.json();
 
 		if (!id || !nome || !sigla || !politicos || !projetos) {
 			const respostaApi = new RespostaApi({
@@ -246,13 +246,14 @@ export async function PATCH(
 
 		const controller = new AtualizarPartidoController();
 
-		const resposta = await controller.executar(
-			id,
-			nome,
-			sigla,
-			politicos,
-			projetos
-		);
+		const resposta = await controller.executar({
+			id: id,
+			nome: nome,
+			sigla: sigla,
+			imagem: imagem,
+			politicos: politicos,
+			projetos: projetos,
+		});
 
 		return NextResponse.json(
 			{ resposta },

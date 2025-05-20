@@ -32,11 +32,13 @@ export class CriarPoliticoController {
 		if (
 			!nome ||
 			!raca ||
+			!foto ||
 			!genero ||
 			!religiao ||
 			!estadoId ||
 			!ideologia ||
-			!partidoId
+			!partidoId ||
+			!profissaoId
 		) {
 			return new RespostaApi({
 				sucesso: false,

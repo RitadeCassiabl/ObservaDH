@@ -73,7 +73,7 @@ export class AtualizarPoliticoController {
 			partidoId: partidoId,
 			ideologia: ideologia,
 			projetos: projetos ?? [],
-			profissaoId: profissaoId,
+			profissaoId: profissaoId ?? "",
 			esferaId: esferaId,
 		});
 		const resposta = await service.executar({ politico: politico });

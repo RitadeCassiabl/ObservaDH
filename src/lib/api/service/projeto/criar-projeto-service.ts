@@ -2,7 +2,7 @@ import { Projeto } from "@/domain/models/projeto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class CriarProjetoService {
-	async executar(projeto: Projeto) {
+	async executar({ projeto }: { projeto: Projeto }) {
 		const prisma = prismaClient;
 
 		const resposta = await prisma.projeto.create({

@@ -17,7 +17,7 @@ export class BuscarPautaController {
 
 		if (resposta) {
 			return new RespostaApi({
-				sucesso: false,
+				sucesso: true,
 				mensagem: "A pauta foi encontrada com sucesso",
 				dados: resposta,
 			});

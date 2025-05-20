@@ -8,7 +8,7 @@ export class ListarPoliticoService {
 			include: {
 				partido: true,
 				estado: true,
-				profissoes: true,
+				profissao: true,
 				projetos: true,
 			},
 		});

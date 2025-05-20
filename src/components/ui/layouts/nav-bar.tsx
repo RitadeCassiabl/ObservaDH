@@ -5,9 +5,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-import useDescobertaCabecalho from "@/lib/utils/cabecalho-utils";
-
 import Header from "./header";
+
+import useDescobertaCabecalho from "@/lib/web/mock-utils/cabecalho-utils";
 
 interface Cabecalho {
 	titulo: string;
