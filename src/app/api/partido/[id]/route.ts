@@ -233,9 +233,9 @@ export async function PATCH(
 ) {
 	try {
 		const { id } = params;
-		const { nome, sigla, politicos, projetos } = await request.json();
+		const { nome, sigla, imagem, politicos, projetos } = await request.json();
 
-		if (!id || !nome || !sigla || !politicos || !projetos) {
+		if (!id || !nome || !sigla || !politicos || !projetos || !imagem) {
 			const respostaApi = new RespostaApi({
 				sucesso: false,
 				mensagem: "falta informação para atualizar o partido",
@@ -250,6 +250,7 @@ export async function PATCH(
 			id,
 			nome,
 			sigla,
+			imagem,
 			politicos,
 			projetos
 		);
