@@ -1,45 +1,85 @@
+import { ZodError } from "zod";
+
 import { BuscarEstadoService } from "../../service/estado/buscar-estado-service";
 import { CriarEstadoService } from "../../service/estado/criar-estado-service";
 
-import { Estado } from "@/domain/models/estado";
 import { RespostaApi } from "@/domain/models/resposta-api";
+import {
+	CreateEstadoDto,
+	CreateEstadoSchema,
+	EstadoResponseDto,
+} from "@/dtos/estado.dto";
+
+interface IBuscarEstadoService {
+	buscarPorNome(params: { nome: string }): Promise<EstadoResponseDto | null>;
+	buscarPorSigla(params: { sigla: string }): Promise<EstadoResponseDto | null>;
+}
+
+interface ICriarEstadoService {
+	executar(params: CreateEstadoDto): Promise<EstadoResponseDto>;
+}
 
 export class CriarEstadoController {
-	async executar({ sigla, nome }: { sigla: string; nome: string }) {
-		if (!nome || !sigla) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Estão faltando informações para criar o estado",
+	private readonly buscarEstadoService: IBuscarEstadoService;
+	private readonly criarEstadoService: ICriarEstadoService;
+
+	constructor(
+		buscarEstadoService?: IBuscarEstadoService,
+		criarEstadoService?: ICriarEstadoService
+	) {
+		this.buscarEstadoService = buscarEstadoService || new BuscarEstadoService();
+		this.criarEstadoService = criarEstadoService || new CriarEstadoService();
+	}
+
+	async executar(params: CreateEstadoDto): Promise<RespostaApi> {
+		try {
+			const dados = CreateEstadoSchema.parse(params);
+
+			const estadoExiste = await this.buscarEstadoService.buscarPorNome({
+				nome: dados.nome,
 			});
-		}
 
-		const serviceAuxiliar = new BuscarEstadoService();
+			if (estadoExiste) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "O estado já existe",
+				});
+			}
 
-		const existe = await serviceAuxiliar.buscarPorNome(nome);
-
-		if (existe) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "O estado já existe",
+			const siglaExiste = await this.buscarEstadoService.buscarPorSigla({
+				sigla: dados.sigla,
 			});
-		}
 
-		const service = new CriarEstadoService();
+			if (siglaExiste) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "A sigla já existe",
+				});
+			}
 
-		const estado = new Estado({ nome: nome, sigla: sigla });
+			const resposta = await this.criarEstadoService.executar({
+				nome: dados.nome,
+				sigla: dados.sigla,
+			});
 
-		const resposta = await service.executar({ estado: estado });
-
-		if (resposta) {
 			return new RespostaApi({
 				sucesso: true,
 				mensagem: "O estado foi criado com sucesso",
 				dados: resposta,
 			});
-		} else {
+		} catch (error: unknown) {
+			if (error instanceof ZodError) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "As informações do estado estão incorretas",
+					dados: error,
+				});
+			}
+
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Houve algum problema na criação do estado",
+				mensagem: "Houve um problema na criação do estado",
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

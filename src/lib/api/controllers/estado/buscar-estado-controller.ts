@@ -13,7 +13,7 @@ export class BuscarEstadoController {
 
 		const service = new BuscarEstadoService();
 
-		const resposta = await service.buscarPorId(id);
+		const resposta = await service.buscarPorId({ id });
 
 		if (resposta) {
 			return new RespostaApi({

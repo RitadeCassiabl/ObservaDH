@@ -1,7 +1,8 @@
+import { SearchEstadoDto } from "@/dtos/estado.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class BuscarEstadoService {
-	async buscarPorId(id: string) {
+	async buscarPorId({ id }: SearchEstadoDto) {
 		const prisma = prismaClient;
 
 		const resposta = await prisma.estado.findUnique({
@@ -13,12 +14,23 @@ export class BuscarEstadoService {
 		return resposta;
 	}
 
-	async buscarPorNome(nome: string) {
+	async buscarPorNome({ nome }: SearchEstadoDto) {
 		const prisma = prismaClient;
 
 		const resposta = await prisma.estado.findFirst({
 			where: {
 				nome: nome,
+			},
+		});
+		return resposta;
+	}
+
+	async buscarPorSigla({ sigla }: SearchEstadoDto) {
+		const prisma = prismaClient;
+
+		const resposta = await prisma.estado.findFirst({
+			where: {
+				sigla: sigla,
 			},
 		});
 		return resposta;
