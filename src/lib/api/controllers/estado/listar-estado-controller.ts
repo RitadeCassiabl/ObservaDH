@@ -1,21 +1,36 @@
-import { ListarEstadoService } from "../../service/estado/listar-estado-service";
-
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { IListarEstadoService, ListarEstadoService } from "../../service/estado/listar-estado-service";
 
-export class ListarEstadoController {
-	async executar() {
-		const service = new ListarEstadoService();
+export interface IListarEstadoController {
+	executar(): Promise<RespostaApi>;
+}
 
-		const resposta = await service.executar();
+export class ListarEstadoController implements IListarEstadoController {
+	constructor(private readonly listarEstadoService: IListarEstadoService = new ListarEstadoService()) { }
 
-		if (resposta) {
+	async executar(): Promise<RespostaApi> {
+		try {
+			const estados = await this.listarEstadoService.executar();
+
+			if (estados.length > 0) {
+				return new RespostaApi({
+					sucesso: true,
+					mensagem: `${estados.length} estado(s) foram encontrados`,
+					dados: estados,
+				});
+			} else {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Nenhum estado foi encontrado",
+					dados: [],
+				});
+			}
+		} catch (error) {
 			return new RespostaApi({
-				sucesso: true,
-				mensagem: `${resposta.length} estado(s) foram encontrados`,
-				dados: resposta,
+				sucesso: false,
+				mensagem: "Erro ao listar estados",
+				dados: error instanceof Error ? error.message : String(error),
 			});
-		} else {
-			return { sucesso: false, mensagem: "Nenhum estado foi encontrado" };
 		}
 	}
 }
