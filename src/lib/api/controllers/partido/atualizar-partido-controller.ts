@@ -9,6 +9,7 @@ export class AtualizarPartidoController {
 		id: string,
 		nome: string,
 		sigla: string,
+		imagem: string,
 		politicos: string[],
 		projetos: string[]
 	) {
@@ -38,6 +39,7 @@ export class AtualizarPartidoController {
 			id: id,
 			nome: nome,
 			sigla: sigla,
+			imagem: imagem,
 			politicos: politicos,
 			projetos: projetos,
 		});
