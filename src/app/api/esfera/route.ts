@@ -6,9 +6,9 @@ import { ListarEsferaController } from "@/lib/api/controllers/esfera/listar-esfe
 
 export async function POST(request: Request) {
 	try {
-		const { nome } = await request.json();
+		const body = await request.json().catch(() => null);
+		if (!body) {
 
-		if (!nome) {
 			const respostaApi = new RespostaApi({
 				sucesso: false,
 				mensagem: "Estão faltando infomações para a criação da esfera",

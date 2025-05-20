@@ -11,11 +11,14 @@ export async function POST(request: NextRequest) {
 		const body = await request.json().catch(() => null);
 
 		if (!body) {
-			return NextResponse.json(
+			const respostaNoBody = new RespostaApi(
 				{
 					sucesso: false,
 					mensagem: "Estão faltando informações para a criação do estado",
 				},
+			)
+			return NextResponse.json(
+				respostaNoBody,
 				{ status: 400 }
 			);
 		}
