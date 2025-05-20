@@ -35,7 +35,7 @@
 	"overrides": {
 		"prismjs": ">=1.30.0",
 		"@braintree/sanitize-url": "6.0.0",
-		"cookie": "0.8.0",
+		"cookie": "1.0.2",
 		"dompurify": "3.2.4",
 		"fast-json-patch": "3.1.1"
 	},
