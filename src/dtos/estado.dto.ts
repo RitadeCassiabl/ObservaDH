@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from "zod";
 export interface CreateEstadoDto {
 	nome: string;
@@ -9,10 +10,11 @@ export const CreateEstadoSchema = z.object({
 	sigla: z.string().length(2, "Sigla deve ter exatamente 2 caracteres"),
 });
 
-export interface EstadoResponseDto {
+export interface ResponseEstadoDto {
 	id: string;
 	nome: string;
 	sigla: string;
+	politico?: any[];
 }
 
 export interface UpdateEstadoDto {

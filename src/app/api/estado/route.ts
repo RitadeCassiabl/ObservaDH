@@ -11,24 +11,20 @@ export async function POST(request: NextRequest) {
 		const body = await request.json().catch(() => null);
 
 		if (!body) {
-			const respostaNoBody = new RespostaApi(
-				{
-					sucesso: false,
-					mensagem: "Estão faltando informações para a criação do estado",
-				},
-			)
-			return NextResponse.json(
-				respostaNoBody,
-				{ status: 400 }
-			);
+			const respostaNoBody = new RespostaApi({
+				sucesso: false,
+				mensagem: "Estão faltando informações para a criação do estado",
+			});
+			return NextResponse.json({ respostaNoBody }, { status: 400 });
 		}
 
 		const controller = new CriarEstadoController();
 		const resposta = await controller.executar(body as CreateEstadoDto);
 
-		return NextResponse.json(resposta, {
-			status: resposta.sucesso ? 201 : 400,
-		});
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 201 : 400 }
+		);
 	} catch (error) {
 		console.error("Erro ao criar estado:", error);
 
@@ -37,7 +33,7 @@ export async function POST(request: NextRequest) {
 			mensagem: "Ocorreu um erro inesperado no servidor",
 			dados: process.env.NODE_ENV === "development" ? error : undefined,
 		});
-		return NextResponse.json(respostaException, { status: 500 });
+		return NextResponse.json({ respostaException }, { status: 500 });
 	}
 }
 
@@ -47,9 +43,10 @@ export async function GET() {
 		const controller = new ListarEstadoController();
 		const resposta = await controller.executar();
 
-		return NextResponse.json(resposta, {
-			status: resposta.sucesso ? 200 : 404,
-		});
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 404 }
+		);
 	} catch (error) {
 		console.error("Erro ao listar estados:", error);
 
@@ -58,6 +55,6 @@ export async function GET() {
 			mensagem: "Ocorreu um erro inesperado no servidor",
 			dados: process.env.NODE_ENV === "development" ? error : undefined,
 		});
-		return NextResponse.json(respostaException, { status: 500 });
+		return NextResponse.json({ respostaException }, { status: 500 });
 	}
 }

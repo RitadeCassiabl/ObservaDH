@@ -1,18 +1,38 @@
-import { Esfera } from "@/domain/models/esfera";
+import { Prisma } from "@prisma/client";
+
+import { CreateEsferaDto, ResponseEsferaDto } from "@/dtos/esfera.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 export class CriarEsferaService {
-	async executar(esfera: Esfera) {
-		const prisma = prismaClient;
+	private readonly prisma = prismaClient;
 
-		const resposta = await prisma.esfera.create({
-			data: {
-				nome: esfera.nome,
-
-				projetos: {
-					create: [],
+	async executar({ nome }: CreateEsferaDto): Promise<ResponseEsferaDto> {
+		try {
+			const esfera = await this.prisma.esfera.create({
+				data: {
+					nome: nome,
+					projetos: {
+						create: [],
+					},
 				},
-			},
-		});
-		return resposta;
+				select: {
+					id: true,
+					nome: true,
+				},
+			});
+
+			return {
+				id: esfera.id,
+				nome: esfera.nome,
+			};
+		} catch (error) {
+			if (error instanceof Prisma.PrismaClientKnownRequestError) {
+				if (error.code === "P2002") {
+					throw new Error(
+						`Já existe um estado com essas informações: ${error.meta?.target}`
+					);
+				}
+			}
+			throw error;
+		}
 	}
 }

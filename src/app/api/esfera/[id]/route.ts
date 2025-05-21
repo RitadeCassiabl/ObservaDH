@@ -1,30 +1,39 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { UpdateEsferaDto } from "@/dtos/esfera.dto";
 import { AtualizarEsferaController } from "@/lib/api/controllers/esfera/atualizar-esfera-controller";
 import { BuscarEsferaController } from "@/lib/api/controllers/esfera/buscar-esfera-controller";
 import { DeletarEsferaController } from "@/lib/api/controllers/esfera/deletar-esfera-controller";
+
+function validateId(id?: string): NextResponse | undefined {
+	if (!id) {
+		const respostaIdInvalido = new RespostaApi({
+			sucesso: false,
+			mensagem: "ID do estado não fornecido ou inválido",
+		});
+		return NextResponse.json(respostaIdInvalido, { status: 400 });
+	}
+	return undefined;
+}
 
 export async function PATCH(
 	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
-		const { id } = params;
+		const idError = validateId(params.id);
+		if (idError) return idError;
 
-		if (!id) {
-			const resposta = new RespostaApi({
-				sucesso: false,
-				mensagem: "Estão faltando informações para a busca da esfera",
-			});
-			return NextResponse.json({ resposta }, { status: 400 });
-		}
-
-		const { nome } = await request.json();
+		const body = await request.json().catch(() => ({}));
+		const { nome } = body as UpdateEsferaDto;
 
 		const controller = new AtualizarEsferaController();
 
-		const resposta = await controller.executar(id, nome);
+		const resposta = await controller.executar({
+			id: params.id as string,
+			nome,
+		});
 
 		return NextResponse.json(
 			{ resposta },
@@ -45,19 +54,14 @@ export async function DELETE(
 	{ params }: { params: { id?: string } }
 ) {
 	try {
-		const { id } = params;
-
-		if (!id) {
-			const resposta = new RespostaApi({
-				sucesso: false,
-				mensagem: "Estão faltando informações para a busca da esfera",
-			});
-			return NextResponse.json({ resposta }, { status: 400 });
-		}
+		const idError = validateId(params.id);
+		if (idError) return idError;
 
 		const controller = new DeletarEsferaController();
 
-		const resposta = await controller.executar(id);
+		const resposta = (await controller.executar({
+			id: params.id as string,
+		})) as RespostaApi;
 
 		return NextResponse.json(
 			{ resposta },

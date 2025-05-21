@@ -62,6 +62,7 @@ export class AtualizarEstadoController {
 			const estadoExistente = await this.buscarEstadoService.buscarPorId({
 				id,
 			});
+
 			if (!estadoExistente) {
 				return new RespostaApi({
 					sucesso: false,
@@ -98,9 +99,11 @@ export class AtualizarEstadoController {
 				sigla: sigla || estadoExistente.sigla,
 			});
 
-			const estadoAtualizadoResult = await this.atualizarEstadoService.executar({
-				estado: estadoAtualizado,
-			});
+			const estadoAtualizadoResult = await this.atualizarEstadoService.executar(
+				{
+					estado: estadoAtualizado,
+				}
+			);
 
 			const resultado: EstadoResponseDto = {
 				id: estadoAtualizadoResult.id ?? "",

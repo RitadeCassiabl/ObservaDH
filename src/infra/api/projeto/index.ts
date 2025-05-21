@@ -1,6 +1,6 @@
 import { Pauta } from "@/domain/models/pauta";
 import { Projeto } from "@/domain/models/projeto";
-import { conexaoBackend } from "@/infra/conexao-backend/client";
+import { conexaoBackend } from "@/infra/services/conexao-backend/client";
 
 export async function buscarAnoProjeto(): Promise<string[]> {
 	try {

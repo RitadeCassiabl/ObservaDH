@@ -1,26 +1,43 @@
+import { ResponseEsferaDto, SearchEsferaDto } from "@/dtos/esfera.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class BuscarEsferaService {
-	async buscarPorId(id: string) {
-		const prisma = prismaClient;
+interface IBuscarEsferaService {
+	buscarPorId(
+		params: Pick<SearchEsferaDto, "id">
+	): Promise<ResponseEsferaDto | null>;
+	buscarPorNome(
+		params: Pick<SearchEsferaDto, "nome">
+	): Promise<ResponseEsferaDto | null>;
+}
 
-		const resposta = await prisma.esfera.findUnique({
+export class BuscarEsferaService implements IBuscarEsferaService {
+	constructor(private readonly prisma = prismaClient) {}
+	async buscarPorId({
+		id,
+	}: Pick<SearchEsferaDto, "id">): Promise<ResponseEsferaDto | null> {
+		if (!id) return null;
+
+		const esferaData = await this.prisma.esfera.findUnique({
 			where: {
 				id: id,
 			},
 		});
-
-		return resposta;
+		return esferaData ? (esferaData as ResponseEsferaDto) : null;
 	}
 
-	async buscarPorNome(nome: string) {
-		const prisma = prismaClient;
-
-		const resposta = await prisma.esfera.findFirst({
+	async buscarPorNome({
+		nome,
+	}: Pick<SearchEsferaDto, "nome">): Promise<ResponseEsferaDto | null> {
+		if (!nome) return null;
+		const esferaData = await this.prisma.esfera.findFirst({
 			where: {
 				nome: nome,
 			},
+			include: {
+				politicos: true,
+				projetos: true,
+			},
 		});
-		return resposta;
+		return esferaData;
 	}
 }

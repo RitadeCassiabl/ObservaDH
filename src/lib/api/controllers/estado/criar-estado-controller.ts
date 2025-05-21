@@ -7,16 +7,16 @@ import { RespostaApi } from "@/domain/models/resposta-api";
 import {
 	CreateEstadoDto,
 	CreateEstadoSchema,
-	EstadoResponseDto,
+	ResponseEstadoDto,
 } from "@/dtos/estado.dto";
 
 interface IBuscarEstadoService {
-	buscarPorNome(params: { nome: string }): Promise<EstadoResponseDto | null>;
-	buscarPorSigla(params: { sigla: string }): Promise<EstadoResponseDto | null>;
+	buscarPorNome(params: { nome: string }): Promise<ResponseEstadoDto | null>;
+	buscarPorSigla(params: { sigla: string }): Promise<ResponseEstadoDto | null>;
 }
 
 interface ICriarEstadoService {
-	executar(params: CreateEstadoDto): Promise<EstadoResponseDto>;
+	executar(params: CreateEstadoDto): Promise<ResponseEstadoDto>;
 }
 
 export class CriarEstadoController {

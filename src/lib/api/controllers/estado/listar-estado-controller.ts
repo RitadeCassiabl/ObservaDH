@@ -1,12 +1,18 @@
+import {
+	IListarEstadoService,
+	ListarEstadoService,
+} from "../../service/estado/listar-estado-service";
+
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { IListarEstadoService, ListarEstadoService } from "../../service/estado/listar-estado-service";
 
 export interface IListarEstadoController {
 	executar(): Promise<RespostaApi>;
 }
 
 export class ListarEstadoController implements IListarEstadoController {
-	constructor(private readonly listarEstadoService: IListarEstadoService = new ListarEstadoService()) { }
+	constructor(
+		private readonly listarEstadoService: IListarEstadoService = new ListarEstadoService()
+	) {}
 
 	async executar(): Promise<RespostaApi> {
 		try {

@@ -32,8 +32,8 @@ export async function PATCH(
 		const controller = new AtualizarEstadoController();
 		const resposta = (await controller.executar({
 			id: params.id as string,
-			nome,
-			sigla,
+			nome: nome,
+			sigla: sigla,
 		} as UpdateEstadoDto)) as RespostaApi;
 
 		return NextResponse.json(resposta, {
@@ -90,21 +90,20 @@ export async function DELETE(
 
 //! Handler - Buscar estado
 export async function GET(
-	request: NextRequest,
-	{ params }: { params: { id?: string } }
+	request: Request,
+	{ params }: { params: { id: string } }
 ) {
 	try {
-		const idError = validateId(params.id);
-		if (idError) return idError;
-
+		const { id } = params;
 		const controller = new BuscarEstadoController();
-		const resposta = await controller.executar(params.id as string);
+		const resposta = await controller.executar(id);
 
 		return NextResponse.json(resposta, {
 			status: resposta.sucesso ? 200 : 404,
 		});
 	} catch (error) {
 		console.error("Erro ao buscar estado:", error);
+
 		const respostaException = new RespostaApi({
 			sucesso: false,
 			mensagem: "Ocorreu um erro inesperado no servidor",

@@ -2,7 +2,6 @@ import { Estado } from "@/domain/models/estado";
 import { EstadoResponseDto } from "@/dtos/estado.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-
 export class AtualizarEstadoService {
 	private readonly prisma = prismaClient;
 
