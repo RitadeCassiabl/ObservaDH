@@ -1,22 +1,21 @@
 import { AtualizarEstadoService } from "../../service/estado/atualizar-estado-service";
 import { BuscarEstadoService } from "../../service/estado/buscar-estado-service";
 
-import { Estado } from "@/domain/models/estado";
 import { RespostaApi } from "@/domain/models/resposta-api";
 import {
-	ResponseEstadoDto,
-	UpdateEstadoDto,
+	ResponseEstadoDTO,
+	UpdateEstadoDTO,
 	UpdateEstadoSchema,
 } from "@/dtos/estado.dto";
 
 interface IBuscarEstadoService {
-	buscarPorId(params: { id: string }): Promise<ResponseEstadoDto | null>;
-	buscarPorNome(params: { nome: string }): Promise<ResponseEstadoDto | null>;
-	buscarPorSigla(params: { sigla: string }): Promise<ResponseEstadoDto | null>;
+	buscarPorId(params: { id: string }): Promise<ResponseEstadoDTO | null>;
+	buscarPorNome(params: { nome: string }): Promise<ResponseEstadoDTO | null>;
+	buscarPorSigla(params: { sigla: string }): Promise<ResponseEstadoDTO | null>;
 }
 
 interface IAtualizarEstadoService {
-	executar(params: { estado: Estado }): Promise<ResponseEstadoDto>;
+	executar(params: { estado: UpdateEstadoDTO }): Promise<ResponseEstadoDTO>;
 }
 
 export class AtualizarEstadoController {
@@ -32,9 +31,9 @@ export class AtualizarEstadoController {
 			atualizarEstadoService || new AtualizarEstadoService();
 	}
 
-	async executar(params: UpdateEstadoDto): Promise<RespostaApi> {
+	async executar(params: UpdateEstadoDTO): Promise<RespostaApi> {
 		try {
-			let dadosValidados: UpdateEstadoDto;
+			let dadosValidados: UpdateEstadoDTO;
 			try {
 				dadosValidados = UpdateEstadoSchema.parse({
 					id: params.id,
@@ -93,11 +92,11 @@ export class AtualizarEstadoController {
 				}
 			}
 
-			const estadoAtualizado = new Estado({
+			const estadoAtualizado = {
 				id,
 				nome: nome || estadoExistente.nome,
 				sigla: sigla || estadoExistente.sigla,
-			});
+			} as UpdateEstadoDTO;
 
 			const estadoAtualizadoResult = await this.atualizarEstadoService.executar(
 				{
@@ -105,7 +104,7 @@ export class AtualizarEstadoController {
 				}
 			);
 
-			const resultado: ResponseEstadoDto = {
+			const resultado: ResponseEstadoDTO = {
 				id: estadoAtualizadoResult.id ?? "",
 				nome: estadoAtualizadoResult.nome,
 				sigla: estadoAtualizadoResult.sigla,

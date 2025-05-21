@@ -1,11 +1,14 @@
-import { Estado } from "@/domain/models/estado";
-import { ResponseEstadoDto } from "@/dtos/estado.dto";
+import { ResponseEstadoDTO, UpdateEstadoDTO } from "@/dtos/estado.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class AtualizarEstadoService {
 	private readonly prisma = prismaClient;
 
-	async executar({ estado }: { estado: Estado }): Promise<ResponseEstadoDto> {
+	async executar({
+		estado,
+	}: {
+		estado: UpdateEstadoDTO;
+	}): Promise<ResponseEstadoDTO> {
 		try {
 			if (!estado || !estado.id) {
 				throw new Error("Dados inválidos para atualização do estado");

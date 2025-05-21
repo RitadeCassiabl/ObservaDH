@@ -1,20 +1,20 @@
-import { ResponseEsferaDto, SearchEsferaDto } from "@/dtos/esfera.dto";
+import { ResponseEsferaDTO, SearchEsferaDTO } from "@/dtos/esfera.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 interface IBuscarEsferaService {
 	buscarPorId(
-		params: Pick<SearchEsferaDto, "id">
-	): Promise<ResponseEsferaDto | null>;
+		params: Pick<SearchEsferaDTO, "id">
+	): Promise<ResponseEsferaDTO | null>;
 	buscarPorNome(
-		params: Pick<SearchEsferaDto, "nome">
-	): Promise<ResponseEsferaDto | null>;
+		params: Pick<SearchEsferaDTO, "nome">
+	): Promise<ResponseEsferaDTO | null>;
 }
 
 export class BuscarEsferaService implements IBuscarEsferaService {
 	constructor(private readonly prisma = prismaClient) {}
 	async buscarPorId({
 		id,
-	}: Pick<SearchEsferaDto, "id">): Promise<ResponseEsferaDto | null> {
+	}: Pick<SearchEsferaDTO, "id">): Promise<ResponseEsferaDTO | null> {
 		if (!id) return null;
 
 		const esferaData = await this.prisma.esfera.findUnique({
@@ -22,12 +22,12 @@ export class BuscarEsferaService implements IBuscarEsferaService {
 				id: id,
 			},
 		});
-		return esferaData ? (esferaData as ResponseEsferaDto) : null;
+		return esferaData ? (esferaData as ResponseEsferaDTO) : null;
 	}
 
 	async buscarPorNome({
 		nome,
-	}: Pick<SearchEsferaDto, "nome">): Promise<ResponseEsferaDto | null> {
+	}: Pick<SearchEsferaDTO, "nome">): Promise<ResponseEsferaDTO | null> {
 		if (!nome) return null;
 		const esferaData = await this.prisma.esfera.findFirst({
 			where: {

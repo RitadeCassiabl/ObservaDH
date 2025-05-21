@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from "zod";
-export interface CreateEstadoDto {
+export interface CreateEstadoDTO {
 	nome: string;
 	sigla: string;
 }
@@ -10,14 +10,14 @@ export const CreateEstadoSchema = z.object({
 	sigla: z.string().length(2, "Sigla deve ter exatamente 2 caracteres"),
 });
 
-export interface ResponseEstadoDto {
+export interface ResponseEstadoDTO {
 	id: string;
 	nome: string;
 	sigla: string;
 	politico?: any[];
 }
 
-export interface UpdateEstadoDto {
+export interface UpdateEstadoDTO {
 	id: string;
 	nome?: string;
 	sigla?: string;
@@ -28,15 +28,15 @@ export const UpdateEstadoSchema = z.object({
 	sigla: z.string().length(2, "Sigla deve ter exatamente 2 caracteres"),
 });
 
-export interface DeleteEstadoDto {
+export interface DeleteEstadoDTO {
 	id: string;
 }
 
-export interface ResponseDeleteEstadoDto {
+export interface ResponseDeleteEstadoDTO {
 	sucesso: boolean;
 }
 
-export interface SearchEstadoDto {
+export interface SearchEstadoDTO {
 	id?: string;
 	nome?: string;
 	sigla?: string;

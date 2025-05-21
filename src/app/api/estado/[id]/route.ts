@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { UpdateEstadoDto } from "@/dtos/estado.dto";
+import { UpdateEstadoDTO } from "@/dtos/estado.dto";
 import { AtualizarEstadoController } from "@/lib/api/controllers/estado/atualizar-estado-controller";
 import { BuscarEstadoController } from "@/lib/api/controllers/estado/buscar-estado-controller";
 import { DeletarEstadoController } from "@/lib/api/controllers/estado/deletar-estado-controller";
@@ -27,14 +27,14 @@ export async function PATCH(
 		if (idError) return idError;
 
 		const body = await request.json().catch(() => ({}));
-		const { nome, sigla } = body as UpdateEstadoDto;
+		const { nome, sigla } = body as UpdateEstadoDTO;
 
 		const controller = new AtualizarEstadoController();
 		const resposta = (await controller.executar({
 			id: params.id as string,
 			nome: nome,
 			sigla: sigla,
-		} as UpdateEstadoDto)) as RespostaApi;
+		} as UpdateEstadoDTO)) as RespostaApi;
 
 		return NextResponse.json(resposta, {
 			status: resposta.sucesso

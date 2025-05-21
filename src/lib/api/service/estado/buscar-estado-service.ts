@@ -1,16 +1,16 @@
-import { ResponseEstadoDto, SearchEstadoDto } from "@/dtos/estado.dto";
+import { ResponseEstadoDTO, SearchEstadoDTO } from "@/dtos/estado.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export interface IBuscarEstadoService {
 	buscarPorId(
-		params: Pick<SearchEstadoDto, "id">
-	): Promise<ResponseEstadoDto | null>;
+		params: Pick<SearchEstadoDTO, "id">
+	): Promise<ResponseEstadoDTO | null>;
 	buscarPorNome(
-		params: Pick<SearchEstadoDto, "nome">
-	): Promise<ResponseEstadoDto | null>;
+		params: Pick<SearchEstadoDTO, "nome">
+	): Promise<ResponseEstadoDTO | null>;
 	buscarPorSigla(
-		params: Pick<SearchEstadoDto, "sigla">
-	): Promise<ResponseEstadoDto | null>;
+		params: Pick<SearchEstadoDTO, "sigla">
+	): Promise<ResponseEstadoDTO | null>;
 }
 
 export class BuscarEstadoService implements IBuscarEstadoService {
@@ -18,7 +18,7 @@ export class BuscarEstadoService implements IBuscarEstadoService {
 
 	async buscarPorId({
 		id,
-	}: Pick<SearchEstadoDto, "id">): Promise<ResponseEstadoDto | null> {
+	}: Pick<SearchEstadoDTO, "id">): Promise<ResponseEstadoDTO | null> {
 		if (!id) return null;
 
 		const estadoData = await this.prisma.estado.findUnique({
@@ -32,7 +32,7 @@ export class BuscarEstadoService implements IBuscarEstadoService {
 
 	async buscarPorNome({
 		nome,
-	}: Pick<SearchEstadoDto, "nome">): Promise<ResponseEstadoDto | null> {
+	}: Pick<SearchEstadoDTO, "nome">): Promise<ResponseEstadoDTO | null> {
 		if (!nome) return null;
 
 		const estadoData = await this.prisma.estado.findFirst({
@@ -46,7 +46,7 @@ export class BuscarEstadoService implements IBuscarEstadoService {
 
 	async buscarPorSigla({
 		sigla,
-	}: Pick<SearchEstadoDto, "sigla">): Promise<ResponseEstadoDto | null> {
+	}: Pick<SearchEstadoDTO, "sigla">): Promise<ResponseEstadoDTO | null> {
 		if (!sigla) return null;
 		const estadoData = await this.prisma.estado.findFirst({
 			where: {

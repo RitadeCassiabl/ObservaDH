@@ -1,11 +1,11 @@
 import { Prisma } from "@prisma/client";
 
-import { CreateEsferaDto, ResponseEsferaDto } from "@/dtos/esfera.dto";
+import { CreateEsferaDTO, ResponseEsferaDTO } from "@/dtos/esfera.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 export class CriarEsferaService {
 	private readonly prisma = prismaClient;
 
-	async executar({ nome }: CreateEsferaDto): Promise<ResponseEsferaDto> {
+	async executar({ nome }: CreateEsferaDTO): Promise<ResponseEsferaDTO> {
 		try {
 			const esfera = await this.prisma.esfera.create({
 				data: {

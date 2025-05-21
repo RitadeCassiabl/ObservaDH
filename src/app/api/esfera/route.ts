@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { CreateEsferaDto } from "@/dtos/esfera.dto";
+import { CreateEsferaDTO } from "@/dtos/esfera.dto";
 import { CriarEsferaController } from "@/lib/api/controllers/esfera/criar-esfera-controller";
 import { ListarEsferaController } from "@/lib/api/controllers/esfera/listar-esfera-controller";
 
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 			return NextResponse.json({ respostaNoBody }, { status: 400 });
 		} else {
 			const controller = new CriarEsferaController();
-			const resposta = await controller.executar(body as CreateEsferaDto);
+			const resposta = await controller.executar(body as CreateEsferaDTO);
 
 			return NextResponse.json(
 				{ resposta },

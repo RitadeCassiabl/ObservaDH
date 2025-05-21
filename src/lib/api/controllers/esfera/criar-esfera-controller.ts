@@ -5,17 +5,17 @@ import { CriarEsferaService } from "../../service/esfera/criar-esfera-service";
 
 import {
 	CreateEsferaSchema,
-	SearchEsferaDto,
+	SearchEsferaDTO,
 } from "./../../../../dtos/esfera.dto";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { CreateEsferaDto, ResponseEsferaDto } from "@/dtos/esfera.dto";
+import { CreateEsferaDTO, ResponseEsferaDTO } from "@/dtos/esfera.dto";
 
 interface IBuscarEsferaService {
-	buscarPorNome(params: SearchEsferaDto): Promise<ResponseEsferaDto | null>;
+	buscarPorNome(params: SearchEsferaDTO): Promise<ResponseEsferaDTO | null>;
 }
 interface ICriarEsferaService {
-	executar(params: CreateEsferaDto): Promise<ResponseEsferaDto>;
+	executar(params: CreateEsferaDTO): Promise<ResponseEsferaDTO>;
 }
 export class CriarEsferaController {
 	private readonly criarEsferaService: ICriarEsferaService;
@@ -29,7 +29,7 @@ export class CriarEsferaController {
 		this.buscarEsferaService = buscarEsferaService || new BuscarEsferaService();
 	}
 
-	async executar(params: CreateEsferaDto): Promise<RespostaApi> {
+	async executar(params: CreateEsferaDTO): Promise<RespostaApi> {
 		try {
 			const dados = CreateEsferaSchema.parse(params);
 

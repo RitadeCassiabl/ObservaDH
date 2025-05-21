@@ -4,18 +4,18 @@ import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service"
 import { Esfera } from "@/domain/models/esfera";
 import { RespostaApi } from "@/domain/models/resposta-api";
 import {
-	ResponseEsferaDto,
-	UpdateEsferaDto,
+	ResponseEsferaDTO,
+	UpdateEsferaDTO,
 	UpdateEsferaSchema,
 } from "@/dtos/esfera.dto";
 
 interface IBuscarEsferaService {
-	buscarPorId(params: { id: string }): Promise<ResponseEsferaDto | null>;
-	buscarPorNome(params: { nome: string }): Promise<ResponseEsferaDto | null>;
+	buscarPorId(params: { id: string }): Promise<ResponseEsferaDTO | null>;
+	buscarPorNome(params: { nome: string }): Promise<ResponseEsferaDTO | null>;
 }
 
 interface IAtualizarEsferaService {
-	executar(params: { esfera: Esfera }): Promise<ResponseEsferaDto>;
+	executar(params: { esfera: Esfera }): Promise<ResponseEsferaDTO>;
 }
 export class AtualizarEsferaController {
 	private readonly buscarEsferaService: IBuscarEsferaService;
@@ -29,9 +29,9 @@ export class AtualizarEsferaController {
 			atualizarEsferaService || new AtualizarEsferaService();
 	}
 
-	async executar(params: UpdateEsferaDto): Promise<RespostaApi> {
+	async executar(params: UpdateEsferaDTO): Promise<RespostaApi> {
 		try {
-			let dadosValidados: UpdateEsferaDto;
+			let dadosValidados: UpdateEsferaDTO;
 			try {
 				dadosValidados = UpdateEsferaSchema.parse({
 					id: params.id,

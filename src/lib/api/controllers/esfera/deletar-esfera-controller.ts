@@ -3,18 +3,18 @@ import { DeletarEsferaService } from "../../service/esfera/deletar-esfera-servic
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 import {
-	DeleteEsferaDto,
-	ResponseDeleteEsferaDto,
-	ResponseEsferaDto,
+	DeleteEsferaDTO,
+	ResponseDeleteEsferaDTO,
+	ResponseEsferaDTO,
 } from "@/dtos/esfera.dto";
 
 interface IBuscarEsferaService {
-	buscarPorId(params: { id: string }): Promise<ResponseEsferaDto | null>;
-	buscarPorNome(params: { nome: string }): Promise<ResponseEsferaDto | null>;
+	buscarPorId(params: { id: string }): Promise<ResponseEsferaDTO | null>;
+	buscarPorNome(params: { nome: string }): Promise<ResponseEsferaDTO | null>;
 }
 
 interface IDeletarEsferaService {
-	executar({ id }: DeleteEsferaDto): Promise<ResponseDeleteEsferaDto>;
+	executar({ id }: DeleteEsferaDTO): Promise<ResponseDeleteEsferaDTO>;
 }
 
 export class DeletarEsferaController {
@@ -29,7 +29,7 @@ export class DeletarEsferaController {
 		this.deletarEsferaService =
 			deletarEsferaService || new DeletarEsferaService();
 	}
-	async executar({ id }: DeleteEsferaDto): Promise<RespostaApi> {
+	async executar({ id }: DeleteEsferaDTO): Promise<RespostaApi> {
 		try {
 			if (!id || id.trim() === "") {
 				return new RespostaApi({

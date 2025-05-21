@@ -1,9 +1,9 @@
 import { Esfera } from "@/domain/models/esfera";
-import { ResponseEsferaDto } from "@/dtos/esfera.dto";
+import { ResponseEsferaDTO } from "@/dtos/esfera.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 export class AtualizarEsferaService {
 	private readonly prisma = prismaClient;
-	async executar({ esfera }: { esfera: Esfera }): Promise<ResponseEsferaDto> {
+	async executar({ esfera }: { esfera: Esfera }): Promise<ResponseEsferaDTO> {
 		try {
 			if (!esfera || !esfera.id) {
 				throw new Error("Dados inválidos para atualização da esfera");

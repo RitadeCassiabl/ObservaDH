@@ -1,14 +1,14 @@
-import { ResponseEstadoDto } from "@/dtos/estado.dto";
+import { ResponseEstadoDTO } from "@/dtos/estado.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export interface IListarEstadoService {
-	executar(): Promise<ResponseEstadoDto[]>;
+	executar(): Promise<ResponseEstadoDTO[]>;
 }
 
 export class ListarEstadoService implements IListarEstadoService {
 	constructor(private readonly prisma = prismaClient) {}
 
-	async executar(): Promise<ResponseEstadoDto[]> {
+	async executar(): Promise<ResponseEstadoDTO[]> {
 		const estados = await this.prisma.estado.findMany({
 			include: {
 				politicos: true,

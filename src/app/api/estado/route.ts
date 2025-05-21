@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { CreateEstadoDto } from "@/dtos/estado.dto";
+import { CreateEstadoDTO } from "@/dtos/estado.dto";
 import { CriarEstadoController } from "@/lib/api/controllers/estado/criar-estado-controller";
 import { ListarEstadoController } from "@/lib/api/controllers/estado/listar-estado-controller";
 
@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
 		}
 
 		const controller = new CriarEstadoController();
-		const resposta = await controller.executar(body as CreateEstadoDto);
+		const resposta = await controller.executar(body as CreateEstadoDTO);
 
 		return NextResponse.json(
 			{ resposta },

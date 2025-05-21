@@ -1,12 +1,12 @@
 import { Prisma } from "@prisma/client";
 
-import { CreateEstadoDto, ResponseEstadoDto } from "@/dtos/estado.dto";
+import { CreateEstadoDTO, ResponseEstadoDTO } from "@/dtos/estado.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class CriarEstadoService {
 	private readonly prisma = prismaClient;
 
-	async executar({ nome, sigla }: CreateEstadoDto): Promise<ResponseEstadoDto> {
+	async executar({ nome, sigla }: CreateEstadoDTO): Promise<ResponseEstadoDTO> {
 		try {
 			const estado = await this.prisma.estado.create({
 				data: {

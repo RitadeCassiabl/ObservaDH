@@ -1,10 +1,10 @@
-import { DeleteEsferaDto, ResponseDeleteEsferaDto } from "@/dtos/esfera.dto";
+import { DeleteEsferaDTO, ResponseDeleteEsferaDTO } from "@/dtos/esfera.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class DeletarEsferaService {
 	private readonly prisma = prismaClient;
 
-	async executar({ id }: DeleteEsferaDto): Promise<ResponseDeleteEsferaDto> {
+	async executar({ id }: DeleteEsferaDTO): Promise<ResponseDeleteEsferaDTO> {
 		try {
 			if (!id || typeof id !== "string") {
 				throw new Error("ID inválido para deleção");

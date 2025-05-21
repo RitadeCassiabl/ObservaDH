@@ -5,18 +5,18 @@ import { CriarEstadoService } from "../../service/estado/criar-estado-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 import {
-	CreateEstadoDto,
+	CreateEstadoDTO,
 	CreateEstadoSchema,
-	ResponseEstadoDto,
+	ResponseEstadoDTO,
 } from "@/dtos/estado.dto";
 
 interface IBuscarEstadoService {
-	buscarPorNome(params: { nome: string }): Promise<ResponseEstadoDto | null>;
-	buscarPorSigla(params: { sigla: string }): Promise<ResponseEstadoDto | null>;
+	buscarPorNome(params: { nome: string }): Promise<ResponseEstadoDTO | null>;
+	buscarPorSigla(params: { sigla: string }): Promise<ResponseEstadoDTO | null>;
 }
 
 interface ICriarEstadoService {
-	executar(params: CreateEstadoDto): Promise<ResponseEstadoDto>;
+	executar(params: CreateEstadoDTO): Promise<ResponseEstadoDTO>;
 }
 
 export class CriarEstadoController {
@@ -31,7 +31,7 @@ export class CriarEstadoController {
 		this.criarEstadoService = criarEstadoService || new CriarEstadoService();
 	}
 
-	async executar(params: CreateEstadoDto): Promise<RespostaApi> {
+	async executar(params: CreateEstadoDTO): Promise<RespostaApi> {
 		try {
 			const dados = CreateEstadoSchema.parse(params);
 

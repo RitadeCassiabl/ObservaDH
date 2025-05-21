@@ -1,10 +1,10 @@
-import { DeleteEstadoDto, ResponseDeleteEstadoDto } from "@/dtos/estado.dto";
+import { DeleteEstadoDTO, ResponseDeleteEstadoDTO } from "@/dtos/estado.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class DeletarEstadoService {
 	private readonly prisma = prismaClient;
 
-	async executar({ id }: DeleteEstadoDto): Promise<ResponseDeleteEstadoDto> {
+	async executar({ id }: DeleteEstadoDTO): Promise<ResponseDeleteEstadoDTO> {
 		try {
 			if (!id || typeof id !== "string") {
 				throw new Error("ID inválido para deleção");

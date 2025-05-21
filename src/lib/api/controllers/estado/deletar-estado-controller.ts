@@ -2,16 +2,16 @@ import { BuscarEstadoService } from "../../service/estado/buscar-estado-service"
 import { DeletarEstadoService } from "../../service/estado/deletar-estado-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { DeleteEstadoDto, ResponseEstadoDto } from "@/dtos/estado.dto";
+import { DeleteEstadoDTO, ResponseEstadoDTO } from "@/dtos/estado.dto";
 
 interface IBuscarEstadoService {
-	buscarPorId(params: { id: string }): Promise<ResponseEstadoDto | null>;
+	buscarPorId(params: { id: string }): Promise<ResponseEstadoDTO | null>;
 }
 
-import { ResponseDeleteEstadoDto } from "@/dtos/estado.dto";
+import { ResponseDeleteEstadoDTO } from "@/dtos/estado.dto";
 
 interface IDeletarEstadoService {
-	executar(params: { id: string }): Promise<ResponseDeleteEstadoDto | null>;
+	executar(params: { id: string }): Promise<ResponseDeleteEstadoDTO | null>;
 }
 
 export class DeletarEstadoController {
@@ -27,7 +27,7 @@ export class DeletarEstadoController {
 			deletarEstadoService || new DeletarEstadoService();
 	}
 
-	async executar({ id }: DeleteEstadoDto): Promise<RespostaApi> {
+	async executar({ id }: DeleteEstadoDTO): Promise<RespostaApi> {
 		try {
 			if (!id || id.trim() === "") {
 				return new RespostaApi({

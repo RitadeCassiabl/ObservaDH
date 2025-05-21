@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { UpdateEsferaDto } from "@/dtos/esfera.dto";
+import { UpdateEsferaDTO } from "@/dtos/esfera.dto";
 import { AtualizarEsferaController } from "@/lib/api/controllers/esfera/atualizar-esfera-controller";
 import { BuscarEsferaController } from "@/lib/api/controllers/esfera/buscar-esfera-controller";
 import { DeletarEsferaController } from "@/lib/api/controllers/esfera/deletar-esfera-controller";
@@ -12,7 +12,7 @@ function validateId(id?: string): NextResponse | undefined {
 			sucesso: false,
 			mensagem: "ID do estado não fornecido ou inválido",
 		});
-		return NextResponse.json(respostaIdInvalido, { status: 400 });
+		return NextResponse.json({ respostaIdInvalido }, { status: 400 });
 	}
 	return undefined;
 }
@@ -26,7 +26,7 @@ export async function PATCH(
 		if (idError) return idError;
 
 		const body = await request.json().catch(() => ({}));
-		const { nome } = body as UpdateEsferaDto;
+		const { nome } = body as UpdateEsferaDTO;
 
 		const controller = new AtualizarEsferaController();
 
@@ -93,7 +93,7 @@ export async function GET(
 
 		const controller = new BuscarEsferaController();
 
-		const resposta = await controller.executar(id);
+		const resposta = await controller.buscarPorId(id);
 
 		return NextResponse.json(
 			{ resposta },
