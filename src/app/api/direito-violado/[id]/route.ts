@@ -5,20 +5,26 @@ import { AtualizarDireitoVioladoController } from "@/lib/api/controllers/direito
 import { BuscarDireitoVioladoController } from "@/lib/api/controllers/direito-violado/buscar-direito_violado-controller";
 import { DeletarDireitoVioladoController } from "@/lib/api/controllers/direito-violado/deletar-direito_violado-controller";
 
+function validateId(id?: string): NextResponse | undefined {
+	if (!id) {
+		const respostaIdInvalido = new RespostaApi({
+			sucesso: false,
+			mensagem: "ID do estado não fornecido ou inválido",
+		});
+		return NextResponse.json({ respostaIdInvalido }, { status: 400 });
+	}
+	return undefined;
+}
+
 export async function PATCH(
 	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
-		const { id } = params;
+		const idError = validateId(params.id);
+		if (idError) return idError;
 
-		if (!id) {
-			const resposta = new RespostaApi({
-				sucesso: false,
-				mensagem: "Estão faltando informações para a busca do direito violado",
-			});
-			return NextResponse.json({ resposta }, { status: 400 });
-		}
+		const { id } = params;
 
 		const { nome, projetos, sigla, descricao } = await request.json();
 
