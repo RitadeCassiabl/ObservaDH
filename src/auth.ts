@@ -16,7 +16,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 			},
 			async authorize(credentials) {
 				if (!credentials?.email || !credentials?.password) {
-					throw new Error("Email and password are required.");
+					throw new Error("Email e senha são obrigatórios.");
 				}
 
 				const user = await prismaClient.user.findUnique({
@@ -27,11 +27,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 					throw new Error("Dados inválidos");
 				}
 
-				const isPasswordValid = await bcrypt.compare(
+				const senhaValida = await bcrypt.compare(
 					credentials.password as string,
 					user.passwordHash as string
 				);
-				if (!isPasswordValid) {
+				if (!senhaValida) {
 					throw new Error("Dados inválidos");
 				}
 
