@@ -12,9 +12,10 @@ export async function GET(
 		const controller = new BuscarEstadoController();
 		const resposta = await controller.buscarPorSigla(sigla);
 
-		return NextResponse.json(resposta, {
-			status: resposta.sucesso ? 200 : 404,
-		});
+		return NextResponse.json(
+			{ resposta },
+			{ status: resposta.sucesso ? 200 : 404 }
+		);
 	} catch (error) {
 		console.error("Erro ao buscar estado pela sigla:", error);
 

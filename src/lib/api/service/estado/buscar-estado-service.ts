@@ -48,9 +48,10 @@ export class BuscarEstadoService implements IBuscarEstadoService {
 		sigla,
 	}: Pick<SearchEstadoDto, "sigla">): Promise<ResponseEstadoDto | null> {
 		if (!sigla) return null;
-
 		const estadoData = await this.prisma.estado.findFirst({
-			where: { sigla },
+			where: {
+				sigla: sigla,
+			},
 			include: {
 				politicos: true,
 			},

@@ -4,19 +4,19 @@ import { BuscarEstadoService } from "../../service/estado/buscar-estado-service"
 import { Estado } from "@/domain/models/estado";
 import { RespostaApi } from "@/domain/models/resposta-api";
 import {
-	EstadoResponseDto,
+	ResponseEstadoDto,
 	UpdateEstadoDto,
 	UpdateEstadoSchema,
 } from "@/dtos/estado.dto";
 
 interface IBuscarEstadoService {
-	buscarPorId(params: { id: string }): Promise<EstadoResponseDto | null>;
-	buscarPorNome(params: { nome: string }): Promise<EstadoResponseDto | null>;
-	buscarPorSigla(params: { sigla: string }): Promise<EstadoResponseDto | null>;
+	buscarPorId(params: { id: string }): Promise<ResponseEstadoDto | null>;
+	buscarPorNome(params: { nome: string }): Promise<ResponseEstadoDto | null>;
+	buscarPorSigla(params: { sigla: string }): Promise<ResponseEstadoDto | null>;
 }
 
 interface IAtualizarEstadoService {
-	executar(params: { estado: Estado }): Promise<EstadoResponseDto>;
+	executar(params: { estado: Estado }): Promise<ResponseEstadoDto>;
 }
 
 export class AtualizarEstadoController {
@@ -105,7 +105,7 @@ export class AtualizarEstadoController {
 				}
 			);
 
-			const resultado: EstadoResponseDto = {
+			const resultado: ResponseEstadoDto = {
 				id: estadoAtualizadoResult.id ?? "",
 				nome: estadoAtualizadoResult.nome,
 				sigla: estadoAtualizadoResult.sigla,

@@ -1,3 +1,5 @@
+import { ZodError } from "zod";
+
 import {
 	BuscarEstadoService,
 	IBuscarEstadoService,
@@ -107,7 +109,7 @@ export class BuscarEstadoController implements IBuscarEstadoController {
 			return new RespostaApi({
 				sucesso: false,
 				mensagem: "Erro ao buscar estado por sigla",
-				dados: error instanceof Error ? error.message : String(error),
+				dados: error instanceof ZodError ? error.message : String(error),
 			});
 		}
 	}

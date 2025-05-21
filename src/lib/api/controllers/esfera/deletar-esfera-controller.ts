@@ -4,13 +4,13 @@ import { DeletarEsferaService } from "../../service/esfera/deletar-esfera-servic
 import { RespostaApi } from "@/domain/models/resposta-api";
 import {
 	DeleteEsferaDto,
-	EsferaResponseDto,
 	ResponseDeleteEsferaDto,
+	ResponseEsferaDto,
 } from "@/dtos/esfera.dto";
 
 interface IBuscarEsferaService {
-	buscarPorId(params: { id: string }): Promise<EsferaResponseDto | null>;
-	buscarPorNome(params: { nome: string }): Promise<EsferaResponseDto | null>;
+	buscarPorId(params: { id: string }): Promise<ResponseEsferaDto | null>;
+	buscarPorNome(params: { nome: string }): Promise<ResponseEsferaDto | null>;
 }
 
 interface IDeletarEsferaService {
