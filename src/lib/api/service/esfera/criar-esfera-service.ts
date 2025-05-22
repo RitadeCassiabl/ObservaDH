@@ -15,8 +15,8 @@ export class CriarEsferaService implements ICriarEsferaService {
 			const esfera = await this.prisma.esfera.create({
 				data: {
 					nome,
-					politicos: {}, // Relação one-to-many através do Politico
-					projetos: {}, // Relação one-to-many através do Projeto
+					politicos: {},
+					projetos: {},
 				},
 				select: {
 					id: true,
@@ -30,8 +30,6 @@ export class CriarEsferaService implements ICriarEsferaService {
 			};
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
-				// P2002: Unique constraint failed - Nome is not unique in schema
-				// P2003: Foreign key constraint failed (not applicable here)
 			}
 
 			throw error;

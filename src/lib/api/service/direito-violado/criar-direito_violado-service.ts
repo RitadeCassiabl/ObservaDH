@@ -24,7 +24,7 @@ export class CriarDireitoVioladoService implements ICriarDireitoVioladoService {
 					nome,
 					sigla,
 					descricao,
-					projetos: {}, // Relação many-to-many não criada diretamente aqui
+					projetos: {},
 				},
 				select: {
 					id: true,

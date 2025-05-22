@@ -5,7 +5,6 @@ export interface IBuscarEsferaService {
 	buscarPorId(
 		params: Pick<SearchEsferaDTO, "id">
 	): Promise<ResponseEsferaDTO | null>;
-	// Nome is not unique in schema, no specific service method for unique lookup by name
 }
 
 export class BuscarEsferaService implements IBuscarEsferaService {

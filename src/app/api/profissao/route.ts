@@ -34,14 +34,14 @@ export async function POST(request: NextRequest) {
 		const controller = new CriarProfissaoController();
 		const resposta = await controller.executar(body as CreateProfissaoDTO);
 
-		let status = 201; // Created
+		let status = 201;
 		if (!resposta.sucesso) {
 			if (resposta.mensagem?.includes("já existe")) {
-				status = 409; // Conflict
+				status = 409;
 			} else if (resposta.mensagem?.includes("obrigatório")) {
-				status = 400; // Bad Request
+				status = 400;
 			} else {
-				status = 400; // Generic Bad Request for other controller errors
+				status = 400;
 			}
 		}
 
@@ -58,7 +58,7 @@ export async function GET() {
 		const resposta = await controller.executar();
 
 		return NextResponse.json(resposta, {
-			status: resposta.sucesso ? 200 : 404, // 404 if no profissoes found based on controller message
+			status: resposta.sucesso ? 200 : 404,
 		});
 	} catch (error) {
 		return handleError(error, "Erro ao listar profissões");

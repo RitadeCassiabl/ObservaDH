@@ -2,40 +2,74 @@ import { BuscarPautaService } from "../../service/pauta/buscar-pauta-service";
 import { DeletarPautaService } from "../../service/pauta/deletar-pauta-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { DeletePautaDTO, ResponsePautaDTO } from "@/dtos/pauta.dto";
+
+interface IBuscarPautaService {
+	buscarPorId(params: { id: string }): Promise<ResponsePautaDTO | null>;
+}
+
+import { ResponseDeletePautaDTO } from "@/dtos/pauta.dto";
+
+interface IDeletarPautaService {
+	executar(params: { id: string }): Promise<ResponseDeletePautaDTO>;
+}
 
 export class DeletarPautaController {
-	async executar(id: string) {
-		if (!id) {
+	private readonly buscarPautaService: IBuscarPautaService;
+	private readonly deletarPautaService: IDeletarPautaService;
+
+	constructor(
+		buscarPautaService?: IBuscarPautaService,
+		deletarPautaService?: IDeletarPautaService
+	) {
+		this.buscarPautaService = buscarPautaService || new BuscarPautaService();
+		this.deletarPautaService = deletarPautaService || new DeletarPautaService();
+	}
+
+	async executar({ id }: DeletePautaDTO): Promise<RespostaApi> {
+		try {
+			if (!id || id.trim() === "") {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "ID da pauta não fornecido ou inválido",
+				});
+			}
+
+			const pautaExistente = await this.buscarPautaService.buscarPorId({
+				id: id,
+			});
+
+			if (!pautaExistente) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "A pauta não foi encontrada",
+				});
+			}
+
+			const resultadoDelecao = await this.deletarPautaService.executar({
+				id: id,
+			});
+
+			if (resultadoDelecao.sucesso) {
+				return new RespostaApi({
+					sucesso: true,
+					mensagem: "A pauta foi deletada com sucesso",
+				});
+			} else {
+				throw new Error("Falha na operação de deleção");
+			}
+		} catch (error) {
+			console.error("Erro ao deletar pauta:", error);
+
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um erro ao deletar a pauta";
+
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Falta informações para deletar a pauta",
-			});
-		}
-
-		const serviceAuxiliar = new BuscarPautaService();
-
-		const existe = await serviceAuxiliar.buscarPorID(id);
-
-		if (!existe) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "A pauta já não existe",
-			});
-		}
-
-		const service = new DeletarPautaService();
-
-		const resposta = await service.executar(id);
-
-		if (resposta) {
-			return new RespostaApi({
-				sucesso: true,
-				mensagem: `${resposta.nome} foi deletado`,
-			});
-		} else {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Houve algum problema ao deletar a pauta",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

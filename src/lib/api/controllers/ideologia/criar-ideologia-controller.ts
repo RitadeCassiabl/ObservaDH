@@ -27,8 +27,6 @@ export class CriarIdeologiaController {
 				});
 			}
 
-			// Nome and Sigla are not unique in schema, no need to check existence before creation
-
 			const ideologiaCriada = await this.criarIdeologiaService.executar(params);
 
 			return new RespostaApi({

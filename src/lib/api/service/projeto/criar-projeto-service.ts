@@ -20,7 +20,6 @@ export class CriarProjetoService implements ICriarProjetoService {
 					esferaId: params.esferaId,
 					numeroPl: params.numeroPl,
 					justificativa: params.justificativa,
-					// Relations creation is more complex and omitted for basic CRUD
 					direitosViolados: {},
 					ideologias: {},
 					partidos: {},
@@ -53,7 +52,6 @@ export class CriarProjetoService implements ICriarProjetoService {
 						`Já existe um projeto com este número PL: ${error.meta?.target}`
 					);
 				}
-				// Handle foreign key errors if esferaId or pautaId don't exist
 				if (error.code === "P2003") {
 					const field =
 						(error.meta?.field_name as string | undefined) ||

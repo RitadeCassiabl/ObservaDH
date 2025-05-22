@@ -21,7 +21,7 @@ export class CriarIdeologiaService implements ICriarIdeologiaService {
 					nome,
 					descricao,
 					sigla,
-					projetos: {}, // Relação many-to-many não criada diretamente aqui
+					projetos: {},
 				},
 				select: {
 					id: true,
@@ -39,8 +39,6 @@ export class CriarIdeologiaService implements ICriarIdeologiaService {
 			};
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
-				// P2002: Unique constraint failed - Nome and Sigla are not unique in schema
-				// P2003: Foreign key constraint failed (not applicable here)
 			}
 
 			throw error;

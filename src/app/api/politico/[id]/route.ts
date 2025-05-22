@@ -48,11 +48,11 @@ export async function PATCH(
 		let status = 200;
 		if (!resposta.sucesso) {
 			if (resposta.mensagem?.includes("não foi encontrado")) {
-				status = 404; // Not Found
+				status = 404;
 			} else if (resposta.mensagem?.includes("ID relacionado inválido")) {
-				status = 400; // Bad Request (Foreign Key error)
+				status = 400;
 			} else {
-				status = 400; // Generic Bad Request
+				status = 400;
 			}
 		}
 
@@ -78,11 +78,11 @@ export async function DELETE(
 		let status = 200;
 		if (!resposta.sucesso) {
 			if (resposta.mensagem?.includes("não foi encontrado")) {
-				status = 404; // Not Found
+				status = 404;
 			} else if (resposta.mensagem?.includes("projetos relacionados")) {
-				status = 409; // Conflict (Foreign Key error due to linked projects)
+				status = 409;
 			} else {
-				status = 400; // Generic Bad Request
+				status = 400;
 			}
 		}
 

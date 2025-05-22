@@ -70,7 +70,6 @@ export class AtualizarIdeologiaService implements IAtualizarIdeologiaService {
 				if (prismaError.code === "P2025") {
 					throw new Error(`Ideologia com ID ${ideologia.id} não encontrada`);
 				}
-				// P2002: Unique constraint failed - Nome and Sigla are not unique in schema
 			}
 
 			console.error("Erro ao atualizar ideologia:", error);

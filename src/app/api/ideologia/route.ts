@@ -33,12 +33,12 @@ export async function POST(request: NextRequest) {
 		const controller = new CriarIdeologiaController();
 		const resposta = await controller.executar(body as CreateIdeologiaDTO);
 
-		let status = 201; // Created
+		let status = 201;
 		if (!resposta.sucesso) {
 			if (resposta.mensagem?.includes("obrigatórios")) {
-				status = 400; // Bad Request
+				status = 400;
 			} else {
-				status = 400; // Generic Bad Request for other controller errors
+				status = 400;
 			}
 		}
 
@@ -54,7 +54,7 @@ export async function GET() {
 		const resposta = await controller.executar();
 
 		return NextResponse.json(resposta, {
-			status: resposta.sucesso ? 200 : 404, // 404 if no ideologias found based on controller message
+			status: resposta.sucesso ? 200 : 404,
 		});
 	} catch (error) {
 		return handleError(error, "Erro ao listar ideologias");

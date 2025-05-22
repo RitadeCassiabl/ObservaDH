@@ -24,7 +24,7 @@ export class CriarPoliticoService implements ICriarPoliticoService {
 					estadoId: params.estadoId,
 					partidoId: params.partidoId,
 					profissaoId: params.profissaoId,
-					projetos: {}, // Many-to-many relation not created directly here
+					projetos: {},
 				},
 				select: {
 					id: true,

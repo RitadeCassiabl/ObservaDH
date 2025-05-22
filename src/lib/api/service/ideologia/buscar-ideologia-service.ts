@@ -5,7 +5,6 @@ export interface IBuscarIdeologiaService {
 	buscarPorId(
 		params: Pick<SearchIdeologiaDTO, "id">
 	): Promise<ResponseIdeologiaDTO | null>;
-	// Nome and Sigla are not unique in schema, no specific service methods for unique lookup by these fields
 }
 
 export class BuscarIdeologiaService implements IBuscarIdeologiaService {

@@ -7,7 +7,7 @@ export interface CreatePoliticoDTO {
 	genero: string;
 	raca: string;
 	religiao: string;
-	ideologia: string; // This is a string field in the Politico model
+	ideologia: string;
 	esferaId: string;
 	estadoId: string;
 	partidoId: string;
@@ -53,7 +53,7 @@ export interface UpdatePoliticoDTO {
 	genero?: string;
 	raca?: string;
 	religiao?: string;
-	ideologia?: string; // This is a string field in the Politico model
+	ideologia?: string;
 	esferaId?: string;
 	estadoId?: string;
 	partidoId?: string;

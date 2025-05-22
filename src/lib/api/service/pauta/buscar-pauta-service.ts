@@ -1,25 +1,57 @@
+import { ResponsePautaDTO, SearchPautaDTO } from "@/dtos/pauta.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class BuscarPautaService {
-	async buscarPorID(id: string) {
-		const prisma = prismaClient;
+export interface IBuscarPautaService {
+	buscarPorId(
+		params: Pick<SearchPautaDTO, "id">
+	): Promise<ResponsePautaDTO | null>;
+	buscarPorNome(
+		params: Pick<SearchPautaDTO, "nome">
+	): Promise<ResponsePautaDTO | null>;
+}
 
-		const resposta = await prisma.pauta.findUnique({
-			where: {
-				id: id,
+export class BuscarPautaService implements IBuscarPautaService {
+	constructor(private readonly prisma = prismaClient) {}
+
+	async buscarPorId({
+		id,
+	}: Pick<SearchPautaDTO, "id">): Promise<ResponsePautaDTO | null> {
+		if (!id) return null;
+
+		const pautaData = await this.prisma.pauta.findUnique({
+			where: { id },
+			include: {
+				projetos: true,
 			},
 		});
-		return resposta;
+
+		if (!pautaData) return null;
+
+		return {
+			id: pautaData.id,
+			nome: pautaData.nome,
+			projetos: pautaData.projetos,
+		};
 	}
 
-	async buscarPorNome(nome: string) {
-		const prisma = prismaClient;
+	async buscarPorNome({
+		nome,
+	}: Pick<SearchPautaDTO, "nome">): Promise<ResponsePautaDTO | null> {
+		if (!nome) return null;
 
-		const resposta = await prisma.pauta.findUnique({
-			where: {
-				nome: nome,
+		const pautaData = await this.prisma.pauta.findFirst({
+			where: { nome },
+			include: {
+				projetos: true,
 			},
 		});
-		return resposta;
+
+		if (!pautaData) return null;
+
+		return {
+			id: pautaData.id,
+			nome: pautaData.nome,
+			projetos: pautaData.projetos,
+		};
 	}
 }

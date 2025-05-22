@@ -78,7 +78,7 @@ export async function DELETE(
 				: resposta.mensagem?.includes("não encontrado")
 					? 404
 					: resposta.mensagem?.includes("registros relacionados")
-						? 409 // Conflict if related records exist
+						? 409
 						: 400,
 		});
 	} catch (error) {

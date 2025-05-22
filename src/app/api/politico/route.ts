@@ -33,15 +33,14 @@ export async function POST(request: NextRequest) {
 		const controller = new CriarPoliticoController();
 		const resposta = await controller.executar(body as CreatePoliticoDTO);
 
-		// Check for specific messages to return different status codes
-		let status = 201; // Created
+		let status = 201;
 		if (!resposta.sucesso) {
 			if (resposta.mensagem?.includes("Faltam informações obrigatórias")) {
-				status = 400; // Bad Request
+				status = 400;
 			} else if (resposta.mensagem?.includes("ID relacionado inválido")) {
-				status = 400; // Bad Request (Foreign Key error)
+				status = 400;
 			} else {
-				status = 400; // Generic Bad Request for other controller errors
+				status = 400;
 			}
 		}
 
@@ -57,7 +56,7 @@ export async function GET() {
 		const resposta = await controller.executar();
 
 		return NextResponse.json(resposta, {
-			status: resposta.sucesso ? 200 : 404, // 404 if no politicos found based on controller message
+			status: resposta.sucesso ? 200 : 404,
 		});
 	} catch (error) {
 		return handleError(error, "Erro ao listar políticos");

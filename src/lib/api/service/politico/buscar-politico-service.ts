@@ -5,7 +5,6 @@ export interface IBuscarPoliticoService {
 	buscarPorId(
 		params: Pick<SearchPoliticoDTO, "id">
 	): Promise<ResponsePoliticoDTO | null>;
-	// No unique fields other than ID in schema for specific lookup methods
 }
 
 export class BuscarPoliticoService implements IBuscarPoliticoService {

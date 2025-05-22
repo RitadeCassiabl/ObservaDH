@@ -49,11 +49,11 @@ export async function PATCH(
 		let status = 200;
 		if (!resposta.sucesso) {
 			if (resposta.mensagem?.includes("não foi encontrado")) {
-				status = 404; // Not Found
+				status = 404;
 			} else if (resposta.mensagem?.includes("Já existe outro")) {
-				status = 409; // Conflict
+				status = 409;
 			} else {
-				status = 400; // Generic Bad Request
+				status = 400;
 			}
 		}
 
@@ -80,11 +80,11 @@ export async function DELETE(
 		let status = 200;
 		if (!resposta.sucesso) {
 			if (resposta.mensagem?.includes("não foi encontrado")) {
-				status = 404; // Not Found
+				status = 404;
 			} else if (resposta.mensagem?.includes("projetos relacionados")) {
-				status = 409; // Conflict
+				status = 409;
 			} else {
-				status = 400; // Generic Bad Request
+				status = 400;
 			}
 		}
 
