@@ -35,32 +35,3 @@ export class CriarProjetoService {
 		return resposta;
 	}
 }
-// data: {
-//   ano: projeto.ano,
-//   numeroPl: projeto.numeroPl,
-//   pautaId: projeto.pautaId,
-//   pauta: projeto.pauta,
-//   justificativa: projeto.justificativa,
-//   ementa: projeto.ementa,
-//   ...(projeto.esferaId
-//     ? { esferaId: projeto.esferaId }
-//     : projeto.esfera
-//     ? { esfera: { create: projeto.esfera } }
-//     : {}),
-//   autores: {
-//     create: [],
-//   },
-//   partidos: {
-//     create: [],
-//   },
-//   direitosViolados: {
-//     create: [],
-//   },
-//   ideologias: {
-//     create: [],
-//   },
-// },
-
-// });
-//   }
-// }
