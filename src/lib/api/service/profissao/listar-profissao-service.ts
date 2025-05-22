@@ -1,11 +1,24 @@
+import { ResponseProfissaoDTO } from "@/dtos/profissao.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class ListarProfissoesService {
-	async executar() {
-		const prisma = prismaClient;
+export interface IListarProfissaoService {
+	executar(): Promise<ResponseProfissaoDTO[]>;
+}
 
-		const resposta = prisma.profissao.findMany();
+export class ListarProfissaoService implements IListarProfissaoService {
+	constructor(private readonly prisma = prismaClient) {}
 
-		return resposta;
+	async executar(): Promise<ResponseProfissaoDTO[]> {
+		const profissoes = await this.prisma.profissao.findMany({
+			include: {
+				politicos: true,
+			},
+		});
+
+		return profissoes.map((profissao) => ({
+			id: profissao.id,
+			nome: profissao.nome,
+			politicos: profissao.politicos,
+		}));
 	}
 }
