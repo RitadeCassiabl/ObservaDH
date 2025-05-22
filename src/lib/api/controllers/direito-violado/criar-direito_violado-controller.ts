@@ -1,60 +1,77 @@
 import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
 import { CriarDireitoVioladoService } from "../../service/direito-violado/criar-direito_violado-service";
 
-import { DireitoViolado } from "@/domain/models/direito-violado";
 import { RespostaApi } from "@/domain/models/resposta-api";
+import {
+	CreateDireitoVioladoDTO,
+	ResponseDireitoVioladoDTO,
+} from "@/dtos/direito-violado.dto";
+
+interface IBuscarDireitoVioladoService {
+	buscarPorNome(params: {
+		nome: string;
+	}): Promise<ResponseDireitoVioladoDTO | null>;
+}
+
+interface ICriarDireitoVioladoService {
+	executar(params: CreateDireitoVioladoDTO): Promise<ResponseDireitoVioladoDTO>;
+}
 
 export class CriarDireitoVioladoController {
-	async executar({
-		nome,
-		descricao,
-		sigla,
-		projetos,
-	}: {
-		nome: string;
-		descricao: string;
-		sigla: string;
-		projetos?: string[];
-	}) {
-		if (!nome || sigla || descricao) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Estão faltando infomações para a criação do direito violado",
-			});
-		}
+	private readonly buscarDireitoVioladoService: IBuscarDireitoVioladoService;
+	private readonly criarDireitoVioladoService: ICriarDireitoVioladoService;
 
-		const serviceAuxiliar = new BuscarDireitoVioladoService();
+	constructor(
+		buscarDireitoVioladoService?: IBuscarDireitoVioladoService,
+		criarDireitoVioladoService?: ICriarDireitoVioladoService
+	) {
+		this.buscarDireitoVioladoService =
+			buscarDireitoVioladoService || new BuscarDireitoVioladoService();
+		this.criarDireitoVioladoService =
+			criarDireitoVioladoService || new CriarDireitoVioladoService();
+	}
 
-		const existe = await serviceAuxiliar.buscarPorNome({ nome: nome });
+	async executar(params: CreateDireitoVioladoDTO): Promise<RespostaApi> {
+		try {
+			const { nome, sigla, descricao } = params;
 
-		if (existe) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "O direito violado já existe",
-			});
-		}
+			if (!nome || !sigla || !descricao) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem:
+						"Nome, sigla e descrição são obrigatórios para criar o Direito Violado",
+				});
+			}
 
-		const direitoViolado = new DireitoViolado({
-			nome: nome,
-			sigla: sigla,
-			descricao: descricao,
-			projetos: projetos,
-		});
+			const direitoVioladoExisteNome =
+				await this.buscarDireitoVioladoService.buscarPorNome({
+					nome: nome,
+				});
 
-		const service = new CriarDireitoVioladoService();
+			if (direitoVioladoExisteNome) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Já existe um Direito Violado com este nome",
+				});
+			}
 
-		const resposta = await service.executar({ direitoViolado: direitoViolado });
+			const direitoVioladoCriado =
+				await this.criarDireitoVioladoService.executar(params);
 
-		if (resposta) {
 			return new RespostaApi({
 				sucesso: true,
-				mensagem: "Direito Violado criado com sucesso",
-				dados: resposta,
+				mensagem: "O Direito Violado foi criado com sucesso",
+				dados: direitoVioladoCriado,
 			});
-		} else {
+		} catch (error: unknown) {
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um problema na criação do Direito Violado";
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Houve algum problema na criação do direito violado",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

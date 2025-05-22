@@ -1,41 +1,85 @@
+import { RespostaApi } from "@/domain/models/resposta-api";
+import {
+	DeleteDireitoVioladoDTO,
+	ResponseDireitoVioladoDTO,
+} from "@/dtos/direito-violado.dto";
+
+interface IBuscarDireitoVioladoService {
+	buscarPorId(params: {
+		id: string;
+	}): Promise<ResponseDireitoVioladoDTO | null>;
+}
+
 import { BuscarDireitoVioladoService } from "../../service/direito-violado/buscar-direito_violado-service";
 import { DeletarDireitoVioladoService } from "../../service/direito-violado/deletar-direito_violado-service";
 
-import { RespostaApi } from "@/domain/models/resposta-api";
+import { ResponseDeleteDireitoVioladoDTO } from "@/dtos/direito-violado.dto";
+
+interface IDeletarDireitoVioladoService {
+	executar(params: { id: string }): Promise<ResponseDeleteDireitoVioladoDTO>;
+}
 
 export class DeletarDireitoVioladoController {
-	async executar({ id }: { id: string }) {
-		if (!id) {
+	private readonly buscarDireitoVioladoService: IBuscarDireitoVioladoService;
+	private readonly deletarDireitoVioladoService: IDeletarDireitoVioladoService;
+
+	constructor(
+		buscarDireitoVioladoService?: IBuscarDireitoVioladoService,
+		deletarDireitosVioladosService?: IDeletarDireitoVioladoService
+	) {
+		this.buscarDireitoVioladoService =
+			buscarDireitoVioladoService || new BuscarDireitoVioladoService();
+		this.deletarDireitoVioladoService =
+			deletarDireitosVioladosService || new DeletarDireitoVioladoService();
+	}
+
+	async executar({ id }: DeleteDireitoVioladoDTO): Promise<RespostaApi> {
+		try {
+			if (!id || id.trim() === "") {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "ID do Direito Violado não fornecido ou inválido",
+				});
+			}
+
+			const direitoVioladoExistente =
+				await this.buscarDireitoVioladoService.buscarPorId({
+					id: id,
+				});
+
+			if (!direitoVioladoExistente) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "O Direito Violado não foi encontrado",
+				});
+			}
+
+			const resultadoDelecao = await this.deletarDireitoVioladoService.executar(
+				{
+					id: id,
+				}
+			);
+
+			if (resultadoDelecao.sucesso) {
+				return new RespostaApi({
+					sucesso: true,
+					mensagem: "O Direito Violado foi deletado com sucesso",
+				});
+			} else {
+				throw new Error("Falha na operação de deleção");
+			}
+		} catch (error) {
+			console.error("Erro ao deletar Direito Violado:", error);
+
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um erro ao deletar o Direito Violado";
+
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Faltam informações para deletar o direito violado",
-			});
-		}
-
-		const serviceAuxiliar = new BuscarDireitoVioladoService();
-
-		const existe = await serviceAuxiliar.buscarPorId({ id: id });
-
-		if (!existe) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "O direito violado já não existe",
-			});
-		}
-
-		const service = new DeletarDireitoVioladoService();
-
-		const resposta = await service.executar({ id: id });
-
-		if (resposta) {
-			return new RespostaApi({
-				sucesso: true,
-				mensagem: "O direito violado foi deletado com sucesso",
-			});
-		} else {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "O direito violado não foi deletado por algum motivo",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

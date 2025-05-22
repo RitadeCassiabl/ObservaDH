@@ -1,9 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { z } from "zod";
+
 export interface CreateDireitoVioladoDTO {
-	nome: string; // unico
+	nome: string;
 	sigla: string;
 	descricao: string;
 }
+
+export const CreateDireitoVioladoSchema = z.object({
+	nome: z.string().min(3, "Nome precisa ter ao menos 3 caracteres"),
+	sigla: z.string().min(1, "Sigla não pode ser vazia"),
+	descricao: z.string().min(10, "Descrição muito curta"),
+});
 
 export interface ResponseDireitoVioladoDTO {
 	id: string;
@@ -15,12 +23,19 @@ export interface ResponseDireitoVioladoDTO {
 
 export interface UpdateDireitoVioladoDTO {
 	id: string;
-	nome: string;
-	sigla: string;
-	descricao: string;
+	nome?: string;
+	sigla?: string;
+	descricao?: string;
 }
 
-export interface DeleteDireitoViladoDTO {
+export const UpdateDireitoVioladoSchema = z.object({
+	id: z.string().uuid("ID inválido"),
+	nome: z.string().min(3, "Nome precisa ter ao menos 3 caracteres").optional(),
+	sigla: z.string().min(1, "Sigla não pode ser vazia").optional(),
+	descricao: z.string().min(10, "Descrição muito curta").optional(),
+});
+
+export interface DeleteDireitoVioladoDTO {
 	id: string;
 }
 

@@ -1,27 +1,72 @@
+import {
+	ResponseDireitoVioladoDTO,
+	SearchDireitoVioladoDTO,
+} from "@/dtos/direito-violado.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class BuscarDireitoVioladoService {
-	async buscarPorId({ id }: { id: string }) {
-		const prisma = prismaClient;
+export interface IBuscarDireitoVioladoService {
+	buscarPorId(
+		params: Pick<SearchDireitoVioladoDTO, "id">
+	): Promise<ResponseDireitoVioladoDTO | null>;
+	buscarPorNome(
+		params: Pick<SearchDireitoVioladoDTO, "nome">
+	): Promise<ResponseDireitoVioladoDTO | null>;
+}
 
-		const resposta = await prisma.direitoViolado.findUnique({
-			where: {
-				id: id,
+export class BuscarDireitoVioladoService
+	implements IBuscarDireitoVioladoService
+{
+	constructor(private readonly prisma = prismaClient) {}
+
+	async buscarPorId({
+		id,
+	}: Pick<
+		SearchDireitoVioladoDTO,
+		"id"
+	>): Promise<ResponseDireitoVioladoDTO | null> {
+		if (!id) return null;
+
+		const direitoVioladoData = await this.prisma.direitoViolado.findUnique({
+			where: { id },
+			include: {
+				projetos: true,
 			},
 		});
 
-		return resposta;
+		if (!direitoVioladoData) return null;
+
+		return {
+			id: direitoVioladoData.id,
+			nome: direitoVioladoData.nome,
+			sigla: direitoVioladoData.sigla,
+			descricao: direitoVioladoData.descricao,
+			projetos: direitoVioladoData.projetos,
+		};
 	}
 
-	async buscarPorNome({ nome }: { nome: string }) {
-		const prisma = prismaClient;
+	async buscarPorNome({
+		nome,
+	}: Pick<
+		SearchDireitoVioladoDTO,
+		"nome"
+	>): Promise<ResponseDireitoVioladoDTO | null> {
+		if (!nome) return null;
 
-		const resposta = await prisma.direitoViolado.findFirst({
-			where: {
-				nome: nome,
+		const direitoVioladoData = await this.prisma.direitoViolado.findFirst({
+			where: { nome },
+			include: {
+				projetos: true,
 			},
 		});
 
-		return resposta;
+		if (!direitoVioladoData) return null;
+
+		return {
+			id: direitoVioladoData.id,
+			nome: direitoVioladoData.nome,
+			sigla: direitoVioladoData.sigla,
+			descricao: direitoVioladoData.descricao,
+			projetos: direitoVioladoData.projetos,
+		};
 	}
 }

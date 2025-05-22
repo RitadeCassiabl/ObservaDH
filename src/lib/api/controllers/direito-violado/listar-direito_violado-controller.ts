@@ -1,23 +1,44 @@
-import { ListarDireitoVioladoService } from "../../service/direito-violado/listar-direito_violado_service";
+import {
+	IListarDireitoVioladoService,
+	ListarDireitoVioladoService,
+} from "../../service/direito-violado/listar-direito_violado_service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 
-export class ListarDireitoVioladoController {
-	async executar() {
-		const service = new ListarDireitoVioladoService();
+export interface IListarDireitoVioladoController {
+	executar(): Promise<RespostaApi>;
+}
 
-		const resposta = await service.executar();
+export class ListarDireitoVioladoController
+	implements IListarDireitoVioladoController
+{
+	constructor(
+		private readonly listarDireitoVioladoService: IListarDireitoVioladoService = new ListarDireitoVioladoService()
+	) {}
 
-		if (resposta) {
-			return new RespostaApi({
-				sucesso: true,
-				mensagem: `${resposta.length} direito(s) violado(s) foram encontrados`,
-				dados: resposta,
-			});
-		} else {
+	async executar(): Promise<RespostaApi> {
+		try {
+			const direitosViolados =
+				await this.listarDireitoVioladoService.executar();
+
+			if (direitosViolados.length > 0) {
+				return new RespostaApi({
+					sucesso: true,
+					mensagem: `${direitosViolados.length} Direito(s) Violado(s) foram encontrados`,
+					dados: direitosViolados,
+				});
+			} else {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Nenhum Direito Violado foi encontrado",
+					dados: [],
+				});
+			}
+		} catch (error) {
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Nenhum direito violado foi encontrado",
+				mensagem: "Erro ao listar Direitos Violados",
+				dados: error instanceof Error ? error.message : String(error),
 			});
 		}
 	}
