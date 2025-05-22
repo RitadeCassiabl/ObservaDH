@@ -1,27 +1,46 @@
-import { Esfera } from "@/domain/models/esfera";
-import { ResponseEsferaDTO } from "@/dtos/esfera.dto";
+import { ResponseEsferaDTO, UpdateEsferaDTO } from "@/dtos/esfera.dto";
 import { prismaClient } from "@/services/prisma/prisma";
-export class AtualizarEsferaService {
+
+interface IAtualizarEsferaService {
+	executar(params: { esfera: UpdateEsferaDTO }): Promise<ResponseEsferaDTO>;
+}
+
+export class AtualizarEsferaService implements IAtualizarEsferaService {
 	private readonly prisma = prismaClient;
-	async executar({ esfera }: { esfera: Esfera }): Promise<ResponseEsferaDTO> {
+
+	async executar({
+		esfera,
+	}: {
+		esfera: UpdateEsferaDTO;
+	}): Promise<ResponseEsferaDTO> {
 		try {
 			if (!esfera || !esfera.id) {
 				throw new Error("Dados inválidos para atualização da esfera");
 			}
-			const dadosAtualizacao: { nome?: string } = {};
 
-			if (esfera.nome) {
+			const dadosAtualizacao: {
+				nome?: string;
+			} = {};
+
+			if (esfera.nome !== undefined) {
 				dadosAtualizacao.nome = esfera.nome;
 			}
+
 			if (Object.keys(dadosAtualizacao).length === 0) {
 				throw new Error("Nenhum campo fornecido para atualização");
 			}
+
 			const esferaAtualizada = await this.prisma.esfera.update({
 				where: {
 					id: esfera.id,
 				},
 				data: dadosAtualizacao,
+				select: {
+					id: true,
+					nome: true,
+				},
 			});
+
 			return {
 				id: esferaAtualizada.id,
 				nome: esferaAtualizada.nome,
@@ -34,10 +53,6 @@ export class AtualizarEsferaService {
 				};
 				if (prismaError.code === "P2025") {
 					throw new Error(`Esfera com ID ${esfera.id} não encontrada`);
-				}
-
-				if (prismaError.code === "P2002") {
-					throw new Error(`Já existe uma esfera com este nome`);
 				}
 			}
 

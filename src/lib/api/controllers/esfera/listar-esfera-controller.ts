@@ -8,6 +8,7 @@ import { RespostaApi } from "@/domain/models/resposta-api";
 export interface IListarEsferaController {
 	executar(): Promise<RespostaApi>;
 }
+
 export class ListarEsferaController implements IListarEsferaController {
 	constructor(
 		private readonly listarEsferaService: IListarEsferaService = new ListarEsferaService()

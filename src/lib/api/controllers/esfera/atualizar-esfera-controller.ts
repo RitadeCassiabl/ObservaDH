@@ -1,25 +1,21 @@
 import { AtualizarEsferaService } from "../../service/esfera/atualizar-esfera-service";
 import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service";
 
-import { Esfera } from "@/domain/models/esfera";
 import { RespostaApi } from "@/domain/models/resposta-api";
-import {
-	ResponseEsferaDTO,
-	UpdateEsferaDTO,
-	UpdateEsferaSchema,
-} from "@/dtos/esfera.dto";
+import { ResponseEsferaDTO, UpdateEsferaDTO } from "@/dtos/esfera.dto";
 
 interface IBuscarEsferaService {
 	buscarPorId(params: { id: string }): Promise<ResponseEsferaDTO | null>;
-	buscarPorNome(params: { nome: string }): Promise<ResponseEsferaDTO | null>;
 }
 
 interface IAtualizarEsferaService {
-	executar(params: { esfera: Esfera }): Promise<ResponseEsferaDTO>;
+	executar(params: { esfera: UpdateEsferaDTO }): Promise<ResponseEsferaDTO>;
 }
+
 export class AtualizarEsferaController {
 	private readonly buscarEsferaService: IBuscarEsferaService;
 	private readonly atualizarEsferaService: IAtualizarEsferaService;
+
 	constructor(
 		buscarEsferaService?: IBuscarEsferaService,
 		atualizarEsferaService?: IAtualizarEsferaService
@@ -31,79 +27,60 @@ export class AtualizarEsferaController {
 
 	async executar(params: UpdateEsferaDTO): Promise<RespostaApi> {
 		try {
-			let dadosValidados: UpdateEsferaDTO;
-			try {
-				dadosValidados = UpdateEsferaSchema.parse({
-					id: params.id,
-					nome: params.nome,
-				});
-			} catch (error) {
-				return new RespostaApi({
-					sucesso: false,
-					mensagem: "Dados inválidos",
-					dados: error,
-				});
-			}
-			const { id, nome } = dadosValidados;
+			const { id, nome } = params;
 
-			if (!id || !nome) {
+			if (!id) {
 				return new RespostaApi({
 					sucesso: false,
-					mensagem: "Estão faltando informações para a alteração da esfera",
+					mensagem: "ID da esfera não fornecido",
 				});
 			}
 
-			const esferaExiste = await this.buscarEsferaService.buscarPorId({ id });
+			if (nome === undefined) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem:
+						"É necessário fornecer pelo menos um campo para atualização (nome)",
+				});
+			}
 
-			if (!esferaExiste) {
+			const esferaExistente = await this.buscarEsferaService.buscarPorId({
+				id,
+			});
+
+			if (!esferaExistente) {
 				return new RespostaApi({
 					sucesso: false,
 					mensagem: "A esfera não foi encontrada",
 				});
 			}
 
-			if (nome && nome === esferaExiste.nome) {
-				const esferaComMesmoNome = await this.buscarEsferaService.buscarPorNome(
-					{
-						nome,
-					}
-				);
-				if (esferaComMesmoNome) {
-					return new RespostaApi({
-						sucesso: false,
-						mensagem: "A nova esfera já existe",
-					});
-				}
-			}
-			const esferaAtualizada = new Esfera({
-				id: esferaExiste.id,
-				nome: nome || esferaExiste.nome,
+			const esferaAtualizada = await this.atualizarEsferaService.executar({
+				esfera: params,
 			});
 
-			const esferaAtualizadaResult = await this.atualizarEsferaService.executar(
-				{
-					esfera: esferaAtualizada,
-				}
-			);
-
-			if (esferaAtualizadaResult) {
+			if (esferaAtualizada) {
 				return new RespostaApi({
 					sucesso: true,
 					mensagem: "A esfera foi atualizada com sucesso",
 					dados: esferaAtualizada,
 				});
+			} else {
+				throw new Error("Falha na operação de atualização");
 			}
 		} catch (error) {
+			console.error("Erro ao atualizar esfera:", error);
+
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Ocorreu um erro durante a atualização da esfera";
+
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Erro ao validar os dados",
-				dados: error,
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
-
-		return new RespostaApi({
-			sucesso: false,
-			mensagem: "Não foi possível atualizar a esfera",
-		});
 	}
 }

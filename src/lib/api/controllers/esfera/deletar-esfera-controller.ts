@@ -2,19 +2,16 @@ import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service"
 import { DeletarEsferaService } from "../../service/esfera/deletar-esfera-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import {
-	DeleteEsferaDTO,
-	ResponseDeleteEsferaDTO,
-	ResponseEsferaDTO,
-} from "@/dtos/esfera.dto";
+import { DeleteEsferaDTO, ResponseEsferaDTO } from "@/dtos/esfera.dto";
 
 interface IBuscarEsferaService {
 	buscarPorId(params: { id: string }): Promise<ResponseEsferaDTO | null>;
-	buscarPorNome(params: { nome: string }): Promise<ResponseEsferaDTO | null>;
 }
 
+import { ResponseDeleteEsferaDTO } from "@/dtos/esfera.dto";
+
 interface IDeletarEsferaService {
-	executar({ id }: DeleteEsferaDTO): Promise<ResponseDeleteEsferaDTO>;
+	executar(params: { id: string }): Promise<ResponseDeleteEsferaDTO>;
 }
 
 export class DeletarEsferaController {
@@ -23,12 +20,13 @@ export class DeletarEsferaController {
 
 	constructor(
 		buscarEsferaService?: IBuscarEsferaService,
-		deletarEsferaService?: IDeletarEsferaService
+		deleterEsferaService?: IDeletarEsferaService
 	) {
 		this.buscarEsferaService = buscarEsferaService || new BuscarEsferaService();
 		this.deletarEsferaService =
-			deletarEsferaService || new DeletarEsferaService();
+			deleterEsferaService || new DeletarEsferaService();
 	}
+
 	async executar({ id }: DeleteEsferaDTO): Promise<RespostaApi> {
 		try {
 			if (!id || id.trim() === "") {
@@ -49,28 +47,30 @@ export class DeletarEsferaController {
 				});
 			}
 
-			const esferaDeletada = await this.deletarEsferaService.executar({
+			const resultadoDelecao = await this.deletarEsferaService.executar({
 				id: id,
 			});
 
-			if (esferaDeletada) {
+			if (resultadoDelecao.sucesso) {
 				return new RespostaApi({
 					sucesso: true,
 					mensagem: "A esfera foi deletada com sucesso",
-					dados: esferaDeletada,
 				});
 			} else {
-				return new RespostaApi({
-					sucesso: false,
-					mensagem: "Erro ao deletar a esfera",
-				});
+				throw new Error("Falha na operação de deleção");
 			}
 		} catch (error) {
 			console.error("Erro ao deletar esfera:", error);
+
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um erro ao deletar a esfera";
+
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Erro interno do servidor",
-				dados: error,
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

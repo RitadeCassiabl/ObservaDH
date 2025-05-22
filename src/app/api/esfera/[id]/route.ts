@@ -7,16 +7,28 @@ import { BuscarEsferaController } from "@/lib/api/controllers/esfera/buscar-esfe
 import { DeletarEsferaController } from "@/lib/api/controllers/esfera/deletar-esfera-controller";
 
 function validateId(id?: string): NextResponse | undefined {
-	if (!id) {
+	if (!id || id.trim() === "") {
 		const respostaIdInvalido = new RespostaApi({
 			sucesso: false,
-			mensagem: "ID do estado não fornecido ou inválido",
+			mensagem: "ID da esfera não fornecido ou inválido",
 		});
-		return NextResponse.json({ respostaIdInvalido }, { status: 400 });
+		return NextResponse.json(respostaIdInvalido, { status: 400 });
 	}
 	return undefined;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function handleError(error: any, message: string) {
+	console.error(message, error);
+	const respostaException = new RespostaApi({
+		sucesso: false,
+		mensagem: `Ocorreu um erro inesperado no servidor: ${message}`,
+		dados: process.env.NODE_ENV === "development" ? error : undefined,
+	});
+	return NextResponse.json(respostaException, { status: 500 });
+}
+
+// ! Handler - Atualização de Esfera
 export async function PATCH(
 	request: NextRequest,
 	{ params }: { params: { id?: string } }
@@ -26,29 +38,27 @@ export async function PATCH(
 		if (idError) return idError;
 
 		const body = await request.json().catch(() => ({}));
-		const { nome } = body as UpdateEsferaDTO;
+		const updateData = { id: params.id as string, ...body } as UpdateEsferaDTO;
 
 		const controller = new AtualizarEsferaController();
+		const resposta = (await controller.executar(updateData)) as RespostaApi;
 
-		const resposta = await controller.executar({
-			id: params.id as string,
-			nome,
-		});
+		let status = 200;
+		if (!resposta.sucesso) {
+			if (resposta.mensagem?.includes("não foi encontrada")) {
+				status = 404; // Not Found
+			} else {
+				status = 400; // Generic Bad Request
+			}
+		}
 
-		return NextResponse.json(
-			{ resposta },
-			{ status: resposta.sucesso ? 200 : 400 }
-		);
+		return NextResponse.json(resposta, { status });
 	} catch (error) {
-		const resposta = new RespostaApi({
-			sucesso: false,
-			mensagem: "Ocorreu um erro inesperado",
-			dados: error,
-		});
-		return NextResponse.json({ resposta }, { status: 500 });
+		return handleError(error, "Erro ao atualizar esfera");
 	}
 }
 
+// ! Handler - Deletar Esfera
 export async function DELETE(
 	request: NextRequest,
 	{ params }: { params: { id?: string } }
@@ -58,53 +68,46 @@ export async function DELETE(
 		if (idError) return idError;
 
 		const controller = new DeletarEsferaController();
-
 		const resposta = (await controller.executar({
 			id: params.id as string,
 		})) as RespostaApi;
 
-		return NextResponse.json(
-			{ resposta },
-			{ status: resposta.sucesso ? 200 : 400 }
-		);
+		let status = 200;
+		if (!resposta.sucesso) {
+			if (resposta.mensagem?.includes("não foi encontrada")) {
+				status = 404; // Not Found
+			} else if (
+				resposta.mensagem?.includes("políticos ou projetos relacionados")
+			) {
+				status = 409; // Conflict (Foreign Key error due to linked records)
+			} else {
+				status = 400; // Generic Bad Request
+			}
+		}
+
+		return NextResponse.json(resposta, { status });
 	} catch (error) {
-		const respostaApi = new RespostaApi({
-			sucesso: false,
-			mensagem: "Ocorreu um erro inesperado",
-			dados: error,
-		});
-		return NextResponse.json({ respostaApi }, { status: 500 });
+		return handleError(error, "Erro ao deletar esfera");
 	}
 }
 
+// ! Handler - Buscar Esfera por ID
 export async function GET(
-	request: NextRequest,
-	{ params }: { params: { id?: string } }
+	request: Request,
+	{ params }: { params: { id: string } }
 ) {
 	try {
+		const idError = validateId(params.id);
+		if (idError) return idError;
+
 		const { id } = params;
-		if (!id) {
-			const resposta = new RespostaApi({
-				sucesso: false,
-				mensagem: "Estão faltando informações para a busca da esfera",
-			});
-			return NextResponse.json({ resposta }, { status: 400 });
-		}
-
 		const controller = new BuscarEsferaController();
+		const resposta = await controller.executar(id);
 
-		const resposta = await controller.buscarPorId(id);
-
-		return NextResponse.json(
-			{ resposta },
-			{ status: resposta.sucesso ? 200 : 404 }
-		);
-	} catch (error) {
-		const respostaApi = new RespostaApi({
-			sucesso: false,
-			mensagem: "Ocorreu um erro inesperado",
-			dados: error,
+		return NextResponse.json(resposta, {
+			status: resposta.sucesso ? 200 : 404,
 		});
-		return NextResponse.json({ respostaApi }, { status: 500 });
+	} catch (error) {
+		return handleError(error, "Erro ao buscar esfera por ID");
 	}
 }

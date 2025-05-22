@@ -1,7 +1,11 @@
 import { DeleteEsferaDTO, ResponseDeleteEsferaDTO } from "@/dtos/esfera.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class DeletarEsferaService {
+interface IDeletarEsferaService {
+	executar(params: { id: string }): Promise<ResponseDeleteEsferaDTO>;
+}
+
+export class DeletarEsferaService implements IDeletarEsferaService {
 	private readonly prisma = prismaClient;
 
 	async executar({ id }: DeleteEsferaDTO): Promise<ResponseDeleteEsferaDTO> {
@@ -16,7 +20,6 @@ export class DeletarEsferaService {
 
 			return { sucesso: true };
 		} catch (error) {
-			console.error("Erro ao deletar esfera:", error);
 			if (typeof error === "object" && error !== null && "code" in error) {
 				const prismaError = error as { code?: string };
 				if (prismaError.code === "P2025") {
@@ -24,11 +27,13 @@ export class DeletarEsferaService {
 				}
 				if (prismaError.code === "P2003") {
 					throw new Error(
-						`Não é possível deletar a esfera pois existem registros relacionados`
+						`Não é possível deletar a esfera pois existem políticos ou projetos relacionados`
 					);
 				}
 			}
-			return { sucesso: false };
+
+			console.error("Erro ao deletar esfera:", error);
+			throw error;
 		}
 	}
 }
