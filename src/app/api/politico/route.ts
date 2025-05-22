@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { CreatePoliticoDTO } from "@/dtos/politico.dto";
+import { CreatePoliticoDTO } from "@/domain/dtos/politico.dto";
 import { CriarPoliticoController } from "@/lib/api/controllers/politico/criar-politico-controller";
 import { ListarPoliticoController } from "@/lib/api/controllers/politico/listar-politico-controller";
 

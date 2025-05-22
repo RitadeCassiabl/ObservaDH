@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { CreatePautaDTO } from "@/dtos/pauta.dto";
+import { CreatePautaDTO } from "@/domain/dtos/pauta.dto";
 import { CriarPautaController } from "@/lib/api/controllers/pauta/criar-pauta-controller";
 import { ListarPautaController } from "@/lib/api/controllers/pauta/listar-pauta-controller";
 

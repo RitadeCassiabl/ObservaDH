@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 
-import { CreateProfissaoDTO, ResponseProfissaoDTO } from "@/dtos/profissao.dto";
+import { CreateProfissaoDTO, ResponseProfissaoDTO } from "@/domain/dtos/profissao.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 interface ICriarProfissaoService {

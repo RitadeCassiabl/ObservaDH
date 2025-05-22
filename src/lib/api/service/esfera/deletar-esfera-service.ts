@@ -1,4 +1,4 @@
-import { DeleteEsferaDTO, ResponseDeleteEsferaDTO } from "@/dtos/esfera.dto";
+import { DeleteEsferaDTO, ResponseDeleteEsferaDTO } from "@/domain/dtos/esfera.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 interface IDeletarEsferaService {

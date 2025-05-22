@@ -2,13 +2,13 @@ import { BuscarProfissaoService } from "../../service/profissao/buscar-profissao
 import { DeletarProfissaoService } from "../../service/profissao/deletar-profissao-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { DeleteProfissaoDTO, ResponseProfissaoDTO } from "@/dtos/profissao.dto";
+import { DeleteProfissaoDTO, ResponseProfissaoDTO } from "@/domain/dtos/profissao.dto";
 
 interface IBuscarProfissaoService {
 	buscarPorId(params: { id: string }): Promise<ResponseProfissaoDTO | null>;
 }
 
-import { ResponseDeleteProfissaoDTO } from "@/dtos/profissao.dto";
+import { ResponseDeleteProfissaoDTO } from "@/domain/dtos/profissao.dto";
 
 interface IDeletarProfissaoService {
 	executar(params: { id: string }): Promise<ResponseDeleteProfissaoDTO>;

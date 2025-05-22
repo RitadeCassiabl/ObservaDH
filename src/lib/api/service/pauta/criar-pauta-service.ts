@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 
-import { CreatePautaDTO, ResponsePautaDTO } from "@/dtos/pauta.dto";
+import { CreatePautaDTO, ResponsePautaDTO } from "@/domain/dtos/pauta.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 interface ICriarPautaService {

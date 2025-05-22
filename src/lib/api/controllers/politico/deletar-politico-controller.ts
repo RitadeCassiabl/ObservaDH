@@ -2,13 +2,13 @@ import { BuscarPoliticoService } from "../../service/politico/buscar-politico-se
 import { DeletarPoliticoService } from "../../service/politico/deletar-politico-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { DeletePoliticoDTO, ResponsePoliticoDTO } from "@/dtos/politico.dto";
+import { DeletePoliticoDTO, ResponsePoliticoDTO } from "@/domain/dtos/politico.dto";
 
 interface IBuscarPoliticoService {
 	buscarPorId(params: { id: string }): Promise<ResponsePoliticoDTO | null>;
 }
 
-import { ResponseDeletePoliticoDTO } from "@/dtos/politico.dto";
+import { ResponseDeletePoliticoDTO } from "@/domain/dtos/politico.dto";
 
 interface IDeletarPoliticoService {
 	executar(params: { id: string }): Promise<ResponseDeletePoliticoDTO>;

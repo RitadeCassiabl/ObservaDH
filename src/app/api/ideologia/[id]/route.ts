@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { UpdateIdeologiaDTO } from "@/dtos/ideologia.dto";
+import { UpdateIdeologiaDTO } from "@/domain/dtos/ideologia.dto";
 import { AtualizarIdeologiaController } from "@/lib/api/controllers/ideologia/atualizar-ideologia-controller";
 import { BuscarIdeologiaController } from "@/lib/api/controllers/ideologia/buscar-ideologia-controller";
 import { DeletarIdeologiaController } from "@/lib/api/controllers/ideologia/deletar-ideologia-controller";

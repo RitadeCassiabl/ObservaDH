@@ -5,7 +5,7 @@ import { RespostaApi } from "@/domain/models/resposta-api";
 import {
 	ResponseDireitoVioladoDTO,
 	UpdateDireitoVioladoDTO,
-} from "@/dtos/direito-violado.dto";
+} from "@/domain/dtos/direito-violado.dto";
 
 interface IBuscarDireitoVioladoService {
 	buscarPorId(params: {

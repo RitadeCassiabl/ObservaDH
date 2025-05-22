@@ -1,7 +1,7 @@
 import { CriarIdeologiaService } from "../../service/ideologia/criar-ideologia-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { CreateIdeologiaDTO, ResponseIdeologiaDTO } from "@/dtos/ideologia.dto";
+import { CreateIdeologiaDTO, ResponseIdeologiaDTO } from "@/domain/dtos/ideologia.dto";
 
 interface ICriarIdeologiaService {
 	executar(params: CreateIdeologiaDTO): Promise<ResponseIdeologiaDTO>;

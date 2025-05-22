@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { UpdateEsferaDTO } from "@/dtos/esfera.dto";
+import { UpdateEsferaDTO } from "@/domain/dtos/esfera.dto";
 import { AtualizarEsferaController } from "@/lib/api/controllers/esfera/atualizar-esfera-controller";
 import { BuscarEsferaController } from "@/lib/api/controllers/esfera/buscar-esfera-controller";
 import { DeletarEsferaController } from "@/lib/api/controllers/esfera/deletar-esfera-controller";

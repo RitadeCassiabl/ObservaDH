@@ -8,7 +8,7 @@ import {
 	CreateEstadoDTO,
 	CreateEstadoSchema,
 	ResponseEstadoDTO,
-} from "@/dtos/estado.dto";
+} from "@/domain/dtos/estado.dto";
 
 interface IBuscarEstadoService {
 	buscarPorNome(params: { nome: string }): Promise<ResponseEstadoDTO | null>;

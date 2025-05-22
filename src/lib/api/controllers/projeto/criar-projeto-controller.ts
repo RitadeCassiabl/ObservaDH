@@ -2,7 +2,7 @@ import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-servi
 import { CriarProjetoService } from "../../service/projeto/criar-projeto-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { CreateProjetoDTO, ResponseProjetoDTO } from "@/dtos/projeto.dto";
+import { CreateProjetoDTO, ResponseProjetoDTO } from "@/domain/dtos/projeto.dto";
 
 interface IBuscarProjetoService {
 	buscarPorNumeroPl(params: {

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { UpdatePartidoDTO } from "@/dtos/partido.dto";
+import { UpdatePartidoDTO } from "@/domain/dtos/partido.dto";
 import { AtualizarPartidoController } from "@/lib/api/controllers/partido/atualizar-partido-controller";
 import { BuscarPartidoController } from "@/lib/api/controllers/partido/buscar-partido-controller";
 import { DeletarPartidoController } from "@/lib/api/controllers/partido/deletar-partido-controller";

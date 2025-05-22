@@ -1,4 +1,4 @@
-import { ResponsePartidoDTO, UpdatePartidoDTO } from "@/dtos/partido.dto";
+import { ResponsePartidoDTO, UpdatePartidoDTO } from "@/domain/dtos/partido.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 interface IAtualizarPartidoService {

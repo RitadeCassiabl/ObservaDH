@@ -6,7 +6,7 @@ import {
 	ResponseEstadoDTO,
 	UpdateEstadoDTO,
 	UpdateEstadoSchema,
-} from "@/dtos/estado.dto";
+} from "@/domain/dtos/estado.dto";
 
 interface IBuscarEstadoService {
 	buscarPorId(params: { id: string }): Promise<ResponseEstadoDTO | null>;

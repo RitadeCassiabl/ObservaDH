@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { CreateEstadoDTO } from "@/dtos/estado.dto";
+import { CreateEstadoDTO } from "@/domain/dtos/estado.dto";
 import { CriarEstadoController } from "@/lib/api/controllers/estado/criar-estado-controller";
 import { ListarEstadoController } from "@/lib/api/controllers/estado/listar-estado-controller";
 

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { UpdateProfissaoDTO } from "@/dtos/profissao.dto";
+import { UpdateProfissaoDTO } from "@/domain/dtos/profissao.dto";
 import { AtualizarProfissaoController } from "@/lib/api/controllers/profissao/atualizar-profissao-controller";
 import { BuscarProfissaoController } from "@/lib/api/controllers/profissao/buscar-profissao-controller";
 import { DeletarProfissaoController } from "@/lib/api/controllers/profissao/deletar-profissao-controller";

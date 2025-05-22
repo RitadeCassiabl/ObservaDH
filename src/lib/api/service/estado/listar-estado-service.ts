@@ -1,4 +1,4 @@
-import { ResponseEstadoDTO } from "@/dtos/estado.dto";
+import { ResponseEstadoDTO } from "@/domain/dtos/estado.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export interface IListarEstadoService {

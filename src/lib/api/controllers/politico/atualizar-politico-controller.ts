@@ -2,7 +2,7 @@ import { AtualizarPoliticoService } from "../../service/politico/atualizar-polit
 import { BuscarPoliticoService } from "../../service/politico/buscar-politico-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { ResponsePoliticoDTO, UpdatePoliticoDTO } from "@/dtos/politico.dto";
+import { ResponsePoliticoDTO, UpdatePoliticoDTO } from "@/domain/dtos/politico.dto";
 
 interface IBuscarPoliticoService {
 	buscarPorId(params: { id: string }): Promise<ResponsePoliticoDTO | null>;

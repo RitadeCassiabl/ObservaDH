@@ -2,13 +2,13 @@ import { BuscarPautaService } from "../../service/pauta/buscar-pauta-service";
 import { DeletarPautaService } from "../../service/pauta/deletar-pauta-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { DeletePautaDTO, ResponsePautaDTO } from "@/dtos/pauta.dto";
+import { DeletePautaDTO, ResponsePautaDTO } from "@/domain/dtos/pauta.dto";
 
 interface IBuscarPautaService {
 	buscarPorId(params: { id: string }): Promise<ResponsePautaDTO | null>;
 }
 
-import { ResponseDeletePautaDTO } from "@/dtos/pauta.dto";
+import { ResponseDeletePautaDTO } from "@/domain/dtos/pauta.dto";
 
 interface IDeletarPautaService {
 	executar(params: { id: string }): Promise<ResponseDeletePautaDTO>;

@@ -2,7 +2,7 @@ import { AtualizarPautaService } from "../../service/pauta/atualizar-pauta-servi
 import { BuscarPautaService } from "../../service/pauta/buscar-pauta-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { ResponsePautaDTO, UpdatePautaDTO } from "@/dtos/pauta.dto";
+import { ResponsePautaDTO, UpdatePautaDTO } from "@/domain/dtos/pauta.dto";
 
 interface IBuscarPautaService {
 	buscarPorId(params: { id: string }): Promise<ResponsePautaDTO | null>;

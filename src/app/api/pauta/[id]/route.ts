@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { UpdatePautaDTO } from "@/dtos/pauta.dto";
+import { UpdatePautaDTO } from "@/domain/dtos/pauta.dto";
 import { AtualizarPautaController } from "@/lib/api/controllers/pauta/atualizar-pauta-controller";
 import { BuscarPautaController } from "@/lib/api/controllers/pauta/buscar-pauta-controller";
 import { DeletarPautaController } from "@/lib/api/controllers/pauta/deletar-pauta-controller";

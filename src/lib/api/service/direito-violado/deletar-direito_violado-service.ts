@@ -1,7 +1,7 @@
 import {
 	DeleteDireitoVioladoDTO,
 	ResponseDeleteDireitoVioladoDTO,
-} from "@/dtos/direito-violado.dto";
+} from "@/domain/dtos/direito-violado.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 interface IDeletarDireitoVioladoService {

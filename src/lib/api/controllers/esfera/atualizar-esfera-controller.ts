@@ -2,7 +2,7 @@ import { AtualizarEsferaService } from "../../service/esfera/atualizar-esfera-se
 import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { ResponseEsferaDTO, UpdateEsferaDTO } from "@/dtos/esfera.dto";
+import { ResponseEsferaDTO, UpdateEsferaDTO } from "@/domain/dtos/esfera.dto";
 
 interface IBuscarEsferaService {
 	buscarPorId(params: { id: string }): Promise<ResponseEsferaDTO | null>;

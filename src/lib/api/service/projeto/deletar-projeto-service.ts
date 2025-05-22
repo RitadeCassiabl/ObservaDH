@@ -1,4 +1,4 @@
-import { DeleteProjetoDTO, ResponseDeleteProjetoDTO } from "@/dtos/projeto.dto";
+import { DeleteProjetoDTO, ResponseDeleteProjetoDTO } from "@/domain/dtos/projeto.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 interface IDeletarProjetoService {

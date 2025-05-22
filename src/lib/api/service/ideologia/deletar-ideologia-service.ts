@@ -1,7 +1,7 @@
 import {
 	DeleteIdeologiaDTO,
 	ResponseDeleteIdeologiaDTO,
-} from "@/dtos/ideologia.dto";
+} from "@/domain/dtos/ideologia.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 interface IDeletarIdeologiaService {

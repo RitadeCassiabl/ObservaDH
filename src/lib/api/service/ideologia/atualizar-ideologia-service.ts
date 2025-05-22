@@ -1,4 +1,4 @@
-import { ResponseIdeologiaDTO, UpdateIdeologiaDTO } from "@/dtos/ideologia.dto";
+import { ResponseIdeologiaDTO, UpdateIdeologiaDTO } from "@/domain/dtos/ideologia.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 interface IAtualizarIdeologiaService {

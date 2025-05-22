@@ -2,13 +2,13 @@ import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service"
 import { DeletarEsferaService } from "../../service/esfera/deletar-esfera-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { DeleteEsferaDTO, ResponseEsferaDTO } from "@/dtos/esfera.dto";
+import { DeleteEsferaDTO, ResponseEsferaDTO } from "@/domain/dtos/esfera.dto";
 
 interface IBuscarEsferaService {
 	buscarPorId(params: { id: string }): Promise<ResponseEsferaDTO | null>;
 }
 
-import { ResponseDeleteEsferaDTO } from "@/dtos/esfera.dto";
+import { ResponseDeleteEsferaDTO } from "@/domain/dtos/esfera.dto";
 
 interface IDeletarEsferaService {
 	executar(params: { id: string }): Promise<ResponseDeleteEsferaDTO>;

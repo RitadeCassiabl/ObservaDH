@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 
-import { CreateEstadoDTO, ResponseEstadoDTO } from "@/dtos/estado.dto";
+import { CreateEstadoDTO, ResponseEstadoDTO } from "@/domain/dtos/estado.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export class CriarEstadoService {

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { UpdateProjetoDTO } from "@/dtos/projeto.dto";
+import { UpdateProjetoDTO } from "@/domain/dtos/projeto.dto";
 import { AtualizarProjetoController } from "@/lib/api/controllers/projeto/atualizar-projeto-controller";
 import { BuscarProjetoController } from "@/lib/api/controllers/projeto/buscar-projeto-controller";
 import { DeletarProjetoController } from "@/lib/api/controllers/projeto/deletar-projeto-controller";

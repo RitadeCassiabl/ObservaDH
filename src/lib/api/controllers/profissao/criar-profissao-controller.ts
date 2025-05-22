@@ -2,7 +2,7 @@ import { BuscarProfissaoService } from "../../service/profissao/buscar-profissao
 import { CriarProfissaoService } from "../../service/profissao/criar-profissao-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { CreateProfissaoDTO, ResponseProfissaoDTO } from "@/dtos/profissao.dto";
+import { CreateProfissaoDTO, ResponseProfissaoDTO } from "@/domain/dtos/profissao.dto";
 
 interface IBuscarProfissaoService {
 	buscarPorNome(params: { nome: string }): Promise<ResponseProfissaoDTO | null>;

@@ -1,4 +1,4 @@
-import { ResponseIdeologiaDTO, SearchIdeologiaDTO } from "@/dtos/ideologia.dto";
+import { ResponseIdeologiaDTO, SearchIdeologiaDTO } from "@/domain/dtos/ideologia.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 export interface IBuscarIdeologiaService {

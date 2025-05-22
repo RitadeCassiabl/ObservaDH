@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
-import { CreatePartidoDTO } from "@/dtos/partido.dto";
+import { CreatePartidoDTO } from "@/domain/dtos/partido.dto";
 import { CriarPartidoController } from "@/lib/api/controllers/partido/criar-partido-controller";
 import { ListarPartidoController } from "@/lib/api/controllers/partido/listar-partido-controller";
 

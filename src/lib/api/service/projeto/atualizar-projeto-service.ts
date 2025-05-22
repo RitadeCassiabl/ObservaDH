@@ -1,4 +1,4 @@
-import { ResponseProjetoDTO, UpdateProjetoDTO } from "@/dtos/projeto.dto";
+import { ResponseProjetoDTO, UpdateProjetoDTO } from "@/domain/dtos/projeto.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
 interface IAtualizarProjetoService {
