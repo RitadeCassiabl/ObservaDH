@@ -1,15 +1,11 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { MdOutlineFilterAlt } from "react-icons/md";
 
 import { CarrosselPlsProps } from "@/domain/interfaces/carrossel-interface";
 import { elemento } from "@/domain/interfaces/elemento-dropdown";
 import { ProjetoLei } from "@/domain/interfaces/projeto-lei";
-
-import contarPautasPorAno from "@/lib/utils/projeto-utils/contar-pautas-por-ano";
-import contarProjetosPorAno from "@/lib/utils/projeto-utils/contar-projetos-por-ano";
-import obterAnosUnicos from "@/lib/utils/projeto-utils/obter-anos-unicos";
-import obterEsferasUnicas from "@/lib/utils/projeto-utils/obter-esferas-unicas";
-import obterEstadosUnicos from "@/lib/utils/projeto-utils/obter-estados-unico";
-import obterPautasUnicas from "@/lib/utils/projeto-utils/obter-pautas-unicas";
 
 import Card from "@/components/ui/cards";
 import Texto from "@/components/ui/componente-texto";
@@ -33,28 +29,78 @@ import {
 	projetosMock,
 } from "../../mocks/mock-projetos";
 
-const page: React.FC = () => {
-	const esferas = obterEsferasUnicas({ projetos: projetosMock });
-	const anos = obterAnosUnicos({ projetos: projetosMock });
+import { DadosGraficoBarraEmpilhadaHorizontal } from "@/domain/graficos/barra-empilhada-horizontal";
+import { DadosGraficoLinhaPontos } from "@/domain/graficos/linha-pontos";
+import { buscarEsferas } from "@/infra/api/esfera";
+import {
+	buscarAnoProjeto,
+	buscarPautasPorAno,
+	buscarProjetosPorAno,
+} from "@/infra/api/projeto";
+import EsferaDTO from "@/infra/domain/esfera-dto";
+import obterEstadosUnicos from "@/lib/web/mock-utils/projeto-utils/obter-estados-unico";
+import obterPautasUnicas from "@/lib/web/mock-utils/projeto-utils/obter-pautas-unicas";
+
+const Page: React.FC = () => {
+	const [esferas, setEsferas] = useState<EsferaDTO[]>([]);
+	const [anos, setAnos] = useState<string[]>([]);
+	const [dadosPlAno, setDadosPlAno] = useState<DadosGraficoLinhaPontos[]>();
+	const [dadosPautas, setDadosPautas] =
+		useState<DadosGraficoBarraEmpilhadaHorizontal[]>();
+
 	const estados = obterEstadosUnicos({ projetos: projetosMock });
 	const pautas = obterPautasUnicas({ projetos: projetosMock });
+
+	useEffect(() => {
+		const buscarDados = async () => {
+			const esferas = await buscarEsferas();
+			const anos = await buscarAnoProjeto();
+			const projetosPorAno = await buscarProjetosPorAno();
+			const projetosPorPauta = await buscarPautasPorAno();
+			setDadosPlAno(projetosPorAno);
+			setDadosPautas(projetosPorPauta);
+			setEsferas(esferas);
+			setAnos(anos);
+		};
+		buscarDados();
+	}, []);
+
+	const esferasElementos = esferas.map((esfera) => ({
+		titulo: esfera.nome ?? "",
+		value: esfera.id ?? "",
+	}));
+
+	const anosElementos = anos.map((ano) => ({
+		titulo: ano ?? "",
+		value: ano ?? "",
+	}));
+
+	const estadosElementos = estados.map((estado) => ({
+		titulo: estado.titulo ?? "",
+		value: estado.value ?? "",
+	}));
+
+	const pautasElementos = pautas.map((pauta) => ({
+		titulo: pauta.titulo ?? "",
+		value: pauta.value ?? "",
+	}));
 
 	const dropdownItems = [
 		{
 			titulo: "Esfera",
-			elementos: esferas,
+			elementos: esferasElementos,
 		},
 		{
 			titulo: "Ano",
-			elementos: anos,
+			elementos: anosElementos,
 		},
 		{
 			titulo: "Estado",
-			elementos: estados,
+			elementos: estadosElementos,
 		},
 		{
 			titulo: "Pauta",
-			elementos: pautas,
+			elementos: pautasElementos,
 		},
 	];
 
@@ -64,11 +110,18 @@ const page: React.FC = () => {
 				<Apresentacao apresentacao={apresentacao} />
 				<GraficoMapa />
 				<Divisor />
-				<PropostasDados items={dropdownItems} projetos={projetosMock} />
+				<PropostasDados
+					items={dropdownItems}
+					projetos={projetosMock}
+					dadosPlAno={dadosPlAno ?? []}
+					dadosPautas={dadosPautas ?? []}
+				/>
 			</div>
 		</MainLayout>
 	);
 };
+
+export default Page;
 
 interface apresentacaoProps {
 	apresentacao: {
@@ -159,7 +212,10 @@ const SubTitulo = () => {
 	);
 };
 
-const NumeroPls = () => {
+interface numeroPlsProps {
+	dados: DadosGraficoLinhaPontos[];
+}
+const NumeroPls = ({ dados }: numeroPlsProps) => {
 	return (
 		<section className="w-full flex justify-center gap-[4.5rem]">
 			<Card.Legenda
@@ -180,19 +236,19 @@ const NumeroPls = () => {
 					</Texto.Linha>
 				</Texto.Raiz>
 			</Card.Legenda>
-			<GraficoLinhaPontos
-				dados={contarProjetosPorAno({ data: projetosMock })}
-			/>
+			<GraficoLinhaPontos dados={dados} />
 		</section>
 	);
 };
 
-const NumeroPautas = () => {
+interface numeroPautasProps {
+	dados: DadosGraficoBarraEmpilhadaHorizontal[];
+}
+
+const NumeroPautas = ({ dados }: numeroPautasProps) => {
 	return (
 		<section className="w-full flex justify-center gap-[4.5rem]">
-			<GraficoBarraEmpilhadaHorizontal
-				dados={contarPautasPorAno(projetosMock)}
-			/>
+			<GraficoBarraEmpilhadaHorizontal dados={dados} />
 			<Card.Legenda
 				corTexto={legendas.find((item) => item.titulo === "Pautas")?.cor}
 				texto={legendas.find((item) => item.titulo === "Pautas")?.texto}
@@ -223,17 +279,23 @@ interface PropostasDadosProps {
 		titulo: string;
 	}[];
 	projetos: ProjetoLei[];
+	dadosPlAno: DadosGraficoLinhaPontos[];
+	dadosPautas: DadosGraficoBarraEmpilhadaHorizontal[];
 }
 
-const PropostasDados = ({ items, projetos }: PropostasDadosProps) => {
+const PropostasDados = ({
+	items,
+	projetos,
+	dadosPlAno,
+	dadosPautas,
+}: PropostasDadosProps) => {
 	return (
 		<>
 			<SubTitulo />
 			<Filtro items={items} />
 			<CarrosselPls projetos={projetos} />
-			<NumeroPls />
-			<NumeroPautas />
+			<NumeroPls dados={dadosPlAno} />
+			<NumeroPautas dados={dadosPautas} />
 		</>
 	);
 };
-export default page;

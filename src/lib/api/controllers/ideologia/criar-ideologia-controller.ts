@@ -1,53 +1,48 @@
-import { BuscarIdeologiaService } from "../../service/ideologia/buscar-ideologia-service";
 import { CriarIdeologiaService } from "../../service/ideologia/criar-ideologia-service";
 
-import { Ideologia } from "@/domain/models/ideologia";
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { CreateIdeologiaDTO, ResponseIdeologiaDTO } from "@/dtos/ideologia.dto";
+
+interface ICriarIdeologiaService {
+	executar(params: CreateIdeologiaDTO): Promise<ResponseIdeologiaDTO>;
+}
 
 export class CriarIdeologiaController {
-	async executar({
-		nome,
-		descricao,
-		sigla,
-	}: {
-		nome: string;
-		descricao: string;
-		sigla: string;
-	}) {
-		if (!nome || !sigla || !descricao) {
-			return {
-				sucesso: false,
-				mensagem: "Estão faltando informações para criar a ideologia",
-			};
-		}
+	private readonly criarIdeologiaService: ICriarIdeologiaService;
 
-		const serviceAuxiliar = new BuscarIdeologiaService();
+	constructor(criarIdeologiaService?: ICriarIdeologiaService) {
+		this.criarIdeologiaService =
+			criarIdeologiaService || new CriarIdeologiaService();
+	}
 
-		const existe = await serviceAuxiliar.buscarPorNome(nome);
+	async executar(params: CreateIdeologiaDTO): Promise<RespostaApi> {
+		try {
+			const { nome, descricao, sigla } = params;
 
-		if (existe) {
-			return { sucesso: false, mensagem: "A ideologia já existe" };
-		}
+			if (!nome || !descricao || !sigla) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem:
+						"Nome, descrição e sigla são obrigatórios para criar a ideologia",
+				});
+			}
 
-		const service = new CriarIdeologiaService();
+			const ideologiaCriada = await this.criarIdeologiaService.executar(params);
 
-		const ideologia = new Ideologia({
-			nome: nome,
-			sigla: sigla,
-			descricao: descricao,
-		});
-		const resposta = await service.executar(ideologia);
-
-		if (resposta) {
 			return new RespostaApi({
 				sucesso: true,
 				mensagem: "A ideologia foi criada com sucesso",
-				dados: resposta,
+				dados: ideologiaCriada,
 			});
-		} else {
+		} catch (error: unknown) {
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um problema na criação da ideologia";
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Houve algum problema na criação da ideologia",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

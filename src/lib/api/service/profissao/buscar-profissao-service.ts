@@ -1,24 +1,57 @@
+import { ResponseProfissaoDTO, SearchProfissaoDTO } from "@/dtos/profissao.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class BuscarProfissaoService {
-	async buscarPorNome({ nome }: { nome: string }) {
-		const prisma = prismaClient;
+export interface IBuscarProfissaoService {
+	buscarPorId(
+		params: Pick<SearchProfissaoDTO, "id">
+	): Promise<ResponseProfissaoDTO | null>;
+	buscarPorNome(
+		params: Pick<SearchProfissaoDTO, "nome">
+	): Promise<ResponseProfissaoDTO | null>;
+}
 
-		const resposta = await prisma.profissao.findUnique({
-			where: {
-				nome: nome,
+export class BuscarProfissaoService implements IBuscarProfissaoService {
+	constructor(private readonly prisma = prismaClient) {}
+
+	async buscarPorId({
+		id,
+	}: Pick<SearchProfissaoDTO, "id">): Promise<ResponseProfissaoDTO | null> {
+		if (!id) return null;
+
+		const profissaoData = await this.prisma.profissao.findUnique({
+			where: { id },
+			include: {
+				politicos: true,
 			},
 		});
-		return resposta;
+
+		if (!profissaoData) return null;
+
+		return {
+			id: profissaoData.id,
+			nome: profissaoData.nome,
+			politicos: profissaoData.politicos,
+		};
 	}
-	async buscarPorId(id: string) {
-		const prisma = prismaClient;
 
-		const resposta = await prisma.profissao.findUnique({
-			where: {
-				id: id,
+	async buscarPorNome({
+		nome,
+	}: Pick<SearchProfissaoDTO, "nome">): Promise<ResponseProfissaoDTO | null> {
+		if (!nome) return null;
+
+		const profissaoData = await this.prisma.profissao.findFirst({
+			where: { nome },
+			include: {
+				politicos: true,
 			},
 		});
-		return resposta;
+
+		if (!profissaoData) return null;
+
+		return {
+			id: profissaoData.id,
+			nome: profissaoData.nome,
+			politicos: profissaoData.politicos,
+		};
 	}
 }

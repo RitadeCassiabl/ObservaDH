@@ -1,11 +1,26 @@
+import { ResponseEsferaDTO } from "@/dtos/esfera.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class ListarEsferaService {
-	async executar() {
-		const prisma = prismaClient;
+export interface IListarEsferaService {
+	executar(): Promise<ResponseEsferaDTO[]>;
+}
 
-		const resposta = await prisma.esfera.findMany({});
+export class ListarEsferaService implements IListarEsferaService {
+	constructor(private readonly prisma = prismaClient) {}
 
-		return resposta;
+	async executar(): Promise<ResponseEsferaDTO[]> {
+		const esferas = await this.prisma.esfera.findMany({
+			include: {
+				politicos: true,
+				projetos: true,
+			},
+		});
+
+		return esferas.map((esfera) => ({
+			id: esfera.id,
+			nome: esfera.nome,
+			politicos: esfera.politicos,
+			projetos: esfera.projetos,
+		}));
 	}
 }

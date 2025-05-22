@@ -1,73 +1,79 @@
 import { BuscarProjetoService } from "../../service/projeto/buscar-projeto-service";
 import { CriarProjetoService } from "../../service/projeto/criar-projeto-service";
 
-import { Esfera } from "@/domain/models/esfera";
-import { Projeto } from "@/domain/models/projeto";
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { CreateProjetoDTO, ResponseProjetoDTO } from "@/dtos/projeto.dto";
+
+interface IBuscarProjetoService {
+	buscarPorNumeroPl(params: {
+		numeroPl: string;
+	}): Promise<ResponseProjetoDTO | null>;
+}
+
+interface ICriarProjetoService {
+	executar(params: CreateProjetoDTO): Promise<ResponseProjetoDTO>;
+}
 
 export class CriarProjetoController {
-	async executar(
-		ano: string,
-		numeroPl: string,
-		pautaId: string,
-		pauta: string,
-		justificativa: string,
-		ementa: string,
-		esferaId: string,
-		esfera: Esfera
+	private readonly buscarProjetoService: IBuscarProjetoService;
+	private readonly criarProjetoService: ICriarProjetoService;
+
+	constructor(
+		buscarProjetoService?: IBuscarProjetoService,
+		criarProjetoService?: ICriarProjetoService
 	) {
-		if (
-			!ano ||
-			!numeroPl ||
-			!pautaId ||
-			!pauta ||
-			!justificativa ||
-			!ementa ||
-			!esferaId ||
-			!esfera
-		) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Estão faltando informações para criar o projeto de lei",
+		this.buscarProjetoService =
+			buscarProjetoService || new BuscarProjetoService();
+		this.criarProjetoService = criarProjetoService || new CriarProjetoService();
+	}
+
+	async executar(params: CreateProjetoDTO): Promise<RespostaApi> {
+		try {
+			const { ano, ementa, pautaId, esferaId, numeroPl, justificativa } =
+				params;
+
+			if (
+				!ano ||
+				!ementa ||
+				!pautaId ||
+				!esferaId ||
+				!numeroPl ||
+				!justificativa
+			) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Faltam informações obrigatórias para criar o projeto",
+				});
+			}
+
+			const projetoExiste = await this.buscarProjetoService.buscarPorNumeroPl({
+				numeroPl,
 			});
-		}
 
-		const serviceAuxiliar = new BuscarProjetoService();
+			if (projetoExiste) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: `Já existe um projeto com o número PL '${numeroPl}'`,
+				});
+			}
 
-		const existe = await serviceAuxiliar.buscarPorNumeroPL({ numeroPl });
+			const projetoCriado = await this.criarProjetoService.executar(params);
 
-		if (existe) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "O projeto de lei já existe",
-			});
-		}
-
-		const service = new CriarProjetoService();
-
-		const projeto = new Projeto({
-			ano,
-			numeroPl,
-			pautaId,
-			pauta,
-			justificativa,
-			ementa,
-			esferaId,
-			esfera,
-		});
-
-		const resposta = await service.executar(projeto);
-
-		if (resposta) {
 			return new RespostaApi({
 				sucesso: true,
-				mensagem: "Projeto de lei criado com sucesso",
-				dados: resposta,
+				mensagem: "O projeto foi criado com sucesso",
+				dados: projetoCriado,
 			});
-		} else {
+		} catch (error: unknown) {
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um problema na criação do projeto";
+
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Houve algum problema na criação do projeto de lei",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

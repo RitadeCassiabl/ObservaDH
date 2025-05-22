@@ -1,45 +1,67 @@
 import { BuscarPautaService } from "../../service/pauta/buscar-pauta-service";
 import { CriarPautaService } from "../../service/pauta/criar-pauta-service";
 
-import { Pauta } from "@/domain/models/pauta";
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { CreatePautaDTO, ResponsePautaDTO } from "@/dtos/pauta.dto";
+
+interface IBuscarPautaService {
+	buscarPorNome(params: { nome: string }): Promise<ResponsePautaDTO | null>;
+}
+
+interface ICriarPautaService {
+	executar(params: CreatePautaDTO): Promise<ResponsePautaDTO>;
+}
 
 export class CriarPautaController {
-	async executar(nome: string) {
-		if (!nome) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Falta informações para a criação da pauta",
+	private readonly buscarPautaService: IBuscarPautaService;
+	private readonly criarPautaService: ICriarPautaService;
+
+	constructor(
+		buscarPautaService?: IBuscarPautaService,
+		criarPautaService?: ICriarPautaService
+	) {
+		this.buscarPautaService = buscarPautaService || new BuscarPautaService();
+		this.criarPautaService = criarPautaService || new CriarPautaService();
+	}
+
+	async executar(params: CreatePautaDTO): Promise<RespostaApi> {
+		try {
+			const { nome } = params;
+
+			if (!nome) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Nome é obrigatório para criar a pauta",
+				});
+			}
+
+			const pautaExiste = await this.buscarPautaService.buscarPorNome({
+				nome,
 			});
-		}
 
-		const serviceAuxiliar = new BuscarPautaService();
+			if (pautaExiste) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Já existe uma pauta com este nome",
+				});
+			}
 
-		const existe = await serviceAuxiliar.buscarPorNome(nome);
+			const pautaCriada = await this.criarPautaService.executar(params);
 
-		if (existe) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "A pauta já existe",
-			});
-		}
-
-		const service = new CriarPautaService();
-
-		const pauta = new Pauta({ nome: nome });
-
-		const resposta = await service.executar(pauta);
-
-		if (resposta) {
 			return new RespostaApi({
 				sucesso: true,
-				mensagem: "Pauta criado com sucesso",
-				dados: resposta,
+				mensagem: "A pauta foi criada com sucesso",
+				dados: pautaCriada,
 			});
-		} else {
+		} catch (error: unknown) {
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um problema na criação da pauta";
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Houve algum problema na criação da pauta",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

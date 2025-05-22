@@ -1,11 +1,28 @@
+import { ResponsePartidoDTO } from "@/dtos/partido.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class ListarPartidoService {
-	async executar() {
-		const prisma = prismaClient;
+export interface IListarPartidoService {
+	executar(): Promise<ResponsePartidoDTO[]>;
+}
 
-		const resposta = await prisma.partido.findMany();
+export class ListarPartidoService implements IListarPartidoService {
+	constructor(private readonly prisma = prismaClient) {}
 
-		return resposta;
+	async executar(): Promise<ResponsePartidoDTO[]> {
+		const partidos = await this.prisma.partido.findMany({
+			include: {
+				politicos: true,
+				projetos: true,
+			},
+		});
+
+		return partidos.map((partido) => ({
+			id: partido.id,
+			nome: partido.nome,
+			sigla: partido.sigla,
+			imagem: partido.imagem,
+			politicos: partido.politicos,
+			projetos: partido.projetos,
+		}));
 	}
 }

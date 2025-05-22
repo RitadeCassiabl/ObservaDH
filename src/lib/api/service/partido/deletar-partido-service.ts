@@ -1,14 +1,39 @@
+import { DeletePartidoDTO, ResponseDeletePartidoDTO } from "@/dtos/partido.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class DeletarPartidoService {
-	async executar(id: string) {
-		const prisma = prismaClient;
+interface IDeletarPartidoService {
+	executar(params: { id: string }): Promise<ResponseDeletePartidoDTO>;
+}
 
-		const resposta = prisma.partido.delete({
-			where: {
-				id: id,
-			},
-		});
-		return resposta;
+export class DeletarPartidoService implements IDeletarPartidoService {
+	private readonly prisma = prismaClient;
+
+	async executar({ id }: DeletePartidoDTO): Promise<ResponseDeletePartidoDTO> {
+		try {
+			if (!id || typeof id !== "string") {
+				throw new Error("ID inválido para deleção");
+			}
+
+			await this.prisma.partido.delete({
+				where: { id },
+			});
+
+			return { sucesso: true };
+		} catch (error) {
+			if (typeof error === "object" && error !== null && "code" in error) {
+				const prismaError = error as { code?: string };
+				if (prismaError.code === "P2025") {
+					throw new Error(`Partido com ID ${id} não encontrado`);
+				}
+				if (prismaError.code === "P2003") {
+					throw new Error(
+						`Não é possível deletar o partido pois existem registros relacionados (Politicos ou Projetos)`
+					);
+				}
+			}
+
+			console.error("Erro ao deletar partido:", error);
+			throw error;
+		}
 	}
 }

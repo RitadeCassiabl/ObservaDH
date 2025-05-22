@@ -1,19 +1,47 @@
-import { Ideologia } from "@/domain/models/ideologia";
-import { prismaClient } from "@/services/prisma/prisma";
-export class CriarIdeologiaService {
-	async executar(ideologia: Ideologia) {
-		const prisma = prismaClient;
+import { Prisma } from "@prisma/client";
 
-		const resposta = await prisma.ideologia.create({
-			data: {
-				nome: ideologia.nome,
-				sigla: ideologia.sigla,
-				descricao: ideologia.descricao,
-				projetos: {
-					create: [],
+import { CreateIdeologiaDTO, ResponseIdeologiaDTO } from "@/dtos/ideologia.dto";
+import { prismaClient } from "@/services/prisma/prisma";
+
+interface ICriarIdeologiaService {
+	executar(params: CreateIdeologiaDTO): Promise<ResponseIdeologiaDTO>;
+}
+
+export class CriarIdeologiaService implements ICriarIdeologiaService {
+	private readonly prisma = prismaClient;
+
+	async executar({
+		nome,
+		descricao,
+		sigla,
+	}: CreateIdeologiaDTO): Promise<ResponseIdeologiaDTO> {
+		try {
+			const ideologia = await this.prisma.ideologia.create({
+				data: {
+					nome,
+					descricao,
+					sigla,
+					projetos: {},
 				},
-			},
-		});
-		return resposta;
+				select: {
+					id: true,
+					nome: true,
+					descricao: true,
+					sigla: true,
+				},
+			});
+
+			return {
+				id: ideologia.id,
+				nome: ideologia.nome,
+				descricao: ideologia.descricao,
+				sigla: ideologia.sigla,
+			};
+		} catch (error) {
+			if (error instanceof Prisma.PrismaClientKnownRequestError) {
+			}
+
+			throw error;
+		}
 	}
 }

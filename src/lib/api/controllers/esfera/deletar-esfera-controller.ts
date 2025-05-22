@@ -2,40 +2,75 @@ import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service"
 import { DeletarEsferaService } from "../../service/esfera/deletar-esfera-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { DeleteEsferaDTO, ResponseEsferaDTO } from "@/dtos/esfera.dto";
+
+interface IBuscarEsferaService {
+	buscarPorId(params: { id: string }): Promise<ResponseEsferaDTO | null>;
+}
+
+import { ResponseDeleteEsferaDTO } from "@/dtos/esfera.dto";
+
+interface IDeletarEsferaService {
+	executar(params: { id: string }): Promise<ResponseDeleteEsferaDTO>;
+}
 
 export class DeletarEsferaController {
-	async executar(id: string) {
-		if (!id) {
+	private readonly buscarEsferaService: IBuscarEsferaService;
+	private readonly deletarEsferaService: IDeletarEsferaService;
+
+	constructor(
+		buscarEsferaService?: IBuscarEsferaService,
+		deleterEsferaService?: IDeletarEsferaService
+	) {
+		this.buscarEsferaService = buscarEsferaService || new BuscarEsferaService();
+		this.deletarEsferaService =
+			deleterEsferaService || new DeletarEsferaService();
+	}
+
+	async executar({ id }: DeleteEsferaDTO): Promise<RespostaApi> {
+		try {
+			if (!id || id.trim() === "") {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "ID da esfera não fornecido ou inválido",
+				});
+			}
+
+			const esferaExistente = await this.buscarEsferaService.buscarPorId({
+				id: id,
+			});
+
+			if (!esferaExistente) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "A esfera não foi encontrada",
+				});
+			}
+
+			const resultadoDelecao = await this.deletarEsferaService.executar({
+				id: id,
+			});
+
+			if (resultadoDelecao.sucesso) {
+				return new RespostaApi({
+					sucesso: true,
+					mensagem: "A esfera foi deletada com sucesso",
+				});
+			} else {
+				throw new Error("Falha na operação de deleção");
+			}
+		} catch (error) {
+			console.error("Erro ao deletar esfera:", error);
+
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um erro ao deletar a esfera";
+
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Estão faltando informações para deletar a esfera",
-			});
-		}
-
-		const serviceAuxiliar = new BuscarEsferaService();
-
-		const existe = await serviceAuxiliar.buscarPorId(id);
-
-		if (!existe) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "A esfera não existe",
-			});
-		}
-
-		const service = new DeletarEsferaService();
-
-		const resposta = await service.executar(id);
-
-		if (resposta) {
-			return new RespostaApi({
-				sucesso: true,
-				mensagem: "A esfera foi deletada com sucesso",
-			});
-		} else {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Houve um erro na hora de deletar a esfera",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

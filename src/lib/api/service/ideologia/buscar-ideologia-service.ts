@@ -1,26 +1,35 @@
+import { ResponseIdeologiaDTO, SearchIdeologiaDTO } from "@/dtos/ideologia.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class BuscarIdeologiaService {
-	async buscarPorId(id: string) {
-		const prisma = prismaClient;
+export interface IBuscarIdeologiaService {
+	buscarPorId(
+		params: Pick<SearchIdeologiaDTO, "id">
+	): Promise<ResponseIdeologiaDTO | null>;
+}
 
-		const resposta = await prisma.ideologia.findUnique({
-			where: {
-				id: id,
+export class BuscarIdeologiaService implements IBuscarIdeologiaService {
+	constructor(private readonly prisma = prismaClient) {}
+
+	async buscarPorId({
+		id,
+	}: Pick<SearchIdeologiaDTO, "id">): Promise<ResponseIdeologiaDTO | null> {
+		if (!id) return null;
+
+		const ideologiaData = await this.prisma.ideologia.findUnique({
+			where: { id },
+			include: {
+				projetos: true,
 			},
 		});
 
-		return resposta;
-	}
+		if (!ideologiaData) return null;
 
-	async buscarPorNome(nome: string) {
-		const prisma = prismaClient;
-
-		const resposta = await prisma.ideologia.findFirst({
-			where: {
-				nome: nome,
-			},
-		});
-		return resposta;
+		return {
+			id: ideologiaData.id,
+			nome: ideologiaData.nome,
+			descricao: ideologiaData.descricao,
+			sigla: ideologiaData.sigla,
+			projetos: ideologiaData.projetos,
+		};
 	}
 }

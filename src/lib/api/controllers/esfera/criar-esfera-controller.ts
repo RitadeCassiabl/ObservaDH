@@ -1,45 +1,46 @@
-import { BuscarEsferaService } from "../../service/esfera/buscar-esfera-service";
 import { CriarEsferaService } from "../../service/esfera/criar-esfera-service";
 
-import { Esfera } from "@/domain/models/esfera";
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { CreateEsferaDTO, ResponseEsferaDTO } from "@/dtos/esfera.dto";
+
+interface ICriarEsferaService {
+	executar(params: CreateEsferaDTO): Promise<ResponseEsferaDTO>;
+}
 
 export class CriarEsferaController {
-	async executar(nome: string) {
-		if (!nome) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Estão faltando informações para criar a esfera",
-			});
-		}
+	private readonly criarEsferaService: ICriarEsferaService;
 
-		const serviceAuxiliar = new BuscarEsferaService();
+	constructor(criarEsferaService?: ICriarEsferaService) {
+		this.criarEsferaService = criarEsferaService || new CriarEsferaService();
+	}
 
-		const existe = await serviceAuxiliar.buscarPorNome(nome);
+	async executar(params: CreateEsferaDTO): Promise<RespostaApi> {
+		try {
+			const { nome } = params;
 
-		if (existe) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "A esfera já existe",
-			});
-		}
+			if (!nome) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Nome é obrigatório para criar a esfera",
+				});
+			}
 
-		const service = new CriarEsferaService();
+			const esferaCriada = await this.criarEsferaService.executar(params);
 
-		const esfera = new Esfera({ nome: nome });
-
-		const resposta = await service.executar(esfera);
-
-		if (resposta) {
 			return new RespostaApi({
 				sucesso: true,
 				mensagem: "A esfera foi criada com sucesso",
-				dados: resposta,
+				dados: esferaCriada,
 			});
-		} else {
+		} catch (error: unknown) {
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um problema na criação da esfera";
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Houve algum problema na criação da esfera",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

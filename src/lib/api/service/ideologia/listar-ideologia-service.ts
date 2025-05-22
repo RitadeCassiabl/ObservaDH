@@ -1,11 +1,26 @@
+import { ResponseIdeologiaDTO } from "@/dtos/ideologia.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class ListarIdeologiaService {
-	async executar() {
-		const prisma = prismaClient;
+export interface IListarIdeologiaService {
+	executar(): Promise<ResponseIdeologiaDTO[]>;
+}
 
-		const resposta = await prisma.ideologia.findMany({});
+export class ListarIdeologiaService implements IListarIdeologiaService {
+	constructor(private readonly prisma = prismaClient) {}
 
-		return resposta;
+	async executar(): Promise<ResponseIdeologiaDTO[]> {
+		const ideologias = await this.prisma.ideologia.findMany({
+			include: {
+				projetos: true,
+			},
+		});
+
+		return ideologias.map((ideologia) => ({
+			id: ideologia.id,
+			nome: ideologia.nome,
+			descricao: ideologia.descricao,
+			sigla: ideologia.sigla,
+			projetos: ideologia.projetos,
+		}));
 	}
 }

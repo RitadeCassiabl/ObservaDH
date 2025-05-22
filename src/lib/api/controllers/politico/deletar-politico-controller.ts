@@ -2,30 +2,76 @@ import { BuscarPoliticoService } from "../../service/politico/buscar-politico-se
 import { DeletarPoliticoService } from "../../service/politico/deletar-politico-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { DeletePoliticoDTO, ResponsePoliticoDTO } from "@/dtos/politico.dto";
+
+interface IBuscarPoliticoService {
+	buscarPorId(params: { id: string }): Promise<ResponsePoliticoDTO | null>;
+}
+
+import { ResponseDeletePoliticoDTO } from "@/dtos/politico.dto";
+
+interface IDeletarPoliticoService {
+	executar(params: { id: string }): Promise<ResponseDeletePoliticoDTO>;
+}
 
 export class DeletarPoliticoController {
-	async executar(id: string) {
-		const serviceAuxiliar = new BuscarPoliticoService();
+	private readonly buscarPoliticoService: IBuscarPoliticoService;
+	private readonly deletarPoliticoService: IDeletarPoliticoService;
 
-		const existe = await serviceAuxiliar.executar({ id: id });
+	constructor(
+		buscarPoliticoService?: IBuscarPoliticoService,
+		deletarPoliticoService?: IDeletarPoliticoService
+	) {
+		this.buscarPoliticoService =
+			buscarPoliticoService || new BuscarPoliticoService();
+		this.deletarPoliticoService =
+			deletarPoliticoService || new DeletarPoliticoService();
+	}
 
-		if (!existe) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "O politico não existe",
+	async executar({ id }: DeletePoliticoDTO): Promise<RespostaApi> {
+		try {
+			if (!id || id.trim() === "") {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "ID do político não fornecido ou inválido",
+				});
+			}
+
+			const politicoExistente = await this.buscarPoliticoService.buscarPorId({
+				id: id,
 			});
-		}
 
-		const service = new DeletarPoliticoService();
+			if (!politicoExistente) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "O político não foi encontrado",
+				});
+			}
 
-		const resposta = await service.executar(id);
+			const resultadoDelecao = await this.deletarPoliticoService.executar({
+				id: id,
+			});
 
-		if (resposta) {
-			return new RespostaApi({ sucesso: true, mensagem: "Político deletado" });
-		} else {
+			if (resultadoDelecao.sucesso) {
+				return new RespostaApi({
+					sucesso: true,
+					mensagem: "O político foi deletado com sucesso",
+				});
+			} else {
+				throw new Error("Falha na operação de deleção");
+			}
+		} catch (error) {
+			console.error("Erro ao deletar político:", error);
+
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um erro ao deletar o político";
+
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Houve um problema ao deletar o politico",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

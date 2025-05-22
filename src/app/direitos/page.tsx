@@ -1,8 +1,6 @@
 import { CarrosselPlsProps } from "@/domain/interfaces/carrossel-interface";
 import { elemento } from "@/domain/interfaces/elemento-dropdown";
 
-import obterPautasUnicas from "@/lib/utils/projeto-utils/obter-pautas-unicas";
-
 import Card from "@/components/ui/cards";
 import Texto from "@/components/ui/componente-texto";
 import DropdownButton from "@/components/ui/dropdown/dropdown-button";
@@ -20,6 +18,7 @@ import {
 
 import { DadosGraficoBarrasVertical } from "@/domain/graficos/barras-vertical";
 import { DadosGraficoRosquinha } from "@/domain/graficos/rosquinha";
+import obterPautasUnicas from "@/lib/web/mock-utils/projeto-utils/obter-pautas-unicas";
 import {
 	graficoBarrasVerticalDadosMock,
 	graficoRosquinhaDadosMock,

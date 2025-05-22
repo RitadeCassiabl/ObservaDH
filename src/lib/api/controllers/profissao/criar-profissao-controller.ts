@@ -1,45 +1,69 @@
 import { BuscarProfissaoService } from "../../service/profissao/buscar-profissao-service";
 import { CriarProfissaoService } from "../../service/profissao/criar-profissao-service";
 
-import { Profissao } from "@/domain/models/profissao";
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { CreateProfissaoDTO, ResponseProfissaoDTO } from "@/dtos/profissao.dto";
+
+interface IBuscarProfissaoService {
+	buscarPorNome(params: { nome: string }): Promise<ResponseProfissaoDTO | null>;
+}
+
+interface ICriarProfissaoService {
+	executar(params: CreateProfissaoDTO): Promise<ResponseProfissaoDTO>;
+}
 
 export class CriarProfissaoController {
-	async executar({ nome, politicos }: { nome: string; politicos: string[] }) {
-		if (!nome) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Faltam informações para criar a profissão",
+	private readonly buscarProfissaoService: IBuscarProfissaoService;
+	private readonly criarProfissaoService: ICriarProfissaoService;
+
+	constructor(
+		buscarProfissaoService?: IBuscarProfissaoService,
+		criarProfissaoService?: ICriarProfissaoService
+	) {
+		this.buscarProfissaoService =
+			buscarProfissaoService || new BuscarProfissaoService();
+		this.criarProfissaoService =
+			criarProfissaoService || new CriarProfissaoService();
+	}
+
+	async executar(params: CreateProfissaoDTO): Promise<RespostaApi> {
+		try {
+			const { nome } = params;
+
+			if (!nome) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Nome é obrigatório para criar a profissão",
+				});
+			}
+
+			const profissaoExiste = await this.buscarProfissaoService.buscarPorNome({
+				nome,
 			});
-		}
 
-		const serviceAuxiliar = new BuscarProfissaoService();
+			if (profissaoExiste) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Já existe uma profissão com este nome",
+				});
+			}
 
-		const existe = await serviceAuxiliar.buscarPorNome({ nome: nome });
+			const profissaoCriada = await this.criarProfissaoService.executar(params);
 
-		if (existe) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "A profissão já existe",
-			});
-		}
-
-		const service = new CriarProfissaoService();
-
-		const profissao = new Profissao({ nome: nome, politicos: politicos });
-
-		const resposta = await service.executar(profissao);
-
-		if (resposta) {
 			return new RespostaApi({
 				sucesso: true,
-				mensagem: "Profissão criada com sucesso",
-				dados: resposta,
+				mensagem: "A profissão foi criada com sucesso",
+				dados: profissaoCriada,
 			});
-		} else {
+		} catch (error: unknown) {
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um problema na criação da profissão";
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Houve algum problema na criação da profissão",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

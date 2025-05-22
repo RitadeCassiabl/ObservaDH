@@ -1,30 +1,47 @@
-import { BuscarIdeologiaService } from "../../service/ideologia/buscar-ideologia-service";
+import {
+	BuscarIdeologiaService,
+	IBuscarIdeologiaService,
+} from "../../service/ideologia/buscar-ideologia-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 
-export class BuscarIdeologiaController {
-	async executar(id: string) {
-		if (!id) {
+export interface IBuscarIdeologiaController {
+	executar(id: string): Promise<RespostaApi>;
+}
+
+export class BuscarIdeologiaController implements IBuscarIdeologiaController {
+	constructor(
+		private readonly buscarIdeologiaService: IBuscarIdeologiaService = new BuscarIdeologiaService()
+	) {}
+
+	async executar(id: string): Promise<RespostaApi> {
+		try {
+			if (!id) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "ID da ideologia não fornecido",
+				});
+			}
+
+			const ideologia = await this.buscarIdeologiaService.buscarPorId({ id });
+
+			if (ideologia) {
+				return new RespostaApi({
+					sucesso: true,
+					mensagem: "A ideologia foi encontrada com sucesso",
+					dados: ideologia,
+				});
+			} else {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Nenhuma ideologia foi encontrada com este ID",
+				});
+			}
+		} catch (error) {
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Estão fatando informações para a busca da ideologia",
-			});
-		}
-
-		const service = new BuscarIdeologiaService();
-
-		const resposta = await service.buscarPorId(id);
-
-		if (resposta) {
-			return new RespostaApi({
-				sucesso: true,
-				mensagem: "A ideologia foi encontrada com sucesso",
-				dados: resposta,
-			});
-		} else {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Nenhuma ideologia foi encontrada",
+				mensagem: "Erro ao buscar ideologia",
+				dados: error instanceof Error ? error.message : String(error),
 			});
 		}
 	}

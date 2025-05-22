@@ -1,18 +1,38 @@
-import { Esfera } from "@/domain/models/esfera";
+import { Prisma } from "@prisma/client";
+
+import { CreateEsferaDTO, ResponseEsferaDTO } from "@/dtos/esfera.dto";
 import { prismaClient } from "@/services/prisma/prisma";
-export class CriarEsferaService {
-	async executar(esfera: Esfera) {
-		const prisma = prismaClient;
 
-		const resposta = await prisma.esfera.create({
-			data: {
-				nome: esfera.nome,
+interface ICriarEsferaService {
+	executar(params: CreateEsferaDTO): Promise<ResponseEsferaDTO>;
+}
 
-				projetos: {
-					create: [],
+export class CriarEsferaService implements ICriarEsferaService {
+	private readonly prisma = prismaClient;
+
+	async executar({ nome }: CreateEsferaDTO): Promise<ResponseEsferaDTO> {
+		try {
+			const esfera = await this.prisma.esfera.create({
+				data: {
+					nome,
+					politicos: {},
+					projetos: {},
 				},
-			},
-		});
-		return resposta;
+				select: {
+					id: true,
+					nome: true,
+				},
+			});
+
+			return {
+				id: esfera.id,
+				nome: esfera.nome,
+			};
+		} catch (error) {
+			if (error instanceof Prisma.PrismaClientKnownRequestError) {
+			}
+
+			throw error;
+		}
 	}
 }

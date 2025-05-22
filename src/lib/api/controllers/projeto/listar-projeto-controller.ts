@@ -1,23 +1,41 @@
-import { ListarProjetoService } from "../../service/projeto/listar-projeto-service";
+import {
+	IListarProjetoService,
+	ListarProjetoService,
+} from "../../service/projeto/listar-projeto-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 
-export class ListarProjetoController {
-	async executar() {
-		const service = new ListarProjetoService();
+export interface IListarProjetoController {
+	executar(): Promise<RespostaApi>;
+}
 
-		const resposta = await service.executar();
+export class ListarProjetoController implements IListarProjetoController {
+	constructor(
+		private readonly listarProjetoService: IListarProjetoService = new ListarProjetoService()
+	) {}
 
-		if (resposta) {
-			return new RespostaApi({
-				sucesso: true,
-				mensagem: `${resposta.length} projeto(s) de lei foram encontrados`,
-				dados: resposta,
-			});
-		} else {
+	async executar(): Promise<RespostaApi> {
+		try {
+			const projetos = await this.listarProjetoService.executar();
+
+			if (projetos.length > 0) {
+				return new RespostaApi({
+					sucesso: true,
+					mensagem: `${projetos.length} projeto(s) foram encontrados`,
+					dados: projetos,
+				});
+			} else {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Nenhum projeto foi encontrado",
+					dados: [],
+				});
+			}
+		} catch (error) {
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Nenhum projeto de lei foi encontrado",
+				mensagem: "Erro ao listar projetos",
+				dados: error instanceof Error ? error.message : String(error),
 			});
 		}
 	}

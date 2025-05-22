@@ -1,23 +1,41 @@
-import { ListarPautaService } from "../../service/pauta/listar-pauta-service";
+import {
+	IListarPautaService,
+	ListarPautaService,
+} from "../../service/pauta/listar-pauta-service";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
 
-export class ListarPautaController {
-	async executar() {
-		const service = new ListarPautaService();
+export interface IListarPautaController {
+	executar(): Promise<RespostaApi>;
+}
 
-		const resposta = await service.executar();
+export class ListarPautaController implements IListarPautaController {
+	constructor(
+		private readonly listarPautaService: IListarPautaService = new ListarPautaService()
+	) {}
 
-		if (resposta) {
-			return new RespostaApi({
-				sucesso: true,
-				mensagem: `${resposta.length} pauta(s) foram encontrados`,
-				dados: resposta,
-			});
-		} else {
+	async executar(): Promise<RespostaApi> {
+		try {
+			const pautas = await this.listarPautaService.executar();
+
+			if (pautas.length > 0) {
+				return new RespostaApi({
+					sucesso: true,
+					mensagem: `${pautas.length} pauta(s) foram encontradas`,
+					dados: pautas,
+				});
+			} else {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Nenhuma pauta foi encontrada",
+					dados: [],
+				});
+			}
+		} catch (error) {
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Nenhum pauta foi encontrado.",
+				mensagem: "Erro ao listar pautas",
+				dados: error instanceof Error ? error.message : String(error),
 			});
 		}
 	}

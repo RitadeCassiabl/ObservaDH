@@ -1,59 +1,110 @@
 import { AtualizarPartidoService } from "../../service/partido/atualizar-partido-service";
 import { BuscarPartidoService } from "../../service/partido/buscar-partido-service";
 
-import { Partido } from "@/domain/models/partido";
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { ResponsePartidoDTO, UpdatePartidoDTO } from "@/dtos/partido.dto";
+
+interface IBuscarPartidoService {
+	buscarPorId(params: { id: string }): Promise<ResponsePartidoDTO | null>;
+	buscarPorNome(params: { nome: string }): Promise<ResponsePartidoDTO | null>;
+	buscarPorSigla(params: { sigla: string }): Promise<ResponsePartidoDTO | null>;
+}
+
+interface IAtualizarPartidoService {
+	executar(params: { partido: UpdatePartidoDTO }): Promise<ResponsePartidoDTO>;
+}
 
 export class AtualizarPartidoController {
-	async executar(
-		id: string,
-		nome: string,
-		sigla: string,
-		politicos: string[],
-		projetos: string[]
+	private readonly buscarPartidoService: IBuscarPartidoService;
+	private readonly atualizarPartidoService: IAtualizarPartidoService;
+
+	constructor(
+		buscarPartidoService?: IBuscarPartidoService,
+		atualizarPartidoService?: IAtualizarPartidoService
 	) {
-		const buscarService = new BuscarPartidoService();
-		const atualizarService = new AtualizarPartidoService();
+		this.buscarPartidoService =
+			buscarPartidoService || new BuscarPartidoService();
+		this.atualizarPartidoService =
+			atualizarPartidoService || new AtualizarPartidoService();
+	}
 
-		const partidoExistente = await buscarService.BuscarPorID(id);
+	async executar(params: UpdatePartidoDTO): Promise<RespostaApi> {
+		try {
+			const { id, nome, sigla, imagem } = params;
 
-		if (!partidoExistente) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Partido não encontrado",
-			});
-		}
-
-		if (nome !== partidoExistente.nome) {
-			const partidoComMesmoNome = await buscarService.BuscarPorNome(nome);
-			if (partidoComMesmoNome && partidoComMesmoNome.id !== id) {
+			if (!id) {
 				return new RespostaApi({
 					sucesso: false,
-					mensagem: "Já existe um partido com este nome",
+					mensagem: "ID do partido não fornecido",
 				});
 			}
-		}
 
-		const partidoAtualizado = new Partido({
-			id: id,
-			nome: nome,
-			sigla: sigla,
-			politicos: politicos,
-			projetos: projetos,
-		});
+			if (nome === undefined && sigla === undefined && imagem === undefined) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem:
+						"É necessário fornecer pelo menos um campo para atualização (nome, sigla ou imagem)",
+				});
+			}
 
-		const resultado = await atualizarService.executar(partidoAtualizado);
-
-		if (resultado) {
-			return new RespostaApi({
-				sucesso: true,
-				mensagem: "Partido atualizado com sucesso",
-				dados: resultado,
+			const partidoExistente = await this.buscarPartidoService.buscarPorId({
+				id,
 			});
-		} else {
+
+			if (!partidoExistente) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "O partido não foi encontrado",
+				});
+			}
+
+			if (nome !== undefined && nome !== partidoExistente.nome) {
+				const partidoComMesmoNome =
+					await this.buscarPartidoService.buscarPorNome({ nome });
+				if (partidoComMesmoNome && partidoComMesmoNome.id !== id) {
+					return new RespostaApi({
+						sucesso: false,
+						mensagem: "Já existe outro partido com este nome",
+					});
+				}
+			}
+
+			if (sigla !== undefined && sigla !== partidoExistente.sigla) {
+				const partidoComMesmaSigla =
+					await this.buscarPartidoService.buscarPorSigla({ sigla });
+				if (partidoComMesmaSigla && partidoComMesmaSigla.id !== id) {
+					return new RespostaApi({
+						sucesso: false,
+						mensagem: "Já existe outro partido com esta sigla",
+					});
+				}
+			}
+
+			const partidoAtualizado = await this.atualizarPartidoService.executar({
+				partido: {
+					id,
+					nome,
+					sigla,
+					imagem,
+				},
+			});
+
+			if (partidoAtualizado) {
+				return new RespostaApi({
+					sucesso: true,
+					mensagem: "O partido foi atualizado com sucesso",
+					dados: partidoAtualizado,
+				});
+			} else {
+				throw new Error("Falha na operação de atualização");
+			}
+		} catch (error) {
+			console.error("Erro ao atualizar partido:", error);
+
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Erro ao atualizar o partido",
+				mensagem: "Ocorreu um erro durante a atualização do partido",
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}
