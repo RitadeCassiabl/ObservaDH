@@ -1,79 +1,69 @@
-import { CriarPolitcoService } from "../../service/politico/criar-politico-service";
+import { CriarPoliticoService } from "../../service/politico/criar-politico-service";
 
-import Politico from "@/domain/models/politico";
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { CreatePoliticoDTO, ResponsePoliticoDTO } from "@/dtos/politico.dto";
+
+interface ICriarPoliticoService {
+	executar(params: CreatePoliticoDTO): Promise<ResponsePoliticoDTO>;
+}
 
 export class CriarPoliticoController {
-	async executar({
-		nome,
-		raca,
-		foto,
-		genero,
-		religiao,
-		projetos,
-		esferaId,
-		estadoId,
-		ideologia,
-		partidoId,
-		profissaoId,
-	}: {
-		nome: string;
-		raca: string;
-		foto?: string;
-		genero: string;
-		esferaId: string;
-		religiao: string;
-		estadoId: string;
-		ideologia: string;
-		partidoId: string;
-		projetos?: string[];
-		profissaoId?: string;
-	}) {
-		if (
-			!nome ||
-			!raca ||
-			!foto ||
-			!genero ||
-			!religiao ||
-			!estadoId ||
-			!ideologia ||
-			!partidoId ||
-			!profissaoId
-		) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Falta informação para a criação do político",
-			});
-		}
+	private readonly criarPoliticoService: ICriarPoliticoService;
 
-		const politico = new Politico({
-			nome: nome,
-			raca: raca,
-			foto: foto,
-			genero: genero,
-			esferaId: esferaId,
-			religiao: religiao,
-			projetos: projetos,
-			estadoId: estadoId,
-			ideologia: ideologia,
-			partidoId: partidoId,
-			profissaoId: profissaoId,
-		});
+	constructor(criarPoliticoService?: ICriarPoliticoService) {
+		this.criarPoliticoService =
+			criarPoliticoService || new CriarPoliticoService();
+	}
 
-		const service = new CriarPolitcoService();
+	async executar(params: CreatePoliticoDTO): Promise<RespostaApi> {
+		try {
+			const {
+				nome,
+				genero,
+				raca,
+				religiao,
+				ideologia,
+				esferaId,
+				estadoId,
+				partidoId,
+				profissaoId,
+				foto,
+			} = params;
 
-		const resposta = await service.executar({ politico: politico });
+			if (
+				!nome ||
+				!genero ||
+				!raca ||
+				!religiao ||
+				!ideologia ||
+				!esferaId ||
+				!estadoId ||
+				!partidoId ||
+				!profissaoId ||
+				!foto
+			) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "Faltam informações obrigatórias para criar o político",
+				});
+			}
 
-		if (resposta) {
+			const politicoCriado = await this.criarPoliticoService.executar(params);
+
 			return new RespostaApi({
 				sucesso: true,
-				mensagem: "Político criado",
-				dados: resposta,
+				mensagem: "O político foi criado com sucesso",
+				dados: politicoCriado,
 			});
-		} else {
+		} catch (error: unknown) {
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Houve um problema na criação do político";
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Houve algum problema na criação do político",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

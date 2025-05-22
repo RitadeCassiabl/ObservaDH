@@ -1,93 +1,112 @@
 import { AtualizarPoliticoService } from "../../service/politico/atualizar-politico-service";
 import { BuscarPoliticoService } from "../../service/politico/buscar-politico-service";
 
-import Politico from "@/domain/models/politico";
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { ResponsePoliticoDTO, UpdatePoliticoDTO } from "@/dtos/politico.dto";
+
+interface IBuscarPoliticoService {
+	buscarPorId(params: { id: string }): Promise<ResponsePoliticoDTO | null>;
+}
+
+interface IAtualizarPoliticoService {
+	executar(params: {
+		politico: UpdatePoliticoDTO;
+	}): Promise<ResponsePoliticoDTO>;
+}
 
 export class AtualizarPoliticoController {
-	async executar({
-		id,
-		nome,
-		genero,
-		raca,
-		religiao,
-		estadoId,
-		partidoId,
-		ideologia,
-		foto,
-		profissaoId,
-		projetos,
-		esferaId,
-	}: {
-		id: string;
-		nome: string;
-		genero: string;
-		raca: string;
-		religiao: string;
-		estadoId: string;
-		partidoId: string;
-		ideologia: string;
-		foto?: string;
-		esferaId: string;
-		profissaoId?: string;
-		projetos?: string[];
-	}) {
-		if (
-			!id ||
-			!nome ||
-			!genero ||
-			!raca ||
-			!religiao ||
-			!estadoId ||
-			!partidoId ||
-			!ideologia ||
-			!esferaId
-		) {
+	private readonly buscarPoliticoService: IBuscarPoliticoService;
+	private readonly atualizarPoliticoService: IAtualizarPoliticoService;
+
+	constructor(
+		buscarPoliticoService?: IBuscarPoliticoService,
+		atualizarPoliticoService?: IAtualizarPoliticoService
+	) {
+		this.buscarPoliticoService =
+			buscarPoliticoService || new BuscarPoliticoService();
+		this.atualizarPoliticoService =
+			atualizarPoliticoService || new AtualizarPoliticoService();
+	}
+
+	async executar(params: UpdatePoliticoDTO): Promise<RespostaApi> {
+		try {
+			const {
+				id,
+				nome,
+				foto,
+				genero,
+				raca,
+				religiao,
+				ideologia,
+				esferaId,
+				estadoId,
+				partidoId,
+				profissaoId,
+			} = params;
+
+			if (!id) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "ID do político não fornecido",
+				});
+			}
+
+			const camposParaAtualizar = [
+				nome,
+				foto,
+				genero,
+				raca,
+				religiao,
+				ideologia,
+				esferaId,
+				estadoId,
+				partidoId,
+				profissaoId,
+			];
+			if (camposParaAtualizar.every((field) => field === undefined)) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem:
+						"É necessário fornecer pelo menos um campo para atualização",
+				});
+			}
+
+			const politicoExistente = await this.buscarPoliticoService.buscarPorId({
+				id,
+			});
+
+			if (!politicoExistente) {
+				return new RespostaApi({
+					sucesso: false,
+					mensagem: "O político não foi encontrado",
+				});
+			}
+
+			const politicoAtualizado = await this.atualizarPoliticoService.executar({
+				politico: params,
+			});
+
+			if (politicoAtualizado) {
+				return new RespostaApi({
+					sucesso: true,
+					mensagem: "O político foi atualizado com sucesso",
+					dados: politicoAtualizado,
+				});
+			} else {
+				throw new Error("Falha na operação de atualização");
+			}
+		} catch (error) {
+			console.error("Erro ao atualizar político:", error);
+
+			const errorMessage =
+				error instanceof Error
+					? error.message
+					: "Ocorreu um erro durante a atualização do político";
+
 			return new RespostaApi({
 				sucesso: false,
-				mensagem: "Falta informação para a criação do político",
-			});
-		}
-
-		const serviceAuxiliar = new BuscarPoliticoService();
-
-		const existe = await serviceAuxiliar.executar({ id: id });
-
-		if (!existe) {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "o politico não existe",
-			});
-		}
-
-		const service = new AtualizarPoliticoService();
-
-		const politico = new Politico({
-			id: id,
-			nome: nome,
-			raca: raca,
-			genero: genero,
-			foto: foto ?? "",
-			estadoId: estadoId,
-			religiao: religiao,
-			partidoId: partidoId,
-			ideologia: ideologia,
-			projetos: projetos ?? [],
-			profissaoId: profissaoId ?? "",
-			esferaId: esferaId,
-		});
-		const resposta = await service.executar({ politico: politico });
-
-		if (resposta) {
-			return new RespostaApi({
-				sucesso: true,
-				mensagem: "Político atualizado com sucesso",
-				dados: resposta,
-			});
-		} else {
-			return new RespostaApi({
-				sucesso: false,
-				mensagem: "Político atualizado com sucesso",
+				mensagem: errorMessage,
+				dados: process.env.NODE_ENV === "development" ? error : undefined,
 			});
 		}
 	}

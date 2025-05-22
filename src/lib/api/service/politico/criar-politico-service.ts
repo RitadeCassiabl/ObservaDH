@@ -1,36 +1,70 @@
-import Politico from "@/domain/models/politico";
+import { Prisma } from "@prisma/client";
+
+import { CreatePoliticoDTO, ResponsePoliticoDTO } from "@/dtos/politico.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class CriarPolitcoService {
-	async executar({ politico }: { politico: Politico }) {
-		const prisma = prismaClient;
+interface ICriarPoliticoService {
+	executar(params: CreatePoliticoDTO): Promise<ResponsePoliticoDTO>;
+}
 
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const data: any = {
-			nome: politico.nome,
-			foto: politico.foto ?? undefined,
-			genero: politico.genero,
-			raca: politico.raca,
-			religiao: politico.religiao,
-			ideologia: politico.ideologia,
-			estadoId: politico.estadoId,
-			partidoId: politico.partidoId,
-			esferaId: politico.esferaId,
-			projetos: {
-				connect: politico.projetos?.map((projeto) => ({ id: projeto })) ?? [],
-			},
-		};
+export class CriarPoliticoService implements ICriarPoliticoService {
+	private readonly prisma = prismaClient;
 
-		if (politico.profissaoId !== undefined) {
-			data.profissaoId = politico.profissaoId;
+	async executar(params: CreatePoliticoDTO): Promise<ResponsePoliticoDTO> {
+		try {
+			const politico = await this.prisma.politico.create({
+				data: {
+					nome: params.nome,
+					foto: params.foto,
+					genero: params.genero,
+					raca: params.raca,
+					religiao: params.religiao,
+					ideologia: params.ideologia,
+					esferaId: params.esferaId,
+					estadoId: params.estadoId,
+					partidoId: params.partidoId,
+					profissaoId: params.profissaoId,
+					projetos: {}, // Many-to-many relation not created directly here
+				},
+				select: {
+					id: true,
+					nome: true,
+					foto: true,
+					genero: true,
+					raca: true,
+					religiao: true,
+					ideologia: true,
+					esferaId: true,
+					estadoId: true,
+					partidoId: true,
+					profissaoId: true,
+				},
+			});
+
+			return {
+				id: politico.id,
+				nome: politico.nome,
+				foto: politico.foto,
+				genero: politico.genero,
+				raca: politico.raca,
+				religiao: politico.religiao,
+				ideologia: politico.ideologia,
+				esferaId: politico.esferaId,
+				estadoId: politico.estadoId,
+				partidoId: politico.partidoId,
+				profissaoId: politico.profissaoId,
+			};
+		} catch (error) {
+			if (error instanceof Prisma.PrismaClientKnownRequestError) {
+				if (error.code === "P2003") {
+					const field =
+						(error.meta?.field_name as string | undefined) ||
+						"campo relacionado";
+					throw new Error(`ID relacionado inválido: ${field}`);
+				}
+			}
+
+			throw error;
 		}
-
-		const resposta = await prisma.politico.create({
-			data: {
-				...data,
-			},
-		});
-
-		return resposta;
 	}
 }
