@@ -1,53 +1,55 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { CreateProjetoDTO } from "@/dtos/projeto.dto";
 import { CriarProjetoController } from "@/lib/api/controllers/projeto/criar-projeto-controller";
 import { ListarProjetoController } from "@/lib/api/controllers/projeto/listar-projeto-controller";
 
-export async function POST(request: Request) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function handleError(error: any, message: string) {
+	console.error(message, error);
+	const respostaException = new RespostaApi({
+		sucesso: false,
+		mensagem: `Ocorreu um erro inesperado no servidor: ${message}`,
+		dados: process.env.NODE_ENV === "development" ? error : undefined,
+	});
+	return NextResponse.json(respostaException, { status: 500 });
+}
+
+export async function POST(request: NextRequest) {
 	try {
-		const { ano, numero_pl, pauta_id, justificativa, ementa, esfera_id } =
-			await request.json();
+		const body = await request.json().catch(() => null);
 
-		if (
-			!ano ||
-			!numero_pl ||
-			!pauta_id ||
-			!justificativa ||
-			!ementa ||
-			!esfera_id
-		) {
-			const respostaApi = new RespostaApi({
+		if (!body) {
+			const respostaNoBody = new RespostaApi({
 				sucesso: false,
-				mensagem: "Estão faltando infomações para a criação do projeto de lei",
+				mensagem: "Corpo da requisição inválido ou vazio",
 			});
-
-			return NextResponse.json({ respostaApi }, { status: 400 });
-		} else {
-			const controller = new CriarProjetoController();
-
-			const resposta = await controller.executar({
-				ano: ano,
-				numeroPl: numero_pl,
-				pautaId: pauta_id,
-				justificativa: justificativa,
-				ementa: ementa,
-				esferaId: esfera_id,
-			});
-
-			return NextResponse.json(
-				{ resposta },
-				{ status: resposta.sucesso ? 200 : 400 }
-			);
+			return NextResponse.json(respostaNoBody, { status: 400 });
 		}
-	} catch (error) {
-		const respostaApi = new RespostaApi({
-			sucesso: false,
-			mensagem: "Ocorreu um erro inesperado",
-			dados: error,
-		});
 
-		return NextResponse.json({ respostaApi }, { status: 500 });
+		const controller = new CriarProjetoController();
+		const resposta = await controller.executar(body as CreateProjetoDTO);
+
+		// Check for specific messages to return different status codes
+		let status = 201; // Created
+		if (!resposta.sucesso) {
+			if (resposta.mensagem?.includes("Já existe um projeto com o número PL")) {
+				status = 409; // Conflict
+			} else if (
+				resposta.mensagem?.includes("Faltam informações obrigatórias")
+			) {
+				status = 400; // Bad Request
+			} else if (resposta.mensagem?.includes("ID relacionado inválido")) {
+				status = 400; // Bad Request
+			} else {
+				status = 400; // Generic Bad Request for other controller errors
+			}
+		}
+
+		return NextResponse.json(resposta, { status });
+	} catch (error) {
+		return handleError(error, "Erro ao criar projeto");
 	}
 }
 
@@ -56,19 +58,10 @@ export async function GET() {
 		const controller = new ListarProjetoController();
 		const resposta = await controller.executar();
 
-		if (!resposta.sucesso) {
-			return NextResponse.json({
-				resposta,
-				status: 400,
-			});
-		}
-		return NextResponse.json({ resposta }, { status: 200 });
-	} catch (error) {
-		const respostaApi = new RespostaApi({
-			sucesso: false,
-			mensagem: "Ocorreu um erro inesperado",
-			dados: error,
+		return NextResponse.json(resposta, {
+			status: resposta.sucesso ? 200 : 404, // 404 if no projects found based on controller message
 		});
-		return NextResponse.json({ respostaApi }, { status: 500 });
+	} catch (error) {
+		return handleError(error, "Erro ao listar projetos");
 	}
 }

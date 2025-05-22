@@ -1,14 +1,39 @@
+import { DeleteProjetoDTO, ResponseDeleteProjetoDTO } from "@/dtos/projeto.dto";
 import { prismaClient } from "@/services/prisma/prisma";
 
-export class DeletarProjetoService {
-	async executar(id: string) {
-		const prisma = prismaClient;
+interface IDeletarProjetoService {
+	executar(params: { id: string }): Promise<ResponseDeleteProjetoDTO>;
+}
 
-		const resposta = await prisma.projeto.delete({
-			where: {
-				id: id,
-			},
-		});
-		return resposta;
+export class DeletarProjetoService implements IDeletarProjetoService {
+	private readonly prisma = prismaClient;
+
+	async executar({ id }: DeleteProjetoDTO): Promise<ResponseDeleteProjetoDTO> {
+		try {
+			if (!id || typeof id !== "string") {
+				throw new Error("ID inválido para deleção");
+			}
+
+			await this.prisma.projeto.delete({
+				where: { id },
+			});
+
+			return { sucesso: true };
+		} catch (error) {
+			if (typeof error === "object" && error !== null && "code" in error) {
+				const prismaError = error as { code?: string };
+				if (prismaError.code === "P2025") {
+					throw new Error(`Projeto com ID ${id} não encontrado`);
+				}
+				if (prismaError.code === "P2003") {
+					throw new Error(
+						`Não é possível deletar o projeto pois existem registros relacionados (ex: autores)`
+					);
+				}
+			}
+
+			console.error("Erro ao deletar projeto:", error);
+			throw error;
+		}
 	}
 }

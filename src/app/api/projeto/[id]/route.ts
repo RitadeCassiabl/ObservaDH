@@ -1,51 +1,65 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { RespostaApi } from "@/domain/models/resposta-api";
+import { UpdateProjetoDTO } from "@/dtos/projeto.dto";
 import { AtualizarProjetoController } from "@/lib/api/controllers/projeto/atualizar-projeto-controller";
 import { BuscarProjetoController } from "@/lib/api/controllers/projeto/buscar-projeto-controller";
 import { DeletarProjetoController } from "@/lib/api/controllers/projeto/deletar-projeto-controller";
+
+function validateId(id?: string): NextResponse | undefined {
+	if (!id || id.trim() === "") {
+		const respostaIdInvalido = new RespostaApi({
+			sucesso: false,
+			mensagem: "ID do projeto não fornecido ou inválido",
+		});
+		return NextResponse.json(respostaIdInvalido, { status: 400 });
+	}
+	return undefined;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function handleError(error: any, message: string) {
+	console.error(message, error);
+	const respostaException = new RespostaApi({
+		sucesso: false,
+		mensagem: `Ocorreu um erro inesperado no servidor: ${message}`,
+		dados: process.env.NODE_ENV === "development" ? error : undefined,
+	});
+	return NextResponse.json(respostaException, { status: 500 });
+}
 
 export async function PATCH(
 	request: NextRequest,
 	{ params }: { params: { id?: string } }
 ) {
 	try {
-		const { id } = params;
+		const idError = validateId(params.id);
+		if (idError) return idError;
 
-		if (!id) {
-			const resposta = new RespostaApi({
-				sucesso: false,
-				mensagem: "Estão faltando informações para a busca do projeto de lei",
-			});
-			return NextResponse.json({ resposta }, { status: 400 });
-		}
-
-		const { ano, numeroPl, pautaId, justificativa, ementa, esferaId } =
-			await request.json();
+		const body = await request.json().catch(() => ({}));
+		const updateData = { id: params.id as string, ...body } as UpdateProjetoDTO;
 
 		const controller = new AtualizarProjetoController();
+		const resposta = (await controller.executar(updateData)) as RespostaApi;
 
-		const resposta = await controller.executar({
-			id: id,
-			ano: ano,
-			ementa: ementa,
-			pautaId: pautaId,
-			esferaId: esferaId,
-			numeroPl: numeroPl,
-			justificativa: justificativa,
-		});
+		let status = 200;
+		if (!resposta.sucesso) {
+			if (resposta.mensagem?.includes("não foi encontrado")) {
+				status = 404; // Not Found
+			} else if (
+				resposta.mensagem?.includes("Já existe outro projeto com o número PL")
+			) {
+				status = 409; // Conflict
+			} else if (resposta.mensagem?.includes("ID relacionado inválido")) {
+				status = 400; // Bad Request
+			} else {
+				status = 400; // Generic Bad Request
+			}
+		}
 
-		return NextResponse.json(
-			{ resposta },
-			{ status: resposta.sucesso ? 200 : 400 }
-		);
+		return NextResponse.json(resposta, { status });
 	} catch (error) {
-		const resposta = new RespostaApi({
-			sucesso: false,
-			mensagem: "Ocorreu um erro inesperado",
-			dados: error,
-		});
-		return NextResponse.json({ resposta }, { status: 500 });
+		return handleError(error, "Erro ao atualizar projeto");
 	}
 }
 
@@ -54,62 +68,47 @@ export async function DELETE(
 	{ params }: { params: { id?: string } }
 ) {
 	try {
-		const { id } = params;
-
-		if (!id) {
-			const resposta = new RespostaApi({
-				sucesso: false,
-				mensagem: "Estão faltando informações para a busca do projeto de lei",
-			});
-			return NextResponse.json({ resposta }, { status: 400 });
-		}
+		const idError = validateId(params.id);
+		if (idError) return idError;
 
 		const controller = new DeletarProjetoController();
+		const resposta = (await controller.executar({
+			id: params.id as string,
+		})) as RespostaApi;
 
-		const resposta = await controller.executar(id);
+		let status = 200;
+		if (!resposta.sucesso) {
+			if (resposta.mensagem?.includes("não foi encontrado")) {
+				status = 404; // Not Found
+			} else if (resposta.mensagem?.includes("registros relacionados")) {
+				status = 409; // Conflict
+			} else {
+				status = 400; // Generic Bad Request
+			}
+		}
 
-		return NextResponse.json(
-			{ resposta },
-			{ status: resposta.sucesso ? 200 : 400 }
-		);
+		return NextResponse.json(resposta, { status });
 	} catch (error) {
-		const respostaApi = new RespostaApi({
-			sucesso: false,
-			mensagem: "Ocorreu um erro inesperado",
-			dados: error,
-		});
-		return NextResponse.json({ respostaApi }, { status: 500 });
+		return handleError(error, "Erro ao deletar projeto");
 	}
 }
 
 export async function GET(
-	request: NextRequest,
-	{ params }: { params: { id?: string } }
+	request: Request,
+	{ params }: { params: { id: string } }
 ) {
 	try {
+		const idError = validateId(params.id);
+		if (idError) return idError;
+
 		const { id } = params;
-		if (!id) {
-			const resposta = new RespostaApi({
-				sucesso: false,
-				mensagem: "Estão faltando informações para a busca do projeto de lei",
-			});
-			return NextResponse.json({ resposta }, { status: 400 });
-		}
-
 		const controller = new BuscarProjetoController();
-
 		const resposta = await controller.executar(id);
 
-		return NextResponse.json(
-			{ resposta },
-			{ status: resposta.sucesso ? 200 : 404 }
-		);
-	} catch (error) {
-		const respostaApi = new RespostaApi({
-			sucesso: false,
-			mensagem: "Ocorreu um erro inesperado",
-			dados: error,
+		return NextResponse.json(resposta, {
+			status: resposta.sucesso ? 200 : 404,
 		});
-		return NextResponse.json({ respostaApi }, { status: 500 });
+	} catch (error) {
+		return handleError(error, "Erro ao buscar projeto por ID");
 	}
 }
