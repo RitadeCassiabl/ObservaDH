@@ -13,6 +13,22 @@ export interface ResponseDireitoVioladoDTO {
 	projetos?: any[];
 }
 
-export interface UpdateDireitoViolado {
+export interface UpdateDireitoVioladoDTO {
+	id: string;
+	nome: string;
+	sigla: string;
+	descricao: string;
+}
 
+export interface DeleteDireitoViladoDTO {
+	id: string;
+}
+
+export interface ResponseDeleteDireitoVioladoDTO {
+	sucesso: boolean;
+}
+
+export interface SearchDireitoVioladoDTO {
+	id?: string;
+	nome?: string;
 }
