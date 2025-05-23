@@ -11,8 +11,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 		CredentialsProvider({
 			name: "Credenciais",
 			credentials: {
-				email: { label: "Email", type: "text" },
-				password: { label: "Password", type: "password" },
+				email: {
+					label: "Email",
+					type: "text",
+					placeholder: "exemplo@gmail.com",
+				},
+				password: { label: "Senha", type: "password", placeholder: "********" },
 			},
 			async authorize(credentials) {
 				if (!credentials?.email || !credentials?.password) {
@@ -35,7 +39,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 					throw new Error("Dados inválidos");
 				}
 
-				return { email: user.email, id: user.id };
+				return { email: user.email, id: user.id, name: user.name };
 			},
 		}),
 	],

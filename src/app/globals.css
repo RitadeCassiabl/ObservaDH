@@ -77,6 +77,11 @@
 	position: relative;
 }
 
+.login {
+	background-color: #050b17;
+	background-size: cover;
+}
+
 .border-gradient {
 	border-image: linear-gradient(to right, #87d9ff 0%, #f693f9 100%) 1;
 	border-width: 2px;
